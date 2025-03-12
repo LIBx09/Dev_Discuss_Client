@@ -1,5 +1,7 @@
+import { Link } from "react-router-dom";
+
 const Navbar = () => {
-  const user = false;
+  const user = true;
 
   return (
     <div className="navbar bg-base-100 shadow-sm">
@@ -41,14 +43,16 @@ const Navbar = () => {
               </ul>
             </li>
             <li>
-              <a>About US</a>
+              <Link to="/aboutUs">About Us</Link>
             </li>
             <li>
-              <a>Contact Us</a>
+              <Link to="/contactUs">Contact Us</Link>
             </li>
           </ul>
         </div>
-        <a className="btn btn-ghost -ml-4 text-md md:text-xl">Dev_Discuss</a>
+        <Link to="/" className="btn btn-ghost -ml-4 text-md md:text-xl">
+          Dev_Discuss
+        </Link>
         <div className=" hidden lg:flex md:ml-30">
           <ul className="menu menu-horizontal px-1">
             <li>
@@ -68,10 +72,10 @@ const Navbar = () => {
               </details>
             </li>
             <li>
-              <a>About US</a>
+              <Link to="/aboutUs">About Us</Link>
             </li>
             <li>
-              <a>Contact Us</a>
+              <Link to="/contactUs">Contact Us</Link>
             </li>
           </ul>
         </div>
@@ -114,7 +118,9 @@ const Navbar = () => {
               </li>
               <li>
                 {user ? (
-                  <button className="btn">Login</button>
+                  <Link to="/login">
+                    <button className="btn">Login</button>
+                  </Link>
                 ) : (
                   <button className="btn">Logout</button>
                 )}
