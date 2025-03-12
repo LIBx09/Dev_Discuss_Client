@@ -1,18 +1,61 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Helmet } from 'react-helmet';
 import { FaFacebook, FaGithub } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import Lottie from "lottie-react";
 import register_lottie from '../../../assets/Register_lottie/Animation - 1734093605552.json'
 import { Link } from 'react-router-dom';
+import AuthContext from '../../../Context/AuthContext';
+import Swal from 'sweetalert2';
 
 
 const Login = () => {
+  const { loginUser, createUserGoogle } = useContext(AuthContext)
   const handleGoogleSignup = () => {
+    createUserGoogle()
+      .then(result => {
+        Swal.fire({
+          title: "Success!",
+          text: "You have successfully Sing Up!",
+          icon: "success"
+        });
+
+
+      })
+      .catch(error => {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "The Email you use already Exists!",
+        });
+      })
 
   }
-  const handleLogin = () => {
+  const handleLogin = (e) => {
+    e.preventDefault()
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    const loginInfo = {
+      email, password
+    }
+    loginUser(email, password)
+      .then(result => {
+        Swal.fire({
+          title: "Success!",
+          text: "You have successfully Sing In!",
+          icon: "success"
+        });
 
+        form.reset()
+      })
+      .catch(error => {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: (error.message),
+        });
+      })
   }
   return (
     <div>

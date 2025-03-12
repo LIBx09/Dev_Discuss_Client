@@ -1,16 +1,62 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Helmet } from 'react-helmet';
 import { FaFacebook, FaGithub } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import Lottie from "lottie-react";
 import register_lottie from '../../../assets/Register_lottie/Animation - 1734093605552.json'
 import { Link } from 'react-router-dom';
+import AuthContext from '../../../Context/AuthContext';
+import Swal from 'sweetalert2';
 
 const Registration = () => {
+  const { createUser, createUserGoogle } = useContext(AuthContext)
   const handleGoogleSignup = () => {
+    createUserGoogle()
+      .then(result => {
+        Swal.fire({
+          title: "Success!",
+          text: "You have successfully Sing Up!",
+          icon: "success"
+        });
 
+        
+      })
+      .catch(error => {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "The Email you use already Exists!",
+        });
+      })
   }
-  const handleRegistration = () => {
+  const handleRegistration = (e) => {
+    e.preventDefault()
+    const form = e.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const password = form.password.value;
+    const userInfo = {
+      name, email, password
+    }
+    console.log(userInfo);
+    createUser(email, password)
+      .then(result => {
+        Swal.fire({
+          title: "Success!",
+          text: "You have successfully Sing Up!",
+          icon: "success"
+        });
+
+        form.reset()
+      })
+      .catch(error => {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "The Email you use already Exists!",
+        });
+
+      })
 
   }
   return (
@@ -18,7 +64,7 @@ const Registration = () => {
       <div>
         <div>
           <Helmet>
-            <title>Login | Dev_Discuss</title>
+            <title>Registration | Dev_Discuss</title>
           </Helmet>
           <div className="hero  min-h-screen ">
             <div className="hero-content flex-col lg:flex-row-reverse">
@@ -49,7 +95,7 @@ const Registration = () => {
                       <span className="label-text mb-1.5">Password</span>
                     </label>
                     <input type="password" name="password" placeholder="Enter your password" className="input input-bordered rounded-lg" required />
-                  
+
                   </div>
 
                   <button className="btn btn-neutral mt-5 mr-3 rounded-lg">Register</button>
