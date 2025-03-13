@@ -26,7 +26,7 @@ const Login = () => {
         Swal.fire({
           icon: "error",
           title: "Oops...",
-          text: "The Email you use already Exists!",
+          text: "The Email you use already Exists",
         });
       })
 
