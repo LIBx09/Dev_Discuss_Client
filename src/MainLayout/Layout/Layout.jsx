@@ -3,7 +3,7 @@ import Navbar from "../Shared/Navbar/Navbar";
 
 const Layout = () => {
   return (
-    <div>
+    <div className="w-[98%] md:w-11/12 mx-auto">
       <Navbar />
       <Outlet />
     </div>
