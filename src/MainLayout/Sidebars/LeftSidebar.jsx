@@ -17,8 +17,10 @@ const LeftSidebar = () => {
                 <li className="flex items-center gap-2 hover:bg-gray-100 pb-6"><span><MdEventNote /></span>Event</li>
                 <li className="flex items-center gap-2 hover:bg-gray-100"><span><FaUsers /></span>Users</li>
             </ul>
+           
         </div>
     );
 };
 
 export default LeftSidebar;
+ {/* checking */}
