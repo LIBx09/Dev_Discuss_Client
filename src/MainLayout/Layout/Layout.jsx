@@ -11,4 +11,3 @@ const Layout = () => {
 };
 
 export default Layout;
-// github checking now
