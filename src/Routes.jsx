@@ -4,6 +4,7 @@ import Login from "./MainLayout/Social/Login/Login";
 import ContactUs from "./Page/ContactUs/ContactUs";
 import AboutUs from "./Page/AboutUs/AboutUs";
 import Registration from "./MainLayout/Social/Registration/Registration";
+import Blogs from "./Page/Blogs/Blogs";
 
 const router = createBrowserRouter([
   {
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
         path: "/registration",
         element: <Registration></Registration>
       },
+      {
+        path:"/blogs",
+        element:<Blogs></Blogs>
+      }
     ],
   },
 ]);
