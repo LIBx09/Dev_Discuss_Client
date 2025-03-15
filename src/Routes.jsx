@@ -22,8 +22,6 @@ const router = createBrowserRouter([
       { path: "/contactUs", element: <ContactUs /> },
       { path: "/login", element: <Login /> },
       { path: "/registration", element: <Registration /> },
-
-      // ✅ Sidebar Navigation Routes
       { path: "/questions", element: <Questions /> },
       { path: "/tags", element: <Tags /> },
       { path: "/saves", element: <Saves /> },
