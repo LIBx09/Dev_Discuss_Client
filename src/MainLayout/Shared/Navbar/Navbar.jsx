@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import DarkLightToggle from "../../../components/DarkLight/DarkLightToggle";
 
 const Navbar = () => {
   const user = true;
@@ -27,7 +28,7 @@ const Navbar = () => {
         </Link>
         <div className=" hidden lg:flex md:ml-30">
           <ul className="menu menu-horizontal px-1">
-          <li>
+            <li>
               <Link to="/">Home</Link>
             </li>
             <li>
@@ -78,6 +79,7 @@ const Navbar = () => {
               <li>
                 <a>Settings</a>
               </li>
+              <DarkLightToggle />
               <li>
                 {user ? (
                   <Link to="/login">
