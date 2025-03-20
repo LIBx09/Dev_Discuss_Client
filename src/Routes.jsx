@@ -11,6 +11,7 @@ import Saves from "./Page/Saves/Saves";
 import Blogs from "./Page/Blogs/Blogs";
 import Events from "./Page/Events/Events";
 import Users from "./Page/Users/Users";
+import AskQuestion from "./components/AskQuestion";
 
 const router = createBrowserRouter([
   {
@@ -28,8 +29,11 @@ const router = createBrowserRouter([
       { path: "/blogs", element: <Blogs /> },
       { path: "/events", element: <Events /> },
       { path: "/users", element: <Users /> },
+      {path: "/askQuestion", element: <AskQuestion></AskQuestion>}
     ],
+    
   },
+  
 ]);
 
 export default router;
