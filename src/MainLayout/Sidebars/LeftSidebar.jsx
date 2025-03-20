@@ -53,7 +53,7 @@ const LeftSidebar = () => {
           </li>
         </ul>
       </div>
-      <div className="h-full py-6 px-4 border-r hidden md:block border-gray-500  ">
+      <div className="h-full py-6 px-4 hidden md:block">
         <ul className="space-y-3">
           <li className="flex items-center gap-2 hover:bg-gray-100 p-2 rounded-md">
             <Link to="/" className="flex items-center gap-2 w-full">

@@ -10,7 +10,7 @@ const Layout = () => {
       <div className="relative min-h-screen flex flex-col md:flex-row bg-white dark:bg-gray-900 dark:text-white py-6 gap-6">
         
         {/* ✅ Left Sidebar */}
-        <div className="w-full md:w-1/8">
+        <div className="w-full dark:bg-gray-800 md:w-1/8">
           <LeftSidebar />
         </div>
 
