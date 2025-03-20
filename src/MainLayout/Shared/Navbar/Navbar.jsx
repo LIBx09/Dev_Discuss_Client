@@ -5,7 +5,7 @@ const Navbar = () => {
   const user = true;
 
   return (
-    <div className="navbar bg-base-100  border-b border-b-gray-300">
+    <div className="navbar bg-base-100 border-b border-b-gray-300">
       <div className="navbar-start">
         <div className="dropdown">
           <ul
@@ -45,6 +45,9 @@ const Navbar = () => {
       </div>
 
       <div className="navbar-end">
+        <div className="mr-4">
+          <DarkLightToggle />
+        </div>
         <div className="flex gap-2">
           <div className="relative max-w-md mx-auto">
             <input
@@ -79,7 +82,7 @@ const Navbar = () => {
               <li>
                 <a>Settings</a>
               </li>
-              <DarkLightToggle />
+
               <li>
                 {user ? (
                   <Link to="/login">
