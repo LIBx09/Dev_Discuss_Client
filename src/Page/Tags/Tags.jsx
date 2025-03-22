@@ -24,9 +24,11 @@ const Tags = () => {
   return (
     <div className="p-6 max-w-4xl mx-auto">
       {/* Header Section */}
-      <div className="mb-4">
-        <h2 className="text-2xl font-bold">Popular Tags</h2>
-        <p className="text-gray-600">Browse the most used tags in the community</p>
+      <div className="mb-6 text-center">
+        <h2 className="text-3xl font-bold text-gray-800">Popular Tags</h2>
+        <p className="text-gray-600">
+          Browse the most used tags in the community
+        </p>
       </div>
 
       {/* Search Bar */}
@@ -36,21 +38,24 @@ const Tags = () => {
           placeholder="Search for tags..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+          className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
         />
       </div>
 
-      {/* Tags Grid (Responsive) */}
+      {/* Tags Grid */}
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
         {filteredTags.length > 0 ? (
           filteredTags.map((tag, index) => (
-            <div key={index} className="bg-gray-100 px-4 py-2 rounded-md flex justify-between items-center">
-              <span className="text-blue-600 font-semibold">#{tag.name}</span>
-              <span className="text-gray-500 text-sm">{tag.count} questions</span>
+            <div
+              key={index}
+              className=" text-blue-600 px-4 py-2 rounded-lg flex justify-between items-center shadow-sm hover:bg-blue-200 transition-all cursor-pointer"
+            >
+              <span className="font-semibold">#{tag.name}</span>
+              <span className="text-gray-100  text-sm">{tag.count}</span>
             </div>
           ))
         ) : (
-          <p className="text-gray-500 col-span-full">No tags found</p>
+          <p className=" col-span-full text-center">No tags found</p>
         )}
       </div>
     </div>

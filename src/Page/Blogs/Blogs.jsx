@@ -38,13 +38,19 @@ const Blogs = () => {
       ) : (
         <div className="space-y-4">
           {blogPosts.map((blog) => (
-            <div key={blog.id} className="border p-4 rounded-lg shadow-md bg-gray-50">
-              <h3 className="text-lg font-semibold text-blue-600">{blog.title}</h3>
-              <p className="text-gray-700 mt-2">{blog.description}</p>
+            <div key={blog.id} className="border p-4 rounded-lg shadow-md ">
+              <h3 className="text-lg font-semibold text-blue-600">
+                {blog.title}
+              </h3>
+              <p className="text-gray-500 mt-2">{blog.description}</p>
 
               <div className="flex justify-between items-center mt-3 text-gray-500 text-sm">
-                <p>✍️ {blog.author}</p>
-                <p>📅 {blog.date}</p>
+                <p>
+                  ✍️ <span className=" dark:text-white">{blog.author}</span>
+                </p>
+                <p>
+                  📅 <span className=" dark:text-white">{blog.date}</span>
+                </p>
               </div>
             </div>
           ))}

@@ -37,20 +37,33 @@ const Saves = () => {
       ) : (
         <div className="space-y-4">
           {savedItems.map((item) => (
-            <div key={item.id} className="border p-4 rounded-lg shadow-sm bg-gray-100">
-              <h3 className="text-lg font-semibold text-blue-600">{item.title}</h3>
+            <div key={item.id} className="border p-4 rounded-lg shadow-sm ">
+              <h3 className="text-lg font-semibold text-blue-600">
+                {item.title}
+              </h3>
 
               <div className="flex flex-wrap gap-2 mt-2">
                 {item.tags.map((tag, index) => (
-                  <span key={index} className="text-sm bg-blue-200 text-blue-800 px-2 py-1 rounded-md">
+                  <span
+                    key={index}
+                    className="text-sm bg-blue-200 text-blue-800 px-2 py-1 rounded-md"
+                  >
                     #{tag}
                   </span>
                 ))}
               </div>
 
               <div className="flex justify-between items-center mt-3 text-gray-600 text-sm">
-                <p>👍 {item.votes} votes</p>
-                <p>💬 {item.answers} answers</p>
+                <p>
+                  👍{" "}
+                  <span className=" dark:text-white">{item.votes} votes</span>
+                </p>
+                <p>
+                  💬{" "}
+                  <span className="dark:text-white">
+                    {item.answers} answers
+                  </span>
+                </p>
               </div>
             </div>
           ))}
