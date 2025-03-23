@@ -6,6 +6,14 @@ import AboutUs from "./Page/AboutUs/AboutUs";
 import Registration from "./MainLayout/Social/Registration/Registration";
 import Blogs from "./Page/Blogs/Blogs";
 import AddBlogs from "./Page/AddBlogs/AddBlogs";
+import Home from "./MainLayout/Home/Home";
+import Questions from "./Page/Questions/Questions";
+import Tags from "./Page/Tags/Tags";
+import Saves from "./Page/Saves/Saves";
+
+import Events from "./Page/Events/Events";
+import Users from "./Page/Users/Users";
+import AskQuestion from "./components/AskQuestion";
 
 const router = createBrowserRouter([
   {
@@ -35,9 +43,23 @@ const router = createBrowserRouter([
       {
         path:"/add-blogs",
         element:<AddBlogs></AddBlogs>
-      }
+      },
+      { path: "/", element: <Home /> },
+      { path: "/aboutUs", element: <AboutUs /> },
+      { path: "/contactUs", element: <ContactUs /> },
+      { path: "/login", element: <Login /> },
+      { path: "/registration", element: <Registration /> },
+      { path: "/questions", element: <Questions /> },
+      { path: "/tags", element: <Tags /> },
+      { path: "/saves", element: <Saves /> },
+      { path: "/blogs", element: <Blogs /> },
+      { path: "/events", element: <Events /> },
+      { path: "/users", element: <Users /> },
+      {path: "/askQuestion", element: <AskQuestion></AskQuestion>}
     ],
+    
   },
+  
 ]);
 
 export default router;
