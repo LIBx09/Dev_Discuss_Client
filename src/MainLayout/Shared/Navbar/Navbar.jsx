@@ -1,9 +1,29 @@
 import { MdDarkMode, MdOutlineDarkMode } from "react-icons/md";
 import { Link } from "react-router-dom";
 import DarkLightToggle from "../../../components/DarkLight/DarkLightToggle";
+import { useContext } from "react";
+import AuthContext from "../../../Context/AuthContext";
+import Swal from "sweetalert2";
 
 const Navbar = () => {
-  const user = true;
+  const { user, logout } = useContext(AuthContext)
+  const handleLogout = () => {
+    logout()
+      .then(result => {
+        Swal.fire({
+          title: "Success!",
+          text: "You have successfully Logout!",
+          icon: "success"
+        });
+      })
+      .catch(error => {
+        Swal.fire({
+          icon: (error.message),
+          title: "Oops...",
+          text: "There is problem try again!",
+        });
+      })
+  }
 
   return (
     <div className="navbar bg-base-100 border-b border-b-gray-300">
@@ -104,6 +124,7 @@ const Navbar = () => {
               className="btn btn-ghost btn-circle avatar"
             >
               <div className="w-10 border rounded-full">
+                <p>{user?.displayName}</p>
                 <img alt="pro" src="" />
               </div>
             </div>
@@ -123,11 +144,12 @@ const Navbar = () => {
 
               <li>
                 {user ? (
-                  <Link to="/login">
-                    <button className="btn">Login</button>
+                  <Link onClick={handleLogout} className="btn">
+                    Logout
                   </Link>
                 ) : (
-                  <button className="btn">Logout</button>
+                  <Link to={"/login"} className="btn">Login</Link>
+
                 )}
               </li>
             </ul>
