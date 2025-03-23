@@ -10,7 +10,7 @@ const Blog = ({ blog }) => {
                     <figure>
                         <img
                             src={image}
-                            className="h-60 rounded-xl"
+                            className="h-48 rounded-xl"
                             alt="" />
 
                     </figure>
