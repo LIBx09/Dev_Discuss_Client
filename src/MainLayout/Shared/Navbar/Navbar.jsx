@@ -1,3 +1,4 @@
+import { MdDarkMode, MdOutlineDarkMode } from "react-icons/md";
 import { Link } from "react-router-dom";
 import DarkLightToggle from "../../../components/DarkLight/DarkLightToggle";
 
@@ -16,6 +17,23 @@ const Navbar = () => {
               <a>Home</a>
             </li>
             <li>
+              <Link to={"/blogs"}>Blogs</Link>
+            </li>
+            <li>
+              <Link to={"/add-blogs"}>Add Blogs</Link>
+            </li>
+            <li>
+              <a>Parent</a>
+              <ul className="p-2">
+                <li>
+                  <a>Submenu 1</a>
+                </li>
+                <li>
+                  <a>Submenu 2</a>
+                </li>
+              </ul>
+            </li>
+            <li>
               <Link to="/aboutUs">About Us</Link>
             </li>
             <li>
@@ -29,6 +47,26 @@ const Navbar = () => {
         <div className=" hidden lg:flex md:ml-30">
           <ul className="menu menu-horizontal px-1">
             <li>
+              <a>Home</a>
+            </li>
+            <li>
+              <Link to={"/blogs"}>Blogs</Link>
+            </li>
+            <li>
+              <Link to={"/add-blogs"}>Add Blogs</Link>
+            </li>
+            <li>
+              <details>
+                <summary>Parent</summary>
+                <ul className="p-2">
+                  <li>
+                    <a>Submenu 1</a>
+                  </li>
+                  <li>
+                    <a>Submenu 2</a>
+                  </li>
+                </ul>
+              </details>
               <Link to="/">Home</Link>
             </li>
             <li>

@@ -4,6 +4,8 @@ import LeftSidebar from "../Sidebars/LeftSidebar";
 import RightSidebar from "../Sidebars/RightSidebar"; // ✅ Import RightSidebar
 
 const Layout = () => {
+
+
   return (
     <div className="w-[98%] md:w-11/12 mx-auto dark:bg-slate-950 dark:text-white ">
       <Navbar />
