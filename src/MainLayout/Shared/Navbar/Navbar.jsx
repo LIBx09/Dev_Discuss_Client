@@ -1,6 +1,7 @@
+import { MdDarkMode, MdOutlineDarkMode } from "react-icons/md";
 import { Link } from "react-router-dom";
 
-const Navbar = () => {
+const Navbar = ({ handleisactive, isactive }) => {
   const user = true;
 
   return (
@@ -35,6 +36,9 @@ const Navbar = () => {
               <Link to={"/blogs"}>Blogs</Link>
             </li>
             <li>
+              <Link to={"/add-blogs"}>Add Blogs</Link>
+            </li>
+            <li>
               <a>Parent</a>
               <ul className="p-2">
                 <li>
@@ -63,6 +67,9 @@ const Navbar = () => {
             </li>
             <li>
               <Link to={"/blogs"}>Blogs</Link>
+            </li>
+            <li>
+              <Link to={"/add-blogs"}>Add Blogs</Link>
             </li>
             <li>
               <details>

@@ -20,7 +20,7 @@ const ContactUs = () => {
   };
 
   return (
-    <div className=" mx-auto p-8 bg-white shadow-lg rounded-lg border border-gray-200">
+    <div className=" mx-auto p-8 bg-base-100 shadow-lg rounded-lg border border-gray-200">
       <h2 className="text-3xl font-bold text-center text-gray-800 mb-6">
         Get in Touch
       </h2>
