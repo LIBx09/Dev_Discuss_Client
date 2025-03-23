@@ -5,7 +5,6 @@ import ContactUs from "./Page/ContactUs/ContactUs";
 import AboutUs from "./Page/AboutUs/AboutUs";
 import Registration from "./MainLayout/Social/Registration/Registration";
 import Blogs from "./Page/Blogs/Blogs";
-import AddBlogs from "./Page/AddBlogs/AddBlogs";
 
 const router = createBrowserRouter([
   {
@@ -29,12 +28,8 @@ const router = createBrowserRouter([
         element: <Registration></Registration>
       },
       {
-        path: "/blogs",
-        element: <Blogs></Blogs>
-      },
-      {
-        path: "/add-blogs",
-        element: <AddBlogs></AddBlogs>
+        path:"/blogs",
+        element:<Blogs></Blogs>
       }
     ],
   },
