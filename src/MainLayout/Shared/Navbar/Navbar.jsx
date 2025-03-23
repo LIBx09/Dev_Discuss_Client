@@ -8,6 +8,9 @@ import { MdEventNote } from "react-icons/md";
 import { TbLogs } from "react-icons/tb";
 import { IoIosContact } from "react-icons/io";
 import { RiFolderUnknowFill } from "react-icons/ri";
+import { FaRegBookmark } from "react-icons/fa6";
+import { IoIosHelpCircleOutline } from "react-icons/io";
+import { FaCode } from "react-icons/fa";
 
 const Navbar = () => {
   const user = true;
@@ -26,25 +29,13 @@ const Navbar = () => {
 
         {/* Logo */}
         <Link to="/" className="btn btn-ghost text-md md:text-xl">
+        <FaCode />
           Dev_Discuss
         </Link>
       </div>
 
       {/* Navbar Center (Hidden in mobile, visible in larger screens) */}
       <div className="hidden lg:flex lg:navbar-center">
-        <ul className="flex gap-4">
-          <li>
-            <Link to="/aboutUs">About Us</Link>
-          </li>
-          <li>
-            <Link to="/contactUs">Contact Us</Link>
-          </li>
-        </ul>
-      </div>
-
-      {/* Navbar End */}
-      <div className="navbar-end flex gap-3">
-        {/* Search Bar */}
         <div className="relative hidden md:block">
           <input
             type="text"
@@ -55,9 +46,19 @@ const Navbar = () => {
             🔍
           </button>
         </div>
+      </div>
 
-        {/* Profile Dropdown */}
-        <div className="dropdown dropdown-end">
+      {/* Navbar End */}
+      <div className="navbar-end flex gap-3">
+
+        <div className="text-3xl">
+          <IoIosHelpCircleOutline />
+        </div>
+        <div className="text-2xl">
+          <FaRegBookmark />
+        </div>
+           {/* Profile Dropdown */}
+           <div className="dropdown dropdown-end">
           <div
             tabIndex={0}
             role="button"
@@ -78,6 +79,12 @@ const Navbar = () => {
             </li>
             <li>
               <a>Settings</a>
+            </li>
+            <li>
+              <Link to="/aboutUs">About Us</Link>
+            </li>
+            <li>
+              <Link to="/contactUs">Contact Us</Link>
             </li>
             <li>
               {user ? (
