@@ -11,7 +11,7 @@ const Blogs = () => {
             })
     }, [])
     return (
-        <div className="pt-16 pb-10  max-w-7xl mx-auto">
+        <div className="pb-10  max-w-7xl mx-auto">
             <h1 className="text-3xl lg:text-5xl font-bold text-center mb-7">Blogs</h1>
 
             <div className=" grid lg:grid-cols-3 md:grid-cols-2 gap-4">

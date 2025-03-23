@@ -6,11 +6,11 @@ const Blog = ({ blog }) => {
     return (
         <div className=''>
             <div>
-                <div className="card card-compact border-0 bg-base-100 lg:w-96 lg:h-[440px] shadow-xl">
+                <div className="card card-compact border-0 bg-base-100 w-full lg:h-[440px] shadow-xl">
                     <figure>
                         <img
                             src={image}
-                            className="h-60 rounded-xl"
+                            className="h-48 rounded-xl"
                             alt="" />
 
                     </figure>
