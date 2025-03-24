@@ -41,7 +41,7 @@ const AskQuestion = () => {
         <fieldset className="fieldset">
           <legend className="fieldset-legend md:text-xl text-md">Title</legend>
           <p className="fieldset-label">
-            Be specific and imagine you’re asking a question to another person
+            Be specific and imagine you're asking a question to another person
           </p>
           <input
             {...register("title", { required: true })}
