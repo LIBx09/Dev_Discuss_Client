@@ -1,3 +1,4 @@
+import { MdDarkMode, MdOutlineDarkMode } from "react-icons/md";
 import { Link } from "react-router-dom";
 
 import { useState } from "react";
@@ -13,11 +14,35 @@ import { FaRegBookmark } from "react-icons/fa6";
 import { IoIosHelpCircleOutline } from "react-icons/io";
 import { FaCode } from "react-icons/fa";
 import DarkLightToggle from "../../../components/DarkLight/DarkLightToggle";
+import { useContext } from "react";
+import AuthContext from "../../../Context/AuthContext";
+import Swal from "sweetalert2";
 
 
 const Navbar = () => {
-  const user = true;
+
+  const { user, logout } = useContext(AuthContext)
+  const handleLogout = () => {
+    logout()
+      .then(result => {
+        Swal.fire({
+          title: "Success!",
+          text: "You have successfully Logout!",
+          icon: "success"
+        });
+      })
+      .catch(error => {
+        Swal.fire({
+          icon: (error.message),
+          title: "Oops...",
+          text: "There is problem try again!",
+        });
+      })
+  }
+
+
   const [isOpen, setIsOpen] = useState(false);
+
 
   return (
 
@@ -85,7 +110,27 @@ const Navbar = () => {
             </li>
             <li>
 
+              <Link to={"/blogs"}>Blogs</Link>
+            </li>
+            <li>
+              <Link to={"/add-blogs"}>Add Blogs</Link>
+            </li>
+            <li>
+              <a>Parent</a>
+              <ul className="p-2">
+                <li>
+                  <a>Submenu 1</a>
+                </li>
+                <li>
+                  <a>Submenu 2</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+
+
               <a>Settings</a>
+
               <Link to="/aboutUs">About Us</Link>
             </li>
             <li>
@@ -99,6 +144,26 @@ const Navbar = () => {
         <div className=" hidden lg:flex md:ml-30">
           <ul className="menu menu-horizontal px-1">
             <li>
+              <a>Home</a>
+            </li>
+            <li>
+              <Link to={"/blogs"}>Blogs</Link>
+            </li>
+            <li>
+              <Link to={"/add-blogs"}>Add Blogs</Link>
+            </li>
+            <li>
+              <details>
+                <summary>Parent</summary>
+                <ul className="p-2">
+                  <li>
+                    <a>Submenu 1</a>
+                  </li>
+                  <li>
+                    <a>Submenu 2</a>
+                  </li>
+                </ul>
+              </details>
               <Link to="/">Home</Link>
             </li>
             <li>
@@ -191,6 +256,7 @@ const Navbar = () => {
               className="btn btn-ghost btn-circle avatar"
             >
               <div className="w-10 border rounded-full">
+                <p>{user?.displayName}</p>
                 <img alt="pro" src="" />
               </div>
             </div>
@@ -210,11 +276,12 @@ const Navbar = () => {
 
               <li>
                 {user ? (
-                  <Link to="/login">
-                    <button className="btn">Login</button>
+                  <Link onClick={handleLogout} className="btn">
+                    Logout
                   </Link>
                 ) : (
-                  <button className="btn">Logout</button>
+                  <Link to={"/login"} className="btn">Login</Link>
+
                 )}
               </li>
             </ul>

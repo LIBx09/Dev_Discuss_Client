@@ -18,12 +18,11 @@ const Registration = () => {
           text: "You have successfully Sing Up!",
           icon: "success"
         });
-
-        
+  
       })
       .catch(error => {
         Swal.fire({
-          icon: "error",
+          icon: (error.message),
           title: "Oops...",
           text: "The Email you use already Exists!",
         });
