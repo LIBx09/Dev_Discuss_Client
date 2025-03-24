@@ -8,12 +8,12 @@ const Home = () => {
     <div className="p-6 max-w-4xl mx-auto">
       {/* Welcome Section */}
       <div className="text-center">
-        <h2 className="text-3xl font-extrabold text-blue-600">
-          Welcome to DevOverflow
-        </h2>
-        <p className="text-gray-600 mt-2 text-lg">
-          Ask, answer, and explore coding questions.
-        </p>
+
+   
+
+        <h2 className="text-3xl font-extrabold text-blue-600">Welcome to DevDiscuss</h2>
+        <p className="text-gray-600 mt-2 text-lg">Ask, answer, and explore coding questions.</p>
+
       </div>
 
       {/* Action Buttons */}

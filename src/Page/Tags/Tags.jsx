@@ -22,11 +22,13 @@ const Tags = () => {
   );
 
   return (
-    <div className="p-6 max-w-4xl mx-auto">
+    <div className="p-6 max-w-5xl mx-auto">
       {/* Header Section */}
       <div className="mb-6 text-center">
-        <h2 className="text-3xl font-bold text-gray-800">Popular Tags</h2>
-        <p className="text-gray-600">
+        <h2 className="text-3xl font-bold text-gray-800 dark:text-white">
+          Popular Tags
+        </h2>
+        <p className="text-gray-600 dark:text-gray-400">
           Browse the most used tags in the community
         </p>
       </div>
@@ -38,7 +40,7 @@ const Tags = () => {
           placeholder="Search for tags..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
+          className="w-full p-3 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
         />
       </div>
 
@@ -48,14 +50,20 @@ const Tags = () => {
           filteredTags.map((tag, index) => (
             <div
               key={index}
-              className=" text-blue-600 px-4 py-2 rounded-lg flex justify-between items-center shadow-sm hover:bg-blue-200 transition-all cursor-pointer"
+              className="bg-gray-100 dark:bg-gray-800 px-5 py-3 rounded-lg flex justify-between items-center min-h-[50px] shadow-sm hover:shadow-md transition-shadow cursor-pointer"
             >
-              <span className="font-semibold">#{tag.name}</span>
-              <span className="text-gray-100  text-sm">{tag.count}</span>
+              <span className="text-blue-600 dark:text-blue-400 font-semibold text-sm sm:text-base truncate">
+                #{tag.name}
+              </span>
+              <span className="text-gray-500 dark:text-gray-400 text-xs sm:text-sm">
+                {tag.count} questions
+              </span>
             </div>
           ))
         ) : (
-          <p className=" col-span-full text-center">No tags found</p>
+          <p className="text-gray-500 dark:text-gray-400 col-span-full text-center">
+            No tags found
+          </p>
         )}
       </div>
     </div>
