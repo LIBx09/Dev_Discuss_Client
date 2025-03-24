@@ -4,7 +4,7 @@ import { FaBookmark, FaCircleQuestion, FaUsers } from "react-icons/fa6";
 import { IoMdPricetags } from "react-icons/io";
 import { MdEventNote } from "react-icons/md";
 import { TbLogs } from "react-icons/tb";
-
+import { FaBrain } from "react-icons/fa";
 const LeftSidebar = () => {
   return (
     <div>
@@ -56,6 +56,11 @@ const LeftSidebar = () => {
             </Link>
           </li>
           <li className="flex items-center gap-2 hover:bg-gray-900 hover:text-white p-2 rounded-md">
+            <Link to="/twinAI" className="flex items-center gap-2 w-full">
+            <FaBrain />   TwinAI
+            </Link>
+          </li>
+          <li className="flex items-center gap-2 hover:bg-gray-900 hover:text-white p-2 rounded-md">
             <Link to="/events" className="flex items-center gap-2 w-full">
               <MdEventNote className="text-lg" /> Events
             </Link>
@@ -92,6 +97,11 @@ const LeftSidebar = () => {
           <li className="flex items-center gap-2 hover:bg-gray-900 hover:text-white p-2 rounded-md">
             <Link to="/blogs" className="flex items-center gap-2 w-full">
               <TbLogs className="text-lg" /> Blogs
+            </Link>
+          </li>
+          <li className="flex items-center gap-2 hover:bg-gray-900 hover:text-white p-2 rounded-md">
+            <Link to="/twinAI" className="flex items-center gap-2 w-full">
+            <FaBrain />  TwinAI
             </Link>
           </li>
           <li className="flex items-center gap-2 hover:bg-gray-900 hover:text-white p-2 rounded-md">

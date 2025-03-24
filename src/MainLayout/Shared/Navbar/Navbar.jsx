@@ -33,31 +33,22 @@ const Navbar = () => {
             tabIndex={0}
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
           >
-            <li>
-              <a>Home</a>
-            </li>
+         
             <li>
               <Link to={"/blogs"}>Blogs</Link>
             </li>
             <li>
               <Link to={"/add-blogs"}>Add Blogs</Link>
             </li>
-            <li>
-              <a>Parent</a>
-              <ul className="p-2">
-                <li>
-                  <a>Submenu 1</a>
-                </li>
-                <li>
-                  <a>Submenu 2</a>
-                </li>
-              </ul>
-            </li>
+    
             <li>
               <Link to="/aboutUs">About Us</Link>
             </li>
             <li>
               <Link to="/contactUs">Contact Us</Link>
+            </li>
+            <li>
+              <Link to="/twinAI">TwinAI</Link>
             </li>
           </ul>
         </div>
@@ -66,8 +57,9 @@ const Navbar = () => {
         </Link>
         <div className=" hidden lg:flex md:ml-30">
           <ul className="menu menu-horizontal px-1">
+          
             <li>
-              <a>Home</a>
+              <Link to="/">Home</Link>
             </li>
             <li>
               <Link to={"/blogs"}>Blogs</Link>
@@ -76,24 +68,13 @@ const Navbar = () => {
               <Link to={"/add-blogs"}>Add Blogs</Link>
             </li>
             <li>
-              <details>
-                <summary>Parent</summary>
-                <ul className="p-2">
-                  <li>
-                    <a>Submenu 1</a>
-                  </li>
-                  <li>
-                    <a>Submenu 2</a>
-                  </li>
-                </ul>
-              </details>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
               <Link to="/aboutUs">About Us</Link>
             </li>
             <li>
               <Link to="/contactUs">Contact Us</Link>
+            </li>
+            <li>
+              <Link to="/twinAI">TwinAI</Link>
             </li>
             <li>
               <Link to="/Login">Login</Link>
