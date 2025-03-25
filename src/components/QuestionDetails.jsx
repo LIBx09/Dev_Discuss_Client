@@ -31,7 +31,7 @@ const QuestionDetails = () => {
       ) : question ? (
         <div className="border p-4 rounded shadow">
           <h2 className="text-2xl font-bold text-blue-600">{question.title}</h2>
-          <p className="mt-2 text-gray-700">{question.body}</p> {/* ✅ Added body here */}
+          <p className="mt-2 text-gray-700">{question.body}</p>
           <div className="mt-4 text-sm text-gray-500">
             <span>Tag: {question.tag}</span> | <span>Date: {question.date}</span>
           </div>

@@ -8,14 +8,14 @@ const Questions = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/questions")
+      .get("http://localhost:5000/questions") // ✅ API Call
       .then((res) => {
-        setQuestions(res.data);
-        setLoading(false);
+        setQuestions(res.data); // ✅ Store questions in state
+        setLoading(false); // ✅ Stop loading after fetching
       })
       .catch((error) => {
         console.error("Error fetching questions:", error);
-        setLoading(false);
+        setLoading(false); // ✅ Stop loading even if an error occurs
       });
   }, []);
 
@@ -41,7 +41,6 @@ const Questions = () => {
               key={question._id}
               className="border border-gray-300 p-4 rounded-md shadow-sm hover:shadow-md transition"
             >
-              {/* Clickable title to navigate to question details */}
               <Link to={`/questions/${question._id}`}>
                 <h3 className="text-lg font-semibold text-blue-600 hover:underline cursor-pointer">
                   {question.title}
