@@ -15,12 +15,17 @@ import Events from "./Page/Events/Events";
 import Users from "./Page/Users/Users";
 import AskQuestion from "./components/AskQuestion";
 import TwinAI from "./Page/TwinAI/TwinAI";
+import QuestionDetails from "./components/QuestionDetails";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Layout />,
     children: [
+      {
+        path:"/questions/:id",
+        element: <QuestionDetails></QuestionDetails>
+      },
       {
         path: "/aboutUs",
         element: <AboutUs />,
