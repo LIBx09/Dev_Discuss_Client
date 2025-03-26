@@ -16,7 +16,6 @@ const AskQuestion = () => {
                 reset();
                 console.log(res.data);
                 if (res.data.acknowledged) {
-                    // console.log("jj");
                     Swal.fire({
                         title: "Success",
                         icon: "success",
