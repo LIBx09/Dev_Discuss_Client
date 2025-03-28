@@ -35,10 +35,19 @@ const Users = () => {
       ) : (
         <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
           {usersList.map((user) => (
-            <div key={user.id} className="border p-4 rounded-lg shadow-md bg-gray-50 flex flex-col items-center">
-              <img src={user.avatar} alt={user.name} className="w-16 h-16 rounded-full mb-2" />
+            <div
+              key={user.id}
+              className="border p-4 rounded-lg shadow-md  flex flex-col items-center"
+            >
+              <img
+                src={user.avatar}
+                alt={user.name}
+                className="w-16 h-16 rounded-full mb-2"
+              />
               <h3 className="text-lg font-semibold">{user.name}</h3>
-              <p className="text-sm text-gray-500">⭐ {user.reputation} Reputation</p>
+              <p className="text-sm text-gray-500">
+                ⭐ {user.reputation} Reputation
+              </p>
               <p className="text-xs text-gray-400">Joined: {user.joined}</p>
             </div>
           ))}
