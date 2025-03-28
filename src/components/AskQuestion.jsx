@@ -5,37 +5,6 @@ import moment from "moment";
 import Swal from "sweetalert2";
 
 const AskQuestion = () => {
-<<<<<<< HEAD
-    const axios = useAxios();
-    const { register, handleSubmit, reset } = useForm();
-    const onSubmit = data => {
-        console.log(data);
-        const date = moment().format("MMM Do YY");
-        const updateData = { ...data, date };
-        axios.post("/questions", updateData)
-            .then(res => {
-                reset();
-                console.log(res.data);
-                if (res.data.acknowledged) {
-                    Swal.fire({
-                        title: "Success",
-                        icon: "success",
-                        draggable: true
-                    });
-                }
-            })
-            .catch(err => {
-                console.log(err);
-            })
-    }
-    return (
-        <div>
-            <div className="flex  justify-between">
-                <h2 className="md:text-3xl md:pt-6 pt:0 font-semibold text-lg">Ask a public question</h2>
-                <img className="h-28 w-80  hidden md:block" src={question} alt="" />
-            </div>
-            <form onSubmit={handleSubmit(onSubmit)}>
-=======
   const axios = useAxios();
   const { register, handleSubmit, reset } = useForm();
   const onSubmit = (data) => {
@@ -82,7 +51,6 @@ const AskQuestion = () => {
             placeholder="Enter a title for your question"
           />
         </fieldset>
->>>>>>> de4323a6f5fe9d4a50f0851c65e86e04c21f1c51
 
         <fieldset className="fieldset">
           <legend className="fieldset-legend md:text-xl text-md">Body</legend>
