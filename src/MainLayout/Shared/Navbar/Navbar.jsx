@@ -28,7 +28,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="navbar bg-base-100 border-b border-b-gray-300 px-4 dark:bg-gray-900 dark:text-white">
+    <div className="navbar bg-base-100 border-b border-b-gray-300 px-4 dark:bg-slate-900 dark:text-white">
       <div className="navbar-start">
         {/* Mobile Menu Button */}
         <div className="lg:hidden">

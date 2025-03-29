@@ -1,24 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 const Tags = () => {
-  // Sample tags data
-  const allTags = [
-    { name: "react", count: 120 },
-    { name: "javascript", count: 200 },
-    { name: "mongodb", count: 90 },
-    { name: "express", count: 60 },
-    { name: "node.js", count: 150 },
-    { name: "firebase", count: 75 },
-    { name: "tailwindcss", count: 50 },
-    { name: "next.js", count: 110 },
-    { name: "typescript", count: 130 },
-    { name: "redux", count: 80 },
-  ];
-
-  // State for search input and filtered tags
+  const [tags, setTags] = useState([]);
   const [search, setSearch] = useState("");
-  const filteredTags = allTags.filter((tag) =>
-    tag.name.toLowerCase().includes(search.toLowerCase())
+
+  // Fetch tags from the backend
+  useEffect(() => {
+    const fetchTags = async () => {
+      try {
+        const response = await axios.get("http://localhost:5000/tags"); // Adjust the URL if necessary
+        setTags(response.data);
+      } catch (error) {
+        console.error("Error fetching tags:", error);
+      }
+    };
+
+    fetchTags();
+  }, []);
+
+  // Filter the tags based on the search term
+  const filteredTags = tags.filter((tag) =>
+    tag.tag.toLowerCase().includes(search.toLowerCase())
   );
 
   return (
@@ -45,18 +48,18 @@ const Tags = () => {
       </div>
 
       {/* Tags Grid */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
         {filteredTags.length > 0 ? (
-          filteredTags.map((tag, index) => (
+          filteredTags.map((tagData, index) => (
             <div
               key={index}
-              className="bg-gray-100 dark:bg-gray-800 px-5 py-3 rounded-lg flex justify-between items-center min-h-[50px] shadow-sm hover:shadow-md transition-shadow cursor-pointer"
+              className="grid gap-4 bg-gray-100 dark:bg-gray-800 px-5 py-3 rounded-lg justify-between items-center min-h-[50px] shadow-sm hover:shadow-md transition-shadow cursor-pointer"
             >
               <span className="text-blue-600 dark:text-blue-400 font-semibold text-sm sm:text-base truncate">
-                #{tag.name}
+                #{tagData.tag}
               </span>
               <span className="text-gray-500 dark:text-gray-400 text-xs sm:text-sm">
-                {tag.count} questions
+                {tagData.count} questions
               </span>
             </div>
           ))
