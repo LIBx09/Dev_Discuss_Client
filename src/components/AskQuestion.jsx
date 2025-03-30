@@ -4,15 +4,24 @@ import question from "../assets/Questions.png";
 import useAxios from "../MainLayout/Shared/Hooks/useAxios";
 import moment from "moment";
 import Swal from "sweetalert2";
+import { useContext } from "react";
+import AuthContext from "../Context/AuthContext";
 
 const AskQuestion = () => {
+  const { user } = useContext(AuthContext)
   const axios = useAxios();
   const navigate = useNavigate(); // ✅ Initialize navigate
   const { register, handleSubmit, reset } = useForm();
 
   const onSubmit = (data) => {
     const date = moment().format("MMM Do YY");
-    const updateData = { ...data, date };
+    const updateData = {
+      ...data,
+      date,
+      userName: user?.displayName,  // ✅ Save user's name
+      userEmail: user?.email,       // ✅ Save user's email
+      userPhoto: user?.photoURL,    // ✅ Save user's photo (if available)
+    };
 
     axios
       .post("/questions", updateData)
@@ -83,17 +92,19 @@ const AskQuestion = () => {
             className="select select-md w-full"
           >
             <option disabled={true}>Category</option>
-            <option>React.js</option>
+            <option>HTML5</option>
+            <option>CSS3</option>
+            <option>Tailwind CSS</option>
             <option>Javascript</option>
-            <option>Next.js</option>
+            <option>React JS</option>
             <option>Redux</option>
+            <option>Firebase</option>
             <option>Node.js</option>
             <option>Express.js</option>
-            <option>Firebase</option>
-            <option>Tailwind CSS</option>
             <option>MongoDB</option>
-            <option>TypeScript</option>
             <option>JWT</option>
+            <option>Next.js</option>
+            <option>TypeScript</option>
           </select>
         </fieldset>
 

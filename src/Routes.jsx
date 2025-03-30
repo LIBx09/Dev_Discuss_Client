@@ -16,6 +16,7 @@ import AskQuestion from "./components/AskQuestion";
 import TwinAI from "./Page/TwinAI/TwinAI";
 import QuestionDetails from "./components/QuestionDetails";
 import FilteredQuestions from "./Page/Tags/FilteredQuestions";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -28,7 +29,7 @@ const router = createBrowserRouter([
       { path: "/login", element: <Login /> },
       { path: "/registration", element: <Registration /> },
       { path: "/questions", element: <Questions /> },
-      { path: "/questions/:id", element: <QuestionDetails /> },
+      { path: "/questions/:id", element: <PrivateRoute><QuestionDetails /></PrivateRoute> },
       { path: "/questions/tag/:tagName", element: <FilteredQuestions /> },
       { path: "/tags", element: <Tags /> },
       { path: "/saves", element: <Saves /> },
@@ -36,7 +37,7 @@ const router = createBrowserRouter([
       { path: "/add-blogs", element: <AddBlogs /> },
       { path: "/events", element: <Events /> },
       { path: "/users", element: <Users /> },
-      { path: "/askQuestion", element: <AskQuestion /> },
+      { path: "/askQuestion", element: <PrivateRoute><AskQuestion /></PrivateRoute> },
       { path: "/twinAI", element: <TwinAI /> },
     ],
   },
