@@ -11,6 +11,12 @@ const QuestionDetails = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  // Mock authenticated user (Replace with actual authentication)
+  const currentUser = {
+    userName: "Md. Habibur Rahman",
+    photoURL: "https://lh3.googleusercontent.com/a/ACg8ocKK4gxBgp8ai6tCRA3Nx8OI1RtUgLJSYlT0ARVA5cxi2GLUU2A=s96-c",
+  };
+
   useEffect(() => {
     const fetchQuestion = async () => {
       try {
@@ -30,7 +36,12 @@ const QuestionDetails = () => {
   const handleCommentSubmit = async () => {
     if (!newComment.trim()) return;
 
-    const commentData = { text: newComment };
+    const commentData = {
+      text: newComment,
+      userName: currentUser.userName,  // Passing commenter's name
+      photoURL: currentUser.photoURL,  // Passing commenter's photo
+    };
+
     try {
       const res = await axios.post(`http://localhost:5000/questions/comments/${id}`, commentData);
       setComments((prevComments) => [...prevComments, res.data]);
@@ -62,20 +73,28 @@ const QuestionDetails = () => {
             <div>
               <h2 className="text-xl font-bold text-blue-600">{question.title}</h2>
               <p className="text-sm text-gray-500">Asked by: {question.userName || "Anonymous"}</p>
+              <span>Date: {question.date}</span>
             </div>
           </div>
 
           <p className="mt-4 text-gray-700">{question.body}</p>
-          <p className="mt-4 text-sm text-gray-600">Tag: {question.tag || "General"}</p>
 
           <div className="mt-6">
             <h3 className="text-lg font-semibold">Comments</h3>
             <div className="mt-2 space-y-3">
               {comments.length > 0 ? (
                 comments.map((comment, index) => (
-                  <div key={index} className="border p-2 rounded bg-gray-100">
-                    <p className="text-sm">{comment.text}</p>
-                    <span className="text-xs text-gray-500">{new Date(comment.createdAt).toLocaleString()}</span>
+                  <div key={index} className="border p-2 rounded bg-gray-100 flex items-start gap-3">
+                    {comment.photoURL ? (
+                      <img src={comment.photoURL} alt="User Avatar" className="w-8 h-8 rounded-full object-cover" />
+                    ) : (
+                      <FaUserCircle className="w-8 h-8 text-gray-600" />
+                    )}
+                    <div>
+                      <p className="text-sm font-semibold">{comment.userName || "Anonymous"}</p>
+                      <p className="text-sm">{comment.text}</p>
+                      <span className="text-xs text-gray-500">{new Date(comment.createdAt).toLocaleString()}</span>
+                    </div>
                   </div>
                 ))
               ) : (
@@ -83,7 +102,13 @@ const QuestionDetails = () => {
               )}
             </div>
 
+            {/* Comment input */}
             <div className="mt-4 flex items-center gap-2">
+              {currentUser.photoURL ? (
+                <img src={currentUser.photoURL} alt="User Avatar" className="w-10 h-10 rounded-full object-cover" />
+              ) : (
+                <FaUserCircle className="w-10 h-10 text-gray-600" />
+              )}
               <input
                 type="text"
                 value={newComment}
