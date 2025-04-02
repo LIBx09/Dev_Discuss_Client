@@ -20,7 +20,7 @@ const QuestionDetails = () => {
   useEffect(() => {
     const fetchQuestion = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/questions/${id}`);
+        const res = await axios.get(`https://dev-discuss-server-chi.vercel.app/questions/${id}`);
         setQuestion(res.data);
         setComments(res.data.comments || []);
       } catch (err) {
@@ -43,7 +43,7 @@ const QuestionDetails = () => {
     };
 
     try {
-      const res = await axios.post(`http://localhost:5000/questions/comments/${id}`, commentData);
+      const res = await axios.post(`https://dev-discuss-server-chi.vercel.app/questions/comments/${id}`, commentData);
       setComments((prevComments) => [...prevComments, res.data]);
       setNewComment("");
     } catch (err) {
