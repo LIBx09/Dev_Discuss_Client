@@ -38,7 +38,7 @@ const ContextProvider = ({ children }) => {
     }, [])
 
     const authInfo = {
-        createUser, loginUser, createUserGoogle,user,logout
+        createUser, loginUser, loading, createUserGoogle,user, logout
     }
     return (
         <div>
