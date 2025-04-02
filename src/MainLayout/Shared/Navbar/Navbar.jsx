@@ -24,7 +24,6 @@ const Navbar = () => {
   const { user, loading, logout } = useContext(AuthContext);
   const [isOpen, setIsOpen] = useState(false);
 
-  // ✅ Show loading spinner instead of plain text
   if (loading) {
     return (
       <div className="flex justify-center items-center h-screen">
@@ -54,21 +53,16 @@ const Navbar = () => {
   return (
     <div className="navbar bg-base-100 border-b border-b-gray-300 px-4 dark:bg-slate-900 dark:text-white">
       <div className="navbar-start">
-        {/* Mobile Menu Button */}
         <div className="lg:hidden">
           <button onClick={() => setIsOpen(!isOpen)} className="btn btn-ghost">
             {isOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
           </button>
         </div>
-
-        {/* Logo */}
         <Link to="/" className="btn btn-ghost text-md md:text-xl">
           <FaCode />
           Dev_Discuss
         </Link>
       </div>
-
-      {/* Navbar Center */}
       <div className="hidden lg:flex lg:navbar-center">
         <div className="relative hidden md:block">
           <input
@@ -81,27 +75,20 @@ const Navbar = () => {
           </button>
         </div>
       </div>
-
-      {/* Navbar End */}
       <div className="navbar-end flex gap-3">
-        {/* Dark Mode Toggle */}
         <DarkLightToggle />
-
         <div className="text-3xl">
           <IoIosHelpCircleOutline />
         </div>
         <div className="text-2xl">
           <FaRegBookmark />
         </div>
-
-        {/* Profile Dropdown */}
         <div className="dropdown dropdown-end">
           <div
             tabIndex={0}
             role="button"
             className="btn btn-ghost btn-circle avatar"
           >
-            {/* ✅ Use optional chaining to avoid errors */}
             {user?.photoURL ? (
               <img
                 src={user.photoURL}
@@ -144,8 +131,6 @@ const Navbar = () => {
           </ul>
         </div>
       </div>
-
-      {/* Mobile Menu */}
       {isOpen && (
         <div className="lg:hidden absolute top-16 left-0 w-full bg-base-300 shadow-md z-10 dark:bg-gray-800">
           <ul className="menu p-3">
