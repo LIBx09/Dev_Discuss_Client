@@ -118,14 +118,11 @@ const Navbar = () => {
             </button>
           </div>
           <div className="dropdown dropdown-end">
-            <div
-              tabIndex={0}
-              role="button"
-              className="btn btn-ghost btn-circle avatar"
-            >
-              <div className="w-10 border rounded-full">
-                <p>{user?.displayName}</p>
-                <img alt="pro" src="" />
+            <div tabIndex={0} role="button" className="">
+              <div className="avatar">
+                <div className="w-12 rounded-full">
+                  <img src={user?.photoURL} />
+                </div>
               </div>
             </div>
             <ul

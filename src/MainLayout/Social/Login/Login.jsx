@@ -4,13 +4,14 @@ import { FaFacebook, FaGithub } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import Lottie from "lottie-react";
 import register_lottie from '../../../assets/Register_lottie/Animation - 1734093605552.json'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import AuthContext from '../../../Context/AuthContext';
 import Swal from 'sweetalert2';
 
 
 const Login = () => {
-  const { loginUser, createUserGoogle } = useContext(AuthContext)
+  const { loginUser, createUserGoogle, createUserGithub } = useContext(AuthContext)
+  const navigate = useNavigate()
   const handleGoogleSignup = () => {
     createUserGoogle()
       .then(result => {
@@ -19,6 +20,8 @@ const Login = () => {
           text: "You have successfully Sing Up!",
           icon: "success"
         });
+        navigate("/")
+
 
 
       })
@@ -27,6 +30,28 @@ const Login = () => {
           icon: "error",
           title: "Oops...",
           text: "The Email you use already Exists",
+        });
+      })
+
+  }
+
+  const handleGithubSignup = () => {
+    createUserGithub()
+      .then(result => {
+        Swal.fire({
+          title: "Success!",
+          text: "You have successfully Sing Up!",
+          icon: "success"
+        });
+        navigate("/")
+
+      })
+
+      .catch(error => {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: (error.message),
         });
       })
 
@@ -48,6 +73,8 @@ const Login = () => {
         });
 
         form.reset()
+        navigate("/")
+
       })
       .catch(error => {
         Swal.fire({
@@ -100,7 +127,7 @@ const Login = () => {
                 <div className="flex justify-center gap-4 mt-5">
                   <Link onClick={handleGoogleSignup}><FcGoogle className="text-5xl" /></Link>
                   <Link><FaFacebook className="text-5xl text-blue-600" /></Link>
-                  <Link><FaGithub className="text-5xl text-black" /></Link>
+                  <Link onClick={handleGithubSignup}><FaGithub className="text-5xl text-black" /></Link>
 
                 </div>
 

@@ -8,26 +8,31 @@ const AskQuestion = () => {
   const axios = useAxios();
   const { register, handleSubmit, reset } = useForm();
   const onSubmit = (data) => {
-    console.log(data);
+
     const date = moment().format("MMM Do YY");
     const updateData = { ...data, date };
-    axios
-      .post("/questions", updateData)
-      .then((res) => {
-        reset();
-        console.log(res.data);
-        if (res.data.acknowledged) {
-          // console.log("jj");
-          Swal.fire({
-            title: "Success",
-            icon: "success",
-            draggable: true,
-          });
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    console.log(updateData)
+
+    // axios.post("/questions", updateData)
+    //   .then((res) => {
+    //     reset();
+    //     console.log(res.data);
+    //     if (res.data.acknowledged) {
+    //       // console.log("jj");
+    //       Swal.fire({
+    //         title: "Success",
+    //         icon: "success",
+    //         draggable: true,
+    //       });
+    //     }
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
+
+    axios.post("/questions", updateData)
+      .then(data => console.log(data.data))
+
   };
   return (
     <div>

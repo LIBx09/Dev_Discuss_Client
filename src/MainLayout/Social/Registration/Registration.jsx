@@ -4,12 +4,13 @@ import { FaFacebook, FaGithub } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import Lottie from "lottie-react";
 import register_lottie from '../../../assets/Register_lottie/Animation - 1734093605552.json'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import AuthContext from '../../../Context/AuthContext';
 import Swal from 'sweetalert2';
 
 const Registration = () => {
-  const { createUser, createUserGoogle } = useContext(AuthContext)
+  const { createUser, createUserGoogle, createUserGithub, setUser, updateProfileuser } = useContext(AuthContext)
+  const navigate = useNavigate()
   const handleGoogleSignup = () => {
     createUserGoogle()
       .then(result => {
@@ -18,7 +19,9 @@ const Registration = () => {
           text: "You have successfully Sing Up!",
           icon: "success"
         });
-  
+        navigate("/")
+
+
       })
       .catch(error => {
         Swal.fire({
@@ -32,14 +35,24 @@ const Registration = () => {
     e.preventDefault()
     const form = e.target;
     const name = form.name.value;
+    const photo = form.photo.value;
     const email = form.email.value;
     const password = form.password.value;
     const userInfo = {
-      name, email, password
+      name, email, password, photo
     }
     console.log(userInfo);
     createUser(email, password)
       .then(result => {
+        updateProfileuser({ displayName: name, photoURL: photo })
+          .then(result => {
+            setUser((previoususer) => {
+
+              return { ...previoususer, displayName: name, photoURL: photo }
+
+            })
+
+          })
         Swal.fire({
           title: "Success!",
           text: "You have successfully Sing Up!",
@@ -47,6 +60,8 @@ const Registration = () => {
         });
 
         form.reset()
+        navigate("/")
+
       })
       .catch(error => {
         Swal.fire({
@@ -55,6 +70,28 @@ const Registration = () => {
           text: "The Email you use already Exists!",
         });
 
+      })
+
+  }
+
+  const handleGithubSignup = () => {
+    createUserGithub()
+      .then(result => {
+        Swal.fire({
+          title: "Success!",
+          text: "You have successfully Sing Up!",
+          icon: "success"
+        });
+        navigate("/")
+
+      })
+
+      .catch(error => {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: (error.message),
+        });
       })
 
   }
@@ -84,6 +121,12 @@ const Registration = () => {
                   </div>
                   <div className="form-control mt-3">
                     <label className="label">
+                      <span className="label-text mb-1.5">Photo Url</span>
+                    </label>
+                    <input type="link" name="photo" placeholder="Enter your photo url" className="input input-bordered rounded-lg" required />
+                  </div>
+                  <div className="form-control mt-3">
+                    <label className="label">
                       <span className="label-text mb-1.5">Email</span>
                     </label>
                     <input type="email" name="email" placeholder="Enter your email" className="input input-bordered rounded-lg" required />
@@ -106,7 +149,7 @@ const Registration = () => {
                   <div className="flex justify-center gap-4 mt-5">
                     <Link onClick={handleGoogleSignup}><FcGoogle className="text-5xl" /></Link>
                     <Link><FaFacebook className="text-5xl text-blue-600" /></Link>
-                    <Link><FaGithub className="text-5xl text-black" /></Link>
+                    <Link onClick={handleGithubSignup}><FaGithub className="text-5xl text-black" /></Link>
 
                   </div>
 

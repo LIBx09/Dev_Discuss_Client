@@ -4,12 +4,13 @@ import { Helmet } from 'react-helmet';
 
 
 import "react-datepicker/dist/react-datepicker.css";
+import axios from 'axios';
 
-const AddBlogs = (e) => {
+const AddBlogs = () => {
     const [startDate, setStartDate] = useState(new Date());
 
 
-    const handleAddBlog = () => {
+    const handleAddBlog = (e) => {
         e.preventDefault();
         const from = e.target;
         const author = from.author.value;
@@ -20,6 +21,9 @@ const AddBlogs = (e) => {
 
         const blogs = { author, image, title, content, date }
         console.log(blogs);
+        
+        axios.post("http://localhost:5000/blogs", blogs)
+            .then(data => console.log(data.data))
     }
     return (
         <div>
