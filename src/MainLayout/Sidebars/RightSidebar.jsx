@@ -2,7 +2,7 @@ import { FiMessageSquare } from "react-icons/fi";
 
 const RightSidebar = () => {
   return (
-    <div className="hidden lg:block p-4">
+    <div className="hidden lg:block ">
       <div className="space-y-4">
         {/* The Discuss Blog Section */}
         <div className="border border-gray-300 rounded-xl shadow-md p-5">

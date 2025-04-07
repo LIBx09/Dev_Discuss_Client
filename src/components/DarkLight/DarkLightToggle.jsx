@@ -5,7 +5,11 @@ const DarkLightToggle = () => {
   const [theme, setTheme] = useState(storedTheme);
 
   useEffect(() => {
-    document.documentElement.setAttribute("data-theme", theme);
+    if (theme === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
     localStorage.setItem("theme", theme);
   }, [theme]);
 
@@ -14,12 +18,9 @@ const DarkLightToggle = () => {
   };
 
   return (
-    <input
-      type="checkbox"
-      checked={theme === "dark"}
-      className="toggle"
-      onChange={toggleTheme}
-    />
+    <button onClick={toggleTheme} className="p-2 rounded-lg">
+      {theme === "dark" ? "🌙" : "☀️"}
+    </button>
   );
 };
 
