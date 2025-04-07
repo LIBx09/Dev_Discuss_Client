@@ -7,7 +7,7 @@ const Saves = () => {
   const [saveData, setSavedata] = useState();
   const { user } = useContext(AuthContext);
   const axios = useAxios();
-  axios.get(`http://localhost:5000/saves?email=${user?.email}`)
+  axios.get(`/saves?email=${user?.email}`)
     .then(res => {
       setSavedata(res.data)
 
