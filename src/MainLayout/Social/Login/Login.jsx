@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useRef } from 'react';
 import { Helmet } from 'react-helmet';
 import { FaFacebook, FaGithub } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
@@ -7,11 +7,13 @@ import register_lottie from '../../../assets/Register_lottie/Animation - 1734093
 import { Link, useNavigate } from 'react-router-dom';
 import AuthContext from '../../../Context/AuthContext';
 import Swal from 'sweetalert2';
+import toast from 'react-hot-toast';
 
 
 const Login = () => {
-  const { loginUser, createUserGoogle, createUserGithub } = useContext(AuthContext)
+  const { loginUser, createUserGoogle, createUserGithub, resetPassword } = useContext(AuthContext)
   const navigate = useNavigate()
+  const emailRef = useRef()
   const handleGoogleSignup = () => {
     createUserGoogle()
       .then(result => {
@@ -84,6 +86,22 @@ const Login = () => {
         });
       })
   }
+
+  const handleForgotPass = () => {
+    const email = emailRef.current.value;
+    if (!email) {
+      toast.error("Please provide your valid email address")
+    }
+    else {
+      resetPassword(email)
+        .then(result => {
+          toast.success("Reset your password, please check your email")
+        })
+        .catch(error => {
+          toast.error(error.message)
+        })
+    }
+  }
   return (
     <div>
       <div>
@@ -105,7 +123,7 @@ const Login = () => {
                   <label className="label">
                     <span className="label-text mb-1.5">Email</span>
                   </label>
-                  <input type="email" name="email" placeholder="Enter your email" className="input input-bordered rounded-lg" required />
+                  <input type="email" name="email" ref={emailRef} placeholder="Enter your email" className="input input-bordered rounded-lg" required />
                 </div>
 
                 <div className="form-control mt-3">
@@ -113,8 +131,8 @@ const Login = () => {
                     <span className="label-text mb-1.5">Password</span>
                   </label>
                   <input type="password" name="password" placeholder="Enter your password" className="input input-bordered rounded-lg" required />
-                  <label className="label">
-                    <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
+                  <label onClick={handleForgotPass} className="label">
+                    <Link className="label-text-alt link link-hover">Forgot password?</Link>
                   </label>
                 </div>
 

@@ -96,7 +96,7 @@ const Navbar = () => {
                 className="w-12 h-12 rounded-full object-cover"
               />
             ) : (
-                <FaUserCircle className="w-12 h-12 rounded-full flex items-center justify-center after:text-3xl text-gray-600" />
+              <FaUserCircle className="w-12 h-12 rounded-full flex items-center justify-center after:text-3xl text-gray-600" />
             )}
           </div>
           <ul

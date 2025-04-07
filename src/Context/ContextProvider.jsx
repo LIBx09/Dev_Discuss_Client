@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import AuthContext from './AuthContext';
-import { createUserWithEmailAndPassword, GithubAuthProvider, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth';
+import { createUserWithEmailAndPassword, GithubAuthProvider, GoogleAuthProvider, onAuthStateChanged, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth';
 import auth from '../Firebase/Firebase';
 
 const ContextProvider = ({ children }) => {
@@ -34,6 +34,11 @@ const ContextProvider = ({ children }) => {
         return updateProfile(auth.currentUser, updateuserProfile)
     }
 
+    const resetPassword=(email)=>{
+        
+        return sendPasswordResetEmail(auth,email)
+    }
+
     const logout = () => {
         setLoading(true)
         return signOut(auth)
@@ -49,7 +54,7 @@ const ContextProvider = ({ children }) => {
     }, [])
 
     const authInfo = {
-        createUser, loginUser, createUserGoogle, user,setUser, logout, createUserGithub,loading,updateProfileuser
+        createUser, loginUser, createUserGoogle, user,setUser, logout, createUserGithub,loading,updateProfileuser,resetPassword
     }
     return (
         <div>
