@@ -7,7 +7,7 @@ import { TbLogs } from "react-icons/tb";
 import { FaBrain } from "react-icons/fa";
 const LeftSidebar = () => {
   return (
-    <div className="h-full py-6 px-4 border-r border-gray-500 md:block hidden">
+    <div className="h-full py-6 px-4 md:block hidden">
       <ul className="space-y-3">
         <li className="flex items-center gap-2 hover:bg-gray-100 p-2 rounded-md">
           <Link to="/" className="flex items-center gap-2 w-full">

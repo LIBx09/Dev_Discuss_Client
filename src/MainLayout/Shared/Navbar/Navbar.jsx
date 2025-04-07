@@ -19,6 +19,8 @@ import { RiFolderUnknowFill } from "react-icons/ri";
 import DarkLightToggle from "../../../components/DarkLight/DarkLightToggle";
 import AuthContext from "../../../Context/AuthContext";
 import Swal from "sweetalert2";
+import { motion } from "motion/react"
+
 
 const Navbar = () => {
   const { user, loading, logout } = useContext(AuthContext);
@@ -58,10 +60,16 @@ const Navbar = () => {
             {isOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
           </button>
         </div>
-        <Link to="/" className="btn btn-ghost text-md md:text-xl">
-          <FaCode />
-          Dev_Discuss
-        </Link>
+        <motion.div
+        animate={{ x: [30, 70, 30] ,color: ["#001bfc", "#FF0000"] }}
+        
+        transition={{ duration: 3, repeat: Infinity }}
+        >
+          <Link to="/" className="btn btn-ghost text-md md:text-xl">
+            <FaCode />
+            Dev_Discuss
+          </Link>
+        </motion.div>
       </div>
       <div className="hidden lg:flex lg:navbar-center">
         <div className="relative hidden md:block">
@@ -96,7 +104,7 @@ const Navbar = () => {
                 className="w-12 h-12 rounded-full object-cover"
               />
             ) : (
-                <FaUserCircle className="w-12 h-12 rounded-full flex items-center justify-center after:text-3xl text-gray-600" />
+              <FaUserCircle className="w-12 h-12 rounded-full flex items-center justify-center after:text-3xl text-gray-600" />
             )}
           </div>
           <ul
