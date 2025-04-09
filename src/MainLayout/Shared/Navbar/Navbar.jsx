@@ -55,7 +55,13 @@ const Navbar = () => {
       <div className="navbar-start">
         <div className="lg:hidden">
           <button onClick={() => setIsOpen(!isOpen)} className="btn btn-ghost">
-            {isOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
+            {isOpen ? 
+          
+            <FaTimes size={24} />
+
+            
+       
+             : <FaBars size={24} />}
           </button>
         </div>
         <Link to="/" className="btn btn-ghost text-md md:text-xl">

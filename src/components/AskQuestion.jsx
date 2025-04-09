@@ -44,9 +44,9 @@ const AskQuestion = () => {
   };
 
   return (
-    <div>
-      <div className="flex justify-between">
-        <h2 className="md:text-3xl md:pt-6 pt-0 font-semibold text-lg">
+    <div className="rounded-2xl min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50 py-10 px-4">
+      <div className="flex justify-between bg-gradient-to-r from-blue-500 to-indigo-600 py-8 px-6 rounded-t-2xl">
+        <h2 className="md:text-4xl md:pt-6 pt-0 font-semibold text-lg text-white" >
           Ask a public question
         </h2>
         <img className="h-28 w-80 hidden md:block" src={question} alt="" />
