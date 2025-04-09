@@ -3,13 +3,49 @@ import DatePicker from 'react-datepicker';
 import { Helmet } from 'react-helmet';
 import { motion } from 'framer-motion';
 import axios from 'axios';
-import { FaUserEdit, FaImage, FaHeading, FaCalendarAlt, FaPen } from 'react-icons/fa';
+import { FaUserEdit, FaImage, FaHeading, FaCalendarAlt, FaPen, FaTags } from 'react-icons/fa';
 import "react-datepicker/dist/react-datepicker.css";
 
 const AddBlogs = () => {
     const [startDate, setStartDate] = useState(new Date());
     const [loading, setLoading] = useState(false);
     const [success, setSuccess] = useState(false);
+    const [selectedTags, setSelectedTags] = useState([]);
+
+    // Tech-related tags
+    const availableTags = [
+        "Web Development", 
+        "AI", 
+        "Machine Learning", 
+        "JavaScript", 
+        "Python", 
+        "React", 
+        "Node.js", 
+        "Data Science", 
+        "Blockchain", 
+        "DevOps", 
+        "Cloud Computing", 
+        "Mobile Development", 
+        "Cybersecurity",
+        "UI/UX Design",
+        "Database",
+        "Frontend",
+        "Backend",
+        "API Development",
+        "Game Development",
+        "IoT"
+    ];
+
+    const handleTagToggle = (tag) => {
+        if (selectedTags.includes(tag)) {
+            setSelectedTags(selectedTags.filter(t => t !== tag));
+        } else {
+            // Limit to 5 tags maximum
+            if (selectedTags.length < 5) {
+                setSelectedTags([...selectedTags, tag]);
+            }
+        }
+    };
 
     const handleAddBlog = (e) => {
         e.preventDefault();
@@ -22,8 +58,9 @@ const AddBlogs = () => {
         const content = form.content.value;
         const date = form.date.value;
 
-        const blogs = { author, image, title, content, date };
-        
+      
+        const blogs = { author, image, title, content, date, tags: selectedTags };
+        console.log(blogs)
         axios.post("http://localhost:5000/blogs", blogs)
             .then(response => {
                 console.log(response.data);
@@ -31,6 +68,7 @@ const AddBlogs = () => {
                 setSuccess(true);
                 form.reset();
                 setStartDate(new Date());
+                setSelectedTags([]); // Reset selected tags
                 
                 // Reset success message after 3 seconds
                 setTimeout(() => setSuccess(false), 3000);
@@ -144,6 +182,39 @@ const AddBlogs = () => {
                         />
                     </motion.div>
 
+                    {/* Tags Selection */}
+                    <motion.div variants={itemVariants} className="mb-6">
+                        <label className="flex items-center text-sm font-medium text-gray-700 mb-2">
+                            <FaTags className="mr-2 text-blue-500" />
+                            Tags (Select 2-5)
+                        </label>
+                        <div className="mb-2 text-xs text-gray-500">
+                            {selectedTags.length === 0 ? 'No tags selected' : `${selectedTags.length}/5 tags selected`}
+                        </div>
+                        <div className="flex flex-wrap gap-2">
+                            {availableTags.map((tag, index) => (
+                                <motion.button
+                                    key={index}
+                                    type="button"
+                                    className={`px-3 py-1.5 rounded-full text-sm font-medium transition-all duration-200 ${
+                                        selectedTags.includes(tag)
+                                            ? 'bg-blue-500 text-white' 
+                                            : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                                    } ${selectedTags.length >= 5 && !selectedTags.includes(tag) ? 'opacity-40 cursor-not-allowed' : ''}`}
+                                    onClick={() => handleTagToggle(tag)}
+                                    disabled={selectedTags.length >= 5 && !selectedTags.includes(tag)}
+                                    whileHover={selectedTags.length < 5 || selectedTags.includes(tag) ? { scale: 1.03 } : { scale: 1 }}
+                                    whileTap={selectedTags.length < 5 || selectedTags.includes(tag) ? { scale: 0.97 } : { scale: 1 }}
+                                >
+                                    {tag}
+                                </motion.button>
+                            ))}
+                        </div>
+                        {selectedTags.length < 2 && (
+                            <div className="mt-2 text-xs text-red-500">Please select at least 2 tags</div>
+                        )}
+                    </motion.div>
+
                     <motion.div variants={itemVariants} className="mb-6">
                         <label className="flex items-center text-sm font-medium text-gray-700 mb-2">
                             <FaPen className="mr-2 text-blue-500" />
@@ -174,11 +245,13 @@ const AddBlogs = () => {
 
                     <motion.div variants={itemVariants}>
                         <motion.button
-                            className="w-full bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-medium py-3 px-6 rounded-lg shadow-md hover:shadow-lg flex items-center justify-center"
-                            whileHover={{ scale: 1.02 }}
-                            whileTap={{ scale: 0.98 }}
+                            className={`w-full bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-medium py-3 px-6 rounded-lg shadow-md hover:shadow-lg flex items-center justify-center ${
+                                selectedTags.length < 2 ? 'opacity-60 cursor-not-allowed' : ''
+                            }`}
+                            whileHover={{ scale: selectedTags.length >= 2 ? 1.02 : 1 }}
+                            whileTap={{ scale: selectedTags.length >= 2 ? 0.98 : 1 }}
                             type="submit"
-                            disabled={loading}
+                            disabled={loading || selectedTags.length < 2}
                         >
                             {loading ? (
                                 <motion.div
