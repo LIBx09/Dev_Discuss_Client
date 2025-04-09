@@ -1,23 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { useQuery } from "@tanstack/react-query";
+import LoadingPage from "../Loading/LoadingPage";
 
 const Questions = () => {
-  const [questions, setQuestions] = useState([]);
-  const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    axios
-      .get("http://localhost:5000/questions") 
-      .then((res) => {
-        setQuestions(res.data); 
-        setLoading(false); 
-      })
-      .catch((error) => {
-        console.error("Error fetching questions:", error);
-        setLoading(false);
-      });
-  }, []);
+
+const {data:questions,isLoading}=useQuery({
+  queryKey:['question'],
+  queryFn:async()=>{
+    const {data} = await axios(`https://dev-discuss-server-kappa.vercel.app/questions`)
+    return data
+  }
+})
+
 
   return (
     <div className="p-6">
@@ -33,8 +30,8 @@ const Questions = () => {
 
       {/* Questions List */}
       <div className="space-y-4">
-        {loading ? (
-          <p>Loading questions...</p>
+        {isLoading ? (
+        <LoadingPage></LoadingPage>
         ) : questions.length > 0 ? (
           questions.map((question) => (
             <div

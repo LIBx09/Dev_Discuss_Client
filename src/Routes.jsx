@@ -18,6 +18,8 @@ import QuestionDetails from "./components/QuestionDetails";
 import FilteredQuestions from "./Page/Tags/FilteredQuestions";
 import PrivateRoute from "./PrivateRoute";
 import MyProfile from "./Page/MyProfile/MyProfile";
+import FixFlow from "./Page/FixFlow/FixFlow";
+
 
 const router = createBrowserRouter([
   {
@@ -41,6 +43,8 @@ const router = createBrowserRouter([
       { path: "/askQuestion", element: <PrivateRoute><AskQuestion /></PrivateRoute> },
       { path: "/twinAI", element: <TwinAI /> },
       {path: "/myProfile", element: <MyProfile></MyProfile>}
+      {path:'/fixFlow', element:<FixFlow></FixFlow>}
+
     ],
   },
 ]);

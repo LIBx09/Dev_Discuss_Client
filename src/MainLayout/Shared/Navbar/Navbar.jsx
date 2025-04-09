@@ -148,7 +148,7 @@ const Navbar = () => {
           </ul>
         </div>
       </div>
-      {isOpen && (
+      {/* {isOpen && (
         <div className="lg:hidden absolute top-16 left-0 w-full bg-base-300 shadow-md z-10 dark:bg-gray-800">
           <ul className="menu p-3">
             <li>
@@ -203,7 +203,62 @@ const Navbar = () => {
             </li>
           </ul>
         </div>
-      )}
+      </div>
+
+      <div className="navbar-end">
+        <div className="mr-4">
+          <DarkLightToggle />
+        </div>
+        <div className="flex gap-2">
+          <div className="relative max-w-md mx-auto">
+            <input
+              type="text"
+              placeholder="Search..."
+              className="w-full px-4 py-2 pr-12 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+            />
+            <button className="absolute top-1/2 right-2 transform -translate-y-1/2  text-white px-4 py-1 rounded-lg hover:bg-yellow-500">
+              🔍
+            </button>
+          </div>
+          <div className="dropdown dropdown-end">
+            <div
+              tabIndex={0}
+              role="button"
+              className="btn btn-ghost btn-circle avatar"
+            >
+              <div className="w-10 border rounded-full">
+                <p>{user?.displayName}</p>
+                <img alt="pro" src="" />
+              </div>
+            </div>
+            <ul
+              tabIndex={0}
+              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+            >
+              <li>
+                <a className="justify-between">
+                  Profile
+                  <span className="badge">New</span>
+                </a>
+              </li>
+              <li>
+                <a>Settings</a>
+              </li>
+
+              <li>
+                {user ? (
+                  <Link onClick={handleLogout} className="btn">
+                    Logout
+                  </Link>
+                ) : (
+                  <Link to={"/login"} className="btn">Login</Link>
+
+                )}
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div> */}
     </div>
   );
 };
