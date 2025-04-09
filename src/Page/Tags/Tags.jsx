@@ -12,7 +12,7 @@ const Tags = () => {
   useEffect(() => {
     const fetchTags = async () => {
       try {
-        const response = await axios.get("https://dev-discuss-server-chi.vercel.app/tags");
+        const response = await axios.get("http://localhost:5000/tags");
         setTags(response.data);
       } catch (error) {
         console.error("Error fetching tags:", error);
@@ -26,7 +26,7 @@ const Tags = () => {
     if (!selectedTag) return;
     const fetchQuestions = async () => {
       try {
-        const response = await axios.get(`https://dev-discuss-server-chi.vercel.app/questions/tag/${selectedTag}`);
+        const response = await axios.get(`http://localhost:5000/questions/tag/${selectedTag}`);
         setQuestions(response.data);
       } catch (error) {
         console.error("Error fetching questions for tag:", error);

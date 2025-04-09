@@ -8,14 +8,14 @@ const Home = () => {
   return (
     <div className="p-6 max-w-4xl mx-auto">
        <Marquee className="text-lg">
-      A Collaborative Space for Developer Discussions | Share Your Dev Thoughts | Learn from Fellow Developers
+       A Collaborative Space for Developer Discussions | Share Your Dev Thoughts | Learn from Fellow Developers | 
 </Marquee> 
       {/* Welcome Section */}
       <div className="text-center">
 
    
 
-        <h2 className="text-4xl font-extrabold text-blue-600">Welcome to DevDiscuss</h2>
+        <h2 className="text-4xl font-extrabold text-blue-600 font">Welcome to DevDiscuss</h2>
         <p className="text-gray-600 mt-2 text-lg">Ask, answer, and explore coding questions.</p>
 
       </div>

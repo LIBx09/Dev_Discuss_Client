@@ -8,7 +8,7 @@ const Questions = () => {
 
   useEffect(() => {
     axios
-      .get("https://dev-discuss-server-chi.vercel.app/questions") // ✅ API Call
+      .get("http://localhost:5000/questions") // ✅ API Call
       .then((res) => {
         setQuestions(res.data); // ✅ Store questions in state
         setLoading(false); // ✅ Stop loading after fetching
