@@ -37,11 +37,11 @@ const QuestionDetails = () => {
 
     fetchQuestion();
   }, [id, customAxios]);
-
+  const questionID = true;
   const handleSave = () => {
     if (!question) return; // Prevent saving if question is not loaded
 
-    const saveCollection = { ...question, email };
+    const saveCollection = { ...question, email, questionID };
     customAxios
       .post("/saves", saveCollection)
       .then((res) => {
@@ -108,9 +108,9 @@ const QuestionDetails = () => {
             <button
               onClick={handleSave}
               disabled={bookmarked}
-              className={`text-2xl ${bookmarked ? "cursor-not-allowed text-gray-400" : "text-blue-500 hover:text-blue-700"}`}
+              className={`text-2xl ${ bookmarked === questionID ?  "cursor-not-allowed text-gray-400":  "text-blue-500 hover:text-blue-700"}`}
             >
-              {bookmarked ? <IoBookmarksOutline /> : <PiBookmarkSimpleLight />}
+              {bookmarked === questionID ?  <IoBookmarksOutline /> : <PiBookmarkSimpleLight />}
             </button>
           </div>
 

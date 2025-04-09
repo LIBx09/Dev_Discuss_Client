@@ -8,14 +8,14 @@ const Questions = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/questions") // ✅ API Call
+      .get("http://localhost:5000/questions") 
       .then((res) => {
-        setQuestions(res.data); // ✅ Store questions in state
-        setLoading(false); // ✅ Stop loading after fetching
+        setQuestions(res.data); 
+        setLoading(false); 
       })
       .catch((error) => {
         console.error("Error fetching questions:", error);
-        setLoading(false); // ✅ Stop loading even if an error occurs
+        setLoading(false);
       });
   }, []);
 
