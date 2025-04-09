@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const Axios = axios.create({
-    baseURL: "https://dev-discuss-server-chi.vercel.app/"
+    baseURL: "http://localhost:5000"
 });
 const useAxios = () => {
     return Axios;

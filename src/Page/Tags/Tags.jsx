@@ -1,21 +1,25 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import LoadingPage from "../Loading/LoadingPage";
 
 const Tags = () => {
   const [tags, setTags] = useState([]);
   const [search, setSearch] = useState("");
   const [selectedTag, setSelectedTag] = useState(null);
   const [questions, setQuestions] = useState([]);
-
+const [loading,setLoading]=useState(true)
   // Fetch tags from the backend
   useEffect(() => {
     const fetchTags = async () => {
       try {
-        const response = await axios.get("https://dev-discuss-server-chi.vercel.app/tags");
+        setLoading(true)
+        const response = await axios.get("https://dev-discuss-server-kappa.vercel.app/tags");
         setTags(response.data);
       } catch (error) {
         console.error("Error fetching tags:", error);
+      }finally{
+      setLoading(false)
       }
     };
     fetchTags();
@@ -26,7 +30,7 @@ const Tags = () => {
     if (!selectedTag) return;
     const fetchQuestions = async () => {
       try {
-        const response = await axios.get(`https://dev-discuss-server-chi.vercel.app/questions/tag/${selectedTag}`);
+        const response = await axios.get(`https://dev-discuss-server-kappa.vercel.app/questions/tag/${selectedTag}`);
         setQuestions(response.data);
       } catch (error) {
         console.error("Error fetching questions for tag:", error);
@@ -39,7 +43,9 @@ const Tags = () => {
   const filteredTags = tags.filter((tag) =>
     tag.tag.toLowerCase().includes(search.toLowerCase())
   );
-
+if(loading){
+  return <LoadingPage></LoadingPage>
+}
   return (
     <div className="p-6 max-w-5xl mx-auto">
       {/* Header Section */}

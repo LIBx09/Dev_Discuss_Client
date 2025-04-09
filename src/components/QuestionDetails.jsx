@@ -21,6 +21,8 @@ const QuestionDetails = () => {
   const { user } = useContext(AuthContext);
   const email = user?.email || "anonymous@example.com"; // Handle undefined user
 
+
+
   useEffect(() => {
     const fetchQuestion = async () => {
       try {

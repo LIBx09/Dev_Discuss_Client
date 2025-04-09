@@ -5,9 +5,10 @@ import { IoMdPricetags } from "react-icons/io";
 import { MdEventNote } from "react-icons/md";
 import { TbLogs } from "react-icons/tb";
 import { FaBrain } from "react-icons/fa";
+import { IoBug } from "react-icons/io5";
 const LeftSidebar = () => {
   return (
-    <div className="h-full py-6 px-4 border-r border-gray-500 md:block hidden">
+    <div className="h-full py-6 px-4 md:block hidden">
       <ul className="space-y-3">
         <li className="flex items-center gap-2 hover:bg-gray-100 p-2 rounded-md">
           <Link to="/" className="flex items-center gap-2 w-full">
@@ -42,6 +43,11 @@ const LeftSidebar = () => {
         <li className="flex items-center gap-2 hover:bg-gray-100 p-2 rounded-md">
           <Link to="/twinAI" className="flex items-center gap-2 w-full">
             <FaBrain className="text-lg" /> TwinAI
+          </Link>
+        </li>
+        <li className="flex items-center gap-2 hover:bg-gray-100 p-2 rounded-md">
+          <Link to="/fixFlow" className="flex items-center gap-2 w-full">
+          <IoBug className="text-lg"/> FixFlow
           </Link>
         </li>
         <li className="flex items-center gap-2 hover:bg-gray-100 p-2 rounded-md">
@@ -102,6 +108,11 @@ const LeftSidebar = () => {
           <li className="flex items-center gap-2 hover:bg-gray-900 hover:text-white p-2 rounded-md">
             <Link to="/twinAI" className="flex items-center gap-2 w-full">
             <FaBrain />   TwinAI
+            </Link>
+          </li>
+          <li className="flex items-center gap-2 hover:bg-gray-900 hover:text-white p-2 rounded-md">
+            <Link to="/FixFlow" className="flex items-center gap-2 w-full">
+            <IoBug className="text-lg"/>  FixFlow
             </Link>
           </li>
           <li className="flex items-center gap-2 hover:bg-gray-900 hover:text-white p-2 rounded-md">
