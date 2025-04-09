@@ -13,8 +13,10 @@ const [loading,setLoading]=useState(true)
   useEffect(() => {
     const fetchTags = async () => {
       try {
+
         setLoading(true)
         const response = await axios.get("https://dev-discuss-server-kappa.vercel.app/tags");
+
         setTags(response.data);
       } catch (error) {
         console.error("Error fetching tags:", error);
@@ -30,7 +32,9 @@ const [loading,setLoading]=useState(true)
     if (!selectedTag) return;
     const fetchQuestions = async () => {
       try {
+
         const response = await axios.get(`https://dev-discuss-server-kappa.vercel.app/questions/tag/${selectedTag}`);
+
         setQuestions(response.data);
       } catch (error) {
         console.error("Error fetching questions for tag:", error);

@@ -6,6 +6,7 @@ import LoadingPage from "../Loading/LoadingPage";
 
 const Questions = () => {
 
+
 const {data:questions,isLoading}=useQuery({
   queryKey:['question'],
   queryFn:async()=>{
@@ -13,6 +14,7 @@ const {data:questions,isLoading}=useQuery({
     return data
   }
 })
+
 
   return (
     <div className="p-6">
