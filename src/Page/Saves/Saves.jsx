@@ -18,7 +18,8 @@ const Saves = () => {
   }, []);
   return (
     <div>
-      {
+      <h3 className="text-2xl font-bold pb-4"> All bookmarks</h3>
+      {saveData?.length > 0 ?  (
         saveData?.map(question => (
           <div key={question._id}>
             <div className="border p-4 rounded shadow">
@@ -32,7 +33,8 @@ const Saves = () => {
             </div>
           </div>
         ))
-      }
+      ) : <p>No bookmark question available.</p>}
+      {/**/}
     </div>
   );
 };

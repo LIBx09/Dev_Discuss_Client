@@ -1,9 +1,17 @@
+import { useContext } from "react";
 import { FiMessageSquare } from "react-icons/fi";
+import AuthContext from "../../Context/AuthContext";
 
 const RightSidebar = () => {
+  const { user } = useContext(AuthContext);
   return (
     <div className="hidden lg:block ">
       <div className="space-y-4">
+        <div className="shadow-md ">
+          <img className="rounded-full h-12 w-12 mx-auto my-4" src={user?.photoURL} alt="userPhoto" />
+          <p className="text-center">{user?.displayName}</p>
+          <p className="text-center py-2">{user?.email}</p>
+        </div>
         {/* The Discuss Blog Section */}
         <div className="border border-gray-300 rounded-xl shadow-md p-5">
           <h3 className="text-lg font-semibold  ">The Discuss Blog</h3>
