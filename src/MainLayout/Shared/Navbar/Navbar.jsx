@@ -61,9 +61,9 @@ const Navbar = () => {
           </button>
         </div>
         <motion.div
-        animate={{ x: [30, 70, 30] ,color: ["#001bfc", "#FF0000"] }}
-        
-        transition={{ duration: 3, repeat: Infinity }}
+          animate={{ x: [30, 70, 30], color: ["#001bfc", "#FF0000"] }}
+
+          transition={{ duration: 3, repeat: Infinity }}
         >
           <Link to="/" className="btn btn-ghost text-md md:text-xl">
             <FaCode />
@@ -89,7 +89,9 @@ const Navbar = () => {
           <IoIosHelpCircleOutline />
         </div>
         <div className="text-2xl">
-          <FaRegBookmark />
+          <Link to="/saves">
+            <FaRegBookmark />
+          </Link>
         </div>
         <div className="dropdown dropdown-end">
           <div
