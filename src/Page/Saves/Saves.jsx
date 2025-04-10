@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import AuthContext from "../../Context/AuthContext";
 import useAxios from "../../MainLayout/Shared/Hooks/useAxios";
 
@@ -7,14 +7,15 @@ const Saves = () => {
   const [saveData, setSavedata] = useState();
   const { user } = useContext(AuthContext);
   const axios = useAxios();
-  axios.get(`/saves?email=${user?.email}`)
-    .then(res => {
-      setSavedata(res.data)
-
-    })
-    .catch(error => {
-      console.log(error);
-    })
+  useEffect(() => {
+    axios.get(`/saves?email=${user?.email}`)
+      .then(res => {
+        setSavedata(res.data)
+      })
+      .catch(error => {
+        console.log(error);
+      })
+  }, []);
   return (
     <div>
       <h3 className="text-2xl font-bold pb-4"> All bookmarks</h3>

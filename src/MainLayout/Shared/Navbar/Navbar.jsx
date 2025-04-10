@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState, useContext } from "react";
 import {
   FaBars,
@@ -25,6 +25,8 @@ import { motion } from "motion/react"
 const Navbar = () => {
   const { user, loading, logout } = useContext(AuthContext);
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
+  console.log(user?.photoURL);
 
   if (loading) {
     return (
@@ -37,6 +39,7 @@ const Navbar = () => {
   const handleLogout = () => {
     logout()
       .then(() => {
+        navigate("/")
         Swal.fire({
           title: "Success!",
           text: "You have successfully logged out!",
@@ -61,11 +64,11 @@ const Navbar = () => {
           </button>
         </div>
         <motion.div
+          className="md:block hidden"
           animate={{ x: [30, 70, 30], color: ["#001bfc", "#FF0000"] }}
-
           transition={{ duration: 3, repeat: Infinity }}
         >
-          <Link to="/" className="btn btn-ghost text-md md:text-xl">
+          <Link to="/" className="btn btn-ghost text-md md:text-xl font">
             <FaCode />
             Dev_Discuss
           </Link>
@@ -125,6 +128,12 @@ const Navbar = () => {
             <li>
               <Link to="/contactUs">Contact Us</Link>
             </li>
+            {
+              user ? <li>
+                <Link to="/myProfile">My Profile</Link></li>
+                :
+                <li></li>
+            }
             {user ? (
               <li>
                 <button className="btn w-full" onClick={handleLogout}>
