@@ -18,7 +18,7 @@ const FixFlow = () => {
     setResult(null);
     
     try {
-      const response = await axios.post('http://localhost:5000/fixFlow', {
+      const response = await axios.post('http://localhost:3000/fixFlow', {
         userInput: errorCode,
         selectedOption
       });
