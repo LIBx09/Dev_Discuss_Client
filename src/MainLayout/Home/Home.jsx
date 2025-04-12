@@ -6,9 +6,7 @@ import Marquee from "react-fast-marquee";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import LoadingPage from "../../Page/Loading/LoadingPage";
-
 const Home = () => {
-
   const {data:questions,isLoading}=useQuery({
     queryKey:['question'],
     queryFn:async()=>{
@@ -83,5 +81,4 @@ const Home = () => {
     </div>
   );
 };
-
 export default Home;
