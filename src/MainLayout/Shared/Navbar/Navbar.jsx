@@ -19,14 +19,12 @@ import { RiFolderUnknowFill } from "react-icons/ri";
 import DarkLightToggle from "../../../components/DarkLight/DarkLightToggle";
 import AuthContext from "../../../Context/AuthContext";
 import Swal from "sweetalert2";
-import { motion } from "motion/react"
-
+import { motion } from "framer-motion";
 
 const Navbar = () => {
   const { user, loading, logout } = useContext(AuthContext);
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
-  console.log(user?.photoURL);
 
   if (loading) {
     return (
@@ -39,14 +37,14 @@ const Navbar = () => {
   const handleLogout = () => {
     logout()
       .then(() => {
-        navigate("/")
+        navigate("/");
         Swal.fire({
           title: "Success!",
           text: "You have successfully logged out!",
           icon: "success",
         });
       })
-      .catch((error) => {
+      .catch(() => {
         Swal.fire({
           icon: "error",
           title: "Oops...",
@@ -56,211 +54,108 @@ const Navbar = () => {
   };
 
   return (
-    <div className="navbar bg-base-100 border-b border-b-gray-300 px-4 dark:bg-slate-900 dark:text-white">
-      <div className="navbar-start">
-        <div className="lg:hidden">
-          <button onClick={() => setIsOpen(!isOpen)} className="btn btn-ghost">
+    <div className="relative">
+      <div className="navbar bg-base-100 border-b border-b-gray-300 px-4 dark:bg-slate-900 dark:text-white">
+        <div className="navbar-start">
+          <button onClick={() => setIsOpen(!isOpen)} className="btn btn-ghost lg:hidden">
             {isOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
           </button>
-        </div>
-        <motion.div
-          className="md:block hidden"
-          animate={{ x: [30, 70, 30], color: ["#001bfc", "#FF0000"] }}
-          transition={{ duration: 3, repeat: Infinity }}
-        >
-          <Link to="/" className="btn btn-ghost text-md md:text-xl font">
-            <FaCode />
-            Dev_Discuss
-          </Link>
-        </motion.div>
-      </div>
-      <div className="hidden lg:flex lg:navbar-center">
-        <div className="relative hidden md:block">
-          <input
-            type="text"
-            placeholder="Search..."
-            className="w-full max-w-xs px-4 py-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 dark:bg-gray-800 dark:text-white"
-          />
-          <button className="absolute top-1/2 right-2 transform -translate-y-1/2 text-gray-500 hover:text-yellow-500">
-            🔍
-          </button>
-        </div>
-      </div>
-      <div className="navbar-end flex gap-3">
-        <DarkLightToggle />
-        <div className="text-3xl">
-          <IoIosHelpCircleOutline />
-        </div>
-        <div className="text-2xl">
-          <Link to="/saves">
-            <FaRegBookmark />
-          </Link>
-        </div>
-        <div className="dropdown dropdown-end">
-          <div
-            tabIndex={0}
-            role="button"
-            className="btn btn-ghost btn-circle avatar"
-          >
-            {user?.photoURL ? (
-              <img
-                src={user.photoURL}
-                alt="User Avatar"
-                className="w-12 h-12 rounded-full object-cover"
-              />
-            ) : (
-              <FaUserCircle className="w-12 h-12 rounded-full flex items-center justify-center after:text-3xl text-gray-600" />
-            )}
-          </div>
-          <ul
-            tabIndex={0}
-            className="menu menu-sm dropdown-content bg-base-300 rounded-box z-50 mt-3 w-52 p-2 shadow dark:bg-gray-800"
-          >
-            <li>
-              <Link to={"/blogs"}>Blogs</Link>
-            </li>
-            <li>
-              <Link to={"/add-blogs"}>Add Blogs</Link>
-            </li>
-            <li>
-              <Link to="/aboutUs">About Us</Link>
-            </li>
-            <li>
-              <Link to="/contactUs">Contact Us</Link>
-            </li>
-            {
-              user ? <li>
-                <Link to="/myProfile">My Profile</Link></li>
-                :
-                <li></li>
-            }
-            {user ? (
-              <li>
-                <button className="btn w-full" onClick={handleLogout}>
-                  Logout
-                </button>
-              </li>
-            ) : (
-              <li>
-                <Link to={"/login"}>
-                  <button className="btn w-full">Login</button>
-                </Link>
-              </li>
-            )}
-          </ul>
-        </div>
-      </div>
-      {/* {isOpen && (
-        <div className="lg:hidden absolute top-16 left-0 w-full bg-base-300 shadow-md z-10 dark:bg-gray-800">
-          <ul className="menu p-3">
-            <li>
-              <Link to="/">
-                <AiFillHome className="text-lg" /> Home
-              </Link>
-            </li>
-            <li>
-              <Link to="/questions">
-                <FaCircleQuestion className="text-lg" /> Questions
-              </Link>
-            </li>
-            <li>
-              <Link to="/tags">
-                <IoMdPricetags className="text-lg" /> Tags
-              </Link>
-            </li>
-            <li>
-              <Link to="/saves">
-                <FaBookmark className="text-lg" /> Saves
-              </Link>
-            </li>
-            <li>
-              <Link to="/blogs">
-                <TbLogs className="text-lg" /> Blogs
-              </Link>
-            </li>
-            <li>
-              <Link to="/events">
-                <MdEventNote className="text-lg" /> Events
-              </Link>
-            </li>
-            <li>
-              <Link to="/users">
-                <FaUsers className="text-lg" /> Users
-              </Link>
-            </li>
-            <li>
-              <Link to="/twinAI">
-                <FaBrain className="text-lg" /> TwinAI
-              </Link>
-            </li>
-            <li>
-              <Link to="/aboutUs">
-                <RiFolderUnknowFill className="text-lg" /> About Us
-              </Link>
-            </li>
-            <li>
-              <Link to="/contactUs">
-                <IoIosContact className="text-lg" /> Contact Us
-              </Link>
-            </li>
-          </ul>
-        </div>
-      </div>
 
-      <div className="navbar-end">
-        <div className="mr-4">
-          <DarkLightToggle />
+          <motion.div
+            className="hidden md:flex items-center gap-1"
+            animate={{ x: [30, 70, 30], color: ["#001bfc", "#FF0000"] }}
+            transition={{ duration: 3, repeat: Infinity }}
+          >
+            <Link to="/" className="btn btn-ghost text-md md:text-xl">
+              <FaCode />
+              Dev_Discuss
+            </Link>
+          </motion.div>
         </div>
-        <div className="flex gap-2">
-          <div className="relative max-w-md mx-auto">
+
+        <div className="hidden lg:flex lg:navbar-center">
+          <div className="relative">
             <input
               type="text"
               placeholder="Search..."
-              className="w-full px-4 py-2 pr-12 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className="w-full max-w-xs px-4 py-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 dark:bg-gray-800 dark:text-white"
             />
-            <button className="absolute top-1/2 right-2 transform -translate-y-1/2  text-white px-4 py-1 rounded-lg hover:bg-yellow-500">
+            <button className="absolute top-1/2 right-2 transform -translate-y-1/2 text-gray-500 hover:text-yellow-500">
               🔍
             </button>
           </div>
+        </div>
+
+        <div className="navbar-end flex items-center gap-3">
+          <DarkLightToggle />
+          <IoIosHelpCircleOutline className="text-2xl" />
+          <Link to="/saves">
+            <FaRegBookmark className="text-xl" />
+          </Link>
+
           <div className="dropdown dropdown-end">
             <div
               tabIndex={0}
               role="button"
               className="btn btn-ghost btn-circle avatar"
             >
-              <div className="w-10 border rounded-full">
-                <p>{user?.displayName}</p>
-                <img alt="pro" src="" />
-              </div>
+              {user?.photoURL ? (
+                <img
+                  src={user.photoURL}
+                  alt="User Avatar"
+                  className="w-12 h-12 rounded-full object-cover"
+                />
+              ) : (
+                <FaUserCircle className="w-12 h-12 text-gray-600" />
+              )}
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+              className="menu menu-sm dropdown-content bg-base-300 rounded-box z-50 mt-3 w-52 p-2 shadow dark:bg-gray-800"
             >
-              <li>
-                <a className="justify-between">
-                  Profile
-                  <span className="badge">New</span>
-                </a>
-              </li>
-              <li>
-                <a>Settings</a>
-              </li>
-
-              <li>
-                {user ? (
-                  <Link onClick={handleLogout} className="btn">
+              <li><Link to="/blogs">Blogs</Link></li>
+              <li><Link to="/add-blogs">Add Blogs</Link></li>
+              <li><Link to="/aboutUs">About Us</Link></li>
+              <li><Link to="/contactUs">Contact Us</Link></li>
+              {user && <li><Link to="/myProfile">My Profile</Link></li>}
+              {user ? (
+                <li>
+                  <button className="btn w-full" onClick={handleLogout}>
                     Logout
-                  </Link>
-                ) : (
-                  <Link to={"/login"} className="btn">Login</Link>
-
-                )}
-              </li>
+                  </button>
+                </li>
+              ) : (
+                <li>
+                  <Link to="/login"><button className="btn w-full">Login</button></Link>
+                </li>
+              )}
             </ul>
           </div>
         </div>
-      </div> */}
+      </div>
+
+      {/* Mobile Menu */}
+      {isOpen && (
+        <div className="lg:hidden absolute top-16 left-0 w-full bg-base-300 shadow-md z-10 dark:bg-gray-800 transition-all duration-300">
+          <ul className="menu p-4 space-y-2">
+            <li><Link to="/"><AiFillHome /> Home</Link></li>
+            <li><Link to="/questions"><FaCircleQuestion /> Questions</Link></li>
+            <li><Link to="/tags"><IoMdPricetags /> Tags</Link></li>
+            <li><Link to="/saves"><FaBookmark /> Saves</Link></li>
+            <li><Link to="/blogs"><TbLogs /> Blogs</Link></li>
+            <li><Link to="/events"><MdEventNote /> Events</Link></li>
+            <li><Link to="/users"><FaUsers /> Users</Link></li>
+            <li><Link to="/twinAI"><FaBrain /> TwinAI</Link></li>
+            <li><Link to="/aboutUs"><RiFolderUnknowFill /> About Us</Link></li>
+            <li><Link to="/contactUs"><IoIosContact /> Contact Us</Link></li>
+            {user ? (
+              <li><button className="btn w-full" onClick={handleLogout}>Logout</button></li>
+            ) : (
+              <li><Link to="/login"><button className="btn w-full">Login</button></Link></li>
+            )}
+          </ul>
+        </div>
+      )}
     </div>
   );
 };

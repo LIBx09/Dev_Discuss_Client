@@ -90,17 +90,17 @@ const QuestionDetails = () => {
   };
 
   return (
-    <div className="p-6 max-w-3xl mx-auto">
+    <div className="p-6 max-w-3xl mx-auto dark:bg-slate-900 dark:text-white">
       <Link to="/questions" className="text-blue-500 underline mb-4 inline-block">
         ← Back to Questions
       </Link>
 
       {loading ? (
-        <p className="text-center text-gray-600">Loading question details...</p>
+        <p className="text-center text-gray-600  dark:bg-slate-900 dark:text-white">Loading question details...</p>
       ) : error ? (
         <p className="text-red-500 text-center">{error}</p>
       ) : question ? (
-        <div className="border p-6 rounded-lg shadow-lg bg-white">
+        <div className="border p-6 rounded-lg shadow-lg bg-white dark:bg-slate-900 dark:text-white">
           {/* Question Details */}
           <div className="flex items-center gap-3">
             {question.photoURL ? (
@@ -115,7 +115,7 @@ const QuestionDetails = () => {
             </div>
           </div>
 
-          <p className="mt-4 text-gray-700">{question.body}</p>
+          <p className="mt-4 text-gray-700 dark:bg-slate-900 dark:text-white">{question.body}</p>
           <div className="flex items-center justify-between mt-4">
             <span className="text-sm text-gray-500">Tag: {question.tag}</span>
             <button
@@ -128,12 +128,12 @@ const QuestionDetails = () => {
           </div>
 
           {/* Comments Section */}
-          <div className="mt-6">
-            <h3 className="text-lg font-semibold">Comments</h3>
+          <div className="mt-6 dark:bg-slate-900 dark:text-white">
+            <h3 className="text-lg font-semibold ">Comments</h3>
             <div className="mt-2 space-y-3">
               {comments.length > 0 ? (
                 comments.map((comment, index) => (
-                  <div key={index} className="border p-2 rounded bg-gray-100 flex items-start gap-3">
+                  <div key={index} className="border p-2 rounded bg-gray-100 flex items-start gap-3 dark:bg-slate-900 dark:text-white">
                     {comment.photoURL ? (
                       <img src={comment.photoURL} alt="User Avatar" className="w-8 h-8 rounded-full object-cover" />
                     ) : (
@@ -158,7 +158,7 @@ const QuestionDetails = () => {
               {user?.photoURL ? (
                 <img src={user.photoURL} alt="User Avatar" className="w-10 h-10 rounded-full object-cover" />
               ) : (
-                <FaUserCircle className="w-10 h-10 text-gray-600" />
+                <FaUserCircle className="w-10 h-10 text-gray-600 " />
               )}
               <input
                 type="text"
