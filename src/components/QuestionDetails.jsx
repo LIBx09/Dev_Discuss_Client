@@ -79,7 +79,7 @@ const QuestionDetails = () => {
   };
 
   return (
-    <div className="p-6 max-w-3xl mx-auto dark:bg-slate-900 dark:text-white">
+    <div className="max-w-3xl mx-auto dark:bg-slate-900 dark:text-white">
       <Link to="/questions" className="text-blue-500 underline mb-4 inline-block">
         ← Back to Questions
       </Link>
@@ -89,7 +89,7 @@ const QuestionDetails = () => {
       ) : error ? (
         <p className="text-red-500 text-center">{error}</p>
       ) : question ? (
-        <div className="border p-6 rounded-lg shadow-lg bg-white dark:bg-slate-900 dark:text-white">
+        <div className="border p-4 rounded-lg shadow-lg bg-white dark:bg-slate-900 dark:text-white">
           {/* Question Details */}
           <div className="flex items-center gap-3">
             {question.photoURL ? (
@@ -98,15 +98,15 @@ const QuestionDetails = () => {
               <FaUserCircle className="w-12 h-12 text-gray-600" />
             )}
             <div>
-              <h2 className="text-2xl font-bold text-blue-600">{question.title}</h2>
-              <p className="text-sm text-gray-500">Asked by: {question.userName || "Anonymous"}</p>
-              <span>Date: {question.date}</span>
+              <h2 className="text-base font-semibold text-blue-600">{question.title}</h2>
+              <p className="text-xs text-gray-500">Asked by: {question.userName || "Anonymous"}</p>
+              <span className="text-xs">Date: {question.date}</span>
             </div>
           </div>
 
-          <p className="mt-4 text-gray-700 dark:bg-slate-900 dark:text-white">{question.body}</p>
+          <p className="mt-4 text-gray-700 text-xs dark:bg-slate-900 dark:text-white">{question.body}</p>
           <div className="flex items-center justify-between mt-4">
-            <span className="text-sm text-gray-500">Tag: {question.tag}</span>
+            <span className="text-xs text-gray-500">Tag: {question.tag}</span>
             <button
               onClick={handleSave}
               disabled={bookmarked}

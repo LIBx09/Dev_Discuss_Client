@@ -17,10 +17,10 @@ const {data:questions,isLoading}=useQuery({
 
 
   return (
-    <div className="p-6">
+    <div>
       {/* Header Section */}
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-2xl font-bold">All Questions</h2>
+        <h2 className="text-base font-bold">All Questions</h2>
         <Link to="/askQuestion">
           <button className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">
             Ask a Question
@@ -39,11 +39,11 @@ const {data:questions,isLoading}=useQuery({
               className="border border-gray-300 p-4 rounded-md shadow-sm hover:shadow-md transition"
             >
               <Link to={`/questions/${question._id}`}>
-                <h3 className="text-lg font-semibold text-blue-600 hover:underline cursor-pointer">
+                <h3 className="text-sm font-semibold text-blue-500 hover:underline cursor-pointer">
                   {question.title}
                 </h3>
               </Link>
-              <div className="flex gap-4 text-sm mt-1">
+              <div className="flex gap-4 text-xs justify-between mt-1">
                 <span>Tag: {question.tag}</span>
                 <span>Date: {question.date}</span>
               </div>

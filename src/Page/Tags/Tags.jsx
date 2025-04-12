@@ -51,7 +51,7 @@ if(loading){
   return <LoadingPage></LoadingPage>
 }
   return (
-    <div className="p-6 max-w-5xl mx-auto">
+    <div className="max-w-5xl mx-auto">
       {/* Header Section */}
       <div className="mb-6 text-center">
         <h2 className="text-3xl font-bold text-gray-800 dark:text-white">Popular Tags</h2>
@@ -90,7 +90,7 @@ if(loading){
       {/* Display Questions for Selected Tag */}
       {selectedTag && (
         <div className="mt-8">
-          <h3 className="text-2xl font-semibold text-gray-800 dark:text-white">
+          <h3 className="text-xl font-semibold text-gray-800 dark:text-white">
             Questions tagged with #{selectedTag}
           </h3>
           <div className="mt-4 space-y-4">
@@ -98,7 +98,7 @@ if(loading){
               questions.map((question) => (
                 <div key={question._id} className="p-4 bg-gray-100 dark:bg-gray-800 rounded-lg shadow">
                   <Link to={`/questions/${question._id}`}>
-                    <h4 className="text-lg font-semibold text-blue-600 dark:text-blue-400 hover:underline">
+                    <h4 className="text-sm font-semibold text-blue-600 dark:text-blue-400 hover:underline">
                       {question.title}
                     </h4>
                   </Link>

@@ -23,7 +23,7 @@ const Saves = () => {
         saveData?.map(question => (
           <div key={question._id}>
             <div className="border p-4 rounded shadow">
-              <h2 className="text-2xl font-bold text-blue-600">{question.title}</h2>
+              <h2 className="text-base font-semibold text-blue-600">{question.title}</h2>
               <p className="mt-2 text-gray-700 dark:bg-slate-900 dark:text-white">{question.body}</p>
               <div className="flex items-center justify-between">
                 <div className="mt-4 text-sm text-gray-500">
