@@ -15,9 +15,9 @@ const QuestionDetails = () => {
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState("");
   const [loading, setLoading] = useState(true);
-  const [bookmarked, setBookmarked] = useState(false);
   const [error, setError] = useState(null);
-  
+  const [isBookmarked, setIsBookmarked] = useState(false);
+
   const { user } = useContext(AuthContext);
   const email = user?.email || "anonymous@example.com"; // Handle undefined user
 
@@ -39,25 +39,36 @@ const QuestionDetails = () => {
 
     fetchQuestion();
   }, [id, customAxios]);
-  const questionID = true;
+  const questionID = id;
   const handleSave = () => {
-    if (!question) return; // Prevent saving if question is not loaded
-
-    const saveCollection = { ...question, email, questionID };
+    const saveCollection = { ...question, email, questionID: id };
     customAxios
       .post("/saves", saveCollection)
       .then((res) => {
         if (res.data.acknowledged) {
+          setIsBookmarked(true)
           Swal.fire({
             title: "This question has been successfully bookmarked",
             icon: "success",
             draggable: true,
           });
-          setBookmarked(true);
         }
       })
       .catch((error) => console.error(error));
   };
+  useEffect(() => {
+    const checkBookmark = async () => {
+      try {
+        const res = await customAxios.get(`/saves?email=${email}`);
+        const alreadyBookmarked = res.data.some(item => item.questionID === id); // ✅ Compare with actual question ID
+        setIsBookmarked(alreadyBookmarked);
+      } catch (err) {
+        console.error("Bookmark check failed:", err);
+      }
+    };
+
+    checkBookmark();
+  }, [customAxios, email, id]);
 
   const handleCommentSubmit = async () => {
     if (!newComment.trim()) return;
@@ -109,10 +120,10 @@ const QuestionDetails = () => {
             <span className="text-sm text-gray-500">Tag: {question.tag}</span>
             <button
               onClick={handleSave}
-              disabled={bookmarked}
-              className={`text-2xl ${ bookmarked === questionID ?  "cursor-not-allowed text-gray-400":  "text-blue-500 hover:text-blue-700"}`}
+              disabled={isBookmarked}
+              className={`text-2xl ${isBookmarked? "cursor-not-allowed text-gray-400" : "text-blue-500 hover:text-blue-700"}`}
             >
-              {bookmarked === questionID ?  <IoBookmarksOutline /> : <PiBookmarkSimpleLight />}
+              {isBookmarked? <IoBookmarksOutline /> : <PiBookmarkSimpleLight />}
             </button>
           </div>
 
