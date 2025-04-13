@@ -1,56 +1,40 @@
-import { useEffect, useContext } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchSavedQuestions } from "../../redux/saveSlice";
+import { useContext, useEffect, useState } from "react";
 import AuthContext from "../../Context/AuthContext";
 import useAxios from "../../MainLayout/Shared/Hooks/useAxios";
-import { Link } from "react-router-dom";
+
 
 const Saves = () => {
-  const dispatch = useDispatch();
+  const [saveData, setSavedata] = useState();
   const { user } = useContext(AuthContext);
-  const { saveData, loading, error } = useSelector((state) => state.saves);
-
+  const axios = useAxios();
   useEffect(() => {
-    if (user?.email) {
-      dispatch(fetchSavedQuestions(user.email));
-    }
-  }, [dispatch, user?.email]);
-
+    axios.get(`/saves?email=${user?.email}`)
+      .then(res => {
+        setSavedata(res.data)
+      })
+      .catch(error => {
+        console.log(error);
+      })
+  }, []);
   return (
     <div>
       <h3 className="text-2xl font-bold pb-4"> All bookmarks</h3>
-      {loading && <p>Loading bookmarks...</p>}
-      {error && <p className="text-red-500">Error: {error}</p>}
-      {saveData?.length > 0 ? (
-        saveData.map((question) => (
-      {saveData?.length > 0 ? (
+      {saveData?.length > 0 ?  (
         saveData?.map(question => (
-          <Link to={`/questions/${question._id}`}>
-            <div key={question._id}>
-              <div className="p-4 shadow-md my-4">
-                <h2 className="text-2xl font-bold text-blue-600">{question.title}</h2>
-                <p className="mt-2 text-gray-700">{question.body}</p>
-                <div className="flex items-center justify-between">
-                  <div className="mt-4 text-sm text-gray-500">
-                    <span>Tag: {question.tag}</span> | <span>{question.date}</span>
-                  </div>
           <div key={question._id}>
             <div className="border p-4 rounded shadow">
               <h2 className="text-base font-semibold text-blue-600">{question.title}</h2>
-              <p className="mt-2 text-gray-700 dark:bg-slate-900 dark:text-white">
-                {question.body}
-              </p>
+              <p className="mt-2 text-gray-700 dark:bg-slate-900 dark:text-white">{question.body}</p>
               <div className="flex items-center justify-between">
                 <div className="mt-4 text-sm text-gray-500">
                   <span>Tag: {question.tag}</span> | <span>{question.date}</span>
                 </div>
               </div>
             </div>
-          </Link>
+          </div>
         ))
-      ) : !loading ? (
-        <p>No bookmark question available.</p>
-      ) : null}
+      ) : <p>No bookmark question available.</p>}
+      {/**/}
     </div>
   );
 };
