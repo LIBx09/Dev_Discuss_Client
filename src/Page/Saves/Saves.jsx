@@ -2,6 +2,8 @@ import { useEffect, useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchSavedQuestions } from "../../redux/saveSlice";
 import AuthContext from "../../Context/AuthContext";
+import useAxios from "../../MainLayout/Shared/Hooks/useAxios";
+import { Link } from "react-router-dom";
 
 const Saves = () => {
   const dispatch = useDispatch();
@@ -21,6 +23,17 @@ const Saves = () => {
       {error && <p className="text-red-500">Error: {error}</p>}
       {saveData?.length > 0 ? (
         saveData.map((question) => (
+      {saveData?.length > 0 ? (
+        saveData?.map(question => (
+          <Link to={`/questions/${question._id}`}>
+            <div key={question._id}>
+              <div className="p-4 shadow-md my-4">
+                <h2 className="text-2xl font-bold text-blue-600">{question.title}</h2>
+                <p className="mt-2 text-gray-700">{question.body}</p>
+                <div className="flex items-center justify-between">
+                  <div className="mt-4 text-sm text-gray-500">
+                    <span>Tag: {question.tag}</span> | <span>{question.date}</span>
+                  </div>
           <div key={question._id}>
             <div className="border p-4 rounded shadow">
               <h2 className="text-base font-semibold text-blue-600">{question.title}</h2>
@@ -33,7 +46,7 @@ const Saves = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </Link>
         ))
       ) : !loading ? (
         <p>No bookmark question available.</p>

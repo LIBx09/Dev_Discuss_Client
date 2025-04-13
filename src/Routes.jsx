@@ -42,7 +42,7 @@ const router = createBrowserRouter([
       { path: "/users", element: <Users /> },
       { path: "/askQuestion", element: <PrivateRoute><AskQuestion /></PrivateRoute> },
       { path: "/twinAI", element: <TwinAI /> },
-      {path: "/myProfile", element: <MyProfile></MyProfile>},
+      {path: "/myProfile", element: <PrivateRoute><MyProfile></MyProfile></PrivateRoute>},
       {path:'/fixFlow', element:<FixFlow></FixFlow>}
 
     ],
