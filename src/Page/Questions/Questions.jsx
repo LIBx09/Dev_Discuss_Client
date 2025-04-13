@@ -1,20 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
 import { Link } from "react-router-dom";
-import axios from "axios";
-import { useQuery } from "@tanstack/react-query";
 import LoadingPage from "../Loading/LoadingPage";
+import { fetchQuestions } from "../../redux/questionsSlice";
 
 const Questions = () => {
+  const dispatch = useDispatch();
+  const { questions, isLoading, error } = useSelector((state) => state.questions);
 
-
-const {data:questions,isLoading}=useQuery({
-  queryKey:['question'],
-  queryFn:async()=>{
-    const {data} = await axios(`https://dev-discuss-server-kappa.vercel.app/questions`)
-    return data
-  }
-})
-
+  useEffect(() => {
+    dispatch(fetchQuestions());
+  }, [dispatch]);
 
   return (
     <div>
@@ -31,8 +28,10 @@ const {data:questions,isLoading}=useQuery({
       {/* Questions List */}
       <div className="space-y-4">
         {isLoading ? (
-        <LoadingPage></LoadingPage>
-        ) : questions?.length > 0 ? (
+          <LoadingPage />
+        ) : error ? (
+          <p className="text-red-500">Error: {error}</p>
+        ) : questions.length > 0 ? (
           questions.map((question) => (
             <div
               key={question._id}
