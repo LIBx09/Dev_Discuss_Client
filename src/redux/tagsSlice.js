@@ -2,7 +2,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-// Async thunk to fetch tags
 export const fetchTags = createAsyncThunk("tags/fetchTags", async () => {
   const res = await axios.get("https://dev-discuss-server-kappa.vercel.app/tags");
   return res.data;
@@ -19,6 +18,7 @@ const tagsSlice = createSlice({
     builder
       .addCase(fetchTags.pending, (state) => {
         state.loading = true;
+        state.error = null;
       })
       .addCase(fetchTags.fulfilled, (state, action) => {
         state.tags = action.payload;
