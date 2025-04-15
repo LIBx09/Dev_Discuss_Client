@@ -1,0 +1,68 @@
+[
+    {
+      "title": "HTML5",
+      "image": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg",
+      "description": "HTML5 is the standard markup language for creating web pages. It introduces semantic elements and improved multimedia support."
+    },
+    {
+      "title": "CSS3",
+      "image": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg",
+      "description": "CSS3 is used to style HTML elements with layouts, animations, and media queries. It enables responsive and visually appealing designs."
+    },
+    {
+      "title": "JavaScript",
+      "image": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
+      "description": "JavaScript is a dynamic programming language used to create interactive effects on web pages and build full web applications."
+    },
+    {
+      "title": "TypeScript",
+      "image": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
+      "description": "TypeScript is a superset of JavaScript that adds static typing. It helps in writing safer and more manageable code for large projects."
+    },
+    {
+      "title": "React",
+      "image": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+      "description": "React is a JavaScript library for building user interfaces. It allows developers to create reusable UI components efficiently."
+    },
+    {
+      "title": "Redux",
+      "image": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redux/redux-original.svg",
+      "description": "Redux is a predictable state container for JavaScript apps, commonly used with React to manage application state."
+    },
+    {
+      "title": "Next.js",
+      "image": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg",
+      "description": "Next.js is a React framework that enables server-side rendering, static site generation, and powerful routing."
+    },
+    {
+      "title": "Firebase",
+      "image": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg",
+      "description": "Firebase is a platform by Google that provides backend services like authentication, database, hosting, and analytics."
+    },
+    {
+      "title": "Tailwind CSS",
+      "image": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-plain.svg",
+      "description": "Tailwind CSS is a utility-first CSS framework for building custom designs directly in markup with speed and flexibility."
+    },
+    {
+      "title": "React Router",
+      "image": "https://cdn.simpleicons.org/reactrouter",
+      "description": "React Router enables dynamic routing in React applications, allowing seamless navigation between views."
+    },
+    {
+      "title": "MongoDB",
+      "image": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg",
+      "description": "MongoDB is a NoSQL database designed for flexibility and scalability, storing data in JSON-like documents."
+    },
+    {
+      "title": "Express.js",
+      "image": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg",
+      "description": "Express.js is a minimalist backend framework for Node.js, used to build web APIs and applications efficiently."
+    },
+    {
+      "title": "Node.js",
+      "image": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
+      "description": "Node.js is a runtime environment that allows running JavaScript on the server side, enabling full-stack development with JS."
+    }
+  ]
+  

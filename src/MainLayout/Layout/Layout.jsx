@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Outlet } from "react-router-dom";
 import Navbar from "../Shared/Navbar/Navbar";
-import LeftSidebar from "../Sidebars/LeftSidebar";
-import RightSidebar from "../Sidebars/RightSidebar";
+import LeftSidebar from "../Sidebars/LeftSidebar/LeftSidebar";
+import RightSidebar from "../Sidebars/RightSidebar/RightSidebar";
+
 
 const OnboardingModal = ({ isOpen, onClose }) => {
   const [currentSlide, setCurrentSlide] = useState(0);

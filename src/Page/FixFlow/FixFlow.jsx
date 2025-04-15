@@ -38,7 +38,7 @@ const FixFlow = () => {
   };
 console.log(result)
   return (
-    <div className="min-h-screen bg-slate-50">
+    <div className="min-h-screen bg-slate-50  dark:bg-slate-900 dark:text-white">
       <div className="container mx-auto px-4 py-8">
         <div className="max-w-4xl mx-auto">
       
@@ -46,9 +46,8 @@ console.log(result)
             <h1 className="text-3xl font-bold text-blue-800">Dev Discuss Error Analyzer</h1>
             <p className="text-slate-600 mt-2">Paste your error code and choose how you'd like to solve it</p>
           </div>
-
-   
-          <div className="bg-white rounded-lg shadow-md p-6 mb-8">
+          {/* Error Code Input */}
+          <div className="bg-white rounded-lg shadow-md p-6 mb-8 dark:bg-slate-900 dark:text-white">
             <form onSubmit={handleSubmit}>
               <div className="mb-6">
                 <label htmlFor="errorCode" className="block text-sm font-medium text-slate-700 mb-2">
