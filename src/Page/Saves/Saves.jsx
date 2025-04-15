@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { FaTrash } from "react-icons/fa";
 import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
+import noData from "../../assets/saves_iamge/No-Data.png"
 
 
 const Saves = () => {
@@ -61,7 +62,10 @@ const Saves = () => {
 
   return (
     <div>
-      <h3 className="text-2xl font-bold pb-4"> All bookmarks</h3>
+      <div className="flex items-center justify-between">
+      <h3 className=" pb-4"> All bookmarks</h3>
+      <Link to="/questions"><h3 className=" text-blue-500 cursor-pointer pb-3 hover:underline">View questions</h3></Link>
+      </div>
       {saveData?.length > 0 ? (
         saveData?.map((item) => (
           <div key={item._id}>
@@ -81,8 +85,12 @@ const Saves = () => {
             </div>
           </div>
         ))
-      ) : <p>No bookmark question available.</p>}
-      {/**/}
+      ) :
+        <div>
+          <div className="flex items-center justify-center"><img className="md:h-96 md:w-96" src={noData} alt="noData" /></div>
+          <p className="text-center">You have not bookmarked any questions yet</p>
+        </div>
+      }
     </div>
   );
 };

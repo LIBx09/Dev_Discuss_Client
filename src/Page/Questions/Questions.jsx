@@ -1,16 +1,15 @@
-import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import LoadingPage from "../Loading/LoadingPage";
+import useAxios from "../../MainLayout/Shared/Hooks/useAxios";
 
 const Questions = () => {
-
+const axios = useAxios()
 
 const {data:questions,isLoading}=useQuery({
   queryKey:['question'],
   queryFn:async()=>{
-    const {data} = await axios(`http://localhost:5000/questions`)
+    const {data} = await axios(`/questions`)
     return data
   }
 })
