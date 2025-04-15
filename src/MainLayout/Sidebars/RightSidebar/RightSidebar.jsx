@@ -23,7 +23,7 @@ const RightSidebar = () => {
             <div className="space-y-4">
                 {user ?
                     <Link to="/myProfile">
-                        <div className="shadow-md cursor-pointer">
+                        <div className="shadow-md cursor-pointer mb-4">
                             <img className="rounded-full h-12 w-12 mx-auto my-4" src={user?.photoURL} alt="userPhoto" />
                             <p className="text-center">{user?.displayName}</p>
                             <p className="text-center py-2">{user?.email}</p>
@@ -31,7 +31,7 @@ const RightSidebar = () => {
                     </Link>
                     : <div></div> }
                 <a href="https://react.dev/" target="_blank">
-                    <div className="border border-gray-300 rounded-xl shadow-md p-5 cursor-pointer">
+                    <div className="border border-gray-300 rounded-xl shadow-md p-5 cursor-pointer mb-4">
                         <div className="flex items-center gap-2">
                             <img className="h-12 w-12" src={reactLogo} alt="reactLogo" />
                             <h3 className="text-lg font-semibold hover:text-blue-500">React</h3>
@@ -40,7 +40,7 @@ const RightSidebar = () => {
                     </div>
                 </a>
                 <a href="https://www.javascript.com/" target="_blank">
-                    <div className="border border-gray-300 rounded-xl shadow-md p-5 cursor-pointer">
+                    <div className="border border-gray-300 rounded-xl shadow-md p-5 cursor-pointer mb-4">
                         <div className="flex items-center gap-2">
                             <img className="h-12 w-12" src={jsLogo} alt="reactLogo" />
                             <h3 className="text-lg font-semibold hover:text-blue-500">javaScript</h3>
@@ -49,7 +49,7 @@ const RightSidebar = () => {
                     </div>
                 </a>
                 <a href="https://www.w3schools.com/css/" target="_blank">
-                    <div className="border border-gray-300 rounded-xl shadow-md p-5 cursor-pointer">
+                    <div className="border border-gray-300 rounded-xl shadow-md p-5 cursor-pointer mb-4">
                         <div className="flex items-center gap-2">
                             <img className="h-12 w-12" src={CSSLogo} alt="reactLogo" />
                             <h3 className="text-lg font-semibold hover:text-blue-500">CSS</h3>
@@ -58,7 +58,7 @@ const RightSidebar = () => {
                     </div>
                 </a>
                 <a href="https://www.typescriptlang.org/" target="_blank">
-                    <div className="border border-gray-300 rounded-xl shadow-md p-5 cursor-pointer">
+                    <div className="border border-gray-300 rounded-xl shadow-md p-5 cursor-pointer mb-4">
                         <div className="flex items-center gap-2">
                             <img className="h-12 w-12" src={TSLogo} alt="reactLogo" />
                             <h3 className="text-lg font-semibold hover:text-blue-500">TypeScript</h3>
@@ -67,7 +67,7 @@ const RightSidebar = () => {
                     </div>
                 </a>
                 <a href="https://redux.js.org/" target="_blank">
-                    <div className="border border-gray-300 rounded-xl shadow-md p-5 cursor-pointer">
+                    <div className="border border-gray-300 rounded-xl shadow-md p-5 cursor-pointer mb-4">
                         <div className="flex items-center gap-2">
                             <img className="h-12 w-12" src={reduxLogo} alt="reactLogo" />
                             <h3 className="text-lg font-semibold hover:text-blue-500">Redux</h3>
@@ -76,7 +76,7 @@ const RightSidebar = () => {
                     </div>
                 </a>
                 <a href="https://nextjs.org/" target="_blank">
-                    <div className="border border-gray-300 rounded-xl shadow-md p-5 cursor-pointer">
+                    <div className="border border-gray-300 rounded-xl shadow-md p-5 cursor-pointer mb-4">
                         <div className="flex items-center gap-2">
                             <img className="h-12 w-12" src={nextLogo} alt="reactLogo" />
                             <h3 className="text-lg font-semibold hover:text-blue-500">Next.js</h3>
@@ -85,7 +85,7 @@ const RightSidebar = () => {
                     </div>
                 </a>
                 <a href="https://tailwindcss.com/" target="_blank">
-                    <div className="border border-gray-300 rounded-xl shadow-md p-5 cursor-pointer">
+                    <div className="border border-gray-300 rounded-xl shadow-md p-5 cursor-pointer mb-4">
                         <div className="flex items-center gap-2">
                             <img className="h-12 w-12" src={tailwindLogo} alt="reactLogo" />
                             <h3 className="text-lg font-semibold hover:text-blue-500">Tailwind CSS</h3>
@@ -94,7 +94,7 @@ const RightSidebar = () => {
                     </div>
                 </a>
                 <a href="https://reactrouter.com/" target="_blank">
-                    <div className="border border-gray-300 rounded-xl shadow-md p-5 cursor-pointer">
+                    <div className="border border-gray-300 rounded-xl shadow-md p-5 cursor-pointer mb-4">
                         <div className="flex items-center gap-2">
                             <img className="h-12 w-12" src={reactRouterdLogo} alt="reactLogo" />
                             <h3 className="text-lg font-semibold hover:text-blue-500">React Router</h3>
@@ -103,7 +103,7 @@ const RightSidebar = () => {
                     </div>
                 </a>
                 <a href="https://www.mongodb.com/" target="_blank">
-                    <div className="border border-gray-300 rounded-xl shadow-md p-5 cursor-pointer">
+                    <div className="border border-gray-300 rounded-xl shadow-md p-5 cursor-pointer mb-4">
                         <div className="flex items-center gap-2">
                             <img className="h-12 w-12" src={mongodbLogo} alt="reactLogo" />
                             <h3 className="text-lg font-semibold hover:text-blue-500">MongoDB</h3>
@@ -112,7 +112,7 @@ const RightSidebar = () => {
                     </div>
                 </a>
                 <a href="https://nodejs.org/en" target="_blank">
-                    <div className="border border-gray-300 rounded-xl shadow-md p-5 cursor-pointer">
+                    <div className="border border-gray-300 rounded-xl shadow-md p-5 cursor-pointer mb-4">
                         <div className="flex items-center gap-2">
                             <img className="h-12 w-12" src={nodeJSLogo} alt="reactLogo" />
                             <h3 className="text-lg font-semibold hover:text-blue-500">Node.js</h3>
@@ -121,7 +121,7 @@ const RightSidebar = () => {
                     </div>
                 </a>
                 <a href="https://firebase.google.com/" target="_blank">
-                    <div className="border border-gray-300 rounded-xl shadow-md p-5 cursor-pointer">
+                    <div className="border border-gray-300 rounded-xl shadow-md p-5 cursor-pointer mb-4">
                         <div className="flex items-center gap-2">
                             <img className="h-12 w-12" src={firebaseLogo} alt="reactLogo" />
                             <h3 className="text-lg font-semibold hover:text-blue-500">Firebase</h3>
@@ -130,7 +130,7 @@ const RightSidebar = () => {
                     </div>
                 </a>
                 <a href="https://html.com/" target="_blank">
-                    <div className="border border-gray-300 rounded-xl shadow-md p-5 cursor-pointer">
+                    <div className="border border-gray-300 rounded-xl shadow-md p-5 cursor-pointer mb-4">
                         <div className="flex items-center gap-2">
                             <img className="h-12 w-12" src={HTMLLogo} alt="reactLogo" />
                             <h3 className="text-lg font-semibold hover:text-blue-500">HTML</h3>
@@ -140,7 +140,7 @@ const RightSidebar = () => {
                     </div>
                 </a>
                 <a href="https://expressjs.com/" target="_blank">
-                    <div className="border border-gray-300 rounded-xl shadow-md p-5 cursor-pointer">
+                    <div className="border border-gray-300 rounded-xl shadow-md p-5 cursor-pointer mb-4">
                         <div className="flex items-center gap-2">
                             <img className="h-12 w-12" src={expressJSLogo} alt="reactLogo" />
                             <h3 className="text-lg font-semibold hover:text-blue-500">Express.js</h3>

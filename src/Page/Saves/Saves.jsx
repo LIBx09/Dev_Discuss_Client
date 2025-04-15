@@ -1,50 +1,85 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import AuthContext from "../../Context/AuthContext";
 import useAxios from "../../MainLayout/Shared/Hooks/useAxios";
 import { Link } from "react-router-dom";
+import { FaTrash } from "react-icons/fa";
+import { useQuery } from "@tanstack/react-query";
+import Swal from "sweetalert2";
 
 
 const Saves = () => {
-  const [saveData, setSavedata] = useState();
+  // const [saveData, setSavedata] = useState([]);
   const { user } = useContext(AuthContext);
   const axios = useAxios();
-  useEffect(() => {
-    axios.get(`/saves?email=${user?.email}`)
-      .then(res => {
-        setSavedata(res.data)
-      })
-      .catch(error => {
-        console.log(error);
-      })
-  }, []);
+  // useEffect(() => {
+  //   axios.get(`/saves?email=${user?.email}`)
+  //     .then(res => {
+  //       setSavedata(res.data);
+  //       console.log(res.data);
+  //     })
+  //     .catch(error => {
+  //       console.log(error);
+  //     })
+  // }, []);
+  const { data: saveData = [], refetch } = useQuery({
+    queryKey: ['saves'],
+    queryFn: async () => {
+      const { data } = await axios(`http://localhost:5000/saves?email=${user?.email}`)
+      return data;
+    }
+  })
+  const handleDelete = (questionID) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        console.log("mm");
+        console.log(result);
+        axios.delete(`/saves/${questionID}`)
+          .then(res => {
+            console.log(res.data);
+            if (res.data.deletedCount > 0) {
+              refetch();
+              Swal.fire({
+                title: "Deleted!",
+                text: "Your file has been deleted.",
+                icon: "success"
+              });
+            }
+
+          })
+          .catch(error => { console.log(error); })
+      }
+    });
+  }
+
   return (
     <div>
       <h3 className="text-2xl font-bold pb-4"> All bookmarks</h3>
       {saveData?.length > 0 ? (
-        saveData?.map(question => (
-<<<<<<< HEAD
-          <Link to={`/questions/${question._id}`}>
-            <div key={question._id}>
-              <div className="p-4 shadow-md my-4">
-                <h2 className="text-2xl font-bold text-blue-600">{question.title}</h2>
-                <p className="mt-2 text-gray-700">{question.body}</p>
-                <div className="flex items-center justify-between">
-                  <div className="mt-4 text-sm text-gray-500">
-                    <span>Tag: {question.tag}</span> | <span>{question.date}</span>
-                  </div>
-=======
-          <div key={question._id}>
-            <div className="border p-4 rounded shadow">
-              <h2 className="text-base font-semibold text-blue-600">{question.title}</h2>
-              <p className="mt-2 text-gray-700 dark:bg-slate-900 dark:text-white">{question.body}</p>
+        saveData?.map((item) => (
+          <div key={item._id}>
+            <div className="p-4 shadow-md my-4">
+              <Link to={`/questions/${item.questionID}`}>
+                <h2 className="text-2xl font-bold text-blue-600">{item.title}</h2>
+                <p className="mt-2 text-gray-700 hover:text-blue-500">{item.body}</p>
+              </Link>
               <div className="flex items-center justify-between">
-                <div className="mt-4 text-sm text-gray-500">
-                  <span>Tag: {question.tag}</span> | <span>{question.date}</span>
->>>>>>> c21e32f189f78b27169ee8eac772757f175606f1
+                <div className="mt-4 text-sm text-gray-500 flex items-center justify-between w-full">
+                  <div>
+                    <span>Tag: {item.tag}</span> | <span>{item.date}</span>
+                  </div>
+                  <button onClick={() => handleDelete(item.questionID)} className="text-md text-red-500 hover:bg-gray-100 p-3 rounded-sm"><FaTrash></FaTrash></button>
                 </div>
               </div>
             </div>
-          </Link>
+          </div>
         ))
       ) : <p>No bookmark question available.</p>}
       {/**/}

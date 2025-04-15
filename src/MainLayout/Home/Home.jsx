@@ -10,7 +10,7 @@ const Home = () => {
   const {data:questions,isLoading}=useQuery({
     queryKey:['question'],
     queryFn:async()=>{
-      const {data} = await axios(`https://dev-discuss-server-kappa.vercel.app/questions`)
+      const {data} = await axios(`http://localhost:5000/questions`)
       return data
     }
   })

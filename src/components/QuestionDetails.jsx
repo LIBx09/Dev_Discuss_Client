@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import axios from "axios"; // Global axios import
 import { PiBookmarkSimpleLight } from "react-icons/pi";
 import { IoBookmarksOutline } from "react-icons/io5";
 import { FaCommentDots, FaUserCircle } from "react-icons/fa";
@@ -17,6 +16,7 @@ const QuestionDetails = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [isBookmarked, setIsBookmarked] = useState(false);
+  console.log(id);
 
   const { user } = useContext(AuthContext);
   const email = user?.email || "anonymous@example.com"; // Handle undefined user
@@ -39,18 +39,24 @@ const QuestionDetails = () => {
 
     fetchQuestion();
   }, [id, customAxios]);
-  const questionID = id;
+  // const questionID = id;
   const handleSave = () => {
-    const saveCollection = { ...question, email, questionID: id };
+    const { _id, ...rest } = question; // শুধু _id বাদ দিচ্ছি
+  
+    const saveCollection = {
+      ...rest,              // সব কিছু: title, body, comments, votes, tag, user info
+      email,                // ইউজারের ইমেইল যিনি bookmark করছেন
+      questionID: id,       // যাতে future check করা যায় already bookmarked কিনা
+    };
+  
     customAxios
       .post("/saves", saveCollection)
       .then((res) => {
         if (res.data.acknowledged) {
-          setIsBookmarked(true)
+          setIsBookmarked(true);
           Swal.fire({
             title: "This question has been successfully bookmarked",
             icon: "success",
-            draggable: true,
           });
         }
       })

@@ -9,10 +9,11 @@ import { FaArrowRight } from "react-icons/fa";
 const MyProfile = () => {
     const [userQuestions, setUserQuestions] = useState([]);
     const { user } = useContext(AuthContext);
+    console.log(user);
     const axios = useAxios();
     useEffect(() => {
         if (user?.email) {
-            axios.get(`/userQuestions?email=${user.email}`)
+            axios.get(`/userQuestions?email=${user?.email}`)
                 .then(res => {
                     setUserQuestions(res.data);
                 });

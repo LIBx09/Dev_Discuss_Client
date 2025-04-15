@@ -15,7 +15,7 @@ const [loading,setLoading]=useState(true)
       try {
 
         setLoading(true)
-        const response = await axios.get("https://dev-discuss-server-kappa.vercel.app/tags");
+        const response = await axios.get("http://localhost:5000/tags");
 
         setTags(response.data);
       } catch (error) {
@@ -33,7 +33,7 @@ const [loading,setLoading]=useState(true)
     const fetchQuestions = async () => {
       try {
 
-        const response = await axios.get(`https://dev-discuss-server-kappa.vercel.app/questions/tag/${selectedTag}`);
+        const response = await axios.get(`http://localhost:5000/questions/tag/${selectedTag}`);
 
         setQuestions(response.data);
       } catch (error) {
