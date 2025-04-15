@@ -1,4 +1,10 @@
+<<<<<<< HEAD
 import { useContext } from "react";
+=======
+import { useEffect, useContext } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchSavedQuestions } from "../../redux/saveSlice";
+>>>>>>> dafe25064c0faf0b599eeae5a2a3b88b20cef328
 import AuthContext from "../../Context/AuthContext";
 import useAxios from "../../MainLayout/Shared/Hooks/useAxios";
 import { Link } from "react-router-dom";
@@ -7,8 +13,8 @@ import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 import noData from "../../assets/saves_iamge/No-Data.png"
 
-
 const Saves = () => {
+<<<<<<< HEAD
   // const [saveData, setSavedata] = useState([]);
   const { user } = useContext(AuthContext);
   const axios = useAxios();
@@ -80,17 +86,62 @@ const Saves = () => {
                     <span>Tag: {item.tag}</span> | <span>{item.date}</span>
                   </div>
                   <button onClick={() => handleDelete(item.questionID)} className="text-md text-red-500 hover:bg-gray-100 p-3 rounded-sm"><FaTrash></FaTrash></button>
+=======
+  const dispatch = useDispatch();
+  const { user } = useContext(AuthContext);
+  const { saveData, loading, error } = useSelector((state) => state.saves);
+
+  useEffect(() => {
+    if (user?.email) {
+      dispatch(fetchSavedQuestions(user.email));
+    }
+  }, [dispatch, user?.email]);
+
+  return (
+    <div>
+      <h3 className="text-2xl font-bold pb-4"> All bookmarks</h3>
+      {loading && <p>Loading bookmarks...</p>}
+      {error && <p className="text-red-500">Error: {error}</p>}
+      {saveData?.length > 0 ? (
+        saveData.map((question) => (
+      {saveData?.length > 0 ? (
+        saveData?.map(question => (
+          <Link to={`/questions/${question._id}`}>
+            <div key={question._id}>
+              <div className="p-4 shadow-md my-4">
+                <h2 className="text-2xl font-bold text-blue-600">{question.title}</h2>
+                <p className="mt-2 text-gray-700">{question.body}</p>
+                <div className="flex items-center justify-between">
+                  <div className="mt-4 text-sm text-gray-500">
+                    <span>Tag: {question.tag}</span> | <span>{question.date}</span>
+                  </div>
+          <div key={question._id}>
+            <div className="border p-4 rounded shadow">
+              <h2 className="text-base font-semibold text-blue-600">{question.title}</h2>
+              <p className="mt-2 text-gray-700 dark:bg-slate-900 dark:text-white">
+                {question.body}
+              </p>
+              <div className="flex items-center justify-between">
+                <div className="mt-4 text-sm text-gray-500">
+                  <span>Tag: {question.tag}</span> | <span>{question.date}</span>
+>>>>>>> dafe25064c0faf0b599eeae5a2a3b88b20cef328
                 </div>
               </div>
             </div>
           </div>
         ))
+<<<<<<< HEAD
       ) :
         <div>
           <div className="flex items-center justify-center"><img className="md:h-96 md:w-96" src={noData} alt="noData" /></div>
           <p className="text-center">You have not bookmarked any questions yet</p>
         </div>
       }
+=======
+      ) : !loading ? (
+        <p>No bookmark question available.</p>
+      ) : null}
+>>>>>>> dafe25064c0faf0b599eeae5a2a3b88b20cef328
     </div>
   );
 };

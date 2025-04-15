@@ -30,8 +30,10 @@ const {data:questions,isLoading}=useQuery({
       {/* Questions List */}
       <div className="space-y-4">
         {isLoading ? (
-        <LoadingPage></LoadingPage>
-        ) : questions?.length > 0 ? (
+          <LoadingPage />
+        ) : error ? (
+          <p className="text-red-500">Error: {error}</p>
+        ) : questions.length > 0 ? (
           questions.map((question) => (
             <div
               key={question._id}

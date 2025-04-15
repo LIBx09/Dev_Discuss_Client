@@ -1,19 +1,22 @@
 import { FaArrowRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { useDispatch } from "react-redux";
+import { setBlogs } from "../../redux/blogSlice";
 
 const Blog = ({ blog, index }) => {
     const { _id, image, author, title, date } = blog;
+    const dispatch = useDispatch();
+
+    // You can dispatch this if you want to set all blogs to store (if needed)
+    dispatch(setBlogs([blog]));
 
     const cardVariants = {
         hidden: { opacity: 0, y: 50 },
         visible: { 
             opacity: 1, 
             y: 0,
-            transition: { 
-                duration: 0.5,
-                delay: index * 0.1
-            }
+            transition: { duration: 0.5, delay: index * 0.1 }
         },
         hover: {
             y: -10,
