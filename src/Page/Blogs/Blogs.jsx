@@ -32,17 +32,17 @@ const Blogs = () => {
     };
 
     return (
-        <section className="py-16 px-4 max-w-7xl mx-auto">
+        <section className="py-2 px-4 max-w-7xl mx-auto">
             <motion.div
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
                 className="text-center mb-12"
             >
-                <h1 className="text-3xl lg:text-5xl font-bold relative inline-block">
+                <h1 className="text-3xl lg:text-4xl font-bold relative inline-block">
                     Blogs
                     <motion.div 
-                        className="absolute bottom- left-1/2 h-1 bg-orange-500 rounded-full"
+                        className="absolute bottom- left-1/2 h-1  rounded-full"
                         initial={{ width: 0, x: "-50%" }}
                         animate={{ width: "70%", x: "-50%" }}
                         transition={{ delay: 0.3, duration: 0.5 }}

@@ -61,14 +61,14 @@ const Blog = ({ blog, index }) => {
                     <div className="mt-auto">
                         <Link 
                             to={`/blog-details/${_id}`} 
-                            className="group flex items-center gap-2 font-medium text-orange-500 hover:text-orange-600 transition-colors duration-300"
+                            className="group flex items-center gap-2 font-medium text-blue-500 hover:text-blue-600 transition-colors duration-300"
                         >
                             Read More 
                             <motion.div
                                 whileHover={{ x: 5 }}
                                 transition={{ type: "spring", stiffness: 400 }}
                             >
-                                <FaArrowRight className="text-orange-500 group-hover:text-orange-600" />
+                                <FaArrowRight className="text-blue-500 group-hover:text-blue-600" />
                             </motion.div>
                         </Link>
                     </div>

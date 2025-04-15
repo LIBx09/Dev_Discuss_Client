@@ -61,7 +61,7 @@ const AddBlogs = () => {
       
         const blogs = { author, image, title, content, date, tags: selectedTags };
         console.log(blogs)
-        axios.post("http://localhost:3000/blogs", blogs)
+        axios.post("https://dev-discuss-server-kappa.vercel.appblogs", blogs)
             .then(response => {
                 console.log(response.data);
                 setLoading(false);
