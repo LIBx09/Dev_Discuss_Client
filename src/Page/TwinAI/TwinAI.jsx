@@ -46,7 +46,9 @@ const TwinAI = () => {
     setIsLoading(true);
     
     try {
-      const response = await fetch('https://dev-discuss-server-kappa.vercel.app/chat', {
+
+      const response = await fetch('http://localhost:5000/chat', {
+
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -131,7 +133,7 @@ const TwinAI = () => {
   ];
 
   return (
-    <div className="flex flex-col h-screen max-h-screen bg-gray-50 rounded-lg shadow-lg">
+    <div className="flex flex-col h-screen max-h-screen bg-gray-50 rounded-lg shadow-lg dark:bg-slate-900 dark:text-white">
       {/* Header - Fixed height */}
       <div className="bg-gradient-to-r from-blue-600 to-blue-500 p-4 text-white flex items-center">
         <div className="h-10 w-10 rounded-full bg-white bg-opacity-20 flex items-center justify-center mr-3 shadow-inner">

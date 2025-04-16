@@ -1,9 +1,11 @@
+// src/pages/Events.jsx
 import React from "react";
 import { FaFireAlt } from "react-icons/fa";
 import QuizCard from "../../components/QuizCard/QuizCard";
 import ShortQuestionCard from "../../components/ShortQuestion/ShortQuestion";
 import ProblemSolvingCard from "../../components/ProblemSolvingCard/ProblemSolvingCard";
 const Events = () => {
+
 
 
   return (

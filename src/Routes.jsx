@@ -17,12 +17,14 @@ import TwinAI from "./Page/TwinAI/TwinAI";
 import QuestionDetails from "./components/QuestionDetails";
 import FilteredQuestions from "./Page/Tags/FilteredQuestions";
 import PrivateRoute from "./PrivateRoute";
+import MyProfile from "./Page/MyProfile/MyProfile";
 import FixFlow from "./Page/FixFlow/FixFlow";
 import Problems from "./Page/Problems/Problems";
 import ProblemSolve from "./Page/ProblemSolve/ProblemSolve";
 import QuizPage from "./Page/Quiz/QuizPage";
 import ShortQuestions from "./Page/ShortQuestion/ShortQuestions";
 import ShortQSolve from "./Page/ShortQuestionSolve/ShortQSolve";
+
 
 const router = createBrowserRouter([
   {
@@ -51,6 +53,10 @@ const router = createBrowserRouter([
       {path: '/QuizPage',element:<QuizPage></QuizPage>},
       {path:'/shortQuestions',element:<ShortQuestions></ShortQuestions>},
       {path:'/shortQSolve/:id',element:<ShortQSolve></ShortQSolve>}
+      {path: "/myProfile", element: <PrivateRoute><MyProfile></MyProfile></PrivateRoute>},
+    
+
+
     ],
   },
 ]);

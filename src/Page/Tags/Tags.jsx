@@ -1,60 +1,46 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchTags } from "../../redux/tagsSlice";
+import { fetchQuestionsByTag } from "../../redux/questionsSlice";
 import LoadingPage from "../Loading/LoadingPage";
+import { Link } from "react-router-dom";
 
 const Tags = () => {
-  const [tags, setTags] = useState([]);
+  const dispatch = useDispatch();
+
+  const { tags, loading: tagsLoading } = useSelector((state) => state.tags);
+  const { questions, loading: questionsLoading } = useSelector((state) => state.questions);
+
   const [search, setSearch] = useState("");
   const [selectedTag, setSelectedTag] = useState(null);
-  const [questions, setQuestions] = useState([]);
-const [loading,setLoading]=useState(true)
-  // Fetch tags from the backend
-  useEffect(() => {
-    const fetchTags = async () => {
-      try {
-        setLoading(true)
-        const response = await axios.get("https://dev-discuss-server-kappa.vercel.app/tags");
-        setTags(response.data);
-      } catch (error) {
-        console.error("Error fetching tags:", error);
-      }finally{
-      setLoading(false)
-      }
-    };
-    fetchTags();
-  }, []);
 
-  // Fetch questions based on the selected tag
+  // Fetch tags on mount
   useEffect(() => {
-    if (!selectedTag) return;
-    const fetchQuestions = async () => {
-      try {
-        const response = await axios.get(`https://dev-discuss-server-kappa.vercel.app/questions/tag/${selectedTag}`);
-        setQuestions(response.data);
-      } catch (error) {
-        console.error("Error fetching questions for tag:", error);
-      }
-    };
-    fetchQuestions();
-  }, [selectedTag]);
+    dispatch(fetchTags());
+  }, [dispatch]);
 
-  // Filter the tags based on the search term
+  // Fetch questions when tag is selected
+  useEffect(() => {
+    if (selectedTag) {
+      dispatch(fetchQuestionsByTag(selectedTag));
+    }
+  }, [dispatch, selectedTag]);
+
   const filteredTags = tags.filter((tag) =>
     tag.tag.toLowerCase().includes(search.toLowerCase())
   );
-if(loading){
-  return <LoadingPage></LoadingPage>
-}
+
+  if (tagsLoading) return <LoadingPage />;
+
   return (
-    <div className="p-6 max-w-5xl mx-auto">
-      {/* Header Section */}
+    <div className="max-w-5xl mx-auto">
+      {/* Header */}
       <div className="mb-6 text-center">
         <h2 className="text-3xl font-bold text-gray-800 dark:text-white">Popular Tags</h2>
         <p className="text-gray-600 dark:text-gray-400">Browse the most used tags in the community</p>
       </div>
 
-      {/* Search Bar */}
+      {/* Search */}
       <div className="mb-6">
         <input
           type="text"
@@ -65,7 +51,7 @@ if(loading){
         />
       </div>
 
-      {/* Tags Grid */}
+      {/* Tags */}
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
         {filteredTags.length > 0 ? (
           filteredTags.map((tagData, index) => (
@@ -74,8 +60,12 @@ if(loading){
               onClick={() => setSelectedTag(tagData.tag)}
               className="grid gap-4 bg-gray-100 dark:bg-gray-800 px-5 py-3 rounded-lg justify-between items-center min-h-[50px] shadow-sm hover:shadow-md transition-shadow cursor-pointer"
             >
-              <span className="text-blue-600 dark:text-blue-400 font-semibold text-sm sm:text-base truncate">#{tagData.tag}</span>
-              <span className="text-gray-500 dark:text-gray-400 text-xs sm:text-sm">{tagData.count} questions</span>
+              <span className="text-blue-600 dark:text-blue-400 font-semibold text-sm sm:text-base truncate">
+                #{tagData.tag}
+              </span>
+              <span className="text-gray-500 dark:text-gray-400 text-xs sm:text-sm">
+                {tagData.count} questions
+              </span>
             </div>
           ))
         ) : (
@@ -83,28 +73,33 @@ if(loading){
         )}
       </div>
 
-      {/* Display Questions for Selected Tag */}
+      {/* Questions */}
       {selectedTag && (
         <div className="mt-8">
-          <h3 className="text-2xl font-semibold text-gray-800 dark:text-white">
+          <h3 className="text-xl font-semibold text-gray-800 dark:text-white">
             Questions tagged with #{selectedTag}
           </h3>
-          <div className="mt-4 space-y-4">
-            {questions.length > 0 ? (
-              questions.map((question) => (
-                <div key={question._id} className="p-4 bg-gray-100 dark:bg-gray-800 rounded-lg shadow">
-                  <Link to={`/questions/${question._id}`}>
-                    <h4 className="text-lg font-semibold text-blue-600 dark:text-blue-400 hover:underline">
-                      {question.title}
-                    </h4>
-                  </Link>
-                  <p className="text-gray-700 dark:text-gray-300">{question.description}</p>
-                </div>
-              ))
-            ) : (
-              <p className="text-gray-500 dark:text-gray-400">No questions found for this tag.</p>
-            )}
-          </div>
+
+          {questionsLoading ? (
+            <LoadingPage />
+          ) : (
+            <div className="mt-4 space-y-4">
+              {questions.length > 0 ? (
+                questions.map((question) => (
+                  <div key={question._id} className="p-4 bg-gray-100 dark:bg-gray-800 rounded-lg shadow">
+                    <Link to={`/questions/${question._id}`}>
+                      <h4 className="text-sm font-semibold text-blue-600 dark:text-blue-400 hover:underline">
+                        {question.title}
+                      </h4>
+                    </Link>
+                    <p className="text-gray-700 dark:text-gray-300">{question.description}</p>
+                  </div>
+                ))
+              ) : (
+                <p className="text-gray-500 dark:text-gray-400">No questions found for this tag.</p>
+              )}
+            </div>
+          )}
         </div>
       )}
     </div>
