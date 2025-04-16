@@ -25,7 +25,7 @@ import { motion } from "motion/react"
 const Navbar = () => {
   const { user, loading, logout } = useContext(AuthContext);
   const [isOpen, setIsOpen] = useState(false);
-
+  console.log(user)
   if (loading) {
     return (
       <div className="flex justify-center items-center h-screen">

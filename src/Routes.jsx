@@ -18,6 +18,11 @@ import QuestionDetails from "./components/QuestionDetails";
 import FilteredQuestions from "./Page/Tags/FilteredQuestions";
 import PrivateRoute from "./PrivateRoute";
 import FixFlow from "./Page/FixFlow/FixFlow";
+import Problems from "./Page/Problems/Problems";
+import ProblemSolve from "./Page/ProblemSolve/ProblemSolve";
+import QuizPage from "./Page/Quiz/QuizPage";
+import ShortQuestions from "./Page/ShortQuestion/ShortQuestions";
+import ShortQSolve from "./Page/ShortQuestionSolve/ShortQSolve";
 
 const router = createBrowserRouter([
   {
@@ -40,7 +45,12 @@ const router = createBrowserRouter([
       { path: "/users", element: <Users /> },
       { path: "/askQuestion", element: <PrivateRoute><AskQuestion /></PrivateRoute> },
       { path: "/twinAI", element: <TwinAI /> },
-      {path:'/fixFlow', element:<FixFlow></FixFlow>}
+      {path:'/fixFlow', element:<FixFlow></FixFlow>},
+      {path: '/problems', element:<Problems></Problems>},
+      {path: '/problemSolve/:id', element:<ProblemSolve></ProblemSolve>},
+      {path: '/QuizPage',element:<QuizPage></QuizPage>},
+      {path:'/shortQuestions',element:<ShortQuestions></ShortQuestions>},
+      {path:'/shortQSolve/:id',element:<ShortQSolve></ShortQSolve>}
     ],
   },
 ]);
