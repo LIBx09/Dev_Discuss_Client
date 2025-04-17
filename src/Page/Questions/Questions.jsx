@@ -4,16 +4,20 @@ import LoadingPage from "../Loading/LoadingPage";
 import useAxios from "../../MainLayout/Shared/Hooks/useAxios";
 
 const Questions = () => {
-const axios = useAxios()
+  const axios = useAxios();
 
-const {data:questions,isLoading}=useQuery({
-  queryKey:['question'],
-  queryFn:async()=>{
-    const {data} = await axios(`/questions`)
-    return data
-  }
-})
-
+  const {
+    data: questions = [],
+    isLoading,
+    isError,
+    error,
+  } = useQuery({
+    queryKey: ["questions"],
+    queryFn: async () => {
+      const { data } = await axios("/questions");
+      return data;
+    },
+  });
 
   return (
     <div>
@@ -31,8 +35,8 @@ const {data:questions,isLoading}=useQuery({
       <div className="space-y-4">
         {isLoading ? (
           <LoadingPage />
-        ) : error ? (
-          <p className="text-red-500">Error: {error}</p>
+        ) : isError ? (
+          <p className="text-red-500">Error: {error.message}</p>
         ) : questions.length > 0 ? (
           questions.map((question) => (
             <div

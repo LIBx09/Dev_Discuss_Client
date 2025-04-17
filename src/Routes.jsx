@@ -52,11 +52,8 @@ const router = createBrowserRouter([
       {path: '/problemSolve/:id', element:<ProblemSolve></ProblemSolve>},
       {path: '/QuizPage',element:<QuizPage></QuizPage>},
       {path:'/shortQuestions',element:<ShortQuestions></ShortQuestions>},
-      {path:'/shortQSolve/:id',element:<ShortQSolve></ShortQSolve>}
+      {path:'/shortQSolve/:id',element:<ShortQSolve></ShortQSolve>},
       {path: "/myProfile", element: <PrivateRoute><MyProfile></MyProfile></PrivateRoute>},
-    
-
-
     ],
   },
 ]);
