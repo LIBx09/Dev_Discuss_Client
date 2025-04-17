@@ -158,10 +158,9 @@ const QuestionDetails = () => {
             <div className="flex items-center justify-center gap-4 relative">
               <button
                 onClick={() => handleLike(question._id)}
-                className={` z-10 transition px-4 py-1 rounded-3xl flex items-center justify-center gap-1 ${isLiked ? "bg-blue-200 text-blue-800" : "bg-gray-200 text-gray-800"}`}
+                className={` z-10 transition px-4 py-1 rounded-md flex items-center justify-center gap-1 ${isLiked ? "bg-blue-200 text-blue-800" : "bg-gray-200 text-gray-800"}`}
               >
                 <span className="hover:text-blue-500 text-xl"><AiOutlineLike /></span>  ({question?.likes?.length || 0})
-                {/* Floating Like Effect */}
                 {showEffect && (
                   <span className="absolute text-blue-700 text-xl animate-fly pointer-events-none  left-3">
                     <AiOutlineLike /> 

@@ -18,7 +18,7 @@ const Home = () => {
 
   return (
     <div className="max-w-4xl mx-auto">
-      <Marquee className="text-lg pb-2">
+      <Marquee className="text-lg my-2">
         A Collaborative Space for Developer Discussions | Share Your Dev Thoughts | Learn from Fellow Developers |
       </Marquee>
 
