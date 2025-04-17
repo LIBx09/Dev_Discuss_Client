@@ -6,7 +6,17 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      keyframes: {
+        fly: {
+          "0%": { transform: "translateY(0)", opacity: "1" },
+          "100%": { transform: "translateY(-50px)", opacity: "0" },
+        },
+      },
+      animation: {
+        fly: "fly 1s ease-out", // এটা animate-fly ক্লাসে ইউজ হবে
+      },
+    },
   },
   plugins: [  require('daisyui'),],
 }

@@ -17,6 +17,7 @@ const QuestionDetails = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [isBookmarked, setIsBookmarked] = useState(false);
+  const [showEffect, setShowEffect] = useState(false);
 
 
   const { user } = useContext(AuthContext);
@@ -105,7 +106,12 @@ const QuestionDetails = () => {
       const res = await customAxios.post(`/questions/${_id}/like`, {
         userEmail,
       });
-
+      if (!isLiked) {
+        setShowEffect(true);
+        setTimeout(() => {
+          setShowEffect(false);
+        }, 1000);
+      }
       // Updated likes from backend
       const updatedLikes = res.data.likes;
 
@@ -116,6 +122,7 @@ const QuestionDetails = () => {
     } catch (error) {
       console.error("Error while toggling like:", error);
     }
+
   };
 
   const isLiked = question?.likes?.includes(userEmail);
@@ -148,12 +155,18 @@ const QuestionDetails = () => {
           <p className="mt-4 text-gray-700 text-xs dark:bg-slate-900 dark:text-white">{question.body}</p>
           <div className="flex items-center justify-between mt-4">
             <span className="text-xs text-gray-500"> {question.tag}</span>
-            <div className="flex items-center justify-center gap-4">
+            <div className="flex items-center justify-center gap-4 relative">
               <button
                 onClick={() => handleLike(question._id)}
-                className={`px-4 py-1 rounded-3xl flex items-center justify-center gap-1 ${isLiked ? "bg-blue-200 text-blue-800" : "bg-gray-200 text-gray-800"}`}
+                className={` z-10 transition px-4 py-1 rounded-3xl flex items-center justify-center gap-1 ${isLiked ? "bg-blue-200 text-blue-800" : "bg-gray-200 text-gray-800"}`}
               >
-                <AiOutlineLike />  ({question?.likes?.length || 0})
+                <span className="hover:text-blue-500 text-xl"><AiOutlineLike /></span>  ({question?.likes?.length || 0})
+                {/* Floating Like Effect */}
+                {showEffect && (
+                  <span className="absolute text-blue-700 text-xl animate-fly pointer-events-none  left-3">
+                    <AiOutlineLike /> 
+                  </span>
+                )}
               </button>
 
               <button
