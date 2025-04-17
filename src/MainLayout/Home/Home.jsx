@@ -55,7 +55,7 @@ const Home = () => {
           {loading ? (
             <LoadingPage />
           ) : error ? (
-            <p className="text-red-500">Error: {error}</p>
+            <p className="text-red-500">{error}</p>
           ) : questions?.length > 0 ? (
             questions.map((question) => (
               <div
@@ -68,8 +68,8 @@ const Home = () => {
                   </h3>
                 </Link>
                 <div className="flex gap-2 text-xs mt-1 justify-between">
-                  <span>Tag: {question.tag}</span>
-                  <span>Date: {question.date}</span>
+                  <span>{question.tag}</span>
+                  <span> {question.date}</span>
                 </div>
               </div>
             ))

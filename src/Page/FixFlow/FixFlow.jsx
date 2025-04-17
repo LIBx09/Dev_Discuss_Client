@@ -19,7 +19,7 @@ const FixFlow = () => {
     
     try {
 
-      const response = await axios.post('https://dev-discuss-server-kappa.vercel.app/fixFlow', {
+      const response = await axios.post('http://localhost:3000/fixFlow', {
 
  
         userInput: errorCode,

@@ -53,25 +53,21 @@ const Saves = () => {
           <h3 className="text-blue-500 cursor-pointer pb-3 hover:underline">View questions</h3>
         </Link>
       </div>
-
-      {loading && <p>Loading bookmarks...</p>}
-      {error && <p className="text-red-500">Error: {error}</p>}
-
       {saveData?.length > 0 ? (
-        saveData.map((question) => (
-          <div key={question._id}>
+        saveData?.map((item) => (
+          <div key={item._id}>
             <div className="p-4 shadow-md my-4">
-              <Link to={`/questions/${question.questionID}`}>
-                <h2 className="text-2xl font-bold text-blue-600">{question.title}</h2>
-                <p className="mt-2 text-gray-700 dark:text-white">{question.body}</p>
+              <Link to={`/questions/${item.questionID}`}>
+                <h2 className="text-2xl font-bold text-blue-600">{item.title}</h2>
+                <p className="mt-2 text-gray-700 hover:text-blue-500">{item.body}</p>
               </Link>
-              <div className="flex items-center justify-between mt-4 text-sm text-gray-500">
-                <div>
-                  <span>Tag: {question.tag}</span> | <span>{question.date}</span>
+              <div className="flex items-center justify-between">
+                <div className="mt-4 text-sm text-gray-500 flex items-center justify-between w-full">
+                  <div>
+                    <span>{item.tag}</span> | <span>{item.date}</span>
+                  </div>
+                  <button onClick={() => handleDelete(item.questionID)} className="text-md text-red-500 hover:bg-gray-100 p-3 rounded-sm"><FaTrash></FaTrash></button>
                 </div>
-                <button onClick={() => handleDelete(question.questionID)} className="text-red-500 hover:bg-gray-100 p-3 rounded-sm">
-                  <FaTrash />
-                </button>
               </div>
             </div>
           </div>

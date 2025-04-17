@@ -1,7 +1,11 @@
+// import React, { useEffect } from "react";
+// import { useDispatch, useSelector } from "react-redux";
+
 import { Link } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
 import LoadingPage from "../Loading/LoadingPage";
+// import { fetchQuestions } from "../../redux/questionsSlice";
 import useAxios from "../../MainLayout/Shared/Hooks/useAxios";
+import { useQuery } from '@tanstack/react-query';
 
 const Questions = () => {
   const axios = useAxios();

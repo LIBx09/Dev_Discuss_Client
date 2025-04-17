@@ -2,7 +2,7 @@ import axios from "axios";
 
 const Axios = axios.create({
 
-    baseURL: "https://dev-discuss-server-kappa.vercel.app"
+    baseURL: "http://localhost:3000"
 
 });
 const useAxios = () => {

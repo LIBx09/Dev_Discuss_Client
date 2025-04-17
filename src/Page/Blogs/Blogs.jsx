@@ -9,7 +9,7 @@ const Blogs = () => {
 
     useEffect(() => {
         setLoading(true);
-        fetch("https://dev-discuss-server-kappa.vercel.app/blogs")
+        fetch("http://localhost:3000/blogs")
             .then(res => res.json())
             .then(data => {
                 setBlogs(data);

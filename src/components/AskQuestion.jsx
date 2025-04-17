@@ -21,6 +21,7 @@ const AskQuestion = () => {
       userName: user?.displayName,  // ✅ Save user's name
       userEmail: user?.email,       // ✅ Save user's email
       userPhoto: user?.photoURL,    // ✅ Save user's photo (if available)
+      likes: []
     };
 
     axios
@@ -54,42 +55,42 @@ const AskQuestion = () => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <fieldset className="fieldset">
           <legend className="fieldset-legend md:text-xl text-md">Title</legend>
-          <p className="fieldset-label">
+          <p className="fieldset-label dark:text-white">
             Be specific and imagine you're asking a question to another person
           </p>
           <input
             {...register("title", { required: true })}
             type="text"
             required
-            className="input w-full"
+            className="input w-full dark:bg-slate-800"
             placeholder="Enter a title for your question"
           />
         </fieldset>
 
         <fieldset className="fieldset">
           <legend className="fieldset-legend md:text-xl text-md">Body</legend>
-          <p className="fieldset-label">
+          <p className="fieldset-label dark:text-white">
             Include all the information someone would need to answer your
             question
           </p>
           <textarea
             {...register("body", { required: true })}
             required
-            className="textarea min-h-60 w-full row-span-12"
+            className="textarea min-h-60 w-full dark:bg-slate-800 row-span-12"
             placeholder="Enter a body for your question"
           ></textarea>
         </fieldset>
 
         <fieldset className="fieldset">
           <legend className="fieldset-legend md:text-xl text-md">Tags</legend>
-          <p className="fieldset-label">
+          <p className="fieldset-label dark:text-white">
             Add tags to describe what your question is about
           </p>
           <select
             {...register("tag", { require: true })}
             defaultValue="default"
             required
-            className="select select-md w-full"
+            className="select select-md w-full dark:bg-slate-800"
           >
             <option disabled={true}>Category</option>
             <option>HTML5</option>

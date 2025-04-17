@@ -89,8 +89,8 @@ const Navbar = () => {
         </div>
 
         <div className="navbar-end flex items-center gap-3">
-          <DarkLightToggle />
           <IoIosHelpCircleOutline className="text-2xl" />
+          <DarkLightToggle />
           <Link to="/saves">
             <FaRegBookmark className="text-xl" />
           </Link>
