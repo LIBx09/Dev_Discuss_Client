@@ -1,19 +1,17 @@
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
 import { Link } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
 import LoadingPage from "../Loading/LoadingPage";
-import useAxios from "../../MainLayout/Shared/Hooks/useAxios";
+import { fetchQuestions } from "../../redux/questionsSlice";
 
 const Questions = () => {
-const axios = useAxios()
+  const dispatch = useDispatch();
+  const { questions, isLoading, error } = useSelector((state) => state.questions);
 
-const {data:questions,isLoading}=useQuery({
-  queryKey:['question'],
-  queryFn:async()=>{
-    const {data} = await axios(`/questions`)
-    return data
-  }
-})
-
+  useEffect(() => {
+    dispatch(fetchQuestions());
+  }, [dispatch]);
 
   return (
     <div>
