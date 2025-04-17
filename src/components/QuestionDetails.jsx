@@ -6,6 +6,7 @@ import { FaCommentDots, FaUserCircle } from "react-icons/fa";
 import useAxios from "../MainLayout/Shared/Hooks/useAxios";
 import AuthContext from "../Context/AuthContext";
 import Swal from "sweetalert2";
+import { AiOutlineLike } from "react-icons/ai";
 
 const QuestionDetails = () => {
   const customAxios = useAxios(); // Renamed to avoid conflict with global axios
@@ -16,13 +17,17 @@ const QuestionDetails = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [isBookmarked, setIsBookmarked] = useState(false);
-  console.log(id);
+
 
   const { user } = useContext(AuthContext);
   const email = user?.email || "anonymous@example.com"; // Handle undefined user
+  const [userEmail, setUserEmail] = useState(`${user?.email}`);
 
-
-
+  useEffect(() => {
+    if (user?.email) {
+      setUserEmail(user.email);
+    }
+  }, [user]);
   useEffect(() => {
     const fetchQuestion = async () => {
       try {
@@ -41,14 +46,14 @@ const QuestionDetails = () => {
   }, [id, customAxios]);
   // const questionID = id;
   const handleSave = () => {
-    const { _id, ...rest } = question; // শুধু _id বাদ দিচ্ছি
-  
+    const { _id, ...rest } = question;
+
     const saveCollection = {
-      ...rest,              // সব কিছু: title, body, comments, votes, tag, user info
-      email,                // ইউজারের ইমেইল যিনি bookmark করছেন
-      questionID: id,       // যাতে future check করা যায় already bookmarked কিনা
+      ...rest,
+      email,
+      questionID: id,
     };
-  
+
     customAxios
       .post("/saves", saveCollection)
       .then((res) => {
@@ -95,6 +100,25 @@ const QuestionDetails = () => {
     }
   };
 
+  const handleLike = async (_id) => {
+    try {
+      const res = await customAxios.post(`/questions/${_id}/like`, {
+        userEmail,
+      });
+
+      // Updated likes from backend
+      const updatedLikes = res.data.likes;
+
+      setQuestion((prevQuestion) => ({
+        ...prevQuestion,
+        likes: updatedLikes,
+      }));
+    } catch (error) {
+      console.error("Error while toggling like:", error);
+    }
+  };
+
+  const isLiked = question?.likes?.includes(userEmail);
   return (
     <div className="max-w-3xl mx-auto dark:bg-slate-900 dark:text-white">
       <Link to="/questions" className="text-blue-500 underline mb-4 inline-block">
@@ -117,20 +141,29 @@ const QuestionDetails = () => {
             <div>
               <h2 className="text-base font-semibold text-blue-600">{question.title}</h2>
               <p className="text-xs text-gray-500">Asked by: {question.userName || "Anonymous"}</p>
-              <span className="text-xs">Date: {question.date}</span>
+              <span className="text-xs">{question.date}</span>
             </div>
           </div>
 
           <p className="mt-4 text-gray-700 text-xs dark:bg-slate-900 dark:text-white">{question.body}</p>
           <div className="flex items-center justify-between mt-4">
-            <span className="text-xs text-gray-500">Tag: {question.tag}</span>
-            <button
-              onClick={handleSave}
-              disabled={isBookmarked}
-              className={`text-2xl ${isBookmarked? "cursor-not-allowed text-gray-400" : "text-blue-500 hover:text-blue-700"}`}
-            >
-              {isBookmarked? <IoBookmarksOutline /> : <PiBookmarkSimpleLight />}
-            </button>
+            <span className="text-xs text-gray-500"> {question.tag}</span>
+            <div className="flex items-center justify-center gap-4">
+              <button
+                onClick={() => handleLike(question._id)}
+                className={`px-4 py-1 rounded-3xl flex items-center justify-center gap-1 ${isLiked ? "bg-blue-200 text-blue-800" : "bg-gray-200 text-gray-800"}`}
+              >
+                <AiOutlineLike />  ({question?.likes?.length || 0})
+              </button>
+
+              <button
+                onClick={handleSave}
+                disabled={isBookmarked}
+                className={`text-2xl ${isBookmarked ? "cursor-not-allowed text-gray-400" : "text-blue-500 hover:text-blue-700"}`}
+              >
+                {isBookmarked ? <IoBookmarksOutline /> : <PiBookmarkSimpleLight />}
+              </button>
+            </div>
           </div>
 
           {/* Comments Section */}
