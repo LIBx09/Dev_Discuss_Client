@@ -23,7 +23,6 @@ const RightSidebar = () => {
         { name: "HTML", logo: HTMLLogo, link: "https://html.com/" },
         { name: "Express.js", logo: expressJSLogo, link: "https://expressjs.com/" },
     ];
-
     return (
         <div className="hidden lg:block">
             <div>
@@ -48,5 +47,4 @@ const RightSidebar = () => {
         </div>
     );
 };
-
 export default RightSidebar;
