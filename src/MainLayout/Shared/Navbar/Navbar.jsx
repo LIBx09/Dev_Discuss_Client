@@ -60,17 +60,10 @@ const Navbar = () => {
           <button onClick={() => setIsOpen(!isOpen)} className="btn btn-ghost lg:hidden">
             {isOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
           </button>
-
-          <motion.div
-            className="hidden md:flex items-center gap-1"
-            animate={{ x: [30, 70, 30], color: ["#001bfc", "#FF0000"] }}
-            transition={{ duration: 3, repeat: Infinity }}
-          >
             <Link to="/" className="btn btn-ghost text-md md:text-xl">
               <FaCode />
               Dev_Discuss
             </Link>
-          </motion.div>
         </div>
 
         <div className="hidden lg:flex lg:navbar-center">
@@ -87,7 +80,8 @@ const Navbar = () => {
         </div>
 
         <div className="navbar-end flex items-center gap-3">
-          <IoIosHelpCircleOutline className="text-2xl" />
+          <Link to="/questions">
+            <IoIosHelpCircleOutline className="text-2xl" /></Link>
           <DarkLightToggle />
           <Link to="/saves">
             <FaRegBookmark className="text-xl" />
@@ -111,7 +105,7 @@ const Navbar = () => {
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content bg-base-300 rounded-box z-50 mt-3 w-52 p-2 shadow dark:bg-gray-800"
+              className="menu menu-sm dropdown-content bg-base-200 rounded-box z-50 mt-3 w-52 p-2 -right-4 shadow-xl dark:bg-gray-800 items-center space-y-3"
             >
               <li><Link to="/blogs">Blogs</Link></li>
               <li><Link to="/add-blogs">Add Blogs</Link></li>
@@ -120,7 +114,7 @@ const Navbar = () => {
               {user && <li><Link to="/myProfile">My Profile</Link></li>}
               {user ? (
                 <li>
-                  <button className="btn w-full" onClick={handleLogout}>
+                  <button onClick={handleLogout}>
                     Logout
                   </button>
                 </li>

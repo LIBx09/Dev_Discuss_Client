@@ -18,16 +18,14 @@ const Home = () => {
 
   return (
     <div className="max-w-4xl mx-auto">
-      <Marquee className="text-lg my-2">
-        A Collaborative Space for Developer Discussions | Share Your Dev Thoughts | Learn from Fellow Developers |
-      </Marquee>
-
       {/* Welcome Section */}
       <div className="text-center">
-        <h2 className="text-4xl font-extrabold text-blue-500">Welcome to DevDiscuss</h2>
-        <p className="text-gray-600 mt-2 text-lg">
-          Ask, answer, and explore coding questions.
-        </p>
+        <h2 className="md:text-5xl text-4xl font-extrabold text-blue-500">Welcome to DevDiscuss</h2>
+
+        <div className="flex items-center justify-center pt-2 text-gray-500">
+            Ask, answer, and explore coding questions.
+        </div>
+
       </div>
 
       {/* Action Buttons */}

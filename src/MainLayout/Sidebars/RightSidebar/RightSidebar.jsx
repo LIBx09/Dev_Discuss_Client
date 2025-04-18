@@ -10,111 +10,42 @@ import nextLogo from "../RightSidebar/next.js.png"
 import tailwindLogo from "../RightSidebar/tailwind.png"
 import reactRouterdLogo from "../RightSidebar/reactRouter.png"
 const RightSidebar = () => {
+    const techLinks = [
+        { name: "React", logo: reactLogo, link: "https://react.dev/" },
+        { name: "JavaScript", logo: jsLogo, link: "https://www.javascript.com/" },
+        { name: "CSS", logo: CSSLogo, link: "https://www.w3schools.com/css/" },
+        { name: "TypeScript", logo: TSLogo, link: "https://www.typescriptlang.org/" },
+        { name: "Redux", logo: reduxLogo, link: "https://redux.js.org/" },
+        { name: "Next.js", logo: nextLogo, link: "https://nextjs.org/" },
+        { name: "Tailwind CSS", logo: tailwindLogo, link: "https://tailwindcss.com/" },
+        { name: "React Router", logo: reactRouterdLogo, link: "https://reactrouter.com/" },
+        { name: "MongoDB", logo: mongodbLogo, link: "https://www.mongodb.com/" },
+        { name: "HTML", logo: HTMLLogo, link: "https://html.com/" },
+        { name: "Express.js", logo: expressJSLogo, link: "https://expressjs.com/" },
+    ];
 
     return (
-        <div className="hidden lg:block ">
+        <div className="hidden lg:block">
             <div>
                 <h4 className="text-center font-semibold pt-9">Explore now</h4>
-                <div className="flex items-center justify-center gap-4 pt-5 pb-7">
-                    <a href="https://react.dev/" target="_blank">
-                        <div className=" cursor-pointer">
-                            <div className="flex items-center gap-1">
-                                <img className="h-5 w-5" src={reactLogo} alt="reactLogo" />
-                                <h3 className=" hover:text-blue-500">React</h3>
+                <div className="grid grid-cols-2 gap-4 pt-4">
+                    {techLinks.map((tech, index) => (
+                        <a
+                            key={index}
+                            href={tech.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-1 bg-white border dark:bg-gray-800 hover:scale-110  hover:border-blue-300 px-4 py-4 rounded-md transition-all duration-300 w-full h-12"
+                        >
+                            <div className="flex items-center justify-center dark:bg-gray-800">
+                                <img src={tech.logo} alt={tech.name} className="h-4 w-4" />
+                                <h3 className="hover:text-blue-500 text-xs">{tech.name}</h3>
                             </div>
-                        </div>
-                    </a>
-                    <a href="https://www.javascript.com/" target="_blank">
-                        <div className=" cursor-pointer">
-                            <div className="flex items-center gap-1">
-                                <img className="h-5 w-5" src={jsLogo} alt="reactLogo" />
-                                <h3 className="  hover:text-blue-500">javaScript</h3>
-                            </div>
-                        </div>
-                    </a>
+                        </a>
+                    ))}
                 </div>
-                <div className="flex items-center justify-center gap-4 pb-7">
-                    <a href="https://www.w3schools.com/css/" target="_blank">
-                        <div className="  cursor-pointer">
-                            <div className="flex items-center gap-1">
-                                <img className="h-5 w-5" src={CSSLogo} alt="reactLogo" />
-                                <h3 className=" hover:text-blue-500">CSS</h3>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="https://www.typescriptlang.org/" target="_blank">
-                        <div className=" cursor-pointer">
-                            <div className="flex items-center gap-1">
-                                <img className="h-5 w-5" src={TSLogo} alt="reactLogo" />
-                                <h3 className=" hover:text-blue-500">TypeScript</h3>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div className="flex items-center justify-center gap-4 pb-7">
-                    <a href="https://redux.js.org/" target="_blank">
-                        <div className="cursor-pointer">
-                            <div className="flex items-center gap-2">
-                                <img className="h-6 w-6" src={reduxLogo} alt="reactLogo" />
-                                <h3 className=" hover:text-blue-500">Redux</h3>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="https://nextjs.org/" target="_blank">
-                        <div className="cursor-pointer">
-                            <div className="flex items-center gap-2">
-                                <img className="h-6 w-6" src={nextLogo} alt="reactLogo" />
-                                <h3 className=" hover:text-blue-500">Next.js</h3>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div className="flex items-center justify-center gap-4 pb-7">
-                    <a href="https://tailwindcss.com/" target="_blank">
-                        <div className="cursor-pointer">
-                            <div className="flex items-center gap-2">
-                                <img className="h-7 w-7" src={tailwindLogo} alt="reactLogo" />
-                                <h3 className=" hover:text-blue-500">Tailwind CSS</h3>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="https://reactrouter.com/" target="_blank">
-                        <div className="cursor-pointer">
-                            <div className="flex items-center gap-2">
-                                <img className="h-6 w-6" src={reactRouterdLogo} alt="reactLogo" />
-                                <h3 className=" hover:text-blue-500">React Router</h3>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div className="flex items-center justify-center gap-3 px-2 pb-7">
-                    <a href="https://www.mongodb.com/" target="_blank">
-                        <div className="cursor-pointer">
-                            <div className="flex items-center gap-2">
-                                <img className="h-5 w-5" src={mongodbLogo} alt="reactLogo" />
-                                <h3 className=" hover:text-blue-500">MongoDB</h3>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="https://html.com/" target="_blank">
-                        <div className="cursor-pointer">
-                            <div className="flex items-center gap-1">
-                                <img className="h-6 w-6" src={HTMLLogo} alt="reactLogo" />
-                                <h3 className=" hover:text-blue-500">HTML</h3>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <a href="https://expressjs.com/" target="_blank">
-                    <div className="cursor-pointer px-2">
-                        <div className="flex items-center gap-2">
-                            <img className="h-5 w-5" src={expressJSLogo} alt="reactLogo" />
-                            <h3 className=" hover:text-blue-500">Express.js</h3>
-                        </div>
-                    </div>
-                </a>
             </div>
-        </div >
+        </div>
     );
 };
 
