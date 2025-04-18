@@ -1,12 +1,14 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import { PiBookmarkSimpleLight } from "react-icons/pi";
+import { PiBookmarkSimpleLight, PiShareFatLight } from "react-icons/pi";
 import { IoBookmarksOutline } from "react-icons/io5";
 import { FaCommentDots, FaUserCircle } from "react-icons/fa";
 import useAxios from "../MainLayout/Shared/Hooks/useAxios";
 import AuthContext from "../Context/AuthContext";
 import Swal from "sweetalert2";
 import { AiOutlineLike } from "react-icons/ai";
+import { EmailIcon, EmailShareButton, FacebookIcon, FacebookShareButton,  LinkedinIcon, LinkedinShareButton, TelegramIcon, TelegramShareButton, TwitterIcon, TwitterShareButton, WhatsappIcon, WhatsappShareButton } from "react-share";
+import toast from "react-hot-toast";
 
 const QuestionDetails = () => {
   const customAxios = useAxios(); // Renamed to avoid conflict with global axios
@@ -18,11 +20,10 @@ const QuestionDetails = () => {
   const [error, setError] = useState(null);
   const [isBookmarked, setIsBookmarked] = useState(false);
   const [showEffect, setShowEffect] = useState(false);
-
-
   const { user } = useContext(AuthContext);
   const email = user?.email || "anonymous@example.com"; // Handle undefined user
   const [userEmail, setUserEmail] = useState(`${user?.email}`);
+  const shareUrl = `${window.location.origin}/questions/${id}`;
 
   useEffect(() => {
     if (user?.email) {
@@ -72,7 +73,7 @@ const QuestionDetails = () => {
     const checkBookmark = async () => {
       try {
         const res = await customAxios.get(`/saves?email=${email}`);
-        const alreadyBookmarked = res.data.some(item => item.questionID === id); // ✅ Compare with actual question ID
+        const alreadyBookmarked = res.data.some(item => item.questionID === id);
         setIsBookmarked(alreadyBookmarked);
       } catch (err) {
         console.error("Bookmark check failed:", err);
@@ -87,8 +88,8 @@ const QuestionDetails = () => {
 
     const commentData = {
       text: newComment,
-      userName: user?.displayName || "Anonymous", // Use authenticated user
-      photoURL: user?.photoURL || "", // Use authenticated user's photo
+      userName: user?.displayName || "Anonymous",
+      photoURL: user?.photoURL || "",
     };
 
     try {
@@ -112,7 +113,6 @@ const QuestionDetails = () => {
           setShowEffect(false);
         }, 1000);
       }
-      // Updated likes from backend
       const updatedLikes = res.data.likes;
 
       setQuestion((prevQuestion) => ({
@@ -122,8 +122,20 @@ const QuestionDetails = () => {
     } catch (error) {
       console.error("Error while toggling like:", error);
     }
-
   };
+
+
+  const handleCopyLink = async () => {
+    try {
+      await navigator.clipboard.writeText(window.location.href);
+      toast.success('Link copied!');
+      document.getElementById('my_modal_3').close();
+    } catch (err) {
+      toast.error('Failed to copy!');
+    }
+  };
+
+
 
   const isLiked = question?.likes?.includes(userEmail);
   return (
@@ -156,19 +168,73 @@ const QuestionDetails = () => {
           <div className="flex items-center justify-between mt-4">
             <span className="text-xs text-gray-500"> {question.tag}</span>
             <div className="flex items-center justify-center gap-4 relative">
+              {/* like btn */}
               <button
                 onClick={() => handleLike(question._id)}
-                className={` z-10 transition px-4 py-1 rounded-3xl flex items-center justify-center gap-1 ${isLiked ? "bg-blue-200 text-blue-800" : "bg-gray-200 text-gray-800"}`}
+                className={` z-10 transition px-4 py-1 rounded-md flex items-center justify-center gap-1 ${isLiked ? "bg-blue-200 text-blue-800" : "bg-gray-200 text-gray-800"}`}
               >
                 <span className="hover:text-blue-500 text-xl"><AiOutlineLike /></span>  ({question?.likes?.length || 0})
-                {/* Floating Like Effect */}
                 {showEffect && (
                   <span className="absolute text-blue-700 text-xl animate-fly pointer-events-none  left-3">
-                    <AiOutlineLike /> 
+                    <AiOutlineLike />
                   </span>
                 )}
               </button>
-
+              {/* share btn */}
+              <button onClick={() => document.getElementById('my_modal_3').showModal()}>
+                <span className="text-2xl"><PiShareFatLight /></span>
+              </button>
+              {/* You can open the modal using document.getElementById('ID').showModal() method */}
+              <dialog id="my_modal_3" className="modal">
+                <div className="modal-box">
+                  <form method="dialog">
+                    {/* if there is a button in form, it will close the modal */}
+                    <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                  </form>
+                  <h2 className="text-xl font-semibold mb-2">Share this question</h2>
+                  <p className="text-gray-600 mb-4">
+                    Share this question on your favorite social media platform.
+                  </p>
+                  <div className="flex items-center justify-center gap-2">
+                    <div>
+                      <FacebookShareButton url={shareUrl} quote="share this post" hashtag={shareUrl}>
+                        <FacebookIcon size={32} round={true}></FacebookIcon>
+                      </FacebookShareButton>
+                    </div>
+                    <div>
+                      <LinkedinShareButton url={shareUrl}>
+                        <LinkedinIcon size={32} round={true}></LinkedinIcon>
+                      </LinkedinShareButton>
+                    </div>
+                    <div>
+                      < WhatsappShareButton url={shareUrl} quote="share this post" hashtag={shareUrl}>
+                        <WhatsappIcon size={32} round={true}></WhatsappIcon>
+                      </ WhatsappShareButton>
+                    </div>
+                    <div>
+                      < EmailShareButton url={shareUrl} quote="share this post" hashtag={shareUrl}>
+                        <EmailIcon size={32} round={true}></EmailIcon>
+                      </ EmailShareButton>
+                    </div>
+                    <div>
+                      < TwitterShareButton url={shareUrl} quote="share this post" hashtag={shareUrl}>
+                        <TwitterIcon size={32} round={true}></TwitterIcon>
+                      </ TwitterShareButton>
+                    </div>
+                    <div>
+                      < TelegramShareButton url={shareUrl} quote="share this post" hashtag={shareUrl}>
+                        <TelegramIcon size={32} round={true}></TelegramIcon>
+                      </ TelegramShareButton>
+                    </div>
+                  </div>
+                  <div className="flex items-center justify-end">
+                    <button onClick={handleCopyLink} className="bg-gray-200 px-3 py-1 rounded hover:bg-gray-300">
+                      Copy Link
+                    </button>
+                  </div>
+                </div>
+              </dialog>
+              {/* save btn */}
               <button
                 onClick={handleSave}
                 disabled={isBookmarked}

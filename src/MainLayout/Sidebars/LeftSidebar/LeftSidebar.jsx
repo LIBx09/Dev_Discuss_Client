@@ -82,7 +82,7 @@ const LeftSidebar = () => {
         >
           <li className="flex items-center gap-2 hover:bg-gray-900 hover:text-white p-2 rounded-md">
             <Link to="/" className="flex items-center gap-2 w-full">
-              <AiFillHome className="text-lg" /> Home
+              <AiFillHome className="text-lg" /> span
             </Link>
           </li>
           <li className="flex items-center gap-2 hover:bg-gray-900 hover:text-white p-2 rounded-md">
