@@ -1,17 +1,27 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+// import React, { useEffect } from "react";
+// import { useDispatch, useSelector } from "react-redux";
 
 import { Link } from "react-router-dom";
 import LoadingPage from "../Loading/LoadingPage";
-import { fetchQuestions } from "../../redux/questionsSlice";
+// import { fetchQuestions } from "../../redux/questionsSlice";
+import useAxios from "../../MainLayout/Shared/Hooks/useAxios";
+import { useQuery } from '@tanstack/react-query';
 
 const Questions = () => {
-  const dispatch = useDispatch();
-  const { questions, isLoading, error } = useSelector((state) => state.questions);
+  const axios = useAxios();
 
-  useEffect(() => {
-    dispatch(fetchQuestions());
-  }, [dispatch]);
+  const {
+    data: questions = [],
+    isLoading,
+    isError,
+    error,
+  } = useQuery({
+    queryKey: ["questions"],
+    queryFn: async () => {
+      const { data } = await axios("/questions");
+      return data;
+    },
+  });
 
   return (
     <div>
@@ -29,8 +39,8 @@ const Questions = () => {
       <div className="space-y-4">
         {isLoading ? (
           <LoadingPage />
-        ) : error ? (
-          <p className="text-red-500">Error: {error}</p>
+        ) : isError ? (
+          <p className="text-red-500">Error: {error.message}</p>
         ) : questions.length > 0 ? (
           questions.map((question) => (
             <div

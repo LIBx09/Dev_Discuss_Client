@@ -154,7 +154,7 @@ const Layout = () => {
           </div>
 
           {/* Main Content Section */}
-          <div className="col-span-8 dark:bg-slate-900 shadow-lg rounded-xl p-6">
+          <div className="lg:col-span-8 md:col-span-10 dark:bg-slate-900 shadow-lg rounded-xl p-6">
             <Outlet />
           </div>
 

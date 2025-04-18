@@ -1,4 +1,4 @@
-// FixFlow.jsx
+
 import { useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
@@ -18,7 +18,10 @@ const FixFlow = () => {
     setResult(null);
     
     try {
-      const response = await axios.post('https://dev-discuss-server-kappa.vercel.appfixFlow', {
+
+      const response = await axios.post('http://localhost:3000/fixFlow', {
+
+ 
         userInput: errorCode,
         selectedOption
       });
@@ -41,14 +44,16 @@ console.log(result)
     <div className="min-h-screen bg-slate-50  dark:bg-slate-900 dark:text-white">
       <div className="container mx-auto px-4 py-8">
         <div className="max-w-4xl mx-auto">
-          {/* Header */}
+      
           <div className="mb-8">
             <h1 className="text-3xl font-bold text-blue-800">Dev Discuss Error Analyzer</h1>
             <p className="text-slate-600 mt-2">Paste your error code and choose how you'd like to solve it</p>
           </div>
 
+
           {/* Error Code Input */}
           <div className="bg-white rounded-lg shadow-md p-6 mb-8 dark:bg-slate-900 dark:text-white">
+
             <form onSubmit={handleSubmit}>
               <div className="mb-6">
                 <label htmlFor="errorCode" className="block text-sm font-medium text-slate-700 mb-2">
@@ -64,7 +69,7 @@ console.log(result)
                 />
               </div>
 
-              {/* Options Selection */}
+        
               <div className="mb-6">
                 <label className="block text-sm font-medium text-slate-700 mb-3">
                   How would you like to solve this error?
@@ -118,7 +123,7 @@ console.log(result)
             </form>
           </div>
 
-          {/* Results Area */}
+
           {result && (
             <div className="bg-white rounded-lg shadow-md p-6 mb-8">
               <div className="flex justify-between items-center mb-4">
@@ -177,9 +182,9 @@ console.log(result)
 
               {result.type === 'ai_code' && (
                 <div className="space-y-4">
-                  {/* Change to render formatted text instead of raw JSON string */}
+               
                   <div className="bg-slate-800 text-white p-4 rounded-md overflow-x-auto">
-                    {/* Use white-space-pre-wrap to respect line breaks */}
+
                     <div className="font-mono text-sm whitespace-pre-wrap">
                       {result.aiResponse}
                     </div>
