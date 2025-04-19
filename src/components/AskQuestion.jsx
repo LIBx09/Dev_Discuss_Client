@@ -45,15 +45,19 @@ const AskQuestion = () => {
 
   return (
     <div className="rounded-2xl min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50 py-10 px-4">
+      <div className="bg-white">
       <div className="flex justify-between bg-gradient-to-r from-blue-500 to-indigo-600 py-8 px-6 rounded-t-2xl">
         <h2 className="md:text-4xl md:pt-6 pt-0 font-semibold text-lg text-white" >
           Ask a public question
         </h2>
         <img className="h-28 w-80 hidden md:block" src={question} alt="" />
       </div>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSubmit)} className="px-7 mt-5 pb-5">
         <fieldset className="fieldset">
-          <legend className="fieldset-legend md:text-xl text-md">Title</legend>
+          <legend className="flex justify-center items-center fieldset-legend md:text-xl text-md">
+          <MdOutlineTitle  className="mr-2 text-blue-500"/>
+
+            Title</legend>
           <p className="fieldset-label">
             Be specific and imagine you're asking a question to another person
           </p>
@@ -112,6 +116,7 @@ const AskQuestion = () => {
           Add your Question
         </button>
       </form>
+    </div>
     </div>
   );
 };

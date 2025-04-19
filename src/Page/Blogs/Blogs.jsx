@@ -9,7 +9,7 @@ const Blogs = () => {
 
     useEffect(() => {
         setLoading(true);
-        fetch("/blog.json")
+        fetch("https://dev-discuss-server-kappa.vercel.app/blogs")
             .then(res => res.json())
             .then(data => {
                 setBlogs(data);
@@ -41,7 +41,7 @@ const Blogs = () => {
             >
                 <h1 className="text-3xl lg:text-5xl font-bold relative inline-block">
                     Blogs
-                    <motion.div 
+                    <motion.div
                         className="absolute bottom- left-1/2 h-1 bg-orange-500 rounded-full"
                         initial={{ width: 0, x: "-50%" }}
                         animate={{ width: "70%", x: "-50%" }}
@@ -51,18 +51,18 @@ const Blogs = () => {
             </motion.div>
 
             {loading ? (
-          <LoadingPage></LoadingPage>
+                <LoadingPage></LoadingPage>
             ) : (
-                <motion.div 
+                <motion.div
                     className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-6"
                     variants={containerVariants}
                     initial="hidden"
                     animate="visible"
                 >
                     {blogs?.map((blog, index) => (
-                        <Blog 
-                            key={blog.id || index} 
-                            blog={blog} 
+                        <Blog
+                            key={blog.id || index}
+                            blog={blog}
                             index={index}
                         />
                     ))}
