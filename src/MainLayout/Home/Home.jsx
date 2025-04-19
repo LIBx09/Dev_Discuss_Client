@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { FaArrowRight } from "react-icons/fa";
+import Marquee from "react-fast-marquee";
 import { MdOutlineQuestionAnswer } from "react-icons/md";
 import LoadingPage from "../../Page/Loading/LoadingPage";
 import { fetchQuestions } from "../../redux/questionsSlice";
@@ -39,7 +39,9 @@ const Home = () => {
       <div className="text-center">
         <h2 className="md:text-5xl text-4xl font-extrabold text-blue-500">Welcome to DevDiscuss</h2>
         <div className="flex items-center justify-center pt-2 text-gray-500">
-          Ask, answer, and explore coding questions.
+        <Marquee className="text-lg pb-2">
+         A Collaborative Space for Developer Discussions | Share Your Dev Thoughts | Learn from Fellow Developers |
+       </Marquee>
         </div>
       </div>
 
