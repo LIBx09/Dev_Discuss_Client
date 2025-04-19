@@ -2,24 +2,28 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Blog from "../Blog/Blog";
 import LoadingPage from "../Loading/LoadingPage";
+import { useDispatch } from "react-redux";
+import { setBlogs } from "../../redux/blogSlice";
 
 const Blogs = () => {
-    const [blogs, setBlogs] = useState(null);
+    const [blogs, setBlogsState] = useState(null);
     const [loading, setLoading] = useState(true);
+    const dispatch = useDispatch();
 
     useEffect(() => {
         setLoading(true);
         fetch("http://localhost:3000/blogs")
             .then(res => res.json())
             .then(data => {
-                setBlogs(data);
+                setBlogsState(data);
+                dispatch(setBlogs(data)); // Set globally in Redux
                 setLoading(false);
             })
             .catch(error => {
                 console.error("Error fetching blogs:", error);
                 setLoading(false);
             });
-    }, []);
+    }, [dispatch]);
 
     const containerVariants = {
         hidden: { opacity: 0 },
@@ -42,7 +46,7 @@ const Blogs = () => {
                 <h1 className="text-3xl lg:text-4xl font-bold relative inline-block">
                     Blogs
                     <motion.div 
-                        className="absolute bottom- left-1/2 h-1  rounded-full"
+                        className="absolute bottom-0 left-1/2 h-1 w-full bg-blue-500 rounded-full"
                         initial={{ width: 0, x: "-50%" }}
                         animate={{ width: "70%", x: "-50%" }}
                         transition={{ delay: 0.3, duration: 0.5 }}
@@ -51,7 +55,7 @@ const Blogs = () => {
             </motion.div>
 
             {loading ? (
-          <LoadingPage></LoadingPage>
+                <LoadingPage />
             ) : (
                 <motion.div 
                     className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-6"
@@ -61,7 +65,7 @@ const Blogs = () => {
                 >
                     {blogs?.map((blog, index) => (
                         <Blog 
-                            key={blog.id || index} 
+                            key={blog._id || index} 
                             blog={blog} 
                             index={index}
                         />

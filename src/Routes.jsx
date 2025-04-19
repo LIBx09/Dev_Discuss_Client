@@ -24,6 +24,7 @@ import ProblemSolve from "./Page/ProblemSolve/ProblemSolve";
 import QuizPage from "./Page/Quiz/QuizPage";
 import ShortQuestions from "./Page/ShortQuestion/ShortQuestions";
 import ShortQSolve from "./Page/ShortQuestionSolve/ShortQSolve";
+import BlogDetails from "./Page/Blog/BlogDetails";
 
 
 const router = createBrowserRouter([
@@ -54,6 +55,7 @@ const router = createBrowserRouter([
       {path:'/shortQuestions',element:<ShortQuestions></ShortQuestions>},
       {path:'/shortQSolve/:id',element:<ShortQSolve></ShortQSolve>},
       {path: "/myProfile", element: <PrivateRoute><MyProfile></MyProfile></PrivateRoute>},
+      {path: "/blog-details/:id", element: <BlogDetails></BlogDetails>}
     ],
   },
 ]);
