@@ -25,6 +25,8 @@ import QuizPage from "./Page/Quiz/QuizPage";
 import ShortQuestions from "./Page/ShortQuestion/ShortQuestions";
 import ShortQSolve from "./Page/ShortQuestionSolve/ShortQSolve";
 import BlogDetails from "./Page/Blog/BlogDetails";
+import AddEvent from "./Page/Events/AddEvent";
+import EventDetails from "./Page/Events/EventDetails";
 
 
 const router = createBrowserRouter([
@@ -55,7 +57,9 @@ const router = createBrowserRouter([
       {path:'/shortQuestions',element:<ShortQuestions></ShortQuestions>},
       {path:'/shortQSolve/:id',element:<ShortQSolve></ShortQSolve>},
       {path: "/myProfile", element: <PrivateRoute><MyProfile></MyProfile></PrivateRoute>},
-      {path: "/blog-details/:id", element: <BlogDetails></BlogDetails>}
+      {path: "/blog-details/:id", element: <BlogDetails></BlogDetails>},
+      {path: "/add-event", element: <AddEvent></AddEvent>},
+      {path: "/events/:id", element: <EventDetails></EventDetails>}
     ],
   },
 ]);
