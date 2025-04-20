@@ -24,7 +24,9 @@ import { motion } from "framer-motion";
 const Navbar = () => {
   const { user, loading, logout } = useContext(AuthContext);
   const [isOpen, setIsOpen] = useState(false);
+
   const navigate = useNavigate();
+
 
   if (loading) {
     return (
