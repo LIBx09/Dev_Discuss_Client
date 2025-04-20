@@ -10,7 +10,7 @@ const ShortQuestionCard = () => {
             <BsLightningCharge />
             </div>
             <div>
-                <h2 className="text-xl font-bold text-gray-800">	Short Q&A Sprint</h2>
+                <h2 className="text-xl font-bold text-gray-800">Short Q&A Sprint</h2>
                 <p className="text-sm text-gray-500">	Rapid-fire theoretical questions</p>
             </div>
         </div>

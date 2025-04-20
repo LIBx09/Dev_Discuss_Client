@@ -27,7 +27,7 @@ const RightSidebar = () => {
     return (
         <div className="hidden lg:block">
             <div>
-                <h4 className="text-center font-semibold pt-9">Explore now</h4>
+                <h4 className="text-center font-semibold pt-9">Explore Technogies</h4>
                 <div className="grid grid-cols-2 gap-4 pt-4">
                     {techLinks.map((tech, index) => (
                         <a
