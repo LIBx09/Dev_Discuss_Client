@@ -23,9 +23,7 @@ const Login = () => {
           icon: "success"
         });
         navigate("/")
-
-
-
+        console.log("googleLoginUser", result)
       })
       .catch(error => {
         Swal.fire({
@@ -33,6 +31,7 @@ const Login = () => {
           title: "Oops...",
           text: "The Email you use already Exists",
         });
+        console.log(error);
       })
 
   }

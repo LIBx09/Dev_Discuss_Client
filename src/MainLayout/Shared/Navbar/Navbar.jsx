@@ -111,7 +111,7 @@ const Navbar = () => {
               <li><Link to="/add-blogs">Add Blogs</Link></li>
               <li><Link to="/aboutUs">About Us</Link></li>
               <li><Link to="/contactUs">Contact Us</Link></li>
-              {user && <li><Link to="/myProfile">My Profile</Link></li>}
+              {user && <li><Link to="/myProfile">Dashboard</Link></li>}
               {user ? (
                 <li>
                   <button onClick={handleLogout}>

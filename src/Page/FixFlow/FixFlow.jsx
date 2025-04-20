@@ -43,20 +43,20 @@ console.log(result)
         <div className="max-w-4xl mx-auto">
           {/* Header */}
           <div className="mb-8">
-            <h1 className="text-3xl font-bold text-blue-800">Dev Discuss Error Analyzer</h1>
-            <p className="text-slate-600 mt-2">Paste your error code and choose how you'd like to solve it</p>
+            <h1 className="text-3xl font-bold text-blue-500">Dev Discuss Error Analyzer</h1>
+            <p className="text-gray-500 mt-2">Paste your error code and choose how you'd like to solve it</p>
           </div>
 
           {/* Error Code Input */}
           <div className="bg-white rounded-lg shadow-md p-6 mb-8 dark:bg-slate-900 dark:text-white">
             <form onSubmit={handleSubmit}>
               <div className="mb-6">
-                <label htmlFor="errorCode" className="block text-sm font-medium text-slate-700 mb-2">
+                <label htmlFor="errorCode" className="block text-sm font-medium text-gray-500 mb-2">
                   Error Code
                 </label>
                 <textarea
                   id="errorCode"
-                  className="w-full h-40 p-3 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 font-mono text-sm"
+                  className="w-full h-40 p-3 border border-slate-300 dark:bg-slate-800 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 font-mono text-sm"
                   placeholder="Paste your error code here..."
                   value={errorCode}
                   onChange={(e) => setErrorCode(e.target.value)}
@@ -66,7 +66,7 @@ console.log(result)
 
               {/* Options Selection */}
               <div className="mb-6">
-                <label className="block text-sm font-medium text-slate-700 mb-3">
+                <label className="block text-sm font-medium text-gray-500 mb-3">
                   How would you like to solve this error?
                 </label>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -99,7 +99,7 @@ console.log(result)
                 className={`w-full py-3 rounded-md font-medium transition-colors ${
                   errorCode && selectedOption 
                     ? 'bg-blue-600 text-white hover:bg-blue-700' 
-                    : 'bg-blue-300 text-white cursor-not-allowed'
+                    : 'bg-blue-300 dark:bg-blue-500 text-white cursor-not-allowed'
                 }`}
                 disabled={!errorCode || !selectedOption}
               >
@@ -198,15 +198,15 @@ console.log(result)
 const OptionCard = ({ title, description, icon, selected, onClick }) => (
   <div
     className={`border rounded-lg p-4 cursor-pointer transition-all ${
-      selected ? 'border-blue-500 bg-blue-50' : 'border-slate-200 hover:border-blue-300'
+      selected ? 'border-blue-500 bg-blue-50 dark:bg-slate-800' : 'border-slate-200 hover:border-blue-300'
     }`}
     onClick={onClick}
   >
     <div className="flex items-center space-x-3">
       <div className="text-2xl">{icon}</div>
       <div>
-        <h3 className="font-medium text-slate-800">{title}</h3>
-        <p className="text-sm text-slate-600 mt-1">{description}</p>
+        <h3 className="font-medium text-slate-800 dark:text-gray-200">{title}</h3>
+        <p className="text-sm text-slate-600 mt-1 dark:text-gray-300">{description}</p>
       </div>
     </div>
   </div>

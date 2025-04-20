@@ -9,7 +9,7 @@ import AuthContext from '../../../Context/AuthContext';
 import Swal from 'sweetalert2';
 
 const Registration = () => {
-  const { createUser, createUserGoogle, createUserGithub, setUser, updateProfileuser, setLoading } = useContext(AuthContext)
+  const { createUser, createUserGoogle, createUserGithub, setUser, updateProfileuser, setLoading } = useContext(AuthContext);
   const navigate = useNavigate()
   const handleGoogleSignup = () => {
     createUserGoogle()

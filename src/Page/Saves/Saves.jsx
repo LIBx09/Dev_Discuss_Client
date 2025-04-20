@@ -8,19 +8,8 @@ import Swal from "sweetalert2";
 import noData from "../../assets/saves_iamge/No-Data.png"
 
 const Saves = () => {
-  // const [saveData, setSavedata] = useState([]);
   const { user } = useContext(AuthContext);
   const axios = useAxios();
-  // useEffect(() => {
-  //   axios.get(`/saves?email=${user?.email}`)
-  //     .then(res => {
-  //       setSavedata(res.data);
-  //       console.log(res.data);
-  //     })
-  //     .catch(error => {
-  //       console.log(error);
-  //     })
-  // }, []);
   const { data: saveData = [], refetch } = useQuery({
     queryKey: ['saves'],
     queryFn: async () => {

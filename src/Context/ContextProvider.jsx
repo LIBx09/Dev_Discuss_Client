@@ -2,12 +2,14 @@ import React, { useEffect, useState } from 'react';
 import AuthContext from './AuthContext';
 import { createUserWithEmailAndPassword, GithubAuthProvider, GoogleAuthProvider, onAuthStateChanged, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth';
 import auth from '../Firebase/Firebase';
+import useAxios from '../MainLayout/Shared/Hooks/useAxios';
 
 const ContextProvider = ({ children }) => {
-    const [loading, setLoading] = useState(true)
-    const [user, setUser] = useState(null)
-    const provider = new GoogleAuthProvider()
-    const gitProvider = new GithubAuthProvider()
+    const [loading, setLoading] = useState(true);
+    const [user, setUser] = useState(null);
+    const provider = new GoogleAuthProvider();
+    const gitProvider = new GithubAuthProvider();
+    const customAxios = useAxios();
 
     const createUserGoogle = () => {
         setLoading(true)
@@ -46,7 +48,18 @@ const ContextProvider = ({ children }) => {
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, currentUser => {
-            setUser(currentUser)
+            setUser(currentUser);
+            console.log("currentUser", currentUser);
+            if(currentUser){
+                const userInfo = {userEmail: currentUser?.email, userName: currentUser?.displayName, points:0};
+                customAxios.post("/users", userInfo)
+                .then(res => {
+                    console.log("users post success", res.data);
+                })
+                .catch(err => {
+                    console.log(err);
+                })
+            }
             setLoading(false)
         })
 
@@ -54,7 +67,7 @@ const ContextProvider = ({ children }) => {
     }, [])
 
     const authInfo = {
-        createUser, loginUser, createUserGoogle, user,setUser, logout, createUserGithub,loading,updateProfileuser,resetPassword
+        createUser, loginUser, createUserGoogle, user, setUser, logout, createUserGithub, loading, setLoading, updateProfileuser,resetPassword
     }
     return (
         <div>
