@@ -1,29 +1,52 @@
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom"; // ✅ Import useNavigate
+import { useNavigate } from "react-router-dom"; 
 import question from "../assets/Questions.png";
 import useAxios from "../MainLayout/Shared/Hooks/useAxios";
 import moment from "moment";
 import Swal from "sweetalert2";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import AuthContext from "../Context/AuthContext";
 
 const AskQuestion = () => {
-  const { user } = useContext(AuthContext)
+  const customAxios = useAxios();
+  const {user} = useContext(AuthContext);
+    const [userId, setUserId] = useState("");
   const axios = useAxios();
-  const navigate = useNavigate(); // ✅ Initialize navigate
+  const navigate = useNavigate(); 
   const { register, handleSubmit, reset } = useForm();
+  useEffect(() => {
+    const fetchUser = async () => {
+      if (user?.email) {
+        try {
+          const res = await customAxios.get(`/users?email=${user.email}`);
+          // console.log("Fetched user:", res.data);
+          if (res.data?._id) {
+            setUserId(res.data._id); 
+          } else {
+            console.log("User ID not found");
+          }
+        } catch (error) {
+          console.error("Error fetching user:", error);
+        }
+      }
+    };
 
+    if (user?.email) {
+      fetchUser();
+    }
+  }, [user]);
   const onSubmit = (data) => {
     const date = moment().format("MMM Do YY");
     const updateData = {
       ...data,
       date,
-      userName: user?.displayName,  // ✅ Save user's name
-      userEmail: user?.email,       // ✅ Save user's email
-      userPhoto: user?.photoURL,    // ✅ Save user's photo (if available)
-      likes: []
+      userName: user?.displayName,  
+      userEmail: user?.email,       
+      userPhoto: user?.photoURL,    
+      likes: [],
+      userId: userId
     };
-
+    console.log(updateData);
     axios
       .post("/questions", updateData)
       .then((res) => {

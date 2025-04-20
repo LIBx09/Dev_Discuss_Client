@@ -11,6 +11,9 @@ import { EmailIcon, EmailShareButton, FacebookIcon, FacebookShareButton,  Linked
 import toast from "react-hot-toast";
 
 const QuestionDetails = () => {
+  const { user } = useContext(AuthContext);
+  const email = user?.email;
+  console.log("userEmail", email);
   const customAxios = useAxios(); // Renamed to avoid conflict with global axios
   const { id } = useParams(); // Get question ID from URL
   const [question, setQuestion] = useState(null);
@@ -20,9 +23,8 @@ const QuestionDetails = () => {
   const [error, setError] = useState(null);
   const [isBookmarked, setIsBookmarked] = useState(false);
   const [showEffect, setShowEffect] = useState(false);
-  const { user } = useContext(AuthContext);
-  const email = user?.email || "anonymous@example.com"; // Handle undefined user
   const [userEmail, setUserEmail] = useState(`${user?.email}`);
+  const [userId, setUserId] = useState("");
   const shareUrl = `${window.location.origin}/questions/${id}`;
 
   useEffect(() => {
@@ -30,6 +32,30 @@ const QuestionDetails = () => {
       setUserEmail(user.email);
     }
   }, [user]);
+  useEffect(() => {
+    const fetchUser = async () => {
+      if (user?.email) {
+        try {
+          const res = await customAxios.get(`/users?email=${user.email}`);
+          // console.log("Fetched user:", res.data);
+          if (res.data?._id) {
+            setUserId(res.data._id); // _id সেট করা হচ্ছে
+          } else {
+            console.log("User ID not found");
+          }
+        } catch (error) {
+          console.error("Error fetching user:", error);
+        }
+      }
+    };
+
+    if (user?.email) {
+        fetchUser();
+    }
+}, [user]); // user ডিপেনডেন্সি হিসেবে ব্যবহার
+
+
+  
   useEffect(() => {
     const fetchQuestion = async () => {
       try {
@@ -90,6 +116,7 @@ const QuestionDetails = () => {
       text: newComment,
       userName: user?.displayName || "Anonymous",
       photoURL: user?.photoURL || "",
+      userId: userId
     };
 
     try {
@@ -105,16 +132,17 @@ const QuestionDetails = () => {
   const handleLike = async (_id) => {
     try {
       const res = await customAxios.post(`/questions/${_id}/like`, {
-        userEmail,
+        userEmail, userId
       });
+  
       if (!isLiked) {
         setShowEffect(true);
         setTimeout(() => {
           setShowEffect(false);
         }, 1000);
       }
+  
       const updatedLikes = res.data.likes;
-
       setQuestion((prevQuestion) => ({
         ...prevQuestion,
         likes: updatedLikes,
@@ -123,6 +151,7 @@ const QuestionDetails = () => {
       console.error("Error while toggling like:", error);
     }
   };
+  
 
 
   const handleCopyLink = async () => {
@@ -171,9 +200,9 @@ const QuestionDetails = () => {
               {/* like btn */}
               <button
                 onClick={() => handleLike(question._id)}
-                className={` z-10 transition px-4 py-1 rounded-md flex items-center justify-center gap-1 ${isLiked ? "bg-blue-200 text-blue-800" : "bg-gray-200 text-gray-800"}`}
+                className={` z-10 transition px-4 py-1 rounded-md flex items-center justify-center gap-1 ${isLiked ? "bg-blue-200 dark:bg-blue-400 dark:text-blue-950 text-blue-800" : "bg-gray-200 text-gray-800"}`}
               >
-                <span className="hover:text-blue-500 text-xl"><AiOutlineLike /></span>  ({question?.likes?.length || 0})
+                <span className="hover:text-blue-500 dark:hover:text-blue-700 text-xl"><AiOutlineLike /></span>  ({question?.likes?.length || 0})
                 {showEffect && (
                   <span className="absolute text-blue-700 text-xl animate-fly pointer-events-none  left-3">
                     <AiOutlineLike />
@@ -283,7 +312,7 @@ const QuestionDetails = () => {
                 value={newComment}
                 onChange={(e) => setNewComment(e.target.value)}
                 placeholder="Add a comment..."
-                className="border rounded w-full px-3 py-2"
+                className="border rounded w-full px-3 py-2 dark:bg-slate-800"
               />
               <button onClick={handleCommentSubmit} className="bg-blue-500 text-white px-4 py-2 rounded">
                 <FaCommentDots />

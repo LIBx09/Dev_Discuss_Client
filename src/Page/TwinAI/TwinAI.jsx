@@ -3,14 +3,14 @@ import React, { useState, useRef, useEffect } from 'react';
 const QuickStartOption = ({ icon, title, description, onClick }) => (
   <button 
     onClick={onClick}
-    className="flex items-start p-4 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow border border-gray-200 text-left w-full"
+    className="flex items-start p-4 bg-white dark:bg-slate-700 rounded-lg shadow-md hover:shadow-lg transition-shadow border border-gray-200 text-left w-full"
   >
-    <div className="rounded-full bg-blue-100 p-3 mr-4">
+    <div className="rounded-full bg-blue-100 dark:bg-gray-200 p-3 mr-4">
       {icon}
     </div>
     <div>
-      <h3 className="font-medium text-lg text-gray-800">{title}</h3>
-      <p className="text-gray-600 text-sm mt-1">{description}</p>
+      <h3 className="font-medium text-lg text-gray-800 dark:text-gray-200">{title}</h3>
+      <p className="text-gray-600 dark:text-gray-400 text-sm mt-1">{description}</p>
     </div>
   </button>
 );
@@ -133,7 +133,7 @@ const TwinAI = () => {
   ];
 
   return (
-    <div className="flex flex-col h-screen max-h-screen bg-gray-50 rounded-lg shadow-lg dark:bg-slate-900 dark:text-white">
+    <div className="flex flex-col h-screen max-h-screen bg-gray-50 rounded-lg shadow-lg dark:bg-slate-800 dark:text-white">
       {/* Header - Fixed height */}
       <div className="bg-gradient-to-r from-blue-600 to-blue-500 p-4 text-white flex items-center">
         <div className="h-10 w-10 rounded-full bg-white bg-opacity-20 flex items-center justify-center mr-3 shadow-inner">
@@ -153,8 +153,8 @@ const TwinAI = () => {
         {messages.length === 0 ? (
           <div className="flex flex-col items-center h-full">
             <div className="text-center mt-8 mb-6">
-              <h2 className="text-2xl font-semibold text-gray-800">Welcome to TwinAI</h2>
-              <p className="text-gray-600 mt-2">Your personal AI assistant. How can I help you today?</p>
+              <h2 className="text-2xl font-semibold text-gray-800 dark:text-gray-200">Welcome to TwinAI</h2>
+              <p className="text-gray-600 dark:text-gray-400 mt-2">Your personal AI assistant. How can I help you today?</p>
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-3xl px-4">
@@ -169,7 +169,7 @@ const TwinAI = () => {
               ))}
             </div>
             
-            <div className="text-center mt-8 text-gray-500">
+            <div className="text-center mt-8 text-gray-500 dark:text-gray-400">
               <p>Or type your own question below to get started</p>
               <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 mx-auto mt-2 animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
@@ -227,10 +227,10 @@ const TwinAI = () => {
       </div>
       
       {/* Input Area - Fixed height */}
-      <div className="p-4 border-t border-gray-200 bg-white">
+      <div className="p-4 border-t border-gray-200 bg-white dark:bg-slate-800">
         <div className="flex rounded-lg border border-gray-300 overflow-hidden shadow-sm focus-within:ring-2 focus-within:ring-blue-500 focus-within:border-blue-500">
           <textarea
-            className="flex-1 px-4 py-3 focus:outline-none resize-none"
+            className="flex-1 px-4 py-3 focus:outline-none dark:bg-slate-700 resize-none"
             placeholder="Type your message..."
             rows="1"
             value={inputMessage}
@@ -238,7 +238,7 @@ const TwinAI = () => {
             onKeyUp={handleKeyPress}
           />
           <button
-            className={`px-4 flex items-center justify-center text-white transition-colors ${isLoading || inputMessage.trim() === '' ? 'bg-blue-300 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-700'}`}
+            className={`px-4 flex items-center justify-center text-white transition-colors ${isLoading || inputMessage.trim() === '' ? 'bg-blue-300 dark:bg-blue-400 cursor-not-allowed' : 'bg-blue-600 dark:bg-blue-500 hover:bg-blue-700'}`}
             onClick={handleSendMessage}
             disabled={isLoading || inputMessage.trim() === ''}
           >

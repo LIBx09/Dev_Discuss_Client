@@ -161,7 +161,7 @@ const Layout = () => {
           </div>
 
           {/* Right Sidebar */}
-          <div className="w-full col-span-2 dark:bg-slate-900 hidden md:block">
+          <div className="w-full col-span-2 dark:bg-slate-900 hidden md:block lg:block">
             <RightSidebar />
           </div>
         </div>

@@ -11,12 +11,11 @@ import noData from "../../assets/saves_iamge/No-Data.png";
 const Saves = () => {
   const { user } = useContext(AuthContext);
   const axios = useAxios();
-  const dispatch = useDispatch();
-  const { saveData, loading, error } = useSelector((state) => state.saves);
-
-  useEffect(() => {
-    if (user?.email) {
-      dispatch(fetchSavedQuestions(user.email));
+  const { data: saveData = [], refetch } = useQuery({
+    queryKey: ['saves'],
+    queryFn: async () => {
+      const { data } = await axios(`http://localhost:5000/saves?email=${user?.email}`)
+      return data;
     }
   }, [dispatch, user?.email]);
 
