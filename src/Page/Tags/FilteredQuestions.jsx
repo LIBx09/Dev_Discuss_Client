@@ -8,7 +8,7 @@ const FilteredQuestions = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3000questions?tag=${tagName}`)
+      .get(`http://localhost:5000/questions?tag=${tagName}`)
       .then((response) => setQuestions(response.data))
       .catch((error) => console.error("Error fetching questions:", error));
   }, [tagName]);

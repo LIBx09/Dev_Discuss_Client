@@ -12,6 +12,7 @@ const Home = () => {
 
   const { questions, loading, error } = useSelector((state) => state.questions);
 
+
   useEffect(() => {
     dispatch(fetchQuestions());
   }, [dispatch]);

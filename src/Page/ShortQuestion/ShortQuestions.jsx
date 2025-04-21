@@ -14,7 +14,7 @@ const ShortQuestions = () => {
   const { data, isLoading } = useQuery({
     queryKey: ["shortQuestion", email],
     queryFn: async () => {
-      const res = await axios.get(`http://localhost:3000/shortQ?email=${email}`);
+      const res = await axios.get(`http://localhost:5000//shortQ?email=${email}`);
       return res.data;
     },
   });
