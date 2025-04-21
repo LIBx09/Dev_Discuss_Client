@@ -8,6 +8,7 @@ import Swal from "sweetalert2";
 import noQuestionImg from "../../assets/myProfile_image/missing-person-flat-illustration_120816-12662.jpg"
 import { AiOutlineLike } from "react-icons/ai";
 import BarCharts from "../../components/BarChart/BarCharts";
+import Badges from "./Badges";
 
 const MyProfile = () => {
     const { user } = useContext(AuthContext);
@@ -23,10 +24,10 @@ const MyProfile = () => {
         queryKey: ["pointsBreakdownData"],
         queryFn: async () => {
             const { data } = await axios(`/users/points-breakdown?email=${user.email}`);
-            // console.log("Fetched Points Breakdown:", data);
             return data;
         }
     });
+    console.log(pointsBreakdown.pointsBreakdown?.comments);
 
     const handleDelete = (_id) => {
         Swal.fire({
@@ -72,15 +73,15 @@ const MyProfile = () => {
                     <ul class="space-y-2 text-gray-700">
                         <li class="flex justify-between border-b pb-2">
                             <span className="dark:text-gray-200">📝 Posts </span>
-                            <span class="font-bold text-blue-600 dark:text-gray-200">{pointsBreakdown.pointsBreakdown?.questions || 0} pts</span>
+                            <span class="font-bold text-blue-600 dark:text-gray-200">{pointsBreakdown?.pointsBreakdown?.questions || 0} pts</span>
                         </li>
                         <li class="flex justify-between border-b pb-2">
                             <span className="dark:text-gray-200">💬 Comments </span>
-                            <span class="font-bold text-blue-600 dark:text-gray-200">{pointsBreakdown.pointsBreakdown?.comments ||0} pts</span>
+                            <span class="font-bold text-blue-600 dark:text-gray-200">{pointsBreakdown?.pointsBreakdown?.comments ||0} pts</span>
                         </li>
                         <li class="flex justify-between">
                             <span className="flex items-center justify-center gap-2 dark:text-gray-200"><AiOutlineLike className="text-xl" />Likes Given </span>
-                            <span class="font-bold text-blue-600 dark:text-gray-200">{pointsBreakdown.pointsBreakdown?.likes || 0}pts</span>
+                            <span class="font-bold text-blue-600 dark:text-gray-200">{pointsBreakdown?.pointsBreakdown?.likes || 0}pts</span>
                         </li>
                     </ul>
                     <div class="border-t mt-4 pt-2 flex justify-between font-semibold text-gray-900">
@@ -92,6 +93,8 @@ const MyProfile = () => {
                    <BarCharts></BarCharts>
                 </div>
             </div>
+            <Badges totalPoints={pointsBreakdown?.totalPoints || 0} />
+
             {
                 questions.length > 0 ?
 
@@ -99,13 +102,13 @@ const MyProfile = () => {
                         <h3 className="md:text-2xl text-xl font-semibold text-center pt-8">My questions</h3>
                         {
                             questions.map(item => <div key={item._id}>
-                                <div className=" p-3 rounded-lg shadow-sm my-2">
+                                <div className=" p-3 rounded-lg shadow-sm dark:shadow-blue-500 my-2">
                                     <Link
                                         to={`/questions/${item._id}`}
                                         className="text-blue-500 hover:text-blue-800 font-medium flex justify-between">
                                         {item.title}
                                     </Link>
-                                    <div className="mt-4 text-sm text-gray-500 flex items-center justify-between w-full">
+                                    <div className="mt-4 text-sm text-gray-500 dark:text-gray-300 flex items-center justify-between w-full">
                                         <div>
                                             <span>Tag: {item.tag}</span> | <span>{item.date}</span>
                                         </div>

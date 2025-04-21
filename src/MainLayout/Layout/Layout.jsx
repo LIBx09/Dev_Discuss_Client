@@ -3,10 +3,12 @@ import { Outlet } from "react-router-dom";
 import Navbar from "../Shared/Navbar/Navbar";
 import LeftSidebar from "../Sidebars/LeftSidebar/LeftSidebar";
 import RightSidebar from "../Sidebars/RightSidebar/RightSidebar";
+import Footer from "../Footer/Footer";
 
 
 const OnboardingModal = ({ isOpen, onClose }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
+
   
   // Slide content data
   const slides = [
@@ -163,6 +165,7 @@ const Layout = () => {
             <RightSidebar />
           </div>
         </div>
+        <Footer></Footer>
       </div>
     </div>
   );

@@ -1,32 +1,48 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { FaArrowRight } from "react-icons/fa";
-import { MdOutlineQuestionAnswer } from "react-icons/md";
 import Marquee from "react-fast-marquee";
+import { MdOutlineQuestionAnswer } from "react-icons/md";
 import LoadingPage from "../../Page/Loading/LoadingPage";
 import { fetchQuestions } from "../../redux/questionsSlice";
 
+const QUESTIONS_PER_PAGE = 6;
+
 const Home = () => {
   const dispatch = useDispatch();
-
   const { questions, loading, error } = useSelector((state) => state.questions);
 
+  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
     dispatch(fetchQuestions());
   }, [dispatch]);
+
+  // Calculate pagination
+  const indexOfLastQuestion = currentPage * QUESTIONS_PER_PAGE;
+  const indexOfFirstQuestion = indexOfLastQuestion - QUESTIONS_PER_PAGE;
+  const currentQuestions = questions.slice(indexOfFirstQuestion, indexOfLastQuestion);
+
+  const totalPages = Math.ceil(questions.length / QUESTIONS_PER_PAGE);
+
+  const handlePrevPage = () => {
+    setCurrentPage((prev) => Math.max(prev - 1, 1));
+  };
+
+  const handleNextPage = () => {
+    setCurrentPage((prev) => Math.min(prev + 1, totalPages));
+  };
 
   return (
     <div className="max-w-4xl mx-auto">
       {/* Welcome Section */}
       <div className="text-center">
         <h2 className="md:text-5xl text-4xl font-extrabold text-blue-500">Welcome to DevDiscuss</h2>
-
         <div className="flex items-center justify-center pt-2 text-gray-500">
-            Ask, answer, and explore coding questions.
+        <Marquee className="text-lg pb-2">
+         A Collaborative Space for Developer Discussions | Share Your Dev Thoughts | Learn from Fellow Developers |
+       </Marquee>
         </div>
-
       </div>
 
       {/* Action Buttons */}
@@ -55,8 +71,8 @@ const Home = () => {
             <LoadingPage />
           ) : error ? (
             <p className="text-red-500">{error}</p>
-          ) : questions?.length > 0 ? (
-            questions.map((question) => (
+          ) : currentQuestions.length > 0 ? (
+            currentQuestions.map((question) => (
               <div
                 key={question._id}
                 className="border p-2 border-gray-300 rounded-md shadow-sm hover:shadow-md transition"
@@ -68,7 +84,7 @@ const Home = () => {
                 </Link>
                 <div className="flex gap-2 text-xs mt-1 justify-between">
                   <span>{question.tag}</span>
-                  <span> {question.date}</span>
+                  <span>{question.date}</span>
                 </div>
               </div>
             ))
@@ -76,6 +92,37 @@ const Home = () => {
             <p>No questions available.</p>
           )}
         </div>
+
+        {/* Pagination */}
+        {questions.length > QUESTIONS_PER_PAGE && (
+          <div className="flex justify-center items-center gap-4 mt-6">
+            <button
+              onClick={handlePrevPage}
+              disabled={currentPage === 1}
+              className={`px-3 py-1 rounded border ${
+                currentPage === 1
+                  ? "bg-gray-300 text-gray-600 cursor-not-allowed"
+                  : "bg-blue-500 text-white hover:bg-blue-600"
+              }`}
+            >
+              Prev
+            </button>
+            <span>
+              Page {currentPage} of {totalPages}
+            </span>
+            <button
+              onClick={handleNextPage}
+              disabled={currentPage === totalPages}
+              className={`px-3 py-1 rounded border ${
+                currentPage === totalPages
+                  ? "bg-gray-300 text-gray-600 cursor-not-allowed"
+                  : "bg-blue-500 text-white hover:bg-blue-600"
+              }`}
+            >
+              Next
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );

@@ -15,7 +15,6 @@ const BarCharts = () => {
             return data;
         }
     });
-    console.log("pointsBreakdown", pointsBreakdown);
     
     const chartData = pointsBreakdown?.pointsBreakdown 
     ? Object.entries(pointsBreakdown.pointsBreakdown)
@@ -27,7 +26,7 @@ const BarCharts = () => {
     : [];
 
 
-    console.log("chartData", chartData);
+    // console.log("chartData", chartData);
 
     const colors = ['#2659ff', '#ff26ac', '#51ff26', ];
 
