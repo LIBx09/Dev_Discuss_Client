@@ -24,7 +24,7 @@ const ProblemSolve = () => {
   const fetchData = async () => {
     try {
       setIsLoading(true);
-      const { data } = await axios.get(`http://localhost:3000/problem/${id}`);
+      const { data } = await axios.get(`http://localhost:5000//problem/${id}`);
       setProblem(data);
 
     } catch (err) {
@@ -51,7 +51,7 @@ const ProblemSolve = () => {
       console.log(problemDes, userCode);
       const email = user.email
       // Here you would send the code to your backend
-      const {data} = await axios.post(`http://localhost:3000/problemProgress/${id}`, {
+      const {data} = await axios.post(`http://localhost:5000//problemProgress/${id}`, {
          userCode,
         problemDes,
         email

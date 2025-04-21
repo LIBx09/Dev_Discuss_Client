@@ -8,7 +8,7 @@ import useAxios from "../../MainLayout/Shared/Hooks/useAxios";
 import { useQuery } from '@tanstack/react-query';
 
 const Questions = () => {
-  const axios = useAxios();
+  const customAxios = useAxios()
 
   const {
     data: questions = [],
@@ -18,7 +18,7 @@ const Questions = () => {
   } = useQuery({
     queryKey: ["questions"],
     queryFn: async () => {
-      const { data } = await axios("/questions");
+      const { data } = await customAxios("/questions");
       return data;
     },
   });

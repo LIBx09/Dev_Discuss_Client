@@ -4,7 +4,7 @@ import axios from "axios";
 
 // Async thunk to fetch tags
 export const fetchTags = createAsyncThunk("tags/fetchTags", async () => {
-  const res = await axios.get("http://localhost:3000/tags");
+  const res = await axios.get("http://localhost:5000//tags");
   return res.data;
 });
 
