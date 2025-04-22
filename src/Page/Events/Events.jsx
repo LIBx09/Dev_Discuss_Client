@@ -12,7 +12,7 @@ const Events = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:3000/events") // ✅ fetch from backend
+    fetch("https://dev-discuss-server-chi.vercel.app/events") // ✅ fetch from backend
       .then((res) => res.json())
       .then((data) => {
         setEvents(data);

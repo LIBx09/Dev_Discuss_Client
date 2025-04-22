@@ -13,7 +13,7 @@ import toast from "react-hot-toast";
 const QuestionDetails = () => {
   const { user } = useContext(AuthContext);
   const email = user?.email;
-  console.log("userEmail", email);
+  // console.log("userEmail", email);
   const customAxios = useAxios(); // Renamed to avoid conflict with global axios
   const { id } = useParams(); // Get question ID from URL
   const [question, setQuestion] = useState(null);

@@ -27,7 +27,7 @@ const MyProfile = () => {
             return data;
         }
     });
-    console.log(pointsBreakdown.pointsBreakdown?.comments);
+    // console.log(pointsBreakdown.pointsBreakdown?.comments);
 
     const handleDelete = (_id) => {
         Swal.fire({
