@@ -4,7 +4,10 @@ import axios from "axios";
 
 // Async thunk to fetch tags
 export const fetchTags = createAsyncThunk("tags/fetchTags", async () => {
+
+
   const res = await axios.get("https://dev-discuss-server-chi.vercel.app/tags");
+
   return res.data;
 });
 

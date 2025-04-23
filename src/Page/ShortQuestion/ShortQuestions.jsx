@@ -14,7 +14,9 @@ const ShortQuestions = () => {
   const { data, isLoading } = useQuery({
     queryKey: ["shortQuestion", email],
     queryFn: async () => {
+
       const res = await axios.get(`https://dev-discuss-server-chi.vercel.app//shortQ?email=${email}`);
+
       return res.data;
     },
   });

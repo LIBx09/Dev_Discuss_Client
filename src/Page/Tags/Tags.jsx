@@ -55,7 +55,7 @@ const Tags = () => {
             <div
               key={index}
               onClick={() => setSelectedTag(tagData.tag)}
-              className={`grid gap-2 px-5 py-3 rounded-lg cursor-pointer shadow-sm hover:shadow-md transition-shadow 
+              className={`grid gap-2 px-5 py-3 rounded-lg cursor-pointer shadow-sm hover:shadow-md hover:shadow-blue-300  transition-shadow 
                 ${selectedTag === tagData.tag ? "bg-blue-100 dark:bg-blue-900" : "bg-gray-100 dark:bg-gray-800"}`}
             >
               <span className="text-blue-600 dark:text-blue-400 font-semibold text-sm sm:text-base truncate">

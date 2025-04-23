@@ -24,7 +24,9 @@ const ProblemSolve = () => {
   const fetchData = async () => {
     try {
       setIsLoading(true);
+
       const { data } = await axios.get(`https://dev-discuss-server-chi.vercel.app//problem/${id}`);
+
       setProblem(data);
 
     } catch (err) {
@@ -51,7 +53,9 @@ const ProblemSolve = () => {
       console.log(problemDes, userCode);
       const email = user.email
       // Here you would send the code to your backend
+
       const {data} = await axios.post(`https://dev-discuss-server-chi.vercel.app//problemProgress/${id}`, {
+
          userCode,
         problemDes,
         email

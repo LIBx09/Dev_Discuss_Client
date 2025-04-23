@@ -52,7 +52,7 @@ const QuestionDetails = () => {
     if (user?.email) {
         fetchUser();
     }
-}, [user]); // user ডিপেনডেন্সি হিসেবে ব্যবহার
+}, [user]); 
 
 
   

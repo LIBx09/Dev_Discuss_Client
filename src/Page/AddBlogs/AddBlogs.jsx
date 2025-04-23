@@ -61,7 +61,9 @@ const AddBlogs = () => {
       
         const blogs = { author, image, title, content, date, tags: selectedTags };
         console.log(blogs)
+
         axios.post("https://dev-discuss-server-chi.vercel.app//blogs", blogs)
+
 
             .then(response => {
                 console.log(response.data);
@@ -103,7 +105,7 @@ const AddBlogs = () => {
         <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50 py-10 px-4"
+            className="min-h-screen"
         >
             <Helmet>
                 <title>Add Blog | Dev discuss</title>

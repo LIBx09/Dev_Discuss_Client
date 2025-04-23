@@ -19,7 +19,9 @@ const ShortQSolve = () => {
   const { data, isLoading } = useQuery({
     queryKey: ['shortQSolve', id],
     queryFn: async () => {
+
       const res = await axios.get(`https://dev-discuss-server-chi.vercel.app//shortQ/${id}`);
+
       return res.data;
     }
   });
@@ -35,7 +37,9 @@ const ShortQSolve = () => {
       setIsSubmitting(true);
       
       // Send answer to backend
+
    const res =   await axios.post(`https://dev-discuss-server-chi.vercel.app//shortQ/${id}`, {
+
         question,
         answer,
         email:user?.email
