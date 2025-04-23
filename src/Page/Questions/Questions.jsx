@@ -19,7 +19,7 @@ const Questions = () => {
       return data;
     },
   });
-
+console.log(questions);
   return (
     <div>
       {/* Header Section */}
@@ -38,7 +38,7 @@ const Questions = () => {
           <LoadingPage />
         ) : isError ? (
           <p className="text-red-500">Error: {error.message}</p>
-        ) : questions.length > 0 ? (
+        ) : questions?.length > 0 ? (
           questions.map((question) => (
             <div
               key={question._id}
