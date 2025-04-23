@@ -51,7 +51,7 @@ const ContextProvider = ({ children }) => {
             setUser(currentUser);
             console.log("currentUser", currentUser);
             if(currentUser){
-                const userInfo = {userEmail: currentUser?.email, userName: currentUser?.displayName, points:0};
+                const userInfo = {userEmail: currentUser?.email, userName: currentUser?.displayName, photo: currentUser?.photoURL, points:0};
                 customAxios.post("/users", userInfo)
                 .then(res => {
                     console.log("users post success", res.data);

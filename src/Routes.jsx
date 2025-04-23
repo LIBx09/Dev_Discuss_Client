@@ -28,6 +28,8 @@ import BlogDetails from "./Page/Blog/BlogDetails";
 import AddEvent from "./Page/Events/AddEvent";
 import EventDetails from "./Page/Events/EventDetails";
 import AboutUsDetails from "./Page/AboutUs/AboutUsDetails";
+import MyQuestions from "./Page/MyQuestions/MyQuestions";
+import Badges from "./Page/MyProfile/Badges";
 
 
 const router = createBrowserRouter([
@@ -61,7 +63,9 @@ const router = createBrowserRouter([
       {path: "/blog-details/:id", element: <BlogDetails></BlogDetails>},
       {path: "/add-event", element: <AddEvent></AddEvent>},
       {path: "/events/:id", element: <EventDetails></EventDetails>},
-      {path: "/aboutUsDetails/:id", element: <PrivateRoute><AboutUsDetails></AboutUsDetails></PrivateRoute>}
+      {path: "/aboutUsDetails/:id", element: <PrivateRoute><AboutUsDetails></AboutUsDetails></PrivateRoute>},
+      {path: "/myQuestions", element: <PrivateRoute><MyQuestions></MyQuestions></PrivateRoute>},
+      {path: "/badges", element: <PrivateRoute><Badges></Badges></PrivateRoute>}
     ],
   },
 ]);

@@ -9,6 +9,15 @@ import TSLogo from "../RightSidebar/typeScript.png"
 import nextLogo from "../RightSidebar/next.js.png"
 import tailwindLogo from "../RightSidebar/tailwind.png"
 import reactRouterdLogo from "../RightSidebar/reactRouter.png"
+import Vue from "../RightSidebar/vue.png"
+import bootstrap from"../RightSidebar/bootstrap.jpg"
+import django from "../RightSidebar/django.jpg"
+import laravel from "../RightSidebar/laravel.jpg"
+import mySQL from "../RightSidebar/mysql.jpg"
+import postgreSQL from "../RightSidebar/PostgreSQL.png"
+import prisma from "../RightSidebar/laravel.jpg"
+import sass from "../RightSidebar/mysql.jpg"
+import webpack from "../RightSidebar/PostgreSQL.png"
 const RightSidebar = () => {
     const techLinks = [
         { name: "React", logo: reactLogo, link: "https://react.dev/" },
@@ -22,6 +31,16 @@ const RightSidebar = () => {
         { name: "MongoDB", logo: mongodbLogo, link: "https://www.mongodb.com/" },
         { name: "HTML", logo: HTMLLogo, link: "https://html.com/" },
         { name: "Express.js", logo: expressJSLogo, link: "https://expressjs.com/" },
+        {name: "Vue.js", logo: Vue, link: "https://vuejs.org/"},
+        {name: "Bootstrap", logo: bootstrap, link: "https://getbootstrap.com/?utm_source=chatgpt.com"},
+        {name: "Django ", logo: django, link: "https://www.djangoproject.com/"},
+        {name: "Laravel", logo: laravel, link: "https://laravel.com/"},
+        {name: "MySQL", logo: mySQL, link: "https://www.mysql.com/"},
+        {name: "PostgreSQL", logo: postgreSQL, link: "https://www.postgresql.org/"},
+        {name: "Prisma", logo: prisma, link: "https://www.prisma.io/"},
+        {name: "Sass", logo: sass, link: "https://sass-lang.com/"},
+        {name: "Webpack ", logo: webpack, link: " https://webpack.js.org/"},
+
     ];
 
     return (

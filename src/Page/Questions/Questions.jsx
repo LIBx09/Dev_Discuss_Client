@@ -19,7 +19,7 @@ const Questions = () => {
       return data;
     },
   });
-console.log(questions);
+  console.log(questions);
   return (
     <div>
       {/* Header Section */}
@@ -52,7 +52,9 @@ console.log(questions);
               <div className="flex gap-4 text-xs justify-between mt-1">
                 <span>Tag: {question.tag}</span>
                 <span>
-                  Date: {format(new Date(question.date), "dd MMM yyyy")}
+                  Date: {question.date && !isNaN(new Date(question.date))
+                    ? format(new Date(question.date), "dd MMM yyyy")
+                    : "Unknown"}
                 </span>
               </div>
             </div>
