@@ -35,7 +35,7 @@ const RightSidebar = () => {
                             href={tech.link}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="flex items-center gap-1 bg-white border dark:bg-gray-800 hover:scale-110  hover:border-blue-300 px-4 py-4 rounded-md transition-all duration-300 w-full h-12"
+                            className="flex items-center gap-1 bg-white shadow-md dark:bg-gray-800 hover:scale-110  hover:shadow-blue-300 px-4 py-4 rounded-md transition-all duration-300 w-full h-12"
                         >
                             <div className="flex items-center justify-center dark:bg-gray-800">
                                 <img src={tech.logo} alt={tech.name} className="h-4 w-4" />
