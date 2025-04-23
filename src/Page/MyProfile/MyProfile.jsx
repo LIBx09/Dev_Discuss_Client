@@ -18,7 +18,7 @@ const MyProfile = () => {
             return data;
         }
     });
-    console.log(pointsBreakdown.pointsBreakdown?.comments);
+    // console.log(pointsBreakdown.pointsBreakdown?.comments);
 
 
     return (

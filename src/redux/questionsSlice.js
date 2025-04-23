@@ -6,7 +6,9 @@ import axios from "axios";
 export const fetchQuestions = createAsyncThunk(
   "questions/fetchAll",
   async () => {
-    const res = await axios.get("http://localhost:5000/questions");
+
+    const res = await axios.get("https://dev-discuss-server-chi.vercel.app/questions");
+
     return res.data;
   }
 );
@@ -15,7 +17,9 @@ export const fetchQuestions = createAsyncThunk(
 export const fetchQuestionsByTag = createAsyncThunk(
   "questions/fetchByTag",
   async (tag) => {
-    const res = await axios.get(`http://localhost:5000/questions/tag/${tag}`);
+
+    const res = await axios.get(`https://dev-discuss-server-chi.vercel.app/questions/tag/${tag}`);
+
     return res.data;
   }
 );
@@ -25,7 +29,9 @@ export const addQuestion = createAsyncThunk(
   "questions/add",
   async ({ data, user }, { rejectWithValue }) => {
     try {
-      const res = await axios.post("http://localhost:5000/questions", {
+
+      const res = await axios.post("https://dev-discuss-server-chi.vercel.app/questions", {
+
         ...data,
         date: new Date().toLocaleDateString(),
         userName: user?.displayName,

@@ -10,6 +10,7 @@ import AuthContext from "../Context/AuthContext";
 const AskQuestion = () => {
   const customAxios = useAxios();
   const {user} = useContext(AuthContext);
+  console.log(user.email)
     const [userId, setUserId] = useState("");
   const axios = useAxios();
   const navigate = useNavigate(); 
