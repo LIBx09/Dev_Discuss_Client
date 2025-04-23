@@ -1,0 +1,79 @@
+[
+    {
+        "name": "Md Mohibbullah",
+        "email": "bullahmohi50@gmail.com",
+        "facebook": "https://www.facebook.com/najmul.sakib.3954",
+        "linkedin": "https://www.linkedin.com/in/mohi-bullah247",
+        "github": "https://github.com/mohibbullah272",
+        "portfolio": "https://my-portfilo369.web.app",
+        "careerObjective": "I'm a Front end developer. With expertise in React, JavaScript, Tailwind, MongoDB, Express, Firebase, Git & GitHub, and Node.js. I have done many projects with these technologies and successfully caught clients' attention. One of my best strengths is my ability to think of unique ideas to make our project more attractive.",
+        "graduation": "HSC candidate 2025",
+        "languages": [
+            "Bangla (native)",
+            "Hindi (fluent)",
+            "English (communication able)"
+        ]
+    },
+    {
+        "name": "Sadman Shakib",
+        "photoUrl": "https://drive.google.com/file/d/1IcSTodqkJGr28rkH0HO6E5nVE3Swxazj/view?usp=drivesdk",
+        "email": "sadmansakib1075@gmail.com",
+        "facebook": "https://www.facebook.com/share/17W2bVFTWc/",
+        "linkedin": "https://www.linkedin.com/in/sadman-sakib-6207542a2/",
+        "github": "https://github.com/sadman1075",
+        "portfolio": "https://famous-trifle-8f01f4.netlify.app/",
+        "careerObjective": "I'm Sadman Shakib, a frontend developer with a passion for crafting interactive, user-friendly web experiences. My journey into programming started with curiosity and a drive to create something meaningful. From experimenting with basic HTML and CSS to diving deep into JavaScript frameworks, I've always been fascinated by the power of code to shape digital experiences.",
+        "graduation": "B.Sc CSE from American International University Bangladesh (AIUB) in 2024",
+        "languages": [
+            "Bangla",
+            "Hindi",
+            "English"
+        ]
+    },
+    {
+        "name": "Md. Habibur Rahman",
+        "email": "md.habiburrahmanjwd@gmail.com",
+        "facebook": "https://www.facebook.com/md.habibur.rahman.sujon.788802",
+        "linkedin": "",
+        "github": "https://github.com/habib395",
+        "portfolio": "http://separate-magic.surge.sh/",
+        "careerObjective": "Passionate MERN stack developer building scalable, high-performance web apps with React, Next.js, Node.js, and MongoDB, committed to innovation and seamless user experiences.",
+        "graduation": "B.Sc (4th Year)",
+        "languages": [
+            "Bangla (native)",
+            "Hindi (fluent)",
+            "English (communication able)"
+        ]
+    },
+    {
+        "name": "Bayzed Ahmed Emon",
+        "email": "bayzedm784@gmail.com",
+        "facebook": "https://www.facebook.com/afifahomed.akib",
+        "linkedin": "https://www.linkedin.com/in/bayzed-ahmed-69914a34b/",
+        "github": "https://github.com/bayzedahmedandthe",
+        "portfolio": "https://portfolio-8dc64.web.app/",
+        "careerObjective": "Skilled in React, Tailwind CSS, Firebase, Node.js, and MongoDB, with a strong focus on building scalable, high-performance web applications. Successfully developed and optimized multiple user-friendly, responsive web applications, enhancing user experience and performance.",
+        "graduation": "B.S.S (2nd Year)",
+        "languages": [
+            "Bangla (native)",
+            "Hindi (fluent)",
+            "English (communication able)"
+        ]
+    },
+    {
+        "name": "Ibrahim Hasan Fuad",
+        "email": "ibrahimfuad729@gmail.com",
+        "facebook": "https://www.facebook.com/profile.php?id=100005664797373",
+        "linkedin": "https://www.linkedin.com/in/ibrahim00756",
+        "github": "https://github.com/LIBx09",
+        "portfolio": "https://papaya-bublanina-b8e2a5.netlify.app/",
+        "careerObjective": "To obtain a challenging position as a web developer where I can apply my skills in the MERN stack, contribute to impactful projects, and grow as a full-stack developer.",
+        "image": "https://i.postimg.cc/3xGdfLXY/Profile.jpg",
+        "education": "HSC",
+        "languages": [
+            "Bangla",
+            "Hindi",
+            "English"
+        ]
+    }
+]

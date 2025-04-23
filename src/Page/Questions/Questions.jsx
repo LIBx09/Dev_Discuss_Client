@@ -1,14 +1,11 @@
-// import React, { useEffect } from "react";
-// import { useDispatch, useSelector } from "react-redux";
-
 import { Link } from "react-router-dom";
 import LoadingPage from "../Loading/LoadingPage";
-// import { fetchQuestions } from "../../redux/questionsSlice";
-import useAxios from "../../MainLayout/Shared/Hooks/useAxios";
 import { useQuery } from '@tanstack/react-query';
+import useAxios from "../../MainLayout/Shared/Hooks/useAxios"; // use your custom Axios hook
+import { format } from "date-fns"; // For date formatting
 
 const Questions = () => {
-  const customAxios = useAxios()
+  const axiosSecure = useAxios(); // Use the custom axios hook
 
   const {
     data: questions = [],
@@ -18,7 +15,7 @@ const Questions = () => {
   } = useQuery({
     queryKey: ["questions"],
     queryFn: async () => {
-      const { data } = await customAxios("/questions");
+      const { data } = await axiosSecure.get("/questions");
       return data;
     },
   });
@@ -54,7 +51,9 @@ const Questions = () => {
               </Link>
               <div className="flex gap-4 text-xs justify-between mt-1">
                 <span>Tag: {question.tag}</span>
-                <span>Date: {question.date}</span>
+                <span>
+                  Date: {format(new Date(question.date), "dd MMM yyyy")}
+                </span>
               </div>
             </div>
           ))
