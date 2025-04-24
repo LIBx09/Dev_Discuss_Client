@@ -41,9 +41,9 @@ const ContextProvider = ({ children }) => {
         return sendPasswordResetEmail(auth,email)
     }
 
-    const logout = () => {
+    const logout = async() => {
         setLoading(true)
-        return signOut(auth)
+        return signOut(auth).then(() => {setUser(null)})
     }
 
     useEffect(() => {
