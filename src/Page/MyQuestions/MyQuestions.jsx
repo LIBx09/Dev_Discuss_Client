@@ -47,7 +47,7 @@ const MyQuestions = () => {
         });
     }
     return (
-        <div>
+        <div className="border-t-8 border-t-blue-500 rounded-xl">
             {
                 questions.length > 0 ?
 

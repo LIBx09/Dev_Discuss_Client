@@ -153,14 +153,16 @@ const Navbar = () => {
               <li><Link to="/add-blogs">Add Blogs</Link></li>
               <li><Link to="/aboutUs">About Us</Link></li>
               <li><Link to="/contactUs">Contact Us</Link></li>
+              {user && <li><Link to="/myQuestion">My questions</Link></li>}
               {user && <li><Link to="/myProfile">Dashboard</Link></li>}
+              {user && <li><Link to="/leaderboard">Leaderboard</Link></li>}
               {user ? (
                 <li>
                   <button onClick={handleLogout}>Logout</button>
                 </li>
               ) : (
                 <li>
-                  <Link to="/login"><button className="btn w-full">Login</button></Link>
+                  <Link to="/login"><button className=" w-full">Login</button></Link>
                 </li>
               )}
             </ul>
