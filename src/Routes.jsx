@@ -47,7 +47,7 @@ const router = createBrowserRouter([
       { path: "/questions/:id", element: <PrivateRoute><QuestionDetails /></PrivateRoute> },
       { path: "/questions/tag/:tagName", element: <FilteredQuestions /> },
       { path: "/tags", element: <Tags /> },
-      { path: "/saves", element: <Saves /> },
+      { path: "/saves", element: <PrivateRoute><Saves /></PrivateRoute>},
       { path: "/blogs", element: <Blogs /> },
       { path: "/add-blogs", element: <AddBlogs /> },
       { path: "/events", element: <Events /> },

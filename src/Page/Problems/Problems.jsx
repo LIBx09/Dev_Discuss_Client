@@ -14,7 +14,9 @@ const Problems = () => {
   const { data, isLoading } = useQuery({
     queryKey: ['problems', email],
     queryFn: async () => {
-      const { data } = await axios.get(`http://localhost:5000/problems?email=${email}`);
+
+      const { data } = await axios.get(`https://dev-discuss-server-chi.vercel.app//problems?email=${email}`);
+
       return data;
     }
   });

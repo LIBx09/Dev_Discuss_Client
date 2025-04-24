@@ -19,7 +19,8 @@ const FixFlow = () => {
     
     try {
 
-      const response = await axios.post('http://localhost:5000/fixFlow', {
+
+      const response = await axios.post('https://dev-discuss-server-chi.vercel.app//fixFlow', {
 
  
         userInput: errorCode,

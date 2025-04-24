@@ -61,7 +61,9 @@ const AddBlogs = () => {
       
         const blogs = { author, image, title, content, date, tags: selectedTags };
         console.log(blogs)
-        axios.post("http://localhost:5000/blogs", blogs)
+
+        axios.post("https://dev-discuss-server-chi.vercel.app//blogs", blogs)
+
 
             .then(response => {
                 console.log(response.data);
