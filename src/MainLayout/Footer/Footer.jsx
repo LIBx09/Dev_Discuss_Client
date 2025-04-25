@@ -1,4 +1,4 @@
-import { FaFacebook, FaTwitter, FaLinkedin, FaGithub } from "react-icons/fa";
+import { FaFacebook, FaLinkedin, FaGithub } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const Footer = () => {
@@ -42,10 +42,9 @@ const Footer = () => {
           <h2 className="text-lg font-semibold mb-4 text-gray-900 dark:text-white">Stay Connected</h2>
           <p className="text-sm mb-4">Follow us on social media</p>
           <div className="flex space-x-4 text-xl">
-            <a href="https://facebook.com" target="_blank" rel="noreferrer" className="hover:text-blue-600"><FaFacebook /></a>
-            <a href="https://twitter.com" target="_blank" rel="noreferrer" className="hover:text-sky-400"><FaTwitter /></a>
-            <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="hover:text-blue-300"><FaLinkedin /></a>
-            <a href="https://github.com" target="_blank" rel="noreferrer" className="hover:text-gray-100"><FaGithub /></a>
+            <a href="https://www.facebook.com/md.habibur.rahman.sujon.788802" target="_blank" rel="noreferrer" className="hover:text-blue-600"><FaFacebook /></a>
+            <a href="https://www.linkedin.com/in/bayzed-ahmed-69914a34b/" target="_blank" rel="noreferrer" className="hover:text-blue-300"><FaLinkedin /></a>
+            <a href="https://github.com/habib395" target="_blank" rel="noreferrer" className="hover:text-gray-100"><FaGithub /></a>
           </div>
         </div>
       </div>

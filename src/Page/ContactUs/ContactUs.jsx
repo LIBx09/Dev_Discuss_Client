@@ -43,12 +43,12 @@ const Contact = () => {
         <p className="text-center text-gray-600 dark:text-gray-300 mb-12 max-w-2xl mx-auto">
           Whether you have a question, want to work together, or just want to say hello, I'm always open to meaningful conversations.
         </p>
+        <h3 className="text-2xl font-semibold text-gray-800 dark:text-white">Contact Details</h3>
+
 
         <div className="md:flex gap-12 items-start justify-between">
           {/* Contact Info */}
-          <div className="md:w-1/2 space-y-6">
-            <h3 className="text-2xl font-semibold text-gray-800 dark:text-white">Contact Details</h3>
-
+          <div className="md:w-1/2 space-y-6 py-8">
             {[
               {
                 icon: <MdEmail className="text-xl" />,
