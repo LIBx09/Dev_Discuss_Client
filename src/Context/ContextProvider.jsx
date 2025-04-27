@@ -28,11 +28,13 @@ const ContextProvider = ({ children }) => {
 
     const loginUser = (email, password) => {
         setLoading(true)
+     
         return signInWithEmailAndPassword(auth, email, password)
     }
 
     const updateProfileuser = (updateuserProfile) => {
         setLoading(true)
+        console.log(updateuserProfile)
         return updateProfile(auth.currentUser, updateuserProfile)
     }
 
