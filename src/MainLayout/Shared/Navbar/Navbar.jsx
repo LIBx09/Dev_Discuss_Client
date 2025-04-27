@@ -81,7 +81,7 @@ const Navbar = () => {
 
   return (
     <div className="relative">
-      <div className="navbar bg-base-100 border-b border-b-gray-300 px-4 dark:bg-slate-900 dark:text-white">
+      <div className="navbar bg-base-100 border-b border-b-gray-300 px-4 dark:bg-slate-900 dark:text-white ">
         <div className="navbar-start">
           <button onClick={() => setIsOpen(!isOpen)} className="btn btn-ghost lg:hidden">
             {isOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
@@ -156,6 +156,7 @@ const Navbar = () => {
               {user && <li><Link to="/myQuestion">My questions</Link></li>}
               {user && <li><Link to="/myProfile">Dashboard</Link></li>}
               {user && <li><Link to="/leaderboard">Leaderboard</Link></li>}
+              {user && <li><Link to="/payment">Payment</Link></li>}
               {user ? (
                 <li>
                   <button onClick={handleLogout}>Logout</button>

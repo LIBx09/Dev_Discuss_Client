@@ -31,6 +31,7 @@ import AboutUsDetails from "./Page/AboutUs/AboutUsDetails";
 import MyQuestions from "./Page/MyQuestions/MyQuestions";
 import Badges from "./Page/MyProfile/Badges";
 import LeaderBoard from "./Page/LeaderBoard/LeaderBoard";
+import Payment from "./Page/Payment/Payment";
 
 
 const router = createBrowserRouter([
@@ -68,7 +69,8 @@ const router = createBrowserRouter([
       {path: "/myQuestions", element: <PrivateRoute><MyQuestions></MyQuestions></PrivateRoute>},
       {path: "/badges", element: <PrivateRoute><Badges></Badges></PrivateRoute>},
       {path: "/myQuestion", element: <MyQuestions></MyQuestions>},
-      {path: "/leaderboard", element: <LeaderBoard></LeaderBoard>}
+      {path: "/leaderboard", element: <LeaderBoard></LeaderBoard>},
+      {path: "/payment", element: <Payment></Payment>}
     ],
   },
 ]);

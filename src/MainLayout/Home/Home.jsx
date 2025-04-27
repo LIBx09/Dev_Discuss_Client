@@ -39,9 +39,9 @@ const Home = () => {
       <div className="text-center">
         <h2 className="md:text-5xl text-4xl font-extrabold text-blue-500">Welcome to DevDiscuss</h2>
         <div className="flex items-center justify-center pt-2 text-gray-500">
-        <Marquee className="text-lg pb-2">
-         A Collaborative Space for Developer Discussions | Share Your Dev Thoughts | Learn from Fellow Developers |
-       </Marquee>
+          <Marquee className="text-lg pb-2">
+            A Collaborative Space for Developer Discussions | Share Your Dev Thoughts | Learn from Fellow Developers |
+          </Marquee>
         </div>
       </div>
 
@@ -99,11 +99,10 @@ const Home = () => {
             <button
               onClick={handlePrevPage}
               disabled={currentPage === 1}
-              className={`px-3 py-1 rounded border ${
-                currentPage === 1
-                  ? "bg-gray-300 text-gray-600 cursor-not-allowed"
-                  : "bg-blue-500 text-white hover:bg-blue-600"
-              }`}
+              className={`px-3 py-1 rounded border ${currentPage === 1
+                ? "bg-gray-300 text-gray-600 cursor-not-allowed"
+                : "bg-blue-500 text-white hover:bg-blue-600"
+                }`}
             >
               Prev
             </button>
@@ -113,11 +112,10 @@ const Home = () => {
             <button
               onClick={handleNextPage}
               disabled={currentPage === totalPages}
-              className={`px-3 py-1 rounded border ${
-                currentPage === totalPages
-                  ? "bg-gray-300 text-gray-600 cursor-not-allowed"
-                  : "bg-blue-500 text-white hover:bg-blue-600"
-              }`}
+              className={`px-3 py-1 rounded border ${currentPage === totalPages
+                ? "bg-gray-300 text-gray-600 cursor-not-allowed"
+                : "bg-blue-500 text-white hover:bg-blue-600"
+                }`}
             >
               Next
             </button>
