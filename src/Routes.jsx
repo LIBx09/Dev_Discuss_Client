@@ -25,13 +25,14 @@ import QuizPage from "./Page/Quiz/QuizPage";
 import ShortQuestions from "./Page/ShortQuestion/ShortQuestions";
 import ShortQSolve from "./Page/ShortQuestionSolve/ShortQSolve";
 import BlogDetails from "./Page/Blog/BlogDetails";
-import AddEvent from "./Page/Events/AddEvent";
+import AddEvent from "./Page/Settings/AddEvent";
 import EventDetails from "./Page/Events/EventDetails";
 import AboutUsDetails from "./Page/AboutUs/AboutUsDetails";
 import MyQuestions from "./Page/MyQuestions/MyQuestions";
 import Badges from "./Page/MyProfile/Badges";
 import LeaderBoard from "./Page/LeaderBoard/LeaderBoard";
 import SettingsPage from "./Page/Settings/SettingsPage";
+import SettingsOption from "./Page/Settings/SettingsOption";
 
 
 const router = createBrowserRouter([
@@ -70,7 +71,8 @@ const router = createBrowserRouter([
       {path: "/badges", element: <PrivateRoute><Badges></Badges></PrivateRoute>},
       {path: "/myQuestion", element: <MyQuestions></MyQuestions>},
       {path: "/leaderboard", element: <LeaderBoard></LeaderBoard>},
-      {path:'/settings', element:<SettingsPage></SettingsPage>}
+      {path:'/settings', element:<SettingsPage></SettingsPage>},
+      {path:'/settingsOption/:id', element:<SettingsOption></SettingsOption>},
     ],
   },
 ]);

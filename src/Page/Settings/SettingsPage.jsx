@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { FileText, HelpCircle, Calendar, Users, CreditCard } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const SettingsPage = () => {
   const cards = [
@@ -73,9 +74,10 @@ const SettingsPage = () => {
           variants={container}
           initial="hidden"
           animate="show"
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 "
         >
           {cards.map((card) => (
+   <Link to={`/settingsOption/${card.id}`}>
             <motion.div
               key={card.id}
               variants={item}
@@ -93,6 +95,7 @@ const SettingsPage = () => {
                 <p className="text-gray-600">{card.description}</p>
               </div>
             </motion.div>
+   </Link>
           ))}
         </motion.div>
       </div>

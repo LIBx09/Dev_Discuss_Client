@@ -35,15 +35,10 @@ const Events = () => {
             Join events, test your coding mind & earn pro badges.
           </p>
         </div>
-        <Link
-          to="/add-event"
-          className="inline-flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition"
-        >
-          <FaPlus /> Add Event
-        </Link>
+     
       </div>
 
-      <div className="grid md:grid-cols-3 gap-5 mb-8">
+      <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5 mb-8">
         <QuizCard />
         <ShortQuestionCard />
         <ProblemSolvingCard />
