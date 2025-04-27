@@ -31,6 +31,7 @@ import AboutUsDetails from "./Page/AboutUs/AboutUsDetails";
 import MyQuestions from "./Page/MyQuestions/MyQuestions";
 import Badges from "./Page/MyProfile/Badges";
 import LeaderBoard from "./Page/LeaderBoard/LeaderBoard";
+import SettingsPage from "./Page/Settings/SettingsPage";
 
 
 const router = createBrowserRouter([
@@ -50,7 +51,7 @@ const router = createBrowserRouter([
       { path: "/saves", element: <PrivateRoute><Saves /></PrivateRoute>},
       { path: "/blogs", element: <Blogs /> },
       { path: "/add-blogs", element: <AddBlogs /> },
-      { path: "/events", element: <Events /> },
+      { path: "/events", element: <PrivateRoute><Events /></PrivateRoute> },
       { path: "/users", element: <Users /> },
       { path: "/askQuestion", element: <PrivateRoute><AskQuestion /></PrivateRoute> },
       { path: "/twinAI", element: <TwinAI /> },
@@ -68,7 +69,8 @@ const router = createBrowserRouter([
       {path: "/myQuestions", element: <PrivateRoute><MyQuestions></MyQuestions></PrivateRoute>},
       {path: "/badges", element: <PrivateRoute><Badges></Badges></PrivateRoute>},
       {path: "/myQuestion", element: <MyQuestions></MyQuestions>},
-      {path: "/leaderboard", element: <LeaderBoard></LeaderBoard>}
+      {path: "/leaderboard", element: <LeaderBoard></LeaderBoard>},
+      {path:'/settings', element:<SettingsPage></SettingsPage>}
     ],
   },
 ]);

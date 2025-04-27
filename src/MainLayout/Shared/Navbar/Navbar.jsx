@@ -150,6 +150,7 @@ const Navbar = () => {
               className="menu menu-sm dropdown-content bg-base-200 rounded-box z-50 mt-3 w-52 p-2 -right-4 shadow-xl dark:bg-gray-800 items-center space-y-3"
             >
               <li><Link to="/blogs">Blogs</Link></li>
+              <li><Link to="/settings">settings</Link></li>
               <li><Link to="/add-blogs">Add Blogs</Link></li>
               <li><Link to="/aboutUs">About Us</Link></li>
               <li><Link to="/contactUs">Contact Us</Link></li>

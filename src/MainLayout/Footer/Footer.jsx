@@ -8,7 +8,7 @@ const Footer = () => {
         
         {/* About */}
         <div>
-          <h2 className="text-xl font-semibold mb-4 text-gray-900 dark:text-white">DevDiscuss</h2>
+          <h2 className="text-xl font-semibold mb-4 text-gray-900 dark:text-white">Dev Discuss</h2>
           <p className="text-sm">
             DevDiscuss is a developer forum to ask questions, share knowledge, publish articles, and connect through events. Empowering devs, one thread at a time.
           </p>
