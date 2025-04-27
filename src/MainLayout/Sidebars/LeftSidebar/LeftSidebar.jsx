@@ -6,6 +6,7 @@ import { MdEventNote } from "react-icons/md";
 import { TbLogs } from "react-icons/tb";
 import { FaBrain } from "react-icons/fa";
 import { IoBug } from "react-icons/io5";
+import { FiSettings } from "react-icons/fi";
 const LeftSidebar = () => {
   return (
     <div className="h-full py-6 px-4 md:block hidden">
@@ -53,6 +54,11 @@ const LeftSidebar = () => {
         <li className="flex items-center gap-2 hover:bg-gray-100 dark:hover:bg-gray-800  p-2 rounded-md">
           <Link to="/users" className="flex items-center gap-2 w-full">
             <FaUsers className="text-lg" /> Users
+          </Link>
+        </li>
+        <li className="flex items-center gap-2 hover:bg-gray-100 dark:hover:bg-gray-800  p-2 rounded-md">
+          <Link to="/settings" className="flex items-center gap-2 w-full">
+            <FiSettings className="text-lg" /> Settings
           </Link>
         </li>
       </ul>
@@ -125,6 +131,11 @@ const LeftSidebar = () => {
               <FaUsers className="text-lg" /> Users
             </Link>
           </li>
+          <li className="flex items-center gap-2 hover:bg-gray-100 dark:hover:bg-gray-800  p-2 rounded-md">
+          <Link to="/settings" className="flex items-center gap-2 w-full">
+            <FiSettings className="text-lg" /> Settings
+          </Link>
+        </li>
         </ul>
       </div>
     
