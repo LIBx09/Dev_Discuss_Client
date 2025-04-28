@@ -5,36 +5,30 @@ import { Link } from 'react-router-dom';
 
 const SettingsPage = () => {
   const cards = [
+ 
     {
       id: 1,
-      title: "Manage Blog",
-      description: "Create, edit, and publish blog content with easy formatting tools.",
-      icon: <FileText size={24} />,
-      color: "bg-blue-600"
-    },
-    {
-      id: 2,
       title: "Manage Questions",
       description: "Review and respond to user inquiries and support tickets.",
       icon: <HelpCircle size={24} />,
       color: "bg-blue-500"
     },
     {
-      id: 3,
+      id: 2,
       title: "Manage Events",
       description: "Schedule and organize upcoming events in an interactive calendar.",
       icon: <Calendar size={24} />,
       color: "bg-blue-700"
     },
     {
-      id: 4,
+      id: 3,
       title: "Manage Users",
       description: "Control user permissions, roles, and account settings.",
       icon: <Users size={24} />,
       color: "bg-blue-800"
     },
     {
-      id: 5,
+      id: 4,
       title: "Track Payments",
       description: "Monitor transactions, revenue, and generate financial reports.",
       icon: <CreditCard size={24} />,
