@@ -10,18 +10,21 @@ const Payment = () => {
     const orderData = {
         userName: user?.displayName,
         userEmail: user?.email,
-        price: "100$",
-        date: new Date()
+        transactionID: "",
+        price: 100,
+        date: new Date(),
+        status: "pending"
     };
     console.log(orderData);
     const handlePlaceOrder = () => {
-       customAxios.post("/payment", orderData)
-       .then(res => {
-        console.log(res.data);
-       }) 
-       .then(error => {
-        console.log(error);
-       })
+        customAxios.post("/create-ssl-payment", orderData)
+            .then(res => {
+                console.log(res.data);
+                window.location.replace(res.data.gatewayURL)
+            })
+            .then(error => {
+                console.log(error);
+            })
     };
     return (
         <div className="border-t-8 border-t-blue-500 rounded-xl">
@@ -39,11 +42,11 @@ const Payment = () => {
                 <div className="flex items-center mt-4">
                     <fieldset className="fieldset w-full">
                         <legend className="fieldset-legend dark:text-gray-300">Name</legend>
-                        <input defaultValue={user?.displayName} type="text" className="input dark:bg-slate-700" />
+                        <input value={user?.displayName} type="text" className="input dark:bg-slate-700" />
                     </fieldset>
                     <fieldset className="fieldset w-full">
                         <legend className="fieldset-legend dark:text-gray-300">Email</legend>
-                        <input defaultValue={user?.email} type="text" className="input dark:bg-slate-700" />
+                        <input value={user?.email} type="text" className="input dark:bg-slate-700" />
                     </fieldset>
                 </div>
                 <button

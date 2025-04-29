@@ -51,25 +51,6 @@
         ]
     },
     {
-        "id": "04",
-        "name": "Sadman Shakib",
-        "email": "sadmansakib1075@gmail.com",
-        "facebook": "https://www.facebook.com/share/17W2bVFTWc/",
-        "linkedin": "https://www.linkedin.com/in/sadman-sakib-6207542a2/",
-        "github": "https://github.com/sadman1075",
-        "portfolio": "https://famous-trifle-8f01f4.netlify.app/",
-        "photoUrl": "https://i.ibb.co.com/8gpYy8Qq/sadman-shakib.png",
-        "careerObjective": "I'm Sadman Shakib, a frontend developer with a passion for crafting interactive, user-friendly web experiences. My journey into programming started with curiosity and a drive to create something meaningful. From experimenting with basic HTML and CSS to diving deep into JavaScript frameworks, I've always been fascinated by the power of code to shape digital experiences.",
-        "graduation": "B.Sc CSE from American International University Bangladesh (AIUB) in 2024",
-        "languages": [
-            "Bangla",
-            "Hindi",
-            "English"
-        ]
-    },
-
-
-    {
         "id": "05",
         "name": "Ibrahim Hasan Fuad",
         "email": "ibrahimfuad729@gmail.com",
