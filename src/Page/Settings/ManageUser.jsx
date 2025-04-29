@@ -3,11 +3,10 @@ import axios from 'axios';
 import React, { useContext } from 'react';
 import LoadingPage from '../Loading/LoadingPage';
 import { BsThreeDots } from "react-icons/bs";
-import AuthContext from '../../Context/AuthContext';
+
 import Swal from 'sweetalert2';
 const ManageUser = () => {
-    const {user}=useContext(AuthContext)
-    const email = user?.email
+  
     const {data:users,isLoading,refetch}=useQuery({
         queryKey:["userManage"],
         queryFn:async()=>{
@@ -15,8 +14,8 @@ const ManageUser = () => {
             return data
         }
     })
-    const handleAction = async (action) => {
-        console.log(action)
+    const handleAction = async (action,email,id) => {
+        console.log(action,email,id)
         if(action === 'updateRole'){
             const result = await Swal.fire({
                 title: "Are you sure?",
@@ -31,8 +30,8 @@ const ManageUser = () => {
             if (result.isConfirmed) {
                 const res = await axios.patch(`http://localhost:5000/userRole/update/${email}`);
                 console.log(res.data);
-                await refetch(); // Important 🔥
-                Swal.fire('Success!', 'Role updated to Admin!', 'success'); // Optional success msg
+                await refetch(); 
+                Swal.fire('Success!', 'Role updated to Admin!', 'success'); 
             }
         }
     
@@ -48,9 +47,9 @@ const ManageUser = () => {
             });
             
             if (result.isConfirmed) {
-                const res = await axios.delete(`http://localhost:5000/userRemove/${email}`);
+                const res = await axios.delete(`http://localhost:5000/userRemove/${id}`);
                 console.log(res.data);
-                await refetch(); // Important 🔥
+                await refetch(); 
                 Swal.fire('Success!', 'user removed'); 
             }
         }
@@ -68,13 +67,13 @@ const ManageUser = () => {
             if (result.isConfirmed) {
                 const res = await axios.patch(`http://localhost:5000/userMembership/update/${email}`);
                 console.log(res.data);
-                await refetch(); // Important 🔥
-                Swal.fire('Success!', 'Membership upgraded to Premium!', 'success'); // Optional success msg
+                await refetch(); 
+                Swal.fire('Success!', 'Membership upgraded to Premium!', 'success'); 
             }
         }
 
     }
-    
+  
     if(isLoading){
         return <LoadingPage></LoadingPage>
     }
@@ -129,9 +128,9 @@ const ManageUser = () => {
         <div className="dropdown  dropdown-end">
   <div tabIndex={0} role="button" className="btn m-1"> <BsThreeDots /> </div>
   <ul tabIndex={0} className="dropdown-content menu bg-base-100 backdrop-blur-2xl rounded-box z-1 w-52 p-2 shadow-sm">
-    <li><a onClick={()=>handleAction('updateRole')}>Make Admin</a></li>
-    <li><a onClick={()=>handleAction('updateMembership')}>Update Membership</a></li>
-    <li><a onClick={()=>handleAction('removeUser')}>Remove User</a></li>
+    <li><a onClick={()=>handleAction('updateRole',user?.userEmail)}>Make Admin</a></li>
+    <li><a onClick={()=>handleAction('updateMembership',user?.userEmail)}>Update Membership</a></li>
+    <li><a onClick={()=>handleAction('removeUser',user?.userEmail,user._id)}>Remove User</a></li>
   </ul>
 </div>
         </td>

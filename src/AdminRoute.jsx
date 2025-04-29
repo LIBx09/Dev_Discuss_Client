@@ -4,8 +4,8 @@ import LoadingPage from './Page/Loading/LoadingPage';
 import { Navigate } from 'react-router-dom';
 
 const AdminRoute = ({children}) => {
-    const isAdmin = true
-    const [,isLoading]=useCheckAdmin()
+
+    const [isAdmin,isLoading]=useCheckAdmin()
     if(isLoading){
         return <LoadingPage></LoadingPage>
     }
