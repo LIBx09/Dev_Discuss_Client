@@ -12,7 +12,7 @@ const Blogs = () => {
 
   useEffect(() => {
     setLoading(true);
-    fetch("https://dev-discuss-server-chi.vercel.app/blogs")
+    fetch("http://localhost:5000/blogs")
       .then((res) => res.json())
       .then((data) => {
         setBlogsState(data);

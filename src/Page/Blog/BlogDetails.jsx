@@ -11,7 +11,7 @@ const BlogDetails = () => {
 
     useEffect(() => {
         setLoading(true);
-        fetch(`https://dev-discuss-server-chi.vercel.app/blogs/${id}`)
+        fetch(`http://localhost:5000/blogs/${id}`)
             .then(res => {
                 if (!res.ok) {
                     throw new Error("Blog not found");

@@ -9,7 +9,7 @@ const EventDetails = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`https://dev-discuss-server-chi.vercel.app/events/${id}`)
+    fetch(`http://localhost:5000/events/${id}`)
       .then(res => res.json())
       .then(data => {
         setEvent(data);

@@ -9,7 +9,7 @@ const FilteredQuestions = () => {
   useEffect(() => {
     axios
 
-      .get(`https://dev-discuss-server-chi.vercel.app/questions?tag=${tagName}`)
+      .get(`http://localhost:5000/questions?tag=${tagName}`)
       .then((response) => setQuestions(response.data))
       .catch((error) => console.error("Error fetching questions:", error));
   }, [tagName]);

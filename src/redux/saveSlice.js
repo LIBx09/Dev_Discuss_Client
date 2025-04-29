@@ -6,7 +6,7 @@ export const fetchSavedQuestions = createAsyncThunk(
   "saves/fetchByEmail",
   async (email) => {
 
-    const res = await axios.get(`https://dev-discuss-server-chi.vercel.app//saves?email=${email}`);
+    const res = await axios.get(`http://localhost:5000//saves?email=${email}`);
 
     return res.data;
   }
