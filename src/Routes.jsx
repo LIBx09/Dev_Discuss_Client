@@ -33,6 +33,7 @@ import Badges from "./Page/MyProfile/Badges";
 import LeaderBoard from "./Page/LeaderBoard/LeaderBoard";
 import SettingsPage from "./Page/Settings/SettingsPage";
 import SettingsOption from "./Page/Settings/SettingsOption";
+import AdminRoute from "./AdminRoute";
 
 
 const router = createBrowserRouter([
@@ -71,7 +72,7 @@ const router = createBrowserRouter([
       {path: "/badges", element: <PrivateRoute><Badges></Badges></PrivateRoute>},
       {path: "/myQuestion", element: <MyQuestions></MyQuestions>},
       {path: "/leaderboard", element: <LeaderBoard></LeaderBoard>},
-      {path:'/settings', element:<SettingsPage></SettingsPage>},
+      {path:'/settings', element:<AdminRoute><SettingsPage></SettingsPage></AdminRoute>},
       {path:'/settingsOption/:id', element:<SettingsOption></SettingsOption>},
     ],
   },

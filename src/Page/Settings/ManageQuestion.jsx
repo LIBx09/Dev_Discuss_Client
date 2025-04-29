@@ -83,7 +83,7 @@ const ManageQuestion = () => {
   }
 
   return (
-    <div className="bg-blue-50 p-4 min-h-screen">
+    <div className=" p-4 min-h-screen">
       <div className="max-w-4xl mx-auto">
         <h2 className="text-2xl font-bold text-blue-800 mb-4">Manage Questions</h2>
         

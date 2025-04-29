@@ -7,7 +7,9 @@ import { TbLogs } from "react-icons/tb";
 import { FaBrain } from "react-icons/fa";
 import { IoBug } from "react-icons/io5";
 import { FiSettings } from "react-icons/fi";
+import useCheckAdmin from "../../Shared/Hooks/useCheckAdmin";
 const LeftSidebar = () => {
+  const [isAdmin]=useCheckAdmin()
   return (
     <div className="h-full py-6 px-4 md:block hidden">
       <ul className="space-y-3">
@@ -56,11 +58,11 @@ const LeftSidebar = () => {
             <FaUsers className="text-lg" /> Users
           </Link>
         </li>
-        <li className="flex items-center gap-2 hover:bg-gray-100 dark:hover:bg-gray-800  p-2 rounded-md">
+   {isAdmin &&      <li className="flex items-center gap-2 hover:bg-gray-100 dark:hover:bg-gray-800  p-2 rounded-md">
           <Link to="/settings" className="flex items-center gap-2 w-full">
             <FiSettings className="text-lg" /> Settings
           </Link>
-        </li>
+        </li>}
       </ul>
 
     <div>
@@ -131,11 +133,11 @@ const LeftSidebar = () => {
               <FaUsers className="text-lg" /> Users
             </Link>
           </li>
-          <li className="flex items-center gap-2 hover:bg-gray-100 dark:hover:bg-gray-800  p-2 rounded-md">
+          {isAdmin &&      <li className="flex items-center gap-2 hover:bg-gray-100 dark:hover:bg-gray-800  p-2 rounded-md">
           <Link to="/settings" className="flex items-center gap-2 w-full">
             <FiSettings className="text-lg" /> Settings
           </Link>
-        </li>
+        </li>}
         </ul>
       </div>
     

@@ -21,11 +21,14 @@ import DarkLightToggle from "../../../components/DarkLight/DarkLightToggle";
 import AuthContext from "../../../Context/AuthContext";
 import Swal from "sweetalert2";
 import { FaRegUserCircle, FaTimes } from 'react-icons/fa';
+import useCheckAdmin from "../Hooks/useCheckAdmin";
+import { FiSettings } from "react-icons/fi";
 
 const Navbar = () => {
   const { user, loading, logout } = useContext(AuthContext);
   const [isOpen, setIsOpen] = useState(false);
   const [search, setSearch] = useState("");
+  const [isAdmin]=useCheckAdmin()
   const [filteredResults, setFilteredResults] = useState([]);
   const dispatch = useDispatch();
   const { questions } = useSelector((state) => state.questions);
@@ -150,7 +153,7 @@ const Navbar = () => {
               className="menu menu-sm dropdown-content bg-base-200 rounded-box z-50 mt-3 w-52 p-2 -right-4 shadow-xl dark:bg-gray-800 items-center space-y-3"
             >
               <li><Link to="/blogs">Blogs</Link></li>
-              <li><Link to="/settings">settings</Link></li>
+           {isAdmin && <li><Link to="/settings">settings</Link></li>}
               <li><Link to="/add-blogs">Add Blogs</Link></li>
               <li><Link to="/aboutUs">About Us</Link></li>
               <li><Link to="/contactUs">Contact Us</Link></li>
@@ -180,6 +183,7 @@ const Navbar = () => {
             <li><Link to="/tags"><IoMdPricetags /> Tags</Link></li>
             <li><Link to="/saves"><FaBookmark /> Saves</Link></li>
             <li><Link to="/blogs"><TbLogs /> Blogs</Link></li>
+            {isAdmin && <li><Link to="/settings">  <FiSettings />settings</Link></li>}
             <li><Link to="/events"><MdEventNote /> Events</Link></li>
             <li><Link to="/users"><FaUsers /> Users</Link></li>
             <li><Link to="/twinAI"><FaBrain /> TwinAI</Link></li>

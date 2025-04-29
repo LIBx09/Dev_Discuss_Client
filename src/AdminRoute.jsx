@@ -1,10 +1,19 @@
 import React from 'react';
+import useCheckAdmin from './MainLayout/Shared/Hooks/useCheckAdmin';
+import LoadingPage from './Page/Loading/LoadingPage';
+import { Navigate } from 'react-router-dom';
 
-const AdminRoute = () => {
+const AdminRoute = ({children}) => {
+
+    const [isAdmin,isLoading]=useCheckAdmin()
+    if(isLoading){
+        return <LoadingPage></LoadingPage>
+    }
+    if(isAdmin){
+        return children
+    }
     return (
-        <div>
-            
-        </div>
+     <Navigate to={'/login'}></Navigate>
     );
 };
 

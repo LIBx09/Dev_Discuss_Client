@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useDispatch } from "react-redux";
 import { setBlogs } from "../../redux/blogSlice";
-
+import useCheckAdmin from "../../MainLayout/Shared/Hooks/useCheckAdmin";
+import { FaTrash } from "react-icons/fa";
 const Blog = ({ blog, index }) => {
   const { _id, image, author, title, date } = blog;
   const dispatch = useDispatch();
@@ -47,6 +48,7 @@ const Blog = ({ blog, index }) => {
             className="w-full h-full object-cover"
             alt={title}
           />
+   
           <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300" />
         </figure>
 
