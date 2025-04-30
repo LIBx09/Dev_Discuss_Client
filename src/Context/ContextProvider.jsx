@@ -54,7 +54,7 @@ const ContextProvider = ({ children }) => {
                 const userInfo = {userEmail: currentUser?.email, userName: currentUser?.displayName, photo: currentUser?.photoURL, points:0};
                 customAxios.post("/users", userInfo)
                 .then(res => {
-                    console.log("users post success", res.data);
+                    // console.log("users post success", res.data);
                 })
                 .catch(err => {
                     console.log(err);
