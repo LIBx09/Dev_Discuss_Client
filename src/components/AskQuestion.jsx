@@ -6,11 +6,12 @@ import moment from "moment";
 import Swal from "sweetalert2";
 import { useContext, useEffect, useState } from "react";
 import AuthContext from "../Context/AuthContext";
+import toast from "react-hot-toast";
 
 const AskQuestion = () => {
   const customAxios = useAxios();
   const {user} = useContext(AuthContext);
-  console.log(user.email)
+ 
     const [userId, setUserId] = useState("");
   const axios = useAxios();
   const navigate = useNavigate(); 
@@ -61,8 +62,11 @@ const AskQuestion = () => {
             reset(); // ✅ Reset form after submission
             navigate("/questions"); // ✅ Redirect to All Questions page
           });
+        }else if(res.data.message){
+          toast.error(res.data.message)
         }
       })
+     
       .catch((err) => {
         console.log(err);
       });

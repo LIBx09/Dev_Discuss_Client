@@ -91,6 +91,8 @@ const QuestionDetails = () => {
             title: "This question has been successfully bookmarked",
             icon: "success",
           });
+        }else if(res.data.message){
+          toast.error(res.data.message)
         }
       })
       .catch((error) => console.error(error));

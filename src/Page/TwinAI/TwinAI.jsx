@@ -47,7 +47,7 @@ const TwinAI = () => {
     
     try {
 
-      const response = await fetch('https://dev-discuss-server-chi.vercel.app//chat', {
+      const response = await fetch('https://dev-discuss-server-chi.vercel.app/chat', {
 
 
         method: 'POST',
