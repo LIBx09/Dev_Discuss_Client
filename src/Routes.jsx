@@ -32,6 +32,7 @@ import MyQuestions from "./Page/MyQuestions/MyQuestions";
 import Badges from "./Page/MyProfile/Badges";
 import LeaderBoard from "./Page/LeaderBoard/LeaderBoard";
 import Payment from "./Page/Payment/Payment";
+import PaymentSuccess from "./Page/Payment/paymentSuccess";
 
 
 const router = createBrowserRouter([
@@ -48,29 +49,30 @@ const router = createBrowserRouter([
       { path: "/questions/:id", element: <PrivateRoute><QuestionDetails /></PrivateRoute> },
       { path: "/questions/tag/:tagName", element: <FilteredQuestions /> },
       { path: "/tags", element: <Tags /> },
-      { path: "/saves", element: <PrivateRoute><Saves /></PrivateRoute>},
+      { path: "/saves", element: <PrivateRoute><Saves /></PrivateRoute> },
       { path: "/blogs", element: <Blogs /> },
       { path: "/add-blogs", element: <AddBlogs /> },
       { path: "/events", element: <Events /> },
       { path: "/users", element: <Users /> },
       { path: "/askQuestion", element: <PrivateRoute><AskQuestion /></PrivateRoute> },
       { path: "/twinAI", element: <TwinAI /> },
-      {path:'/fixFlow', element:<FixFlow></FixFlow>},
-      {path: '/problems', element:<Problems></Problems>},
-      {path: '/problemSolve/:id', element:<ProblemSolve></ProblemSolve>},
-      {path: '/QuizPage',element:<QuizPage></QuizPage>},
-      {path:'/shortQuestions',element:<ShortQuestions></ShortQuestions>},
-      {path:'/shortQSolve/:id',element:<ShortQSolve></ShortQSolve>},
-      {path: "/myProfile", element: <PrivateRoute><MyProfile></MyProfile></PrivateRoute>},
-      {path: "/blog-details/:id", element: <BlogDetails></BlogDetails>},
-      {path: "/add-event", element: <AddEvent></AddEvent>},
-      {path: "/events/:id", element: <EventDetails></EventDetails>},
-      {path: "/aboutUsDetails/:id", element: <PrivateRoute><AboutUsDetails></AboutUsDetails></PrivateRoute>},
-      {path: "/myQuestions", element: <PrivateRoute><MyQuestions></MyQuestions></PrivateRoute>},
-      {path: "/badges", element: <PrivateRoute><Badges></Badges></PrivateRoute>},
-      {path: "/myQuestion", element: <MyQuestions></MyQuestions>},
-      {path: "/leaderboard", element: <LeaderBoard></LeaderBoard>},
-      {path: "/payment", element: <Payment></Payment>}
+      { path: '/fixFlow', element: <FixFlow></FixFlow> },
+      { path: '/problems', element: <Problems></Problems> },
+      { path: '/problemSolve/:id', element: <ProblemSolve></ProblemSolve> },
+      { path: '/QuizPage', element: <QuizPage></QuizPage> },
+      { path: '/shortQuestions', element: <ShortQuestions></ShortQuestions> },
+      { path: '/shortQSolve/:id', element: <ShortQSolve></ShortQSolve> },
+      { path: "/myProfile", element: <PrivateRoute><MyProfile></MyProfile></PrivateRoute> },
+      { path: "/blog-details/:id", element: <BlogDetails></BlogDetails> },
+      { path: "/add-event", element: <AddEvent></AddEvent> },
+      { path: "/events/:id", element: <EventDetails></EventDetails> },
+      { path: "/aboutUsDetails/:id", element: <PrivateRoute><AboutUsDetails></AboutUsDetails></PrivateRoute> },
+      { path: "/myQuestions", element: <PrivateRoute><MyQuestions></MyQuestions></PrivateRoute> },
+      { path: "/badges", element: <PrivateRoute><Badges></Badges></PrivateRoute> },
+      { path: "/myQuestion", element: <MyQuestions></MyQuestions> },
+      { path: "/leaderboard", element: <LeaderBoard></LeaderBoard> },
+      { path: "/payment", element: <Payment></Payment> },
+      { path: "/payment-success/:tranID", element: <PaymentSuccess></PaymentSuccess> }
     ],
   },
 ]);
