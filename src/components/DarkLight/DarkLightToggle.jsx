@@ -5,11 +5,18 @@ const DarkLightToggle = () => {
   const [theme, setTheme] = useState(storedTheme);
 
   useEffect(() => {
+    const root = document.documentElement;
+
     if (theme === "dark") {
-      document.documentElement.classList.add("dark");
+      root.classList.add("dark");
+      root.classList.remove("light-theme");
+      root.classList.add("dark-theme");
     } else {
-      document.documentElement.classList.remove("dark");
+      root.classList.remove("dark");
+      root.classList.remove("dark-theme");
+      root.classList.add("light-theme");
     }
+
     localStorage.setItem("theme", theme);
   }, [theme]);
 

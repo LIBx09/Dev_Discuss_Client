@@ -57,7 +57,7 @@ const Badges = ({ totalPoints = 0 }) => {
 
     return (
         <div>
-            <h2 className="font-semibold text-3xl pb-8">Badges</h2>
+            <h2 className="font-semibold bg-gradient-to-r from-pink-500 to-purple-600 text-transparent bg-clip-text text-center text-3xl pb-8">Badges</h2>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4 p-4">
                 
                 {badges.map((badge, index) => (
@@ -67,7 +67,7 @@ const Badges = ({ totalPoints = 0 }) => {
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ delay: index * 0.05 }}
                         className={`relative group p-2 rounded-xl shadow-md text-center transition-all duration-300 border hover:scale-110
-                        ${badge.unlocked ? "dark:bg-slate-800 border-green-400 bg-blue-200  hover:shadow-lg" : "bg-gray-200 dark:bg-slate-600 opacity-70 border-gray-300 cursor-not-allowed"}`}
+                        ${badge.unlocked ? "dark:bg-slate-800 border-pink-400  hover:shadow-lg" : "dark:bg-slate-600 opacity-70 border-purple-300 cursor-not-allowed"}`}
                     >
                         {!badge.unlocked && (
                             <>
@@ -75,7 +75,7 @@ const Badges = ({ totalPoints = 0 }) => {
                                     <FaLock />
                                 </div>
                                 <div className="absolute top-0 left-0 w-full h-full rounded-xl bg-black bg-opacity-30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                                    <span className="text-sm text-white bg-black/60 px-3 py-1 rounded-md">
+                                    <span className="text-sm text-purple-400 bg-black/60 px-3 py-1 rounded-md">
                                         Locked – Earn {badge.pointsRequired} points to unlock
                                     </span>
                                 </div>
@@ -90,16 +90,16 @@ const Badges = ({ totalPoints = 0 }) => {
                             />
                         </div>
 
-                        <h3 className="text-xl font-semibold mt-2 dark:text-white">{badge.badgeTitle}</h3>
-                        <p className="text-sm text-gray-600 dark:text-gray-300">{badge.BadegeDescription}</p>
-                        <p className="mt-2 text-sm text-gray-500 dark:text-gray-300">Required: {badge.pointsRequired} pts</p>
+                        <h3 className="text-xl bg-gradient-to-r from-pink-500 to-purple-600 text-transparent bg-clip-text font-semibold mt-2 dark:text-white">{badge.badgeTitle}</h3>
+                        <p className="text-sm dark:text-gray-300">{badge.BadegeDescription}</p>
+                        <p className="mt-2 text-sm text-purple-400 dark:text-gray-300">Required: {badge.pointsRequired} pts</p>
 
                         {badge.unlocked ? (
-                            <span className="inline-block mt-2 text-green-600 font-semibold animate-pulse">
+                            <span className="inline-block mt-2 text-pink-400 font-semibold animate-pulse">
                                 🏆 Unlocked!
                             </span>
                         ) : (
-                            <span className="inline-block mt-2 text-gray-500 dark:text-gray-300 font-semibold">
+                            <span className="inline-block mt-2 text-purple-500 dark:text-gray-300 font-semibold">
                                 🔒 Locked
                             </span>
                         )}

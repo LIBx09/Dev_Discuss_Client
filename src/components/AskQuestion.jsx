@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom"; 
-import question from "../assets/Questions.png";
+import questionImg from "../assets/Questions.png";
 import useAxios from "../MainLayout/Shared/Hooks/useAxios";
 import moment from "moment";
 import Swal from "sweetalert2";
@@ -9,47 +9,41 @@ import AuthContext from "../Context/AuthContext";
 
 const AskQuestion = () => {
   const customAxios = useAxios();
-  const {user} = useContext(AuthContext);
-  console.log(user.email)
-    const [userId, setUserId] = useState("");
+  const { user } = useContext(AuthContext);
+  const [userId, setUserId] = useState("");
   const axios = useAxios();
   const navigate = useNavigate(); 
   const { register, handleSubmit, reset } = useForm();
+
   useEffect(() => {
     const fetchUser = async () => {
       if (user?.email) {
         try {
           const res = await customAxios.get(`/users?email=${user.email}`);
-          // console.log("Fetched user:", res.data);
           if (res.data?._id) {
             setUserId(res.data._id); 
-          } else {
-            console.log("User ID not found");
           }
         } catch (error) {
           console.error("Error fetching user:", error);
         }
       }
     };
-
-    if (user?.email) {
-      fetchUser();
-    }
+    fetchUser();
   }, [user]);
+
   const onSubmit = (data) => {
     const date = moment().format("MMM Do YY");
-    const updateData = {
+    const questionData = {
       ...data,
       date,
-      userName: user?.displayName,  
-      userEmail: user?.email,       
-      userPhoto: user?.photoURL,    
+      userName: user?.displayName,
+      userEmail: user?.email,
+      userPhoto: user?.photoURL,
       likes: [],
-      userId: userId
+      userId,
     };
-    console.log(updateData);
-    axios
-      .post("/questions", updateData)
+
+    axios.post("/questions", questionData)
       .then((res) => {
         if (res.data.acknowledged) {
           Swal.fire({
@@ -58,86 +52,93 @@ const AskQuestion = () => {
             icon: "success",
             confirmButtonText: "OK",
           }).then(() => {
-            reset(); // ✅ Reset form after submission
-            navigate("/questions"); // ✅ Redirect to All Questions page
+            reset();
+            navigate("/questions");
           });
         }
       })
-      .catch((err) => {
-        console.log(err);
-      });
+      .catch(console.error);
   };
 
   return (
-    <div>
-      <div className="flex justify-between">
-        <h2 className="md:text-3xl md:pt-6 pt-0 font-semibold text-lg">
-          Ask a public question
-        </h2>
-        <img className="h-28 w-80 hidden md:block" src={question} alt="" />
+    <section className="min-h-screen px-4">
+      <div className="max-w-4xl mx-auto">
+        <div className="flex justify-between items-center flex-wrap gap-4 mb-10">
+          <div>
+            <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">
+              Ask a Public Question
+            </h2>
+            <p className="text-sm text-gray-300 mt-2">
+              Share detailed information to get better answers from the community.
+            </p>
+          </div>
+          <img src={questionImg} alt="Ask Question" className="h-24 md:h-28" />
+        </div>
+
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-8 p-6 rounded-2xl shadow-md shadow-purple-700/20 border border-gray-700">
+          {/* Title */}
+          <div>
+            <label className="block mb-2 text-lg font-semibold text-purple-300">Title</label>
+            <input
+              {...register("title", { required: true })}
+              type="text"
+              placeholder="Enter a title for your question"
+              className="w-full px-4 py-3 rounded-md bg-transparent text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-purple-500"
+            />
+            <p className="text-sm text-gray-400 mt-1">Be specific and clear about your issue.</p>
+          </div>
+
+          {/* Body */}
+          <div>
+            <label className="block mb-2 text-lg font-semibold text-purple-300">Body</label>
+            <textarea
+              {...register("body", { required: true })}
+              rows={6}
+              placeholder="Explain your question in detail..."
+              className="w-full px-4 py-3 rounded-md bg-transparent text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-purple-500"
+            ></textarea>
+            <p className="text-sm text-gray-400 mt-1">Include all the information someone would need to answer your question.</p>
+          </div>
+
+          {/* Tags */}
+          <div>
+            <label className="block mb-2 text-lg font-semibold text-purple-300">Tags</label>
+            <select
+              {...register("tag", { required: true })}
+              className="w-full px-4 py-3 rounded-md bg-slate-900 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-purple-500"
+              defaultValue="default"
+              required
+            >
+              <option disabled value="default">Select a category</option>
+              <option>HTML5</option>
+              <option>CSS3</option>
+              <option>Tailwind CSS</option>
+              <option>JavaScript</option>
+              <option>React JS</option>
+              <option>Redux</option>
+              <option>Firebase</option>
+              <option>Node.js</option>
+              <option>Express.js</option>
+              <option>MongoDB</option>
+              <option>JWT</option>
+              <option>Next.js</option>
+              <option>TypeScript</option>
+            </select>
+            <p className="text-sm text-gray-400 mt-1">Select a tag to categorize your question.</p>
+          </div>
+
+          {/* Submit Button */}
+          <div className="text-right">
+            <button
+              type="submit"
+              className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white px-6 py-2 rounded-lg font-semibold transition duration-200"
+            >
+              Submit Your Question
+            </button>
+          </div>
+        </form>
       </div>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <fieldset className="fieldset">
-          <legend className="fieldset-legend md:text-xl text-md">Title</legend>
-          <p className="fieldset-label dark:text-white">
-            Be specific and imagine you're asking a question to another person
-          </p>
-          <input
-            {...register("title", { required: true })}
-            type="text"
-            required
-            className="input w-full dark:bg-slate-800"
-            placeholder="Enter a title for your question"
-          />
-        </fieldset>
-
-        <fieldset className="fieldset">
-          <legend className="fieldset-legend md:text-xl text-md">Body</legend>
-          <p className="fieldset-label dark:text-white">
-            Include all the information someone would need to answer your
-            question
-          </p>
-          <textarea
-            {...register("body", { required: true })}
-            required
-            className="textarea min-h-60 w-full dark:bg-slate-800 row-span-12"
-            placeholder="Enter a body for your question"
-          ></textarea>
-        </fieldset>
-
-        <fieldset className="fieldset">
-          <legend className="fieldset-legend md:text-xl text-md">Tags</legend>
-          <p className="fieldset-label dark:text-white">
-            Add tags to describe what your question is about
-          </p>
-          <select
-            {...register("tag", { require: true })}
-            defaultValue="default"
-            required
-            className="select select-md w-full dark:bg-slate-800"
-          >
-            <option disabled={true}>Category</option>
-            <option>HTML5</option>
-            <option>CSS3</option>
-            <option>Tailwind CSS</option>
-            <option>Javascript</option>
-            <option>React JS</option>
-            <option>Redux</option>
-            <option>Firebase</option>
-            <option>Node.js</option>
-            <option>Express.js</option>
-            <option>MongoDB</option>
-            <option>JWT</option>
-            <option>Next.js</option>
-            <option>TypeScript</option>
-          </select>
-        </fieldset>
-
-        <button className="bg-blue-500 hover:bg-blue-700 rounded-sm text-white px-2 py-2 font-semibold mt-8">
-          Add your Question
-        </button>
-      </form>
-    </div>
+    </section>
   );
 };
 

@@ -103,13 +103,13 @@ const Registration = () => {
           <Helmet>
             <title>Registration | Dev_Discuss</title>
           </Helmet>
-          <div className="hero  min-h-screen ">
+          <div className="hero min-h-screen ">
             <div className="hero-content flex-col lg:flex-row-reverse">
               <div className="text-center lg:text-left lg:w-96 ">
                 <Lottie animationData={register_lottie}></Lottie>
               </div>
-              <div className="card bg-base-100 w-full max-w-sm shrink-0 ">
-                <h1 className="text-5xl font-bold mt-4 text-center">Registration now!</h1>
+              <div className="card w-full max-w-sm shrink-0 ">
+                <h1 className="text-5xl font-bold mt-4 text-center bg-gradient-to-r from-pink-500 to-purple-600 text-transparent bg-clip-text">Registration now!</h1>
 
                 <form className="card-body" onSubmit={handleRegistration}>
 
@@ -118,30 +118,30 @@ const Registration = () => {
                     <label className="label">
                       <span className="label-text mb-1.5">User Name</span>
                     </label>
-                    <input type="text" name="name" placeholder="Enter your user name" className="input input-bordered rounded-lg" required />
+                    <input type="text" name="name" placeholder="Enter your user name" className="input input-bordered  w-full px-4 py-3 rounded-xl bg-transparent text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-pink-500 transition" required />
                   </div>
-                  <div className="form-control mt-3">
+                  <div className="form-control mt-3"> 
                     <label className="label">
                       <span className="label-text mb-1.5">Photo Url</span>
                     </label>
-                    <input type="link" name="photo" placeholder="Enter your photo url" className="input input-bordered rounded-lg" required />
+                    <input type="link" name="photo" placeholder="Enter your photo url" className="input input-bordered rounded-lg w-full px-4 py-3 bg-transparent text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-pink-500 transition" required />
                   </div>
                   <div className="form-control mt-3">
                     <label className="label">
                       <span className="label-text mb-1.5">Email</span>
                     </label>
-                    <input type="email" name="email" placeholder="Enter your email" className="input input-bordered rounded-lg" required />
+                    <input type="email" name="email" placeholder="Enter your email" className="input input-bordered rounded-lg w-full px-4 py-3 bg-transparent text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-pink-500 transition" required />
                   </div>
 
                   <div className="form-control mt-3">
                     <label className="label">
                       <span className="label-text mb-1.5">Password</span>
                     </label>
-                    <input type="password" name="password" placeholder="Enter your password" className="input input-bordered rounded-lg" required />
+                    <input type="password" name="password" placeholder="Enter your password" className="input input-bordered rounded-lg w-full px-4 py-3 bg-transparent text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-pink-500 transition" required />
 
                   </div>
 
-                  <button className="btn btn-neutral mt-5 mr-3 rounded-lg">Register</button>
+                  <button className="btn btn-neutral mt-5 mr-3 rounded-lg w-full py-3 bg-gradient-to-r from-purple-600 to-pink-500 text-lg font-semibold text-white hover:scale-105 transition-transform duration-300 shadow-xl">Register</button>
 
                   <div>
                     <p className="text-center text-[#D1A054] ">Already Have an Account?<Link to={"/login"} className="text-blue-500 font-bold"> Go to Login</Link></p>

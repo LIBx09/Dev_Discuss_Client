@@ -28,10 +28,10 @@ const Events = () => {
     <div className="p-6 max-w-6xl mx-auto">
       <div className="flex justify-between items-center mb-6">
         <div>
-          <h2 className="text-2xl flex items-center gap-2 font-bold">
+          <h2 className="bg-gradient-to-r from-pink-500 to-purple-600 text-transparent bg-clip-text text-2xl flex items-center gap-2 font-bold">
             Events from DevDiscuss <FaFireAlt className="text-red-500" />
           </h2>
-          <p className="text-gray-700">
+          <p className="text-purple-400">
             Join events, test your coding mind & earn pro badges.
           </p>
         </div>
@@ -44,7 +44,7 @@ const Events = () => {
         <ProblemSolvingCard />
       </div>
 
-      <h3 className="text-xl font-semibold mb-4">🔥 Featured Community Events</h3>
+      <h3 className="text-xl bg-gradient-to-r from-pink-500 to-purple-600 text-transparent bg-clip-text text-center font-semibold mb-4">🔥 Featured Community Events</h3>
       {loading ? (
         <LoadingPage />
       ) : events.length === 0 ? (

@@ -81,7 +81,7 @@ const ProblemSolve = () => {
   }
 
   return (
-    <div className="flex flex-col h-screen bg-white">
+    <div className="flex flex-col h-screen bg-transparent">
       {/* Problem Header */}
       <div className="p-4 border-b">
         <h3 className="text-xl font-semibold text-blue-600 flex items-center gap-2">
@@ -110,14 +110,14 @@ const ProblemSolve = () => {
 
         {/* Code Editor Panel */}
         <div className="flex-1 flex flex-col overflow-hidden">
-          <div className="bg-gray-100 p-2 border-b flex justify-between items-center">
-            <span className="text-sm font-medium text-gray-600">JavaScript</span>
+          <div className="bg-transparent-100 p-2 border-b flex justify-between items-center">
+            <span className="text-sm font-medium text-purple-600">JavaScript</span>
     {
-      nextButton ? <Link to={'/problems'}><button className="btn bg-green-700 text-white">Back to Problems</button></Link>:        <button 
+      nextButton ? <Link to={'/problems'}><button className="btn bg-gradient-to-r from-pink-500 to-purple-600 hover:scale-105 text-white">Back to Problems</button></Link>:        <button 
       onClick={handleSubmit}
       disabled={isSubmitting}
-      className={`px-4 py-2 rounded text-white font-medium ${
-        isSubmitting ? 'bg-gray-400' : 'bg-blue-600 hover:bg-blue-700'
+      className={`px-4 py-2 rounded text-white font-medium bg-gradient-to-r from-pink-500 to-purple-600 hover:scale-105 ${
+        isSubmitting ? 'bg-transparent-400' : 'bg-blue-600 hover:bg-blue-700'
       }`}
     >
       {isSubmitting ? 'Submitting...' : 'Submit Solution'}

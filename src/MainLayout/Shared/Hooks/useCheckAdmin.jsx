@@ -10,7 +10,7 @@ const useCheckAdmin = () => {
     const {data:isAdmin,isLoading}=useQuery({
         queryKey:['checkAdmin',email],
         queryFn:async()=>{
-            const {data} =await axios.get(`http://localhost:5000/admin/${email}`)
+            const {data} =await axios.get(`http://localhost:3000/admin/${email}`)
             return data
          
         }

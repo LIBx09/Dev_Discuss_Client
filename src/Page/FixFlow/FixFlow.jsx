@@ -42,18 +42,17 @@ const FixFlow = () => {
   };
 console.log(result)
   return (
-    <div className="min-h-screen bg-slate-50  dark:bg-slate-900 dark:text-white">
+    <div className="min-h-scree  dark:bg-slate-900 dark:text-white">
       <div className="container mx-auto px-4 py-8">
         <div className="max-w-4xl mx-auto">
       
           <div className="mb-8">
-            <h1 className="text-3xl font-bold text-blue-500">Dev Discuss Error Analyzer</h1>
-            <p className="text-gray-500 mt-2">Paste your error code and choose how you'd like to solve it</p>
+            <h1 className="text-3xl bg-gradient-to-r from-pink-500 to-purple-600 text-transparent bg-clip-text font-bold text-blue-500">Dev Discuss Error Analyzer</h1>
+            <p className="text-purple-500 mt-2">Paste your error code and choose how you'd like to solve it</p>
           </div>
 
-
           {/* Error Code Input */}
-          <div className="bg-white rounded-lg shadow-md p-6 mb-8 dark:bg-slate-900 dark:text-white">
+          <div className="bg-transparent rounded-lg shadow-md p-6 mb-8 dark:bg-slate-900 dark:text-white">
 
             <form onSubmit={handleSubmit}>
               <div className="mb-6">
@@ -62,7 +61,7 @@ console.log(result)
                 </label>
                 <textarea
                   id="errorCode"
-                  className="w-full h-40 p-3 border border-slate-300 dark:bg-slate-800 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 font-mono text-sm"
+                  className="w-full bg-transparent h-40 p-3 border border-pink-300 rounded-md focus:outline-none focus:ring-2 focus:ring-pink-500 font-mono text-sm"
                   placeholder="Paste your error code here..."
                   value={errorCode}
                   onChange={(e) => setErrorCode(e.target.value)}
@@ -72,7 +71,7 @@ console.log(result)
 
         
               <div className="mb-6">
-                <label className="block text-sm font-medium text-gray-500 mb-3">
+                <label className="block text-sm font-medium text-purple-500 mb-3">
                   How would you like to solve this error?
                 </label>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -102,9 +101,9 @@ console.log(result)
 
               <button
                 type="submit"
-                className={`w-full py-3 rounded-md font-medium transition-colors ${
+                className={` w-full py-3 rounded-md font-medium transition-colors ${
                   errorCode && selectedOption 
-                    ? 'bg-blue-600 text-white hover:bg-blue-700' 
+                    ? 'bg-gradient-to-r from-pink-500 to-purple-600 hover:scale-105 bg-blue-600 text-white hover:bg-blue-700' 
                     : 'bg-blue-300 dark:bg-blue-500 text-white cursor-not-allowed'
                 }`}
                 disabled={!errorCode || !selectedOption}
@@ -126,9 +125,9 @@ console.log(result)
 
 
           {result && (
-            <div className="bg-white rounded-lg shadow-md p-6 mb-8">
+            <div className="rounded-lg shadow-md p-6 mb-8">
               <div className="flex justify-between items-center mb-4">
-                <h2 className="text-xl font-semibold text-blue-800">
+                <h2 className="text-xl font-semibold text-pink-800">
                   {result.type === 'blog' && 'Related Blog Posts'}
                   {result.type === 'question' && 'Community Questions & Answers'}
                   {result.type === 'ai_code' && 'AI Fixed Code'}
@@ -136,7 +135,7 @@ console.log(result)
                 {result.type === 'ai_code' && (
                   <button
                     onClick={() => copyToClipboard(result.aiResponse)}
-                    className="flex items-center text-sm text-blue-600 hover:text-blue-800"
+                    className="flex items-center text-sm text-pink-600 hover:text-purple-800"
                   >
                     {isCopied ? (
                       <>
@@ -204,15 +203,15 @@ console.log(result)
 const OptionCard = ({ title, description, icon, selected, onClick }) => (
   <div
     className={`border rounded-lg p-4 cursor-pointer transition-all ${
-      selected ? 'border-blue-500 bg-blue-50 dark:bg-slate-800' : 'border-slate-200 hover:border-blue-300'
+      selected ? 'border-pink-500 bg-pink-200 dark:bg-slate-800' : 'border-slate-200 hover:border-blue-300'
     }`}
     onClick={onClick}
   >
     <div className="flex items-center space-x-3">
       <div className="text-2xl">{icon}</div>
       <div>
-        <h3 className="font-medium text-slate-800 dark:text-gray-200">{title}</h3>
-        <p className="text-sm text-slate-600 mt-1 dark:text-gray-300">{description}</p>
+        <h3 className="font-medium text-pink-400 dark:text-gray-200">{title}</h3>
+        <p className="text-sm text-purple-400 mt-1 dark:text-gray-300">{description}</p>
       </div>
     </div>
   </div>
@@ -220,8 +219,8 @@ const OptionCard = ({ title, description, icon, selected, onClick }) => (
 
 const BlogCard = ({ blog }) => (
   <div className="border border-slate-200 rounded-lg p-4 hover:border-blue-300 transition-colors">
-    <h3 className="font-medium text-blue-700 hover:text-blue-800">{blog.title}</h3>
-    <p className="text-sm text-slate-600 mt-1">{blog.excerpt || blog.description}</p>
+    <h3 className="font-medium text-pink-700 hover:text-blue-800">{blog.title}</h3>
+    <p className="text-sm text-pink-600 mt-1">{blog.excerpt || blog.description}</p>
     <div className="mt-2 flex items-center text-xs text-slate-500">
       <span>{new Date(blog.createdAt).toLocaleDateString()}</span>
       <span className="mx-2">•</span>

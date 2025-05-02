@@ -5,3 +5,16 @@
 .font{
     font-family: cursive;
 }
+
+/* index.css or global.css */
+.light-theme {
+    background: linear-gradient(to bottom right, #0f0c29, #302b63, #24243e);
+    min-height: 100vh;
+    color: white;
+  }
+  
+  .dark-theme {
+    background: linear-gradient(to bottom right, #0f0c29, #302b63, #24243e);
+    min-height: 100vh;
+    color: white;
+  }

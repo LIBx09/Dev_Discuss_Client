@@ -338,25 +338,25 @@ const QuizPage = () => {
   const progressPercentage = ((currentQuestionIndex) / shuffledQuestions.length) * 100;
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col items-center py-8 px-4">
-      <div className="w-full max-w-3xl bg-white rounded-xl shadow-lg overflow-hidden">
+    <div className="min-h-screen flex flex-col items-center py-8 px-4">
+      <div className="w-full max-w-3xl bg-transparent rounded-xl shadow-lg overflow-hidden">
         {/* Header */}
-        <div className="bg-gradient-to-r from-blue-600 to-indigo-700 p-6 text-white">
+        <div className="bg-gradient-to-br from-[#0f0c29] via-[#302b63] to-[#24243e] shadow-2xl overflow-hidden text-white p-6 ">
           <h1 className="text-2xl md:text-3xl font-bold text-center">🧠 {quiz.quizTitle}</h1>
-          <p className="text-center mt-2 text-blue-100">{quiz.quizSynopsis}</p>
+          <p className="text-center mt-2">{quiz.quizSynopsis}</p>
         </div>
 
         {/* Progress bar */}
-        <div className="w-full bg-gray-200 h-2">
+        <div className="w-full h-2">
           <div 
-            className="h-full bg-green-500 transition-all duration-300" 
+            className="h-full transition-all duration-300" 
             style={{ width: `${progressPercentage}%` }}
           />
         </div>
 
         {/* Timer */}
-        <div className="flex justify-between items-center px-6 py-3 bg-gray-50">
-          <div className="text-sm text-gray-500">
+        <div className="flex justify-between items-center px-6 py-3">
+          <div className="text-sm text-purple-500">
             Question {currentQuestionIndex + 1} of {shuffledQuestions.length}
           </div>
           <div className={`font-mono text-lg font-bold ${seconds < 10 ? 'text-red-500' : 'text-blue-600'}`}>
@@ -373,7 +373,7 @@ const QuizPage = () => {
               animate={{ opacity: 1, y: 0 }}
               className="mb-6"
             >
-              <h2 className="text-xl font-semibold mb-4">{currentQuestion.question}</h2>
+              <h2 className="text-xl text-pink-400 font-semibold mb-4">{currentQuestion.question}</h2>
               
               {/* Answers */}
               <div className="space-y-3">
@@ -385,15 +385,15 @@ const QuizPage = () => {
                     className={`w-full text-left p-4 rounded-lg border transition-all ${
                       selectedAnswer === index 
                         ? answerStatus === 'correct'
-                          ? 'bg-green-100 border-green-500'
-                          : 'bg-red-100 border-red-500'
+                          ? 'border-green-500'
+                          : 'border-red-500'
                         : (parseInt(currentQuestion.correctAnswer) - 1 === index && answerStatus !== null)
-                          ? 'bg-green-100 border-green-500'
-                          : 'hover:bg-gray-50 border-gray-200'
+                          ? 'border-green-500'
+                          : 'border-gray-200'
                     }`}
                   >
                     <div className="flex items-center">
-                      <span className="flex-shrink-0 w-6 h-6 flex items-center justify-center rounded-full bg-gray-200 mr-3">
+                      <span className="flex-shrink-0 w-6 h-6 flex items-center justify-center rounded-full bg-transparent mr-3">
                         {String.fromCharCode(65 + index)}
                       </span>
                       <span>{answer}</span>
@@ -408,14 +408,14 @@ const QuizPage = () => {
               <motion.div
                 initial={{ opacity: 0, height: 0 }}
                 animate={{ opacity: 1, height: 'auto' }}
-                className="mt-4 p-4 bg-blue-50 rounded-lg"
+                className="mt-4 p-4 bg-transparent border rounded-lg"
               >
-                <p className="font-medium text-blue-800">
+                <p className="font-medium text-purple-800">
                   {answerStatus === 'correct' 
                     ? currentQuestion.messageForCorrectAnswer 
                     : currentQuestion.messageForIncorrectAnswer}
                 </p>
-                <p className="mt-2 text-gray-700">{currentQuestion.explanation}</p>
+                <p className="mt-2 text-purple-700">{currentQuestion.explanation}</p>
               </motion.div>
             )}
 
@@ -424,7 +424,7 @@ const QuizPage = () => {
               <div className="mt-6">
                 <button
                   onClick={handleNextQuestion}
-                  className="w-full py-3 px-4 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors"
+                  className="w-full py-3 bg-gradient-to-r from-purple-600 to-pink-500 rounded-lg text-lg font-semibold text-white hover:scale-105 transition-transform duration-300 shadow-xl"
                 >
                   {currentQuestionIndex < shuffledQuestions.length - 1 ? 'Next Question' : 'Finish Quiz'}
                 </button>

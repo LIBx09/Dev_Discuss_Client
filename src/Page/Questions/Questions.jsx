@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
 import LoadingPage from "../Loading/LoadingPage";
-import { useQuery } from '@tanstack/react-query';
-import useAxios from "../../MainLayout/Shared/Hooks/useAxios"; // use your custom Axios hook
-import { format } from "date-fns"; // For date formatting
+import { useQuery } from "@tanstack/react-query";
+import useAxios from "../../MainLayout/Shared/Hooks/useAxios";
+import { motion } from "framer-motion";
 
 const Questions = () => {
-  const axiosSecure = useAxios(); // Use the custom axios hook
+  const axiosSecure = useAxios();
 
   const {
     data: questions = [],
@@ -19,50 +19,60 @@ const Questions = () => {
       return data;
     },
   });
-  console.log(questions);
-  return (
-    <div>
-      {/* Header Section */}
-      <div className="flex justify-between items-center mb-4">
-        <h2 className="text-base font-bold">All Questions</h2>
-        <Link to="/askQuestion">
-          <button className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">
-            Ask a Question
-          </button>
-        </Link>
-      </div>
 
-      {/* Questions List */}
-      <div className="space-y-4">
-        {isLoading ? (
-          <LoadingPage />
-        ) : isError ? (
-          <p className="text-red-500">Error: {error.message}</p>
-        ) : questions?.length > 0 ? (
-          questions.map((question) => (
-            <div
-              key={question._id}
-              className="border border-gray-300 p-4 rounded-md shadow-sm hover:shadow-md transition"
-            >
-              <Link to={`/questions/${question._id}`}>
-                <h3 className="text-sm font-semibold text-blue-500 hover:underline cursor-pointer">
-                  {question.title}
-                </h3>
-              </Link>
-              <div className="flex gap-4 text-xs justify-between mt-1">
-                <span>Tag: {question.tag}</span>
-                <span>
-                  Date: {question.date && !isNaN(new Date(question.date))
-                    ? format(new Date(question.date), "dd MMM yyyy")
-                    : "Unknown"}
-                </span>
-              </div>
-            </div>
-          ))
-        ) : (
-          <p>No questions available.</p>
-        )}
-      </div>
+  return (
+    <div className="min-h-screen">
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        className="max-w-6xl mx-auto rounded-2xl shadow-2xl p-4"
+      >
+        {/* Header */}
+        <div className="text-center mb-10">
+          <h2 className="text-4xl font-extrabold bg-gradient-to-r from-purple-400 to-pink-600 text-transparent bg-clip-text">
+            All Questions
+          </h2>
+          <div className="w-24 h-1 bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 mx-auto mt-2 mb-4 rounded-full"></div>
+          <p className="text-lg text-gray-300">
+            Explore the most interesting questions from our community.
+          </p>
+        </div>
+
+        {/* Questions List */}
+        <div className="grid gap-6">
+          {isLoading ? (
+            <LoadingPage />
+          ) : isError ? (
+            <p className="text-red-500 text-center">Error: {error.message}</p>
+          ) : questions?.length > 0 ? (
+            questions.map((question) => (
+              <motion.div
+                key={question._id}
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.3 }}
+                className="bg-gradient-to-br from-[#1f1f2e] via-[#2a2850] to-[#302b63] p-6 rounded-xl shadow-lg border-pink-500 border-l-4 hover:scale-[1.01] transition-transform duration-300"
+              >
+                <Link to={`/questions/${question._id}`}>
+                  <h3 className="text-2xl font-bold bg-gradient-to-r from-pink-500 to-purple-600 bg-clip-text text-transparent hover:underline transition-colors">
+                    {question.title}
+                  </h3>
+                </Link>
+                <div className="flex flex-wrap items-center justify-between mt-4 text-sm text-purple-400">
+                  <span className="px-3 py-1 bg-gradient-to-r from-pink-500 to-purple-500 text-white text-xs rounded-full font-semibold shadow">
+                    {question.tag}
+                  </span>
+                  <span>
+                    Date: <span className="text-purple-400">{question.date}</span>
+                  </span>
+                </div>
+              </motion.div>
+            ))
+          ) : (
+            <p className="text-center text-gray-400">No questions available.</p>
+          )}
+        </div>
+      </motion.div>
     </div>
   );
 };

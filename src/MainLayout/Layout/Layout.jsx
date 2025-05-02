@@ -4,6 +4,7 @@ import Navbar from "../Shared/Navbar/Navbar";
 import LeftSidebar from "../Sidebars/LeftSidebar/LeftSidebar";
 import RightSidebar from "../Sidebars/RightSidebar/RightSidebar";
 import Footer from "../Footer/Footer";
+import Banner from "../Home/Banner";
 
 
 const OnboardingModal = ({ isOpen, onClose }) => {

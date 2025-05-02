@@ -1,152 +1,146 @@
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
-import React, { useContext } from 'react';
+import React from 'react';
 import LoadingPage from '../Loading/LoadingPage';
 import { BsThreeDots } from "react-icons/bs";
-
 import Swal from 'sweetalert2';
+
 const ManageUser = () => {
-  
-    const {data:users,isLoading,refetch}=useQuery({
-        queryKey:["userManage"],
-        queryFn:async()=>{
-            const {data} = await axios.get(`http://localhost:5000/usersAll`)
-            return data
-        }
-    })
-    const handleAction = async (action,email,id) => {
-        console.log(action,email,id)
-        if(action === 'updateRole'){
-            const result = await Swal.fire({
-                title: "Are you sure?",
-                text: "You want to make her admin!",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#3085d6",
-                cancelButtonColor: "#d33",
-                confirmButtonText: "make admin!"
-            });
-            
-            if (result.isConfirmed) {
-                const res = await axios.patch(`http://localhost:5000/userRole/update/${email}`);
-                console.log(res.data);
-                await refetch(); 
-                Swal.fire('Success!', 'Role updated to Admin!', 'success'); 
-            }
-        }
-    
-        if(action === 'removeUser'){
-            const result = await Swal.fire({
-                title: "Are you sure?",
-                text: "You want to remove her!",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#3085d6",
-                cancelButtonColor: "#d33",
-                confirmButtonText: "remove user!"
-            });
-            
-            if (result.isConfirmed) {
-                const res = await axios.delete(`http://localhost:5000/userRemove/${id}`);
-                console.log(res.data);
-                await refetch(); 
-                Swal.fire('Success!', 'user removed'); 
-            }
-        }
-        if(action === 'updateMembership'){
-            const result = await Swal.fire({
-                title: "Are you sure?",
-                text: "You want to update her plans!",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#3085d6",
-                cancelButtonColor: "#d33",
-                confirmButtonText: "upgrade plan!"
-            });
-            
-            if (result.isConfirmed) {
-                const res = await axios.patch(`http://localhost:5000/userMembership/update/${email}`);
-                console.log(res.data);
-                await refetch(); 
-                Swal.fire('Success!', 'Membership upgraded to Premium!', 'success'); 
-            }
-        }
+  const { data: users, isLoading, refetch } = useQuery({
+    queryKey: ["userManage"],
+    queryFn: async () => {
+      const { data } = await axios.get(`http://localhost:3000/usersAll`);
+      return data;
+    },
+  });
 
-    }
-  
-    if(isLoading){
-        return <LoadingPage></LoadingPage>
-    }
-    return (
-        <div>
-         <div className="overflow-x-auto">
-  <table className="table">
-    {/* head */}
-    <thead>
-      <tr>
-        <th>Image</th>
-        <th>Name</th>
-        <th>Email</th>
-        <th>Role</th>
-        <th>member</th>
-        <th>Action</th>
-     
-      </tr>
-    </thead>
-    <tbody>
- 
-    {
-        users?.map(user=>  <tr key={user._id}>
-      
-            <td>
-              <div className="flex items-center gap-3">
-                <div className="avatar">
-                  <div className="mask mask-squircle h-12 w-12">
-                    <img
-                      src={user?.photo ?user?.photo:'https://media.istockphoto.com/id/1300845620/vector/user-icon-flat-isolated-on-white-background-user-symbol-vector-illustration.jpg?s=612x612&w=0&k=20&c=yBeyba0hUkh14_jgv1OKqIH0CCSWU_4ckRkAoy2p73o='}
-                      alt="user img" />
-                  </div>
-                </div>
-             
-              </div>
-            </td>
-            <td>
-          {user?.userName?user?.userName: <p className='text-red-600'>Not Found</p>}
-            </td>
-            <td>
-                {
-                    user?.userEmail?user.userEmail :<p className='text-red-600'>Not Found</p>
-                }
-            </td>
-        <td>
-            {user?.role?user?.role:<p className='text-red-600'>Not found</p>}
-        </td>
-        <td>
-            {user?.member?user?.member:<p className='text-red-600'>Not found</p>}
-        </td>
-        <td>
-        <div className="dropdown  dropdown-end">
-  <div tabIndex={0} role="button" className="btn m-1"> <BsThreeDots /> </div>
-  <ul tabIndex={0} className="dropdown-content menu bg-base-100 backdrop-blur-2xl rounded-box z-1 w-52 p-2 shadow-sm">
-    <li><a onClick={()=>handleAction('updateRole',user?.userEmail)}>Make Admin</a></li>
-    <li><a onClick={()=>handleAction('updateMembership',user?.userEmail)}>Update Membership</a></li>
-    <li><a onClick={()=>handleAction('removeUser',user?.userEmail,user._id)}>Remove User</a></li>
-  </ul>
-</div>
-        </td>
-          </tr>)
-    }
-   
-    
-    
-  
-      
-    </tbody>
+  const handleAction = async (action, email, id) => {
+    const confirmActions = {
+      updateRole: {
+        title: "Are you sure?",
+        text: "You want to make her admin!",
+        confirmButtonText: "Make Admin!",
+        request: () => axios.patch(`http://localhost:3000/userRole/update/${email}`),
+        successText: "Role updated to Admin!",
+      },
+      removeUser: {
+        title: "Are you sure?",
+        text: "You want to remove her!",
+        confirmButtonText: "Remove User!",
+        request: () => axios.delete(`http://localhost:3000/userRemove/${id}`),
+        successText: "User removed!",
+      },
+      updateMembership: {
+        title: "Are you sure?",
+        text: "You want to update her plans!",
+        confirmButtonText: "Upgrade Plan!",
+        request: () => axios.patch(`http://localhost:3000/userMembership/update/${email}`),
+        successText: "Membership upgraded to Premium!",
+      },
+    };
 
-  </table>
-</div>
+    const actionData = confirmActions[action];
+    const result = await Swal.fire({
+      title: actionData.title,
+      text: actionData.text,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#8e44ad",
+      cancelButtonColor: "#d33",
+      confirmButtonText: actionData.confirmButtonText,
+    });
+
+    if (result.isConfirmed) {
+      await actionData.request();
+      await refetch();
+      Swal.fire("Success!", actionData.successText, "success");
+    }
+  };
+
+  if (isLoading) {
+    return <LoadingPage />;
+  }
+
+  return (
+    <section className="w-full min-h-screen px-4 sm:px-6 lg:px-8 py-16">
+      <div className=" mx-auto flex flex-col gap-12">
+        {/* Header */}
+        <div className="text-center">
+          <h2 className="text-3xl sm:text-4xl font-extrabold bg-gradient-to-r from-purple-400 to-pink-600 text-transparent bg-clip-text">
+            Manage Users
+          </h2>
+          <p className="text-gray-300 mt-4 max-w-xl mx-auto text-sm sm:text-base">
+            Administer user roles, memberships, and access within DevDiscuss.
+          </p>
+          <div className="mt-4 w-24 h-1 mx-auto bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 rounded-full" />
         </div>
-    );
+
+        {/* Responsive Table */}
+        <div className="overflow-x-auto rounded-xl shadow-xl border border-purple-600/20 backdrop-blur-lg">
+          <table className="w-full text-sm text-left text-gray-300">
+            <thead className="text-xs uppercase bg-gradient-to-r from-purple-800 to-pink-600 text-white">
+              <tr>
+                <th className="px-4 py-3 sm:px-6 sm:py-4 whitespace-nowrap">Image</th>
+                <th className="px-4 py-3 sm:px-6 sm:py-4 whitespace-nowrap">Name</th>
+                <th className="px-4 py-3 sm:px-6 sm:py-4 whitespace-nowrap">Email</th>
+                <th className="px-4 py-3 sm:px-6 sm:py-4 whitespace-nowrap">Role</th>
+                <th className="px-4 py-3 sm:px-6 sm:py-4 whitespace-nowrap">Membership</th>
+                <th className="px-4 py-3 sm:px-6 sm:py-4 whitespace-nowrap">Action</th>
+              </tr>
+            </thead>
+            <tbody className="bg-white/5 divide-y divide-purple-500/10">
+              {users?.map((user) => (
+                <tr key={user._id} className="hover:bg-purple-900/20 transition-colors">
+                  <td className="px-4 py-3 sm:px-6 sm:py-4">
+                    <img
+                      className="w-10 h-10 rounded-full border-2 border-pink-400 object-cover"
+                      src={user?.photo || "https://i.ibb.co/vXBkM2q/avatar.png"}
+                      alt="User"
+                    />
+                  </td>
+                  <td className="px-4 py-3 sm:px-6 sm:py-4 font-semibold text-pink-400 whitespace-nowrap">
+                    {user?.userName || <span className="text-red-500">Not Found</span>}
+                  </td>
+                  <td className="px-4 py-3 sm:px-6 sm:py-4 whitespace-nowrap">{user?.userEmail || <span className="text-red-500">Not Found</span>}</td>
+                  <td className="px-4 py-3 sm:px-6 sm:py-4 whitespace-nowrap">{user?.role || <span className="text-red-500">Not Found</span>}</td>
+                  <td className="px-4 py-3 sm:px-6 sm:py-4 whitespace-nowrap">{user?.member || <span className="text-red-500">Not Found</span>}</td>
+                  <td className="px-4 py-3 sm:px-6 sm:py-4 whitespace-nowrap">
+                    <div className="dropdown dropdown-end">
+                      <div tabIndex={0} role="button" className="btn btn-sm btn-outline text-purple-400 border-pink-400 hover:bg-pink-500 hover:text-white">
+                        <BsThreeDots />
+                      </div>
+                      <ul tabIndex={0} className="dropdown-content menu rounded-box z-10 w-52 p-2 bg-white/10 backdrop-blur-md shadow-md border border-purple-500/20 text-sm">
+                        <li>
+                          <button onClick={() => handleAction("updateRole", user?.userEmail, user._id)}>
+                            Make Admin
+                          </button>
+                        </li>
+                        <li>
+                          <button onClick={() => handleAction("updateMembership", user?.userEmail, user._id)}>
+                            Upgrade Membership
+                          </button>
+                        </li>
+                        <li>
+                          <button onClick={() => handleAction("removeUser", user?.userEmail, user._id)}>
+                            Remove User
+                          </button>
+                        </li>
+                      </ul>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+
+          {/* No Users */}
+          {users?.length === 0 && (
+            <div className="p-6 text-center text-gray-300">No users found.</div>
+          )}
+        </div>
+      </div>
+    </section>
+  );
 };
 
 export default ManageUser;

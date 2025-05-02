@@ -43,7 +43,7 @@ const Blogs = () => {
         transition={{ duration: 0.6 }}
         className="text-center mb-12"
       >
-        <h1 className="text-3xl lg:text-4xl font-bold relative inline-block">
+        <h1 className="bg-gradient-to-r from-pink-500 to-purple-600 text-transparent bg-clip-text text-3xl lg:text-4xl font-bold relative inline-block">
           Blogs
           <motion.div
             className="absolute bottom-0 left-1/2 h-1 w-full bg-blue-500 rounded-full"

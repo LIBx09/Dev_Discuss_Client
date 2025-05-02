@@ -9,15 +9,12 @@ const ManageQuestion = () => {
   const [sortBy, setSortBy] = useState('newest');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  
- 
-  // Fetch questions
+
   const fetchQuestions = async () => {
     setIsLoading(true);
     try {
-      const response = await fetch('http://localhost:5000/questions');
+      const response = await fetch('http://localhost:3000/questions');
       const data = await response.json();
-  
       setQuestions(data);
     } catch (error) {
       console.error('Error fetching questions:', error);
@@ -26,37 +23,31 @@ const ManageQuestion = () => {
     }
   };
 
-  // Initial fetch
   useEffect(() => {
     fetchQuestions();
   }, []);
 
   const handleDelete = async (id) => {
     Swal.fire({
-        title: "Are you sure?",
-        text: "You won't be able to revert this!",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Yes, delete it!"
-      }).then((result) => {
-        if (result.isConfirmed) {
-            try {
-            const res = axios.delete(`http://localhost:5000/question/${id}`)
-                
-                if (res) {
-                
-                  setQuestions(questions.filter(question => question._id !== id));
-                } else {
-                  console.error('Failed to delete question');
-                }
-              } catch (error) {
-                console.error('Error deleting question:', error);
-              }
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!"
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          const res = await axios.delete(`http://localhost:3000/question/${id}`);
+          if (res.status === 200) {
+            setQuestions(questions.filter(q => q._id !== id));
+          }
+        } catch (error) {
+          console.error('Error deleting question:', error);
         }
-      });
- 
+      }
+    });
   };
 
   const handleSortChange = (sortValue) => {
@@ -64,104 +55,88 @@ const ManageQuestion = () => {
     setIsDropdownOpen(false);
   };
 
-  // Sort questions based on selected option
   const sortedQuestions = [...questions].sort((a, b) => {
-    if (sortBy === 'newest') {
-      return new Date(b.createdAt) - new Date(a.createdAt);
-    } else if (sortBy === 'oldest') {
-      return new Date(a.createdAt) - new Date(b.createdAt);
-    } else if (sortBy === 'mostComments') {
-      return b.comments?.length - a.comments?.length;
-    } else if (sortBy === 'mostLikes') {
-      return b.likes?.length - a.likes?.length;
-    }
+    if (sortBy === 'newest') return new Date(b.createdAt) - new Date(a.createdAt);
+    if (sortBy === 'oldest') return new Date(a.createdAt) - new Date(b.createdAt);
+    if (sortBy === 'mostComments') return b.comments?.length - a.comments?.length;
+    if (sortBy === 'mostLikes') return b.likes?.length - a.likes?.length;
     return 0;
   });
 
-  if (isLoading) {
-    return <LoadingPage></LoadingPage>
-  }
+  if (isLoading) return <LoadingPage />;
 
   return (
-    <div className=" p-4 min-h-screen">
-      <div className="max-w-4xl mx-auto">
-        <h2 className="text-2xl font-bold text-blue-800 mb-4">Manage Questions</h2>
-        
+    <section className="w-full min-h-screen px-4 py-16">
+      <div className="max-w-5xl mx-auto flex flex-col gap-10">
+        {/* Header */}
+        <div className="text-center">
+          <h2 className="text-4xl font-extrabold bg-gradient-to-r from-purple-400 to-pink-600 text-transparent bg-clip-text">
+            Manage Questions
+          </h2>
+          <p className="text-gray-300 mt-4 max-w-xl mx-auto">
+            View, sort, and remove questions in your platform.
+          </p>
+          <div className="mt-4 w-24 h-1 mx-auto bg-gradient-to-r from-purple-500 via-blue-500 to-indigo-500 rounded-full" />
+        </div>
+
         {/* Sort Dropdown */}
-        <div className="relative mb-4">
+        <div className="relative self-end">
           <button 
-            className="bg-white border border-blue-300 rounded px-4 py-2 flex items-center gap-2 text-blue-700"
+            className="px-4 py-3 rounded-xl border border-gray-600 bg-transparent text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-pink-500 transition"
             onClick={() => setIsDropdownOpen(!isDropdownOpen)}
           >
             Sort by: {sortBy.charAt(0).toUpperCase() + sortBy.slice(1)}
             <ChevronDown size={16} />
           </button>
-          
           {isDropdownOpen && (
-            <div className="absolute z-10 mt-1 bg-white shadow-md rounded border border-blue-200 w-40">
-              <div className="py-1">
-                <button 
-                  className="block w-full text-left px-4 py-2 hover:bg-blue-100 text-blue-700"
-                  onClick={() => handleSortChange('newest')}
+            <div className="absolute right-0 z-10 mt-1 bg-white shadow-md rounded border border-blue-200 w-44">
+              {['newest', 'oldest', 'mostComments', 'mostLikes'].map(option => (
+                <button
+                  key={option}
+                  className="block w-full text-left px-4 py-2 hover:bg-blue-100 text-blue-700 capitalize"
+                  onClick={() => handleSortChange(option)}
                 >
-                  Newest
+                  {option.replace(/([A-Z])/g, ' $1')}
                 </button>
-                <button 
-                  className="block w-full text-left px-4 py-2 hover:bg-blue-100 text-blue-700"
-                  onClick={() => handleSortChange('oldest')}
-                >
-                  Oldest
-                </button>
-                <button 
-                  className="block w-full text-left px-4 py-2 hover:bg-blue-100 text-blue-700"
-                  onClick={() => handleSortChange('mostComments')}
-                >
-                  Most Comments
-                </button>
-                <button 
-                  className="block w-full text-left px-4 py-2 hover:bg-blue-100 text-blue-700"
-                  onClick={() => handleSortChange('mostLikes')}
-                >
-                  Most Likes
-                </button>
-              </div>
+              ))}
             </div>
           )}
         </div>
-        
-        {/* Question Cards - Simplified */}
-        <div className="space-y-3">
+
+        {/* Questions List */}
+        <div className="space-y-4">
           {sortedQuestions.map((question) => (
-            <div 
+            <div
               key={question._id}
-              className="bg-white rounded shadow p-4 flex justify-between items-center border-l-4 border-blue-500"
+              className="rounded-xl bg-gradient-to-r from-purple-400 to-pink-600 text-transparent bg-clip-text p-5 shadow-lg border-l-4 border-pink-500 bg-white flex justify-between items-center hover:scale-[1.02] transition-transform duration-300"
             >
               <div className="flex-1">
-                <h3 className="font-medium text-lg text-blue-800">{question.title}</h3>
-                <div className="flex gap-4 text-sm text-gray-600 mt-1">
-                  <span>{question?.likes?.length} Likes</span>
-                  <span>{question?.comments?.length} Comments</span>
+                <h3 className="text-lg font-semibold text-pink-500"b>
+                  {question.title}
+                </h3>
+                <div className="text-sm text-gray-500 mt-1 flex gap-6">
+                  <span>👍 {question.likes?.length || 0} Likes</span>
+                  <span>💬 {question.comments?.length || 0} Comments</span>
                 </div>
               </div>
-              
               <button
                 onClick={() => handleDelete(question._id)}
-                className="text-red-500 hover:text-red-700 p-1"
+                className="text-red-500 hover:text-red-700 p-2"
                 aria-label="Delete question"
               >
-                <Trash2 size={18} />
+                <Trash2 size={20} />
               </button>
             </div>
           ))}
-          
-          {sortedQuestions?.length === 0 && (
-            <div className="bg-white p-4 rounded text-center">
-              <p className="text-gray-600">No questions found</p>
+
+          {sortedQuestions.length === 0 && (
+            <div className="bg-white p-6 rounded-xl text-center border border-gray-200">
+              <p className="text-gray-500">No questions found.</p>
             </div>
           )}
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

@@ -37,20 +37,20 @@ const Problems = () => {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <div className="bg-white rounded-lg shadow-md p-6 mb-8">
+      <div className="bg-transparent rounded-lg shadow-md p-6 mb-8">
         <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-          <h1 className="text-2xl md:text-3xl font-bold flex items-center gap-3 text-gray-900">
-            <GiMightyForce className="text-blue-600" />
+          <h1 className="text-2xl bg-gradient-to-r from-pink-500 to-purple-600 text-transparent bg-clip-text md:text-3xl font-bold flex items-center gap-3 text-gray-900">
+            <GiMightyForce className="text-pink-600" />
             Dev Discuss Problem Solving
           </h1>
           
-          <div className="bg-gray-100 p-1 rounded-lg flex">
+          <div className="border p-1 rounded-lg flex">
             <button 
               onClick={() => setActiveFilter('all')}
               className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
                 activeFilter === 'all' 
-                  ? 'bg-white text-blue-600 shadow' 
-                  : 'text-gray-700 hover:bg-gray-200'
+                  ? 'border text-blue-600 shadow' 
+                  : 'text-gray-700 hover:bg-pink-400'
               }`}
             >
               All Problems
@@ -59,8 +59,8 @@ const Problems = () => {
               onClick={() => setActiveFilter('unlocked')}
               className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
                 activeFilter === 'unlocked' 
-                  ? 'bg-white text-blue-600 shadow' 
-                  : 'text-gray-700 hover:bg-gray-200'
+                  ? 'border text-pink-600 shadow' 
+                  : 'text-gray-700 hover:bg-pink-400-200'
               }`}
             >
               Unlocked
@@ -72,11 +72,11 @@ const Problems = () => {
         <div className="mt-4">
           <div className="flex items-center gap-2">
             <span className="text-sm text-gray-500">Total Problems: {allProblems.length}</span>
-            <span className="w-1 h-1 bg-gray-300 rounded-full"></span>
-            <span className="text-sm text-green-600 font-medium">Unlocked: {currentProblemIndex + 1}</span>
+            <span className="w-1 h-1 border rounded-full"></span>
+            <span className="text-sm text-pink-600 font-medium">Unlocked: {currentProblemIndex + 1}</span>
           </div>
         </div>
-      </div>
+      </div> 
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {filteredProblems.map((problem, idx) => (
@@ -90,7 +90,7 @@ const Problems = () => {
       
       {filteredProblems.length === 0 && (
         <div className="flex flex-col items-center justify-center py-16">
-          <div className="bg-gray-100 p-3 rounded-full">
+          <div className="p-3 rounded-full">
             <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M12 14a7 7 0 110-14 7 7 0 010 14z" />
             </svg>

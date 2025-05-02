@@ -44,8 +44,8 @@ const AddEvent = () => {
   };
 
   return (
-    <div className="max-w-xl mx-auto p-6 bg-white shadow rounded mt-10">
-      <h2 className="text-2xl font-bold mb-4">Add New Event</h2>
+    <div className="max-w-xl mx-auto p-6 bg-transparent shadow rounded mt-10">
+      <h2 className="text-2xl text-pink-400 font-bold mb-4">Add New Event</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         {[
           { name: "title", label: "Title" },
@@ -58,20 +58,20 @@ const AddEvent = () => {
           { name: "image", label: "Image URL" }
         ].map(({ name, label, type = "text" }) => (
           <div key={name}>
-            <label className="block font-medium">{label}</label>
+            <label className="block font-medium text-purple-400">{label}</label>
             <input
               type={type}
               name={name}
               value={formData[name]}
               onChange={handleChange}
-              className="w-full border px-3 py-2 rounded"
+              className="w-full px-4 py-3 rounded-xl border border-gray-600 bg-transparent text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-pink-500 transition"
               required
             />
           </div>
         ))}
         <button
           type="submit"
-          className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+          className="bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600 text-white px-4 py-2 rounded-lg shadow disabled:opacity-50 transition"
         >
           Submit
         </button>

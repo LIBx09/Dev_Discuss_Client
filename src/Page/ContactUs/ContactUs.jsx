@@ -35,110 +35,111 @@ const Contact = () => {
   };
 
   return (
-    <div className="relative w-full min-h-screen py-16 px-4 bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-950 dark:to-gray-900">
-      <div className="max-w-6xl mx-auto rounded-xl bg-white dark:bg-gray-900 shadow-2xl px-6 py-10 md:px-12">
-        <h2 className="text-4xl font-bold text-center text-gray-900 dark:text-white mb-6">
-          Get In Touch
-        </h2>
-        <p className="text-center text-gray-600 dark:text-gray-300 mb-12 max-w-2xl mx-auto">
-          Whether you have a question, want to work together, or just want to say hello, I'm always open to meaningful conversations.
-        </p>
-        <h3 className="text-2xl font-semibold text-gray-800 dark:text-white">Contact Details</h3>
+    <section
+      id="contact"
+      className="w-full min-h-screen px-4 py-16"
+    >
+      <div className="max-w-6xl mx-auto flex flex-col gap-16">
+        {/* Header */}
+        <div className="text-center">
+          <h1 className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
+            Get In Touch
+          </h1>
+          <p className="text-gray-300 mt-4 max-w-xl mx-auto">
+            I'm always open to discussions, collaborations, or just a friendly chat. Let’s build something amazing together.
+          </p>
+          <div className="mt-4 w-24 h-1 mx-auto bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 rounded-full" />
+        </div>
 
-
-        <div className="md:flex gap-12 items-start justify-between">
+        <div className="flex flex-col lg:flex-row gap-10">
           {/* Contact Info */}
-          <div className="md:w-1/2 space-y-6 py-8">
+          <div className="flex-1 space-y-6">
+            <h2 className="text-2xl font-bold bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 text-transparent bg-clip-text">
+              Contact Details
+            </h2>
+
             {[
               {
-                icon: <MdEmail className="text-xl" />,
-                color: "blue",
-                text: "md.habiburrahmanjwd@gmail.com",
+                icon: <MdEmail size={20} />,
+                label: "md.habiburrahmanjwd@gmail.com",
               },
               {
-                icon: <FaPhoneAlt className="text-lg" />,
-                color: "green",
-                text: "+880 1742923499",
+                icon: <FaPhoneAlt size={18} />,
+                label: "+880 1742923499",
               },
               {
-                icon: <FaSquareWhatsapp className="text-xl" />,
-                color: "emerald",
-                text: whatsappNumber,
+                icon: <FaSquareWhatsapp size={22} />,
+                label: whatsappNumber,
               },
               {
-                icon: <IoHome className="text-2xl" />,
-                color: "purple",
-                text: "Rajshahi, Bangladesh",
+                icon: <IoHome size={24} />,
+                label: "Rajshahi, Bangladesh",
               },
-            ].map(({ icon, color, text }, i) => (
+            ].map(({ icon, label }, i) => (
               <div
                 key={i}
-                className="flex items-center gap-4 p-4 bg-gray-100 dark:bg-gray-800 rounded-xl shadow-sm hover:shadow-lg transition"
+                className="flex items-center gap-4 p-4 rounded-xl shadow-md hover:scale-105 transition-transform duration-300"
               >
-                <div
-                  className={`p-3 bg-${color}-100 dark:bg-${color}-900 text-${color}-600 dark:text-${color}-300 rounded-full shadow-inner`}
-                >
+                <div className="p-3 bg-gradient-to-tr from-indigo-600 to-purple-600 text-white rounded-full shadow-inner">
                   {icon}
                 </div>
-                <span className="text-gray-700 dark:text-gray-200 break-words">{text}</span>
+                <span className="text-lg text-gray-300">{label}</span>
               </div>
             ))}
           </div>
 
           {/* Contact Form */}
-          <form
+          <forma
             onSubmit={onSubmit}
-            className="md:w-1/2 mt-10 md:mt-0 space-y-6"
+            className="flex-1 rounded-xl  shadow-lg space-y-6"
           >
-            {[
-              {
-                label: "Your Name",
-                name: "name",
-                type: "text",
-                placeholder: "John Doe",
-              },
-              {
-                label: "Your Email",
-                name: "email",
-                type: "email",
-                placeholder: "john@example.com",
-              },
-            ].map(({ label, name, type, placeholder }) => (
-              <div className="space-y-2" key={name}>
-                <label className="block text-gray-700 dark:text-gray-300 font-medium">
-                  {label}
-                </label>
-                <input
-                  name={name}
-                  type={type}
-                  required
-                  placeholder={placeholder}
-                  className="w-full px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-white border border-gray-200 dark:border-gray-700 focus:ring-2 focus:ring-blue-500 focus:outline-none"
-                />
-              </div>
-            ))}
+            <h2 className="text-2xl font-bold bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 text-transparent bg-clip-text">
+              Send a Message
+            </h2>
 
             <div className="space-y-2">
-              <label className="block text-gray-700 dark:text-gray-300 font-medium">Message</label>
+              <label className="text-sm text-gray-300">Your Name</label>
+              <input
+                name="name"
+                type="text"
+                placeholder="Enter your name"
+                required
+                className="w-full px-4 py-3 rounded-xl bg-transparent text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-pink-500 transition"
+              />
+            </div>
+
+            <div className="space-y-2">
+              <label className="text-sm text-gray-300">Your Email</label>
+              <input
+                name="email"
+                type="email"
+                placeholder="Enter your email"
+                required
+                className="w-full px-4 py-3 rounded-xl border border-gray-600 bg-transparent text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-pink-500 transition"
+              />
+            </div>
+
+            <div className="space-y-2">
+              {/* <label className="text-sm text-gray-300">Message</label> */}
               <textarea
                 name="message"
                 rows="5"
-                required
                 placeholder="Write your message..."
-                className="w-full px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-white border border-gray-200 dark:border-gray-700 focus:ring-2 focus:ring-blue-500 focus:outline-none"
-              ></textarea>
+                required
+                className="w-full px-4 py-3 rounded-xl border border-gray-600 bg-transparent text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-pink-500 transition"
+              />
             </div>
 
             <button
               type="submit"
-              className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition duration-300 shadow-md"
+              className="w-full py-3 bg-gradient-to-r from-purple-600 to-pink-500 rounded-lg text-lg font-semibold text-white hover:scale-105 transition-transform duration-300 shadow-xl"
             >
               Send Message
             </button>
-          </form>
+          </forma>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

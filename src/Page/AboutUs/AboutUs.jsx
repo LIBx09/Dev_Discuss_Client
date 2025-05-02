@@ -18,65 +18,69 @@ const AboutUs = () => {
   const remainingItems = teamData.slice(3);
 
   return (
-    <div className="mx-4">
-      <h2 className="md:text-3xl text-xl font-bold text-center">
-        Team PH Polite
-      </h2>
+    <section
+      id="about-us"
+      className="w-full min-h-screen px-4 py-16"
+    >
+      <div className="max-w-6xl mx-auto flex flex-col gap-14">
+        {/* Header */}
+        <div className="text-center">
+          <h1 className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
+            Meet The Team
+          </h1>
+          <p className="text-gray-300 mt-4 max-w-xl mx-auto">
+            The creative minds behind DevDiscuss – passionate developers, designers, and dreamers building something impactful.
+          </p>
+          <div className="mt-4 w-24 h-1 mx-auto bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 rounded-full" />
+        </div>
 
-      {/* First row with grid */}
-      <div className="w-full mx-auto grid grid-cols-1 md:grid-cols-3 gap-10">
-        {firstRowItems.map((data) => (
-          <div
-            key={data.name}
-            className="border-t-8 border-blue-500 mt-8 rounded-2xl shadow-md hover:shadow-blue-300 hover:shadow-xl hover:scale-110 transition-all duration-300"
-          >
-            <div className="flex items-center justify-center py-6">
-              <img
-                className="h-28 w-28 rounded-full border border-blue-500 shadow-[0_0_10px_#006eff] hover:scale-110 transition-all duration-300"
-                src={data.photoUrl}
-                alt=""
-              />
-            </div>
-            <div className="flex items-center justify-center gap-3 pb-2">
-              <a target="_blank" href={data.facebook}><p className="text-blue-500 text-xl"><BsFacebook /></p></a>
-              <a target="_blank" href={data.github}><p className="text-xl"><FaGithub /></p></a>
-              <a target="_blank" href={data.portfolio}><p className="text-lg text-blue-500"><ImProfile /></p></a>
-            </div>
-            <h4 className="text-center">{data.name}</h4>
-            <Link to={`/aboutUsDetails/${data.id}`}>
-              <p className="font-medium text-center pb-4 text-blue-500 hover:underline cursor-pointer hover:text-blue-600 flex items-center justify-center gap-2 "> <span>read more</span> <span className="text-lg pt-1">< BiRightArrowAlt /></span> </p></Link>
-          </div>
-        ))}
-      </div>
-
-      {/* Second row - center items manually */}
-      {remainingItems.length > 0 && (
-        <div className="md:flex justify-center items-center gap-10 mt-6">
-          {remainingItems.map((data) => (
+        {/* Team Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+          {[...firstRowItems, ...remainingItems].map((data) => (
             <div
-              key={data.name}
-              className="md:w-[30%]  border-t-8 border-blue-500 mt-8 rounded-2xl shadow-md hover:shadow-blue-300 hover:shadow-xl hover:scale-110 transition-all duration-300"
+              key={data.id}
+              className="p-6 rounded-2xl shadow-lg hover:shadow-pink-500/30 transition duration-300 hover:scale-105"
             >
-              <div className="flex items-center justify-center py-6">
+              <div className="flex justify-center">
                 <img
-                  className="h-28 w-28 rounded-full border border-blue-500 shadow-[0_0_10px_#006eff] hover:scale-110 transition-all duration-300"
                   src={data.photoUrl}
-                  alt=""
+                  alt={data.name}
+                  className="h-28 w-28 rounded-full border-4 border-purple-500 shadow-[0_0_20px_#a855f7] transition-all duration-300"
                 />
               </div>
-              <div className="flex items-center justify-center gap-3 pb-2">
-                <a target="_blank" href={data.facebook}><p className="text-blue-500 text-xl"><BsFacebook /></p></a>
-                <a target="_blank" href={data.github}><p className="text-xl"><FaGithub /></p></a>
-                <a target="_blank" href={data.portfolio}><p className="text-lg text-blue-500"><ImProfile /></p></a>
+
+              <h3 className="mt-4 text-xl font-semibold text-center bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 bg-clip-text text-transparent">
+                {data.name}
+              </h3>
+
+              <div className="flex justify-center gap-4 mt-3 text-xl text-gray-300">
+                {data.facebook && (
+                  <a href={data.facebook} target="_blank" rel="noreferrer">
+                    <BsFacebook className="hover:text-blue-500 transition" />
+                  </a>
+                )}
+                {data.github && (
+                  <a href={data.github} target="_blank" rel="noreferrer">
+                    <FaGithub className="hover:text-gray-200 transition" />
+                  </a>
+                )}
+                {data.portfolio && (
+                  <a href={data.portfolio} target="_blank" rel="noreferrer">
+                    <ImProfile className="hover:text-purple-400 transition" />
+                  </a>
+                )}
               </div>
-              <h4 className="text-center">{data.name}</h4>
+
               <Link to={`/aboutUsDetails/${data.id}`}>
-                <p className="font-medium hover:underline cursor-pointer text-center pb-4 text-blue-500 hover:text-blue-600 flex items-center justify-center gap-1 "> <span>read more</span> <span className="text-lg pt-1">< BiRightArrowAlt /></span> </p></Link>
+                <p className="mt-4 text-center text-sm font-medium text-purple-400 hover:underline hover:text-pink-400 transition flex items-center justify-center gap-2">
+                  Read More <BiRightArrowAlt className="text-lg" />
+                </p>
+              </Link>
             </div>
           ))}
         </div>
-      )}
-    </div>
+      </div>
+    </section>
   );
 };
 

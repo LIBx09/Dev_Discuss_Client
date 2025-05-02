@@ -58,7 +58,7 @@ const Navbar = () => {
   if (loading) {
     return (
       <div className="flex justify-center items-center h-screen">
-        <span className="loading loading-spinner text-blue-500"></span>
+        <span className="loading loading-spinner text-pink-500"></span>
       </div>
     );
   }
@@ -83,13 +83,13 @@ const Navbar = () => {
   };
 
   return (
-    <div className="relative">
-      <div className="navbar bg-base-100 border-b border-b-gray-300 px-4 dark:bg-slate-900 dark:text-white">
+    <div className="relative text-pink-400">
+      <div className="navbar bg-transparent border-b-gray-300 px-4 dark:bg-slate-900 dark:text-white">
         <div className="navbar-start">
-          <button onClick={() => setIsOpen(!isOpen)} className="btn btn-ghost lg:hidden">
+          <button onClick={() => setIsOpen(!isOpen)} className="btn btn-ghost border-none lg:hidden py-3 bg-gradient-to-r from-purple-600 to-pink-500 rounded-lg text-lg font-semibold text-white hover:scale-105 transition-transform duration-300 shadow-xl">
             {isOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
           </button>
-          <Link to="/" className="btn btn-ghost text-md md:text-xl">
+          <Link to="/" className="hidden sm:flex btn btn-ghost border-none text-md md:text-xl bg-gradient-to-r from-pink-500 to-purple-600 text-transparent bg-clip-text">
             <FaCode />
             Dev_Discuss
           </Link>
@@ -102,16 +102,16 @@ const Navbar = () => {
             placeholder="Search questions..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full max-w-xs px-4 py-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 dark:bg-gray-800 dark:text-white"
+            className="w-full bg-transparent max-w-xs px-4 py-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-400 dark:bg-gray-800 dark:text-white"
           />
           {search.trim() !== "" && (
-            <div className="absolute top-full left-0 bg-white dark:bg-gray-800 w-full border mt-1 rounded shadow-lg z-50">
+            <div className="absolute top-full left-0 bg-transparent/20 dark:bg-gray-800 w-full border mt-1 rounded shadow-lg z-50">
               {filteredResults.length > 0 ? (
                 filteredResults.map((q) => (
                   <Link
                     to={`/questions/${q._id}`}
                     key={q._id}
-                    className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700"
+                    className="block px-4 py-2 hover:bg-transparent/80 dark:hover:bg-gray-700"
                     onClick={() => {
                       setSearch("");
                       setIsOpen(false);
@@ -145,28 +145,24 @@ const Navbar = () => {
                   className="w-12 h-12 rounded-full object-cover"
                 />
               ) : (
-                <FaRegUserCircle className="w-12 h-12 text-gray-600" />
+                <FaRegUserCircle className="w-12 h-12 text-pink-600" />
               )}
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content bg-base-200 rounded-box z-50 mt-3 w-52 p-2 -right-4 shadow-xl dark:bg-gray-800 items-center space-y-3"
+              className="menu menu-sm dropdown-content bg-transparent/50 rounded-box z-50 mt-3 w-52 p-2 -right-4 shadow-xl dark:bg-gray-800 items-center space-y-3"
             >
-              <li><Link to="/blogs">Blogs</Link></li>
-           {isAdmin && <li><Link to="/settings">settings</Link></li>}
-              <li><Link to="/add-blogs">Add Blogs</Link></li>
-              <li><Link to="/aboutUs">About Us</Link></li>
-              <li><Link to="/contactUs">Contact Us</Link></li>
               {user && <li><Link to="/myQuestion">My questions</Link></li>}
               {user && <li><Link to="/myProfile">Dashboard</Link></li>}
               {user && <li><Link to="/leaderboard">Leaderboard</Link></li>}
+              {isAdmin && <li><Link to="/settings">settings</Link></li>}
               {user ? (
                 <li>
-                  <button onClick={handleLogout}>Logout</button>
+                  <button onClick={handleLogout} className="py-1 bg-gradient-to-r from-purple-600 to-pink-500 rounded-lg text-base font-semibold text-white hover:scale-105 transition-transform duration-300 shadow-xl">Logout</button>
                 </li>
               ) : (
                 <li>
-                  <Link to="/login"><button className=" w-full">Login</button></Link>
+                  <Link to="/login"><button className="w-full px-2 py-1 bg-gradient-to-r from-purple-600 to-pink-500 rounded-lg text-base font-semibold text-white hover:scale-105 transition-transform duration-300 shadow-xl">Login</button></Link>
                 </li>
               )}
             </ul>
@@ -176,24 +172,17 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="lg:hidden absolute top-16 left-0 w-full bg-base-300 shadow-md z-10 dark:bg-gray-800 transition-all duration-300">
+        <div className="lg:hidden bg-transparent/80 absolute  top-16 left-0 w-full shadow-md z-10 dark:bg-gray-800 transition-all duration-300">
           <ul className="menu p-4 space-y-2">
             <li><Link to="/"><AiFillHome /> Home</Link></li>
-            <li><Link to="/questions"><FaCircleQuestion /> Questions</Link></li>
             <li><Link to="/tags"><IoMdPricetags /> Tags</Link></li>
-            <li><Link to="/saves"><FaBookmark /> Saves</Link></li>
             <li><Link to="/blogs"><TbLogs /> Blogs</Link></li>
-            {isAdmin && <li><Link to="/settings">  <FiSettings />settings</Link></li>}
+            <li><Link to="/add-blogs"><MdEventNote></MdEventNote>Add Blogs</Link></li>
             <li><Link to="/events"><MdEventNote /> Events</Link></li>
             <li><Link to="/users"><FaUsers /> Users</Link></li>
             <li><Link to="/twinAI"><FaBrain /> TwinAI</Link></li>
             <li><Link to="/aboutUs"><RiFolderUnknowFill /> About Us</Link></li>
             <li><Link to="/contactUs"><IoIosContact /> Contact Us</Link></li>
-            {user ? (
-              <li><button className="btn w-full" onClick={handleLogout}>Logout</button></li>
-            ) : (
-              <li><Link to="/login"><button className="btn w-full">Login</button></Link></li>
-            )}
           </ul>
         </div>
       )}
