@@ -9,7 +9,7 @@ const ManageUser = () => {
   const { data: users, isLoading, refetch } = useQuery({
     queryKey: ["userManage"],
     queryFn: async () => {
-      const { data } = await axios.get(`http://localhost:3000/usersAll`);
+      const { data } = await axios.get(`https://dev-discuss-server-chi.vercel.app/usersAll`);
       return data;
     },
   });
@@ -20,21 +20,21 @@ const ManageUser = () => {
         title: "Are you sure?",
         text: "You want to make her admin!",
         confirmButtonText: "Make Admin!",
-        request: () => axios.patch(`http://localhost:3000/userRole/update/${email}`),
+        request: () => axios.patch(`https://dev-discuss-server-chi.vercel.app/userRole/update/${email}`),
         successText: "Role updated to Admin!",
       },
       removeUser: {
         title: "Are you sure?",
         text: "You want to remove her!",
         confirmButtonText: "Remove User!",
-        request: () => axios.delete(`http://localhost:3000/userRemove/${id}`),
+        request: () => axios.delete(`https://dev-discuss-server-chi.vercel.app/userRemove/${id}`),
         successText: "User removed!",
       },
       updateMembership: {
         title: "Are you sure?",
         text: "You want to update her plans!",
         confirmButtonText: "Upgrade Plan!",
-        request: () => axios.patch(`http://localhost:3000/userMembership/update/${email}`),
+        request: () => axios.patch(`https://dev-discuss-server-chi.vercel.app/userMembership/update/${email}`),
         successText: "Membership upgraded to Premium!",
       },
     };

@@ -1,132 +1,103 @@
-import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
-import React from "react";
-import { BsThreeDots } from "react-icons/bs";
-import Swal from "sweetalert2";
-import LoadingPage from "../Loading/LoadingPage";
+import { useContext, useEffect, useState } from "react";
+import useAxios from "../../MainLayout/Shared/Hooks/useAxios";
+import { Medal } from "lucide-react";
+import AuthContext from "../../Context/AuthContext";
 
-const ManageUser = () => {
-  const { data: users, isLoading, refetch } = useQuery({
-    queryKey: ["userManage"],
-    queryFn: async () => {
-      const { data } = await axios.get("http://localhost:3000/usersAll");
-      return data;
-    },
-  });
+const LeaderBoard = () => {
+  const [topUsers, setTopUsers] = useState([]);
+  const [currentUser, setCurrentUser] = useState(null);
+  const customAxios = useAxios();
+  const { user } = useContext(AuthContext);
 
-  const handleAction = async (action, email, id) => {
-    const confirmActions = {
-      updateRole: {
-        title: "Are you sure?",
-        text: "You want to make her admin!",
-        confirmButtonText: "Make Admin!",
-        request: () => axios.patch(`http://localhost:3000/userRole/update/${email}`),
-        successText: "Role updated to Admin!",
-      },
-      removeUser: {
-        title: "Are you sure?",
-        text: "You want to remove her!",
-        confirmButtonText: "Remove User!",
-        request: () => axios.delete(`http://localhost:3000/userRemove/${id}`),
-        successText: "User removed!",
-      },
-      updateMembership: {
-        title: "Are you sure?",
-        text: "You want to update her plans!",
-        confirmButtonText: "Upgrade Plan!",
-        request: () => axios.patch(`http://localhost:3000/userMembership/update/${email}`),
-        successText: "Membership upgraded to Premium!",
-      },
-    };
-
-    const actionData = confirmActions[action];
-    const result = await Swal.fire({
-      title: actionData.title,
-      text: actionData.text,
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#8e44ad",
-      cancelButtonColor: "#d33",
-      confirmButtonText: actionData.confirmButtonText,
-    });
-
-    if (result.isConfirmed) {
-      await actionData.request();
-      await refetch();
-      Swal.fire("Success!", actionData.successText, "success");
+  useEffect(() => {
+    setTopUsers([]);
+    setCurrentUser(null);
+    if (user?.email) {
+      customAxios
+        .get(`/leaderboard?email=${user.email}`)
+        .then((res) => {
+          setTopUsers(res.data.topUsers);
+          setCurrentUser(res.data.currentUser);
+        })
+        .catch((err) => console.error("Leaderboard fetch error:", err));
     }
-  };
-
-  if (isLoading) return <LoadingPage />;
+  }, [user?.email]);
 
   return (
     <section className="w-full min-h-screen px-4 py-16">
       <div className="max-w-5xl mx-auto flex flex-col gap-12">
         {/* Header */}
         <div className="text-center">
-          <h2 className="text-4xl font-extrabold bg-gradient-to-r from-purple-400 to-pink-600 text-transparent bg-clip-text">
-            Manage Users
+          <h2 className="text-4xl font-extrabold bg-gradient-to-r from-purple-400 to-pink-600 text-transparent bg-clip-text flex items-center justify-center gap-2">
+            <Medal className="w-8 h-8 text-pink-500" /> Top Performers
           </h2>
           <p className="text-gray-300 mt-4 max-w-xl mx-auto">
-            Administer user roles, memberships, and access within DevDiscuss.
+            Celebrate the highest achievers in our DevDiscuss community!
           </p>
           <div className="mt-4 w-24 h-1 mx-auto bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 rounded-full" />
         </div>
 
-        {/* User Cards */}
-        {users?.length === 0 ? (
-          <div className="p-6 text-center text-gray-300">No users found.</div>
-        ) : (
+        {/* Current User */}
+        {currentUser && (
+          <div className="rounded-xl p-6 shadow-xl border-l-4 border-purple-500">
+            <h3 className="text-xl font-bold text-purple-400 mb-4">
+              Your Position
+            </h3>
+            <div className="flex items-center justify-between gap-4">
+              <div className="flex items-center gap-4">
+                <img
+                  src={currentUser.photo || "https://i.ibb.co/vXBkM2q/avatar.png"}
+                  className="w-12 h-12 rounded-full border-2 border-pink-400"
+                  alt="your-avatar"
+                />
+                <div>
+                  <p className="font-semibold text-pink-500">{currentUser.userName}</p>
+                  <p className="text-sm text-gray-400">{currentUser.userEmail}</p>
+                </div>
+              </div>
+              <div className="text-right">
+                <p className="font-semibold text-purple-400">
+                  Rank: {currentUser.rank}
+                </p>
+                <p className="text-sm text-gray-300">{currentUser.points} pts</p>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Leaderboard List */}
+        <div>
+          <h3 className="text-xl font-bold">
+            Top Positions
+          </h3>
           <div className="space-y-4">
-            {users.map((user) => (
+            {topUsers.map((user, idx) => (
               <div
-                key={user._id}
-                className="rounded-xl p-4 shadow-lg border-l-4 border-pink-500 bg-white/5 backdrop-blur-md flex flex-col md:flex-row md:items-center justify-between gap-4 hover:scale-[1.01] transition-transform"
+                key={user.userEmail}
+                className="rounded-xl p-4 shadow-lg border-l-4 border-indigo-500 flex items-center justify-between hover:scale-[1.02] transition-transform duration-300"
               >
                 <div className="flex items-center gap-4">
                   <img
                     src={user.photo || "https://i.ibb.co/vXBkM2q/avatar.png"}
-                    className="w-12 h-12 rounded-full border-2 border-purple-400"
+                    className="w-10 h-10 rounded-full border-2 border-purple-400"
                     alt="user-avatar"
                   />
                   <div>
-                    <p className="font-semibold text-pink-400">{user?.userName || "Not Found"}</p>
-                    <p className="text-sm text-gray-400">{user?.userEmail || "Not Found"}</p>
+                    <p className="font-medium text-pink-500">{user.userName}</p>
+                    <p className="text-sm text-gray-400">{user.userEmail}</p>
                   </div>
                 </div>
-                <div className="text-left md:text-right space-y-1">
-                  <p className="text-sm text-gray-300">Role: <span className="text-purple-400">{user?.role || "Not Found"}</span></p>
-                  <p className="text-sm text-gray-300">Membership: <span className="text-purple-400">{user?.member || "Not Found"}</span></p>
-                </div>
-                <div className="dropdown dropdown-end">
-                  <div tabIndex={0} role="button" className="btn btn-sm btn-outline text-purple-400 border-pink-400 hover:bg-pink-500 hover:text-white">
-                    <BsThreeDots />
-                  </div>
-                  <ul tabIndex={0} className="dropdown-content menu rounded-box z-10 w-52 p-2 bg-white/10 backdrop-blur-md shadow-md border border-purple-500/20 text-sm">
-                    <li>
-                      <button onClick={() => handleAction("updateRole", user?.userEmail, user._id)}>
-                        Make Admin
-                      </button>
-                    </li>
-                    <li>
-                      <button onClick={() => handleAction("updateMembership", user?.userEmail, user._id)}>
-                        Upgrade Membership
-                      </button>
-                    </li>
-                    <li>
-                      <button onClick={() => handleAction("removeUser", user?.userEmail, user._id)}>
-                        Remove User
-                      </button>
-                    </li>
-                  </ul>
+                <div className="text-right">
+                  <p className="font-semibold text-purple-300">Rank: {idx + 1}</p>
+                  <p className="text-sm text-gray-300">{user.points} pts</p>
                 </div>
               </div>
             ))}
           </div>
-        )}
+        </div>
       </div>
     </section>
   );
 };
 
-export default ManageUser;
+export default LeaderBoard;

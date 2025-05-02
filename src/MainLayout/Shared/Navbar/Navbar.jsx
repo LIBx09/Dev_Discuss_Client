@@ -23,12 +23,14 @@ import Swal from "sweetalert2";
 import { FaRegUserCircle, FaTimes } from 'react-icons/fa';
 import useCheckAdmin from "../Hooks/useCheckAdmin";
 import { FiSettings } from "react-icons/fi";
+import { IoBug } from "react-icons/io5";
 
 const Navbar = () => {
   const { user, loading, logout } = useContext(AuthContext);
   const [isOpen, setIsOpen] = useState(false);
   const [search, setSearch] = useState("");
   const [isAdmin]=useCheckAdmin()
+  console.log(isAdmin)
   const [filteredResults, setFilteredResults] = useState([]);
   const dispatch = useDispatch();
   const { questions } = useSelector((state) => state.questions);
@@ -162,7 +164,7 @@ const Navbar = () => {
                 </li>
               ) : (
                 <li>
-                  <Link to="/login"><button className="w-full px-2 py-1 bg-gradient-to-r from-purple-600 to-pink-500 rounded-lg text-base font-semibold text-white hover:scale-105 transition-transform duration-300 shadow-xl">Login</button></Link>
+                  <Link to="/login"><button className=" w-full py-1 bg-gradient-to-r from-purple-600 to-pink-500 rounded-lg text-base font-semibold text-white hover:scale-105 transition-transform duration-300 shadow-xl">Login</button></Link>
                 </li>
               )}
             </ul>
@@ -181,6 +183,7 @@ const Navbar = () => {
             <li><Link to="/events"><MdEventNote /> Events</Link></li>
             <li><Link to="/users"><FaUsers /> Users</Link></li>
             <li><Link to="/twinAI"><FaBrain /> TwinAI</Link></li>
+            <li><Link to="/fixFlow"> <IoBug className="text-lg" /> FixFlow</Link></li>
             <li><Link to="/aboutUs"><RiFolderUnknowFill /> About Us</Link></li>
             <li><Link to="/contactUs"><IoIosContact /> Contact Us</Link></li>
           </ul>

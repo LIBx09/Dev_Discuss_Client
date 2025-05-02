@@ -105,7 +105,7 @@ const AskQuestion = () => {
             <label className="block mb-2 text-lg font-semibold text-purple-300">Tags</label>
             <select
               {...register("tag", { required: true })}
-              className="w-full px-4 py-3 rounded-md bg-slate-900 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-purple-500"
+              className="w-full px-4 py-5 rounded-md bg-transparent/50 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-purple-500"
               defaultValue="default"
               required
             >

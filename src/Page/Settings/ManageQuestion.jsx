@@ -13,7 +13,7 @@ const ManageQuestion = () => {
   const fetchQuestions = async () => {
     setIsLoading(true);
     try {
-      const response = await fetch('http://localhost:3000/questions');
+      const response = await fetch('https://dev-discuss-server-chi.vercel.app/questions');
       const data = await response.json();
       setQuestions(data);
     } catch (error) {
@@ -39,7 +39,7 @@ const ManageQuestion = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          const res = await axios.delete(`http://localhost:3000/question/${id}`);
+          const res = await axios.delete(`https://dev-discuss-server-chi.vercel.app/question/${id}`);
           if (res.status === 200) {
             setQuestions(questions.filter(q => q._id !== id));
           }
