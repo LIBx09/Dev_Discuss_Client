@@ -33,6 +33,7 @@ import Badges from "./Page/MyProfile/Badges";
 import LeaderBoard from "./Page/LeaderBoard/LeaderBoard";
 import Payment from "./Page/Payment/Payment";
 import PaymentSuccess from "./Page/Payment/paymentSuccess";
+import PaymentFail from "./Page/Payment/PaymentFail";
 
 
 const router = createBrowserRouter([
@@ -72,7 +73,8 @@ const router = createBrowserRouter([
       { path: "/myQuestion", element: <MyQuestions></MyQuestions> },
       { path: "/leaderboard", element: <LeaderBoard></LeaderBoard> },
       { path: "/payment", element: <Payment></Payment> },
-      { path: "/payment-success/:tranID", element: <PaymentSuccess></PaymentSuccess> }
+      { path: "/payment-success/:tranID", element: <PaymentSuccess></PaymentSuccess> },
+      {path: "/payment-fail/:tarnID", element: <PaymentFail></PaymentFail>}
     ],
   },
 ]);
