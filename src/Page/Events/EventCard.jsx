@@ -1,4 +1,3 @@
-// src/components/EventCard/EventCard.jsx
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { FaCalendarAlt, FaMapMarkerAlt, FaArrowRight } from "react-icons/fa";
@@ -34,7 +33,12 @@ const EventCard = ({ event, index }) => {
       whileHover="hover"
       className="flex flex-col h-full"
     >
-      <div className="bg-gradient-to-br from-[#0f0c29] via-[#302b63] to-[#24243e] rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden flex flex-col h-full">
+      <div 
+        className="rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden flex flex-col h-full"
+        style={{
+          background: 'color-mix(in srgb, var(--background) 85%, var(--button-bg))'
+        }}
+      >
         {/* Image Section */}
         <div className="relative overflow-hidden h-48">
           <motion.img
@@ -47,28 +51,36 @@ const EventCard = ({ event, index }) => {
         </div>
 
         {/* Content Section */}
-        <div className="p-6 flex flex-col flex-grow text-white">
+        <div className="p-6 flex flex-col flex-grow" style={{color: 'var(--text-color)'}}>
           <h3 className="text-xl font-bold mb-2 line-clamp-2">{title}</h3>
 
-          <div className="flex flex-wrap text-sm text-gray-300 gap-4 mb-3">
+          <div className="flex flex-wrap text-sm gap-4 mb-3" style={{color: 'color-mix(in srgb, var(--text-color) 70%, transparent)'}}>
             <span className="flex items-center gap-2">
-              <FaCalendarAlt className="text-blue-400" />
+              <FaCalendarAlt style={{color: 'var(--button-bg)'}} />
               {new Date(date).toDateString()}
             </span>
             {location && (
               <span className="flex items-center gap-2">
-                <FaMapMarkerAlt className="text-red-400" />
+                <FaMapMarkerAlt style={{color: 'var(--button-hover-bg)'}} />
                 {location}
               </span>
             )}
           </div>
 
-          <p className="text-gray-300 line-clamp-3 mb-4">{description}</p>
+          <p className="line-clamp-3 mb-4" style={{color: 'color-mix(in srgb, var(--text-color) 70%, transparent)'}}>
+            {description}
+          </p>
 
           <div className="mt-auto">
             <Link
               to={`/events/${_id}`}
-              className="inline-flex items-center gap-2 text-pink-400 font-medium hover:text-pink-300 transition"
+              className="inline-flex items-center gap-2 font-medium transition"
+              style={{
+                color: 'var(--button-bg)',
+                '&:hover': {
+                  color: 'var(--button-hover-bg)'
+                }
+              }}
             >
               View Details
               <motion.div

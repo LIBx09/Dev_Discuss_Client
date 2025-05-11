@@ -16,7 +16,7 @@ const Blogs = () => {
       .then((res) => res.json())
       .then((data) => {
         setBlogsState(data);
-        dispatch(setBlogs(data)); // Set globally in Redux
+        dispatch(setBlogs(data));
         setLoading(false);
       })
       .catch((error) => {
@@ -36,17 +36,24 @@ const Blogs = () => {
   };
 
   return (
-    <section className="py-2 px-4 max-w-7xl mx-auto dark:bg-gray-900 dark:text-white transition-colors duration-300">
+    <section 
+      className="py-2 px-4 max-w-7xl mx-auto transition-colors duration-300"
+      style={{
+        background: 'var(--background)',
+        color: 'var(--text-color)'
+      }}
+    >
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
         className="text-center mb-12"
       >
-        <h1 className="bg-gradient-to-r from-pink-500 to-purple-600 text-transparent bg-clip-text text-3xl lg:text-4xl font-bold relative inline-block">
+        <h1 className=" bg-blue-600 text-transparent bg-clip-text text-3xl lg:text-4xl font-bold relative inline-block">
           Blogs
           <motion.div
-            className="absolute bottom-0 left-1/2 h-1 w-full bg-blue-500 rounded-full"
+            className="absolute bottom-0 left-1/2 h-1 w-full rounded-full"
+            style={{ background: 'var(--button-bg)' }}
             initial={{ width: 0, x: "-50%" }}
             animate={{ width: "70%", x: "-50%" }}
             transition={{ delay: 0.3, duration: 0.5 }}

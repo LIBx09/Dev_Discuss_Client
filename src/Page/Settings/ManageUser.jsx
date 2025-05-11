@@ -9,7 +9,7 @@ const ManageUser = () => {
   const { data: users, isLoading, refetch } = useQuery({
     queryKey: ["userManage"],
     queryFn: async () => {
-      const { data } = await axios.get(`http://localhost:3000/usersAll`);
+      const { data } = await axios.get(`https://dev-discuss-server-chi.vercel.app/usersAll`);
       return data;
     },
   });
@@ -20,21 +20,21 @@ const ManageUser = () => {
         title: "Are you sure?",
         text: "You want to make her admin!",
         confirmButtonText: "Make Admin!",
-        request: () => axios.patch(`http://localhost:3000/userRole/update/${email}`),
+        request: () => axios.patch(`https://dev-discuss-server-chi.vercel.app/userRole/update/${email}`),
         successText: "Role updated to Admin!",
       },
       removeUser: {
         title: "Are you sure?",
         text: "You want to remove her!",
         confirmButtonText: "Remove User!",
-        request: () => axios.delete(`http://localhost:3000/userRemove/${id}`),
+        request: () => axios.delete(`https://dev-discuss-server-chi.vercel.app/userRemove/${id}`),
         successText: "User removed!",
       },
       updateMembership: {
         title: "Are you sure?",
         text: "You want to update her plans!",
         confirmButtonText: "Upgrade Plan!",
-        request: () => axios.patch(`http://localhost:3000/userMembership/update/${email}`),
+        request: () => axios.patch(`https://dev-discuss-server-chi.vercel.app/userMembership/update/${email}`),
         successText: "Membership upgraded to Premium!",
       },
     };
@@ -66,19 +66,19 @@ const ManageUser = () => {
       <div className=" mx-auto flex flex-col gap-12">
         {/* Header */}
         <div className="text-center">
-          <h2 className="text-3xl sm:text-4xl font-extrabold bg-gradient-to-r from-purple-400 to-pink-600 text-transparent bg-clip-text">
+          <h2 className="text-3xl sm:text-4xl font-extrabold bg-gradient-to-r from-purple-400 to-blue-600 text-transparent bg-clip-text">
             Manage Users
           </h2>
           <p className="text-gray-300 mt-4 max-w-xl mx-auto text-sm sm:text-base">
             Administer user roles, memberships, and access within DevDiscuss.
           </p>
-          <div className="mt-4 w-24 h-1 mx-auto bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 rounded-full" />
+          <div className="mt-4 w-24 h-1 mx-auto bg-gradient-to-r from-blue-500 via-blue-500 to-indigo-500 rounded-full" />
         </div>
 
         {/* Responsive Table */}
-        <div className="overflow-x-auto rounded-xl shadow-xl border border-purple-600/20 backdrop-blur-lg">
+        <div className="overflow-x-auto rounded-xl shadow-xl border border-blue-600/20 backdrop-blur-lg">
           <table className="w-full text-sm text-left text-gray-300">
-            <thead className="text-xs uppercase bg-gradient-to-r from-purple-800 to-pink-600 text-white">
+            <thead className="text-xs uppercase bg-gradient-to-r from-blue-800 to-blue-600 text-white">
               <tr>
                 <th className="px-4 py-3 sm:px-6 sm:py-4 whitespace-nowrap">Image</th>
                 <th className="px-4 py-3 sm:px-6 sm:py-4 whitespace-nowrap">Name</th>
@@ -93,12 +93,12 @@ const ManageUser = () => {
                 <tr key={user._id} className="hover:bg-purple-900/20 transition-colors">
                   <td className="px-4 py-3 sm:px-6 sm:py-4">
                     <img
-                      className="w-10 h-10 rounded-full border-2 border-pink-400 object-cover"
+                      className="w-10 h-10 rounded-full border-2 border-blue-400 object-cover"
                       src={user?.photo || "https://i.ibb.co/vXBkM2q/avatar.png"}
                       alt="User"
                     />
                   </td>
-                  <td className="px-4 py-3 sm:px-6 sm:py-4 font-semibold text-pink-400 whitespace-nowrap">
+                  <td className="px-4 py-3 sm:px-6 sm:py-4 font-semibold text-blue-400 whitespace-nowrap">
                     {user?.userName || <span className="text-red-500">Not Found</span>}
                   </td>
                   <td className="px-4 py-3 sm:px-6 sm:py-4 whitespace-nowrap">{user?.userEmail || <span className="text-red-500">Not Found</span>}</td>
@@ -106,7 +106,7 @@ const ManageUser = () => {
                   <td className="px-4 py-3 sm:px-6 sm:py-4 whitespace-nowrap">{user?.member || <span className="text-red-500">Not Found</span>}</td>
                   <td className="px-4 py-3 sm:px-6 sm:py-4 whitespace-nowrap">
                     <div className="dropdown dropdown-end">
-                      <div tabIndex={0} role="button" className="btn btn-sm btn-outline text-purple-400 border-pink-400 hover:bg-pink-500 hover:text-white">
+                      <div tabIndex={0} role="button" className="btn btn-sm btn-outline text-blue-400 border-blue-400 hover:bg-blue-300 hover:text-white">
                         <BsThreeDots />
                       </div>
                       <ul tabIndex={0} className="dropdown-content menu rounded-box z-10 w-52 p-2 bg-white/10 backdrop-blur-md shadow-md border border-purple-500/20 text-sm">

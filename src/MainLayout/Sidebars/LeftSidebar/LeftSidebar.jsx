@@ -13,58 +13,54 @@ import { RiFolderUnknowFill } from "react-icons/ri";
 const LeftSidebar = () => {
   const [isAdmin] = useCheckAdmin();
   return (
-    <div className="h-full py-6 px-4 hidden lg:block">
-      <ul className="space-y-3 text-pink-400">
-        <li className="flex items-center gap-2 hover:bg-gray-800 p-3 rounded-md transition duration-300 ease-in-out transform hover:scale-105">
-          <Link to="/" className="flex items-center gap-2 w-full">
-            <AiFillHome className="text-lg" /> Home
-          </Link>
-        </li>
-        <li className="flex items-center gap-2 hover:bg-gray-800 p-3 rounded-md transition duration-300 ease-in-out transform hover:scale-105">
-          <Link to="/tags" className="flex items-center gap-2 w-full">
-            <IoMdPricetags className="text-lg" /> Tags
-          </Link>
-        </li>
-        <li className="flex items-center gap-2 hover:bg-gray-800 p-3 rounded-md transition duration-300 ease-in-out transform hover:scale-105">
-          <Link to="/blogs" className="flex items-center gap-2 w-full">
-            <TbLogs className="text-lg" /> Blogs
-          </Link>
-        </li>
-        <li className="flex items-center gap-2 hover:bg-gray-800 p-3 rounded-md transition duration-300 ease-in-out transform hover:scale-105">
-          <Link to="/events" className="flex items-center gap-2 w-full">
-            <MdEventNote className="text-lg" /> Events
-          </Link>
-        </li>
-        <li className="flex items-center gap-2 hover:bg-gray-800 p-3 rounded-md transition duration-300 ease-in-out transform hover:scale-105">
-          <Link to="/twinAI" className="flex items-center gap-2 w-full">
-            <FaBrain className="text-lg" /> TwinAI
-          </Link>
-        </li>
-        <li className="flex items-center gap-2 hover:bg-gray-800 p-3 rounded-md transition duration-300 ease-in-out transform hover:scale-105">
-          <Link to="/fixFlow" className="flex items-center gap-2 w-full">
-            <IoBug className="text-lg" /> FixFlow
-          </Link>
-        </li>
-        <li className="flex items-center gap-2 hover:bg-gray-800 p-3 rounded-md transition duration-300 ease-in-out transform hover:scale-105">
-          <Link to="/users" className="flex items-center gap-2 w-full">
-            <FaUsers className="text-lg" /> Users
-          </Link>
-        </li>
-        <li className="flex items-center gap-2 hover:bg-gray-800 p-3 rounded-md transition duration-300 ease-in-out transform hover:scale-105">
-          <Link to="/aboutUs" className="flex items-center gap-2 w-full">
-          <RiFolderUnknowFill/>  About Us
-          </Link>
-        </li>
-        <li className="flex items-center gap-2 hover:bg-gray-800 p-3 rounded-md transition duration-300 ease-in-out transform hover:scale-105">
-          <Link to="/contactUs" className="flex items-center gap-2 w-full">
-           <IoIosContact/> Contact Us
-          </Link>
-        </li>
+    <div 
+      className="h-full py-6 px-4 hidden lg:block"
+      style={{ background: 'var(--background)' }}
+    >
+      <ul className="space-y-3" style={{ color: 'var(--button-bg)' }}>
+        {[
+          { to: "/", icon: <AiFillHome className="text-lg" />, text: "Home" },
+         
+          { to: "/tags", icon: <IoMdPricetags className="text-lg" />, text: "Tags" },
+          { to: "/blogs", icon: <TbLogs className="text-lg" />, text: "Blogs" },
+          { to: "/events", icon: <MdEventNote className="text-lg" />, text: "Events" },
+          { to: "/twinAI", icon: <FaBrain className="text-lg" />, text: "TwinAI" },
+          { to: "/fixFlow", icon: <IoBug className="text-lg" />, text: "FixFlow" },
+          { to: "/users", icon: <FaUsers className="text-lg" />, text: "Users" },
+          { to: "/aboutUs", icon: <RiFolderUnknowFill />, text: "About Us" },
+          { to: "/contactUs", icon: <IoIosContact />, text: "Contact Us" },
+        ].map((item, index) => (
+          <li 
+            key={index}
+            className="p-3 rounded-md transition duration-300 ease-in-out transform hover:scale-105"
+            style={{
+              backgroundColor: 'var(--background)',
+              '&:hover': {
+                backgroundColor: 'var(--button-hover-bg)',
+                opacity: 0.8
+              }
+            }}
+          >
+            <Link 
+              to={item.to} 
+              className="flex items-center gap-2 w-full"
+              style={{ color: 'var(--text-color)' }}
+            >
+              {item.icon} {item.text}
+            </Link>
+          </li>
+        ))}
       </ul>
 
+      {/* Mobile dropdown menu */}
       <div>
         <div className="dropdown">
-          <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+          <div 
+            tabIndex={0} 
+            role="button" 
+            className="btn btn-ghost lg:hidden"
+            style={{ color: 'var(--text-color)' }}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-5 w-5"
@@ -82,60 +78,42 @@ const LeftSidebar = () => {
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content bg-gray-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+            className="menu menu-sm dropdown-content z-1 mt-3 w-52 p-2 shadow"
+            style={{ 
+              background: 'var(--background)',
+              color: 'var(--text-color)'
+            }}
           >
-            <li className="flex items-center gap-2 hover:bg-gray-900 hover:text-white p-2 rounded-md">
-              <Link to="/" className="flex items-center gap-2 w-full">
-                <AiFillHome className="text-lg" /> Home
-              </Link>
-            </li>
-            <li className="flex items-center gap-2 hover:bg-gray-900 hover:text-white p-2 rounded-md">
-              <Link to="/questions" className="flex items-center gap-2 w-full">
-                <FaCircleQuestion className="text-lg" /> Questions
-              </Link>
-            </li>
-            <li className="flex items-center gap-2 hover:bg-gray-900 hover:text-white p-2 rounded-md">
-              <Link to="/tags" className="flex items-center gap-2 w-full">
-                <IoMdPricetags className="text-lg" /> Tags
-              </Link>
-            </li>
-            <li className="flex items-center gap-2 hover:bg-gray-900 hover:text-white p-2 rounded-md">
-              <Link to="/saves" className="flex items-center gap-2 w-full">
-                <FaBookmark className="text-lg" /> Saves
-              </Link>
-            </li>
-            <li className="flex items-center gap-2 hover:bg-gray-900 hover:text-white p-2 rounded-md">
-              <Link to="/blogs" className="flex items-center gap-2 w-full">
-                <TbLogs className="text-lg" /> Blogs
-              </Link>
-            </li>
-            <li className="flex items-center gap-2 hover:bg-gray-900 hover:text-white p-2 rounded-md">
-              <Link to="/twinAI" className="flex items-center gap-2 w-full">
-                <FaBrain className="text-lg" /> TwinAI
-              </Link>
-            </li>
-            <li className="flex items-center gap-2 hover:bg-gray-900 hover:text-white p-2 rounded-md">
-              <Link to="/fixFlow" className="flex items-center gap-2 w-full">
-                <IoBug className="text-lg" /> FixFlow
-              </Link>
-            </li>
-            <li className="flex items-center gap-2 hover:bg-gray-900 hover:text-white p-2 rounded-md">
-              <Link to="/events" className="flex items-center gap-2 w-full">
-                <MdEventNote className="text-lg" /> Events
-              </Link>
-            </li>
-            <li className="flex items-center gap-2 hover:bg-gray-900 hover:text-white p-2 rounded-md">
-              <Link to="/users" className="flex items-center gap-2 w-full">
-                <FaUsers className="text-lg" /> Users
-              </Link>
-            </li>
-            {isAdmin && (
-              <li className="flex items-center gap-2 hover:bg-gray-900 hover:text-white p-2 rounded-md">
-                <Link to="/settings" className="flex items-center gap-2 w-full">
-                  <FiSettings className="text-lg" /> Settings
+            {[
+              { to: "/", icon: <AiFillHome className="text-lg" />, text: "Home" },
+              { to: "/questions", icon: <FaCircleQuestion className="text-lg" />, text: "Questions" },
+              { to: "/tags", icon: <IoMdPricetags className="text-lg" />, text: "Tags" },
+              { to: "/saves", icon: <FaBookmark className="text-lg" />, text: "Saves" },
+              { to: "/blogs", icon: <TbLogs className="text-lg" />, text: "Blogs" },
+              { to: "/twinAI", icon: <FaBrain className="text-lg" />, text: "TwinAI" },
+              { to: "/fixFlow", icon: <IoBug className="text-lg" />, text: "FixFlow" },
+              { to: "/events", icon: <MdEventNote className="text-lg" />, text: "Events" },
+              { to: "/users", icon: <FaUsers className="text-lg" />, text: "Users" },
+              ...(isAdmin ? [{ to: "/settings", icon: <FiSettings className="text-lg" />, text: "Settings" }] : [])
+            ].map((item, index) => (
+              <li 
+                key={index}
+                className="p-2 rounded-md"
+                style={{
+                  '&:hover': {
+                    backgroundColor: 'var(--button-hover-bg)',
+                    color: 'var(--button-text)'
+                  }
+                }}
+              >
+                <Link 
+                  to={item.to} 
+                  className="flex items-center gap-2 w-full"
+                >
+                  {item.icon} {item.text}
                 </Link>
               </li>
-            )}
+            ))}
           </ul>
         </div>
       </div>

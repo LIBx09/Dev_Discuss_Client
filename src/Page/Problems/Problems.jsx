@@ -39,8 +39,8 @@ const Problems = () => {
     <div className="container mx-auto px-4 py-8">
       <div className="bg-transparent rounded-lg shadow-md p-6 mb-8">
         <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-          <h1 className="text-2xl bg-gradient-to-r from-pink-500 to-purple-600 text-transparent bg-clip-text md:text-3xl font-bold flex items-center gap-3 text-gray-900">
-            <GiMightyForce className="text-pink-600" />
+          <h1 className="text-2xl bg-gradient-to-r from-blue-500 to-blue-600 text-transparent bg-clip-text md:text-3xl font-bold flex items-center gap-3 text-gray-900">
+            <GiMightyForce className="text-blue-600" />
             Dev Discuss Problem Solving
           </h1>
           
@@ -50,7 +50,7 @@ const Problems = () => {
               className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
                 activeFilter === 'all' 
                   ? 'border text-blue-600 shadow' 
-                  : 'text-gray-700 hover:bg-pink-400'
+                  : 'text-gray-700 hover:bg-blue-400'
               }`}
             >
               All Problems
@@ -59,7 +59,7 @@ const Problems = () => {
               onClick={() => setActiveFilter('unlocked')}
               className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
                 activeFilter === 'unlocked' 
-                  ? 'border text-pink-600 shadow' 
+                  ? 'border text-blue-600 shadow' 
                   : 'text-gray-700 hover:bg-pink-400-200'
               }`}
             >
@@ -73,7 +73,7 @@ const Problems = () => {
           <div className="flex items-center gap-2">
             <span className="text-sm text-gray-500">Total Problems: {allProblems.length}</span>
             <span className="w-1 h-1 border rounded-full"></span>
-            <span className="text-sm text-pink-600 font-medium">Unlocked: {currentProblemIndex + 1}</span>
+            <span className="text-sm text-blue-600 font-medium">Unlocked: {currentProblemIndex + 1}</span>
           </div>
         </div>
       </div> 

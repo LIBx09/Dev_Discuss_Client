@@ -13,7 +13,7 @@ const ManageQuestion = () => {
   const fetchQuestions = async () => {
     setIsLoading(true);
     try {
-      const response = await fetch('http://localhost:3000/questions');
+      const response = await fetch('https://dev-discuss-server-chi.vercel.app/questions');
       const data = await response.json();
       setQuestions(data);
     } catch (error) {
@@ -39,7 +39,7 @@ const ManageQuestion = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          const res = await axios.delete(`http://localhost:3000/question/${id}`);
+          const res = await axios.delete(`https://dev-discuss-server-chi.vercel.app/question/${id}`);
           if (res.status === 200) {
             setQuestions(questions.filter(q => q._id !== id));
           }
@@ -70,7 +70,7 @@ const ManageQuestion = () => {
       <div className="max-w-5xl mx-auto flex flex-col gap-10">
         {/* Header */}
         <div className="text-center">
-          <h2 className="text-4xl font-extrabold bg-gradient-to-r from-purple-400 to-pink-600 text-transparent bg-clip-text">
+          <h2 className="text-4xl font-extrabold bg-gradient-to-r from-blue-400 to-blue-600 text-transparent bg-clip-text">
             Manage Questions
           </h2>
           <p className="text-gray-300 mt-4 max-w-xl mx-auto">
@@ -82,7 +82,7 @@ const ManageQuestion = () => {
         {/* Sort Dropdown */}
         <div className="relative self-end">
           <button 
-            className="px-4 py-3 rounded-xl border border-gray-600 bg-transparent text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-pink-500 transition"
+            className="px-4 py-3 rounded-xl border border-gray-600 bg-transparent text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
             onClick={() => setIsDropdownOpen(!isDropdownOpen)}
           >
             Sort by: {sortBy.charAt(0).toUpperCase() + sortBy.slice(1)}
@@ -108,10 +108,10 @@ const ManageQuestion = () => {
           {sortedQuestions.map((question) => (
             <div
               key={question._id}
-              className="rounded-xl bg-gradient-to-r from-purple-400 to-pink-600 text-transparent bg-clip-text p-5 shadow-lg border-l-4 border-pink-500 bg-white flex justify-between items-center hover:scale-[1.02] transition-transform duration-300"
+              className="rounded-xl bg-gradient-to-r from-blue-400 to-blue-600 text-transparent bg-clip-text p-5 shadow-lg border-l-4 border-blue-500 bg-white flex justify-between items-center hover:scale-[1.02] transition-transform duration-300"
             >
               <div className="flex-1">
-                <h3 className="text-lg font-semibold text-pink-500"b>
+                <h3 className="text-lg font-semibold text-blue-500">
                   {question.title}
                 </h3>
                 <div className="text-sm text-gray-500 mt-1 flex gap-6">

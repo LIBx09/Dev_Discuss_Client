@@ -30,11 +30,11 @@ const Questions = () => {
       >
         {/* Header */}
         <div className="text-center mb-10">
-          <h2 className="text-4xl font-extrabold bg-gradient-to-r from-purple-400 to-pink-600 text-transparent bg-clip-text">
+          <h2 className="text-4xl font-extrabold bg-gradient-to-r from-blue-400 to-blue-600 text-transparent bg-clip-text">
             All Questions
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 mx-auto mt-2 mb-4 rounded-full"></div>
-          <p className="text-lg text-gray-300">
+          <div className="w-24 h-1 bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 mx-auto mt-2 mb-4 rounded-full"></div>
+          <p className="text-lg text-gray-400">
             Explore the most interesting questions from our community.
           </p>
         </div>
@@ -51,19 +51,19 @@ const Questions = () => {
                 key={question._id}
                 whileHover={{ scale: 1.02 }}
                 transition={{ duration: 0.3 }}
-                className="bg-gradient-to-br from-[#1f1f2e] via-[#2a2850] to-[#302b63] p-6 rounded-xl shadow-lg border-pink-500 border-l-4 hover:scale-[1.01] transition-transform duration-300"
+                className="bg-[var(--background)] p-6 rounded-xl shadow-md border-l-4 border-[var(--button-bg)] hover:scale-[1.01] transition-transform duration-300"
               >
                 <Link to={`/questions/${question._id}`}>
-                  <h3 className="text-2xl font-bold bg-gradient-to-r from-pink-500 to-purple-600 bg-clip-text text-transparent hover:underline transition-colors">
+                  <h3 className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent hover:underline transition-colors">
                     {question.title}
                   </h3>
                 </Link>
-                <div className="flex flex-wrap items-center justify-between mt-4 text-sm text-purple-400">
-                  <span className="px-3 py-1 bg-gradient-to-r from-pink-500 to-purple-500 text-white text-xs rounded-full font-semibold shadow">
+                <div className="flex flex-wrap items-center justify-between mt-4 text-sm text-blue-400">
+                  <span className="px-3 py-1 bg-gradient-to-r from-blue-400 to-blue-600 text-white text-xs rounded-full font-semibold shadow">
                     {question.tag}
                   </span>
                   <span>
-                    Date: <span className="text-purple-400">{question.date}</span>
+                    Date: <span className="text-blue-400">{question.date}</span>
                   </span>
                 </div>
               </motion.div>

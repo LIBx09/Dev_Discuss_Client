@@ -15,9 +15,7 @@ const BlogDetails = () => {
     setLoading(true);
     fetch(`https://dev-discuss-server-chi.vercel.app/blogs/${id}`)
       .then((res) => {
-        if (!res.ok) {
-          throw new Error("Blog not found");
-        }
+        if (!res.ok) throw new Error("Blog not found");
         return res.json();
       })
       .then((data) => {
@@ -40,18 +38,30 @@ const BlogDetails = () => {
   };
 
   if (loading) {
-    return <p className="text-center text-xl text-white mt-20">Loading blog...</p>;
+    return (
+      <p className="text-center text-xl text-[var(--text-color)] mt-20">
+        Loading blog...
+      </p>
+    );
   }
 
   if (!blog) {
-    return <p className="text-center text-red-500 text-xl mt-20">Blog not found.</p>;
+    return (
+      <p className="text-center text-red-500 text-xl mt-20">
+        Blog not found.
+      </p>
+    );
   }
 
   return (
-    <div className="min-h-screen px-4 py-16">
+    <div className="min-h-screen px-4 py-16 bg-[var(--background)] text-[var(--text-color)]">
       <div className="max-w-4xl mx-auto">
         <div className="mb-10">
-          <img src={blog.image} className="rounded-2xl h-96 w-full object-cover" alt={blog.title} />
+          <img
+            src={blog.image}
+            className="rounded-2xl h-96 w-full object-cover"
+            alt={blog.title}
+          />
 
           <div className="flex items-center justify-center gap-6 mt-4">
             <div className="flex items-center gap-2 text-blue-400">
@@ -70,13 +80,19 @@ const BlogDetails = () => {
         </div>
 
         <div className="mt-5 space-y-6">
-          <h1 className="text-3xl lg:text-5xl font-bold mb-4">{blog.title}</h1>
+          <h1 className="text-3xl lg:text-5xl font-bold mb-4">
+            {blog.title}
+          </h1>
+
           <p className="text-[#749B3F] w-fit text-center bg-lime-100 rounded-xl text-black px-4 py-2">
             by {blog.author}
           </p>
 
           <p className="text-justify">{blog.content}</p>
-          <p className="text-gray-300"><strong>Date:</strong> {blog.date}</p>
+
+          <p className="text-gray-500 dark:text-gray-400">
+            <strong>Date:</strong> {blog.date}
+          </p>
 
           {/* Action Buttons */}
           <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">

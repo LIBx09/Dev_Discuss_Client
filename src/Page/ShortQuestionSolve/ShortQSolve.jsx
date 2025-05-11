@@ -53,7 +53,7 @@ const ShortQSolve = () => {
 
   return (
     <div className="max-w-4xl mx-auto p-4 md:p-6">
-      <div className="bg-gradient-to-br from-[#0f0c29] via-[#302b63] to-[#24243e] text-white rounded-2xl shadow-2xl p-6 md:p-8 hover:shadow-pink-500 transition-all duration-300 border-t-4 border-pink-500">
+      <div className="bg-gradient-to-br from-gray-800 via-blue-900 to-blue-950 text-white rounded-2xl shadow-2xl p-6 md:p-8 hover:shadow-blue-500 transition-all duration-300 border-t-4 border-blue-500">
         
         {/* Header */}
         <div className="mb-6">
@@ -76,7 +76,7 @@ const ShortQSolve = () => {
             >
               {level}
             </span>
-            <span className="bg-purple-600 bg-opacity-20 text-purple-300 px-3 py-1 rounded-full text-xs font-medium flex items-center gap-1">
+            <span className="bg-blue-600 bg-opacity-20 text-blue-300 px-3 py-1 rounded-full text-xs font-medium flex items-center gap-1">
               <Clock size={14} /> 5 mins
             </span>
           </div>
@@ -103,7 +103,7 @@ const ShortQSolve = () => {
                 value={answer}
                 onChange={(e) => setAnswer(e.target.value)}
                 placeholder="Write your code here..."
-                className="w-full p-4 rounded-xl bg-white/10 text-white font-mono text-sm focus:ring-2 focus:ring-pink-500 focus:outline-none transition-all resize-none"
+                className="w-full p-4 rounded-xl bg-white/10 text-white font-mono text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all resize-none"
               />
               <div className="absolute bottom-3 right-3 text-xs text-gray-400">
                 {answer.split('\n').length} / 200 lines
@@ -125,7 +125,7 @@ const ShortQSolve = () => {
               className={`flex items-center gap-2 px-6 py-3 rounded-xl text-white font-semibold transition-all text-sm ${
                 isSubmitting || answer.trim() === ''
                   ? 'bg-gray-500 cursor-not-allowed'
-                  : 'bg-gradient-to-r from-pink-500 to-indigo-500 hover:shadow-lg hover:scale-[1.03]'
+                  : 'bg-gradient-to-r from-blue-500 to-indigo-500 hover:shadow-lg hover:scale-[1.03]'
               }`}
             >
               {isSubmitting ? (

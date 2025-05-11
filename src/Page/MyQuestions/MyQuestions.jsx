@@ -12,7 +12,7 @@ const MyQuestions = () => {
   const axios = useAxios();
 
   const { data: questions = [], refetch } = useQuery({
-    queryKey: ["userQuestions"],
+    queryKey: ["userQuestions",user.email],
     queryFn: async () => {
       const { data } = await axios(`/userQuestions?email=${user?.email}`);
       return data;
@@ -25,7 +25,7 @@ const MyQuestions = () => {
       text: "You won't be able to revert this!",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#8B5CF6",
+      confirmButtonColor: "#3b82f6",
       cancelButtonColor: "#EF4444",
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
@@ -54,7 +54,7 @@ const MyQuestions = () => {
       <div className="max-w-5xl mx-auto">
         {questions.length > 0 ? (
           <div>
-            <h3 className="text-3xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500 mb-8">
+            <h3 className="text-3xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600 mb-8">
               My Questions
             </h3>
 
@@ -62,15 +62,15 @@ const MyQuestions = () => {
               {questions.map((item) => (
                 <div
                   key={item._id}
-                  className="p-5 rounded-2xl shadow-lg hover:shadow-purple-500/30 transition transform hover:scale-105 duration-300"
+                  className="p-5 rounded-2xl shadow-lg hover:shadow-blue-500/30 transition transform hover:scale-105 duration-300"
                 >
                   <Link
                     to={`/questions/${item._id}`}
-                    className="text-lg font-semibold text-pink-400 hover:text-purple-400 transition"
+                    className="text-lg font-semibold text-blue-400 hover:text-blue-600 transition"
                   >
                     {item.title}
                   </Link>
-                  <div className="mt-3 flex justify-between items-center text-sm text-gray-300">
+                  <div className="mt-3 flex justify-between items-center text-sm text-gray-400">
                     <div>
                       <span className="mr-2">🏷 Tag: {item.tag}</span> |{" "}
                       <span className="ml-2">📅 {item.date}</span>
@@ -88,7 +88,7 @@ const MyQuestions = () => {
           </div>
         ) : (
           <div className="text-center mt-16">
-            <p className="text-xl text-gray-300 mb-4">You haven't added any questions yet.</p>
+            <p className="text-xl text-gray-400 mb-4">You haven't added any questions yet.</p>
             <img
               className="mx-auto w-60 h-auto rounded-xl shadow-md"
               src={noQuestionImg}

@@ -1,20 +1,63 @@
-/* Optional: Add custom styles here */
+/* Importing a cursive font from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-.font{
-    font-family: cursive;
+
+
+
+/* Theme variables */
+:root[data-theme='light'] {
+  --background: #f9fafb; /* Light gray-white for light theme */
+  --text-color: #111827; /* Near-black for readability */
+  --button-bg: #3b82f6; /* Vibrant blue for buttons */
+  --button-text: #ffffff; /* White text for buttons */
+  --button-hover-bg: #2563eb; /* Darker blue on hover */
 }
 
-/* index.css or global.css */
-.light-theme {
-    background: linear-gradient(to bottom right, #0f0c29, #302b63, #24243e);
-    min-height: 100vh;
-    color: white;
-  }
-  
-  .dark-theme {
-    background: linear-gradient(to bottom right, #0f0c29, #302b63, #24243e);
-    min-height: 100vh;
-    color: white;
-  }
+:root[data-theme='dark'] {
+  --background: #111desk827; /* Dark gray for dark theme */
+  --text-color: #f9fafb; /* White for text */
+  --button-bg: #3b82f6; /* Same blue for consistency */
+  --button-text: #ffffff; /* White text for buttons */
+  --button-hover-bg: #2563eb; /* Darker blue on hover */
+}
+
+/* Apply theme styles */
+body {
+  background: var(--background);
+  color: var(--text-color);
+  min-height: 100vh;
+  transition: background 0.3s ease, color 0.3s ease; /* Smooth theme switch */
+}
+
+/* Button styles */
+.btn {
+  @apply px-4 py-2 rounded-md text-sm font-medium;
+  background: var(--button-bg);
+  color: var(--button-text);
+  transition: background 0.2s ease;
+}
+
+.btn:hover {
+  background: var(--button-hover-bg);
+}
+
+/* Optional: Subtle gradient for light theme */
+:root[data-theme='light'] body {
+  background: linear-gradient(to bottom right, #f9fafb, #e5e7eb);
+}
+
+/* Optional: Subtle gradient for dark theme */
+:root[data-theme='dark'] body {
+  background: linear-gradient(to bottom right, #111827, #1f2937);
+}
+
+
+
+/* 
+
+my whole team project was ready but my one team member sudden change whole theme of our website now I want to change the whole website and I have been ready index.css file I will send you one by one component please rewrite the theme according to my css file don't change any code or don't touch any functionality just change the color the website will give a blue vibe not pink or purple color I want color like bg-blue-500 here is my index.css file and i will send you components one by one
+
+*/

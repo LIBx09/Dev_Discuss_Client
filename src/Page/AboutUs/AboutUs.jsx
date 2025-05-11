@@ -20,18 +20,19 @@ const AboutUs = () => {
   return (
     <section
       id="about-us"
-      className="w-full min-h-screen px-4 py-16"
+      className="w-full min-h-screen px-4 py-16 bg-[var(--background)]"
     >
       <div className="max-w-6xl mx-auto flex flex-col gap-14">
         {/* Header */}
         <div className="text-center">
-          <h1 className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
+          <h1 className="text-4xl font-extrabold text-[var(--button-bg)]">
             Meet The Team
           </h1>
-          <p className="text-gray-300 mt-4 max-w-xl mx-auto">
-            The creative minds behind DevDiscuss – passionate developers, designers, and dreamers building something impactful.
+          <p className="text-[var(--text-color)]/70 mt-4 max-w-xl mx-auto">
+            The creative minds behind DevDiscuss – passionate developers,
+            designers, and dreamers building something impactful.
           </p>
-          <div className="mt-4 w-24 h-1 mx-auto bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 rounded-full" />
+          <div className="mt-4 w-24 h-1 mx-auto bg-[var(--button-bg)] rounded-full" />
         </div>
 
         {/* Team Grid */}
@@ -39,40 +40,40 @@ const AboutUs = () => {
           {[...firstRowItems, ...remainingItems].map((data) => (
             <div
               key={data.id}
-              className="p-6 rounded-2xl shadow-lg hover:shadow-pink-500/30 transition duration-300 hover:scale-105"
+              className="p-6 rounded-2xl shadow-md hover:shadow-lg transition duration-300 hover:scale-105 border border-[var(--text-color)]/20"
             >
               <div className="flex justify-center">
                 <img
                   src={data.photoUrl}
                   alt={data.name}
-                  className="h-28 w-28 rounded-full border-4 border-purple-500 shadow-[0_0_20px_#a855f7] transition-all duration-300"
+                  className="h-28 w-28 rounded-full border-4 border-[var(--button-bg)] shadow-[0_0_20px_var(--button-bg)] transition-all duration-300"
                 />
               </div>
 
-              <h3 className="mt-4 text-xl font-semibold text-center bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 bg-clip-text text-transparent">
+              <h3 className="mt-4 text-xl font-semibold text-center text-[var(--button-bg)]">
                 {data.name}
               </h3>
 
-              <div className="flex justify-center gap-4 mt-3 text-xl text-gray-300">
+              <div className="flex justify-center gap-4 mt-3 text-xl text-[var(--text-color)]">
                 {data.facebook && (
                   <a href={data.facebook} target="_blank" rel="noreferrer">
-                    <BsFacebook className="hover:text-blue-500 transition" />
+                    <BsFacebook className="hover:text-[var(--button-bg)] transition" />
                   </a>
                 )}
                 {data.github && (
                   <a href={data.github} target="_blank" rel="noreferrer">
-                    <FaGithub className="hover:text-gray-200 transition" />
+                    <FaGithub className="hover:text-[var(--button-bg)] transition" />
                   </a>
                 )}
                 {data.portfolio && (
                   <a href={data.portfolio} target="_blank" rel="noreferrer">
-                    <ImProfile className="hover:text-purple-400 transition" />
+                    <ImProfile className="hover:text-[var(--button-bg)] transition" />
                   </a>
                 )}
               </div>
 
               <Link to={`/aboutUsDetails/${data.id}`}>
-                <p className="mt-4 text-center text-sm font-medium text-purple-400 hover:underline hover:text-pink-400 transition flex items-center justify-center gap-2">
+                <p className="mt-4 text-center text-sm font-medium text-[var(--button-bg)] hover:underline hover:text-[var(--button-hover-bg)] transition flex items-center justify-center gap-2">
                   Read More <BiRightArrowAlt className="text-lg" />
                 </p>
               </Link>

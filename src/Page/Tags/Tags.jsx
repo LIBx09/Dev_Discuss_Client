@@ -40,13 +40,13 @@ const Tags = () => {
       <div className="max-w-6xl mx-auto flex flex-col gap-12">
         {/* Header */}
         <div className="text-center">
-          <h2 className="text-4xl font-extrabold bg-gradient-to-r from-purple-400 to-pink-600 text-transparent bg-clip-text flex items-center justify-center gap-2">
-            <Tag className="w-8 h-8 text-pink-500" /> Explore Popular Tags
+          <h2 className="text-4xl font-extrabold bg-gradient-to-r from-blue-400 to-blue-600 text-transparent bg-clip-text flex items-center justify-center gap-2">
+            <Tag className="w-8 h-8 text-blue-500" /> Explore Popular Tags
           </h2>
           <p className="text-gray-300 mt-4 max-w-xl mx-auto">
             Discover topics loved by the DevDiscuss community!
           </p>
-          <div className="mt-4 w-24 h-1 mx-auto bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 rounded-full" />
+          <div className="mt-4 w-24 h-1 mx-auto bg-gradient-to-r from-blue-500 via-blue-500 to-indigo-500 rounded-full" />
         </div>
 
         {/* Search Bar */}
@@ -56,7 +56,7 @@ const Tags = () => {
             placeholder="Search for tags..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full px-4 py-3 rounded-xl border border-gray-600 bg-transparent text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-pink-500 transition"
+            className="w-full px-4 py-3 rounded-xl border border-gray-600 bg-transparent text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
           />
         </div>
 
@@ -70,10 +70,10 @@ const Tags = () => {
                 className={`p-4 rounded-xl cursor-pointer shadow-md border-l-4 transition-all duration-300 hover:scale-105 ${
                   selectedTag === tagData.tag ? 
                   "border-indigo-500 bg-transparent" :
-                  "border-pink-500 bg-transparent"
+                  "border-blue-500 bg-transparent"
                 }`}
               >
-                <h3 className="text-md font-semibold text-purple-300 truncate">
+                <h3 className="text-md font-semibold text-blue-500 truncate">
                   {tagData.tag}
                 </h3>
                 <p className="text-sm text-gray-400">{tagData.count} questions</p>
@@ -91,7 +91,7 @@ const Tags = () => {
           <div className="text-right">
             <button
               onClick={() => setSelectedTag(null)}
-              className="text-sm text-pink-400 hover:underline"
+              className="text-sm text-blue-400 hover:underline"
             >
               ✖ Clear Filter
             </button>
@@ -101,7 +101,7 @@ const Tags = () => {
         {/* Tagged Questions */}
         {selectedTag && (
           <div>
-            <h3 className="text-2xl font-bold bg-gradient-to-r  from-purple-400 to-pink-600 text-transparent bg-clip-text mb-4">
+            <h3 className="text-2xl font-bold bg-gradient-to-r  from-blue-400 to-blue-600 text-transparent bg-clip-text mb-4">
               Questions tagged with {selectedTag}
             </h3>
 
@@ -116,11 +116,11 @@ const Tags = () => {
                       className="p-5 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300"
                     >
                       <Link to={`/questions/${question._id}`}>
-                        <h4 className="text-lg font-semibold bg-gradient-to-r from-pink-500 to-purple-600 text-transparent bg-clip-text hover:underline mb-1">
+                        <h4 className="text-lg font-semibold bg-gradient-to-r from-blue-500 to-blue-600 text-transparent bg-clip-text hover:underline mb-1">
                           {question.title}
                         </h4>
                       </Link>
-                      <p className="text-sm text-gray-300 line-clamp-2">{question.body}</p>
+                      <p className="text-sm text-gray-500 line-clamp-2">{question.body}</p>
                     </div>
                   ))
                 ) : (

@@ -13,8 +13,8 @@ const ProblemSolve = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const editorRef = useRef(null);
-  const [nextButton,setNextButton]=useState(false)
-  const {user}= useContext(AuthContext)
+  const [nextButton, setNextButton] = useState(false);
+  const { user } = useContext(AuthContext);
   const [code, setCode] = useState("// Write your JavaScript solution here");
 
   useEffect(() => {
@@ -24,11 +24,8 @@ const ProblemSolve = () => {
   const fetchData = async () => {
     try {
       setIsLoading(true);
-
-      const { data } = await axios.get(`https://dev-discuss-server-chi.vercel.app//problem/${id}`);
-
+      const { data } = await axios.get(`https://dev-discuss-server-chi.vercel.app/problem/${id}`);
       setProblem(data);
-
     } catch (err) {
       console.error("Error fetching problem:", err);
     } finally {
@@ -47,32 +44,24 @@ const ProblemSolve = () => {
   const handleSubmit = async () => {
     try {
       setIsSubmitting(true);
-      
       const userCode = editorRef.current ? editorRef.current.getValue() : code;
-      const problemDes= problem?.description
-      console.log(problemDes, userCode);
-      const email = user.email
-      // Here you would send the code to your backend
-
-      const {data} = await axios.post(`https://dev-discuss-server-chi.vercel.app//problemProgress/${id}`, {
-
-         userCode,
+      const problemDes = problem?.description;
+      const email = user.email;
+      const { data } = await axios.post(`https://dev-discuss-server-chi.vercel.app/problemProgress/${id}`, {
+        userCode,
         problemDes,
         email
       });
-      console.log(data)
-      // Process the response as needed
       setTimeout(() => {
-   toast.success(data?.message)
+        toast.success(data?.message);
         setIsSubmitting(false);
       }, 1000);
-      
     } catch (error) {
       console.error("Error submitting solution:", error);
       toast.error("Failed to submit solution");
       setIsSubmitting(false);
-    }finally{
-      setNextButton(true)
+    } finally {
+      setNextButton(true);
     }
   };
 
@@ -100,29 +89,36 @@ const ProblemSolve = () => {
 
       {/* Main Content Area */}
       <div className="flex flex-col md:flex-row flex-grow overflow-hidden">
-     
         <div className="w-full md:w-1/3 p-4 overflow-y-auto border-b md:border-b-0 md:border-r">
           <div className="prose max-w-none">
-            <h4 className="text-lg font-medium mb-2">Problem Description</h4>
-            <p className="text-gray-700 whitespace-pre-line">{problem?.description}</p>
+            <h4 className="text-lg font-medium mb-2 text-blue-800">Problem Description</h4>
+            <p className="text-blue-700 whitespace-pre-line">{problem?.description}</p>
           </div>
         </div>
 
         {/* Code Editor Panel */}
         <div className="flex-1 flex flex-col overflow-hidden">
           <div className="bg-transparent-100 p-2 border-b flex justify-between items-center">
-            <span className="text-sm font-medium text-purple-600">JavaScript</span>
-    {
-      nextButton ? <Link to={'/problems'}><button className="btn bg-gradient-to-r from-pink-500 to-purple-600 hover:scale-105 text-white">Back to Problems</button></Link>:        <button 
-      onClick={handleSubmit}
-      disabled={isSubmitting}
-      className={`px-4 py-2 rounded text-white font-medium bg-gradient-to-r from-pink-500 to-purple-600 hover:scale-105 ${
-        isSubmitting ? 'bg-transparent-400' : 'bg-blue-600 hover:bg-blue-700'
-      }`}
-    >
-      {isSubmitting ? 'Submitting...' : 'Submit Solution'}
-    </button>
-    }
+            <span className="text-sm font-medium text-blue-600">JavaScript</span>
+            {
+              nextButton ? (
+                <Link to={'/problems'}>
+                  <button className="btn bg-gradient-to-r from-blue-400 to-blue-600 hover:scale-105 text-white">
+                    Back to Problems
+                  </button>
+                </Link>
+              ) : (
+                <button 
+                  onClick={handleSubmit}
+                  disabled={isSubmitting}
+                  className={`px-4 py-2 rounded text-white font-medium bg-gradient-to-r from-blue-400 to-blue-600 hover:scale-105 ${
+                    isSubmitting ? 'bg-blue-400' : 'hover:bg-blue-700'
+                  }`}
+                >
+                  {isSubmitting ? 'Submitting...' : 'Submit Solution'}
+                </button>
+              )
+            }
           </div>
 
           <div className="flex-1 overflow-hidden">

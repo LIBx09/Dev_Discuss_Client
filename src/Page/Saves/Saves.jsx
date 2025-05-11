@@ -32,7 +32,7 @@ const Saves = () => {
       text: "You won't be able to revert this!",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
+      confirmButtonColor: "#3b82f6",
       cancelButtonColor: "#d33",
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
@@ -60,13 +60,13 @@ const Saves = () => {
         transition={{ duration: 0.6 }}
         className="max-w-6xl mx-auto rounded-2xl shadow-2xl p-8"
       >
-        {/* Header */}
+        {/* Header */ }
         <div className="text-center mb-10">
-          <h2 className="text-4xl font-extrabold bg-gradient-to-r from-purple-400 to-pink-600 text-transparent bg-clip-text">
+          <h2 className="text-4xl font-extrabold bg-gradient-to-r from-blue-400 to-blue-600 text-transparent bg-clip-text">
             Saved Bookmarks
           </h2>
-          <div className="w-32 h-1 bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 mx-auto mt-2 mb-4 rounded-full"></div>
-          <p className="text-lg text-gray-300">
+          <div className="w-32 h-1 bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 mx-auto mt-2 mb-4 rounded-full"></div>
+          <p className="text-lg text-gray-400">
             Easily access and manage your bookmarked questions.
           </p>
         </div>
@@ -80,19 +80,19 @@ const Saves = () => {
                 key={item._id}
                 whileHover={{ scale: 1.02 }}
                 transition={{ duration: 0.3 }}
-                className="p-6 rounded-2xl shadow-lg hover:shadow-2xl border-l-4 border-pink-500 transition-transform"
+                className="p-6 rounded-2xl shadow-lg hover:shadow-blue-500/30 border-l-4 border-blue-500 transition-transform"
               >
                 <Link to={`/questions/${item.questionID}`}>
-                  <h3 className="text-2xl font-bold bg-gradient-to-r from-pink-500 to-purple-600 bg-clip-text text-transparent hover:underline transition-colors">
+                  <h3 className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent hover:underline transition-colors">
                     {item.title}
                   </h3>
-                  <p className="mt-2 text-gray-300 hover:text-white transition-colors">
+                  <p className="mt-2 text-gray-400 hover:text-gray-200 transition-colors">
                     {item.body}
                   </p>
                 </Link>
                 <div className="flex flex-wrap items-center justify-between mt-4 text-sm text-gray-400">
                   <div>
-                    <span className="px-3 py-1 bg-gradient-to-r from-purple-500 to-pink-500 text-white text-xs rounded-full font-semibold shadow">
+                    <span className="px-3 py-1 bg-gradient-to-r from-blue-400 to-blue-600 text-white text-xs rounded-full font-semibold shadow">
                       {item.tag}
                     </span>{" "}
                     | <span>{item.date}</span>

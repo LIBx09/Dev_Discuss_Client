@@ -6,11 +6,9 @@ import RightSidebar from "../Sidebars/RightSidebar/RightSidebar";
 import Footer from "../Footer/Footer";
 import Banner from "../Home/Banner";
 
-
 const OnboardingModal = ({ isOpen, onClose }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  
   // Slide content data
   const slides = [
     {
@@ -29,26 +27,27 @@ const OnboardingModal = ({ isOpen, onClose }) => {
       image: "https://i.pinimg.com/736x/bc/27/61/bc27619b1999414f3f948d85db859d60.jpg",
     },
   ];
-  // Handle next slide
+
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev < slides.length - 1 ? prev + 1 : prev));
   };
 
-  // Handle previous slide
   const prevSlide = () => {
     setCurrentSlide((prev) => (prev > 0 ? prev - 1 : prev));
   };
-
 
   if (!isOpen) return null;
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-      <div className="bg-white dark:bg-slate-800 rounded-lg shadow-xl w-11/12 max-w-2xl max-h-[90vh] overflow-hidden">
-  
+      <div 
+        className="rounded-lg shadow-xl w-11/12 max-w-2xl max-h-[90vh] overflow-hidden"
+        style={{ background: 'var(--background)' }}
+      >
         <button 
           onClick={onClose} 
-          className="absolute top-4 right-4 text-gray-500 hover:text-gray-700 dark:text-gray-300 dark:hover:text-white"
+          className="absolute top-4 right-4"
+          style={{ color: 'var(--text-color)' }}
         >
           <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -66,10 +65,16 @@ const OnboardingModal = ({ isOpen, onClose }) => {
                 className="rounded-lg h-48 object-cover"
               />
             </div>
-            <h2 className="text-2xl font-bold text-center mb-4 text-gray-800 dark:text-white">
+            <h2 
+              className="text-2xl font-bold text-center mb-4"
+              style={{ color: 'var(--text-color)' }}
+            >
               {slides[currentSlide].title}
             </h2>
-            <p className="text-center text-gray-600 dark:text-gray-300 mb-8">
+            <p 
+              className="text-center mb-8"
+              style={{ color: 'var(--text-color)' }}
+            >
               {slides[currentSlide].description}
             </p>
             
@@ -81,9 +86,15 @@ const OnboardingModal = ({ isOpen, onClose }) => {
                   onClick={() => setCurrentSlide(index)}
                   className={`h-2 rounded-full transition-all ${
                     index === currentSlide 
-                      ? "w-8 bg-blue-600" 
-                      : "w-2 bg-gray-300 dark:bg-gray-600"
+                      ? "w-8" 
+                      : "w-2"
                   }`}
+                  style={{
+                    backgroundColor: index === currentSlide 
+                      ? 'var(--button-bg)' 
+                      : 'var(--text-color)',
+                    opacity: index === currentSlide ? 1 : 0.5
+                  }}
                 />
               ))}
             </div>
@@ -93,25 +104,34 @@ const OnboardingModal = ({ isOpen, onClose }) => {
               {currentSlide > 0 ? (
                 <button
                   onClick={prevSlide}
-                  className="px-4 py-2 text-sm font-medium text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300"
+                  className="px-4 py-2 text-sm font-medium"
+                  style={{ color: 'var(--button-bg)' }}
                 >
                   Previous
                 </button>
               ) : (
-                <div></div> // Empty div for spacing
+                <div></div>
               )}
               
               {currentSlide < slides.length - 1 ? (
                 <button
                   onClick={nextSlide}
-                  className="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
+                  className="px-6 py-2 rounded-md transition-colors"
+                  style={{
+                    backgroundColor: 'var(--button-bg)',
+                    color: 'var(--button-text)'
+                  }}
                 >
                   Next
                 </button>
               ) : (
                 <button
                   onClick={onClose}
-                  className="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
+                  className="px-6 py-2 rounded-md transition-colors"
+                  style={{
+                    backgroundColor: 'var(--button-bg)',
+                    color: 'var(--button-text)'
+                  }}
                 >
                   Get Started
                 </button>
@@ -128,13 +148,9 @@ const Layout = () => {
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
-
     const hasVisited = localStorage.getItem('hasVisitedBefore');
-    
     if (!hasVisited) {
-   
       setShowModal(true);
-   
       localStorage.setItem('hasVisitedBefore', 'true');
     }
   }, []);
@@ -144,29 +160,37 @@ const Layout = () => {
   };
 
   return (
-    <div className="dark:bg-slate-900 dark:text-white">
-      {/* Onboarding Modal */}
+    <div style={{ background: 'var(--background)', color: 'var(--text-color)' }}>
       <OnboardingModal isOpen={showModal} onClose={closeModal} />
       
       <div className="w-[98%] md:w-11/12 mx-auto">
         <Navbar />
-        <div className="max-w-7xl mx-auto relative min-h-screen md:grid grid-cols-12 dark:bg-slate-900 dark:text-white py-6 gap-6">
+        <div 
+          className="max-w-7xl mx-auto relative min-h-screen md:grid grid-cols-12 py-6 gap-6"
+          style={{ background: 'var(--background)' }}
+        >
           {/* Left Sidebar */}
           <div className="w-full col-span-2">
             <LeftSidebar />
           </div>
 
           {/* Main Content Section */}
-          <div className="lg:col-span-8 md:col-span-10 dark:bg-slate-900 shadow-lg rounded-xl p-6">
+          <div 
+            className="lg:col-span-8 md:col-span-10 shadow-lg rounded-xl p-6"
+            style={{ background: 'var(--background)' }}
+          >
             <Outlet />
           </div>
 
           {/* Right Sidebar */}
-          <div className="w-full col-span-2 dark:bg-slate-900 hidden md:block lg:block">
+          <div 
+            className="w-full col-span-2 hidden md:block lg:block"
+            style={{ background: 'var(--background)' }}
+          >
             <RightSidebar />
           </div>
         </div>
-        <Footer></Footer>
+        <Footer />
       </div>
     </div>
   );

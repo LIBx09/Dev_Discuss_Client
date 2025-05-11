@@ -33,7 +33,7 @@ const Blog = ({ blog, index }) => {
       whileHover="hover"
       className="flex flex-col h-full"
     >
-      <div className="bg-gradient-to-br from-[#0f0c29] via-[#302b63] to-[#24243e] rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden flex flex-col h-full">
+      <div className="bg-[var(--background)] rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden flex flex-col h-full">
         {/* Image Section */}
         <div className="relative overflow-hidden h-48">
           <motion.img
@@ -46,24 +46,22 @@ const Blog = ({ blog, index }) => {
         </div>
 
         {/* Content Section */}
-        <div className="p-6 flex flex-col flex-grow text-white">
+        <div className="p-6 flex flex-col flex-grow text-[var(--text-color)]">
           <div className="flex justify-between items-center mb-3">
-            <span className="font-semibold text-pink-400">
-              {author}
-            </span>
-            <span className="text-sm text-gray-300">
+            <span className="font-semibold text-blue-400">{author}</span>
+            <span className="text-sm text-gray-500 dark:text-gray-400">
               {date}
             </span>
           </div>
 
-          <h2 className="text-xl font-bold text-white mb-4 line-clamp-2">
+          <h2 className="text-xl font-bold mb-4 line-clamp-2 text-[var(--text-color)]">
             {title}
           </h2>
 
           <div className="mt-auto">
             <Link
               to={`/blog-details/${_id}`}
-              className="inline-flex items-center gap-2 text-pink-400 font-medium hover:text-pink-300 transition"
+              className="inline-flex items-center gap-2 text-blue-400 font-medium hover:text-blue-300 transition"
             >
               Read More
               <motion.div

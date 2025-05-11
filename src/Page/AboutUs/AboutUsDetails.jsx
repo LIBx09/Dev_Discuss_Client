@@ -17,28 +17,30 @@ const AboutUsDetails = () => {
   return (
     <section
       id="about-us-details"
-      className="w-full min-h-screen px-4 py-16 text-white"
+      className="w-full min-h-screen px-4 py-16 bg-[var(--background)]"
     >
       <div className="max-w-6xl mx-auto">
         {allData ? (
-          <div className="flex flex-col md:flex-row items-center gap-10 p-8 rounded-2xl shadow-xl">
+          <div className="flex flex-col md:flex-row items-center gap-10 p-8 rounded-2xl shadow-md border border-[var(--text-color)]/20 bg-[var(--background)]">
             {/* Profile Photo */}
             <div className="flex-shrink-0">
               <img
                 src={allData.photoUrl}
                 alt={allData.name}
-                className="h-44 w-44 rounded-full border-4 border-purple-500 shadow-[0_0_30px_#a855f7] transition-all duration-300 object-cover"
+                className="h-44 w-44 rounded-full border-4 border-[var(--button-bg)] shadow-[0_0_30px_var(--button-bg)] transition-all duration-300 object-cover"
               />
             </div>
 
             {/* Text Info */}
             <div className="flex-1">
-              <h2 className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
+              <h2 className="text-3xl font-extrabold text-[var(--button-bg)]">
                 {allData.name}
               </h2>
-              <p className="text-gray-300 text-sm mt-1 mb-3">{allData.email}</p>
+              <p className="text-[var(--text-color)]/70 text-sm mt-1 mb-3">
+                {allData.email}
+              </p>
 
-              <div className="space-y-2 text-gray-200">
+              <div className="space-y-2 text-[var(--text-color)]">
                 <p className="font-semibold">🎓 Graduation:</p>
                 <p>{allData.graduation}</p>
 
@@ -50,24 +52,44 @@ const AboutUsDetails = () => {
                 </ul>
 
                 <p className="font-semibold mt-4">🔗 Social Links:</p>
-                <div className="flex gap-4 flex-wrap text-sm text-purple-300 underline">
+                <div className="flex gap-4 flex-wrap text-sm text-[var(--button-bg)] underline">
                   {allData.facebook && (
-                    <a href={allData.facebook} target="_blank" rel="noreferrer">
+                    <a
+                      href={allData.facebook}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="hover:text-[var(--button-hover-bg)] transition"
+                    >
                       Facebook
                     </a>
                   )}
                   {allData.linkedin && (
-                    <a href={allData.linkedin} target="_blank" rel="noreferrer">
+                    <a
+                      href={allData.linkedin}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="hover:text-[var(--button-hover-bg)] transition"
+                    >
                       LinkedIn
                     </a>
                   )}
                   {allData.github && (
-                    <a href={allData.github} target="_blank" rel="noreferrer">
+                    <a
+                      href={allData.github}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="hover:text-[var(--button-hover-bg)] transition"
+                    >
                       GitHub
                     </a>
                   )}
                   {allData.portfolio && (
-                    <a href={allData.portfolio} target="_blank" rel="noreferrer">
+                    <a
+                      href={allData.portfolio}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="hover:text-[var(--button-hover-bg)] transition"
+                    >
                       Portfolio
                     </a>
                   )}
@@ -76,17 +98,19 @@ const AboutUsDetails = () => {
 
               {/* Career Objective */}
               <div className="mt-6">
-                <p className="font-semibold text-purple-400 text-lg">
+                <p className="font-semibold text-[var(--button-bg)] text-lg">
                   🎯 Career Objective:
                 </p>
-                <p className="mt-2 text-gray-300 leading-relaxed">
+                <p className="mt-2 text-[var(--text-color)] leading-relaxed">
                   {allData.careerObjective}
                 </p>
               </div>
             </div>
           </div>
         ) : (
-          <p className="text-center text-gray-300 text-xl mt-10">Loading...</p>
+          <p className="text-center text-[var(--text-color)] text-xl mt-10">
+            Loading...
+          </p>
         )}
       </div>
     </section>

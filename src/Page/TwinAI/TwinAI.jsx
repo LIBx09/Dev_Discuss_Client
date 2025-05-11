@@ -5,14 +5,14 @@ import axios from "axios";
 const QuickStartOption = ({ icon, title, description, onClick }) => (
   <button 
     onClick={onClick}
-    className="flex items-start g-gradient-to-r text-transparent bg-clip-text p-4 bg-gradient-to-br from-pink-400 to-purple-500 dark:from-slate-700 dark:to-slate-800 rounded-xl shadow hover:shadow-lg transition-all border border-pink-300 dark:border-slate-600 text-left w-full"
+    className="flex items-start g-gradient-to-r text-transparent bg-clip-text p-4 bg-gradient-to-br from-blue-400 to-blue-500 dark:from-slate-700 dark:to-slate-800 rounded-xl shadow hover:shadow-lg transition-all border border-blue-300 dark:border-slate-600 text-left w-full"
   >
-    <div className="rounded-full bg-gradient-to-br from-purple-500 to-pink-500 text-white p-3 mr-4 shadow-lg">
+    <div className="rounded-full bg-gradient-to-br from-blue-500 to-blue-500 text-white p-3 mr-4 shadow-lg">
       {icon}
     </div>
     <div>
-      <h3 className="font-semibold text-lg text-pink-500 dark:text-pink-300">{title}</h3>
-      <p className="text-sm text-purple-700 dark:text-slate-300 mt-1">{description}</p>
+      <h3 className="font-semibold text-lg text-blue-500 dark:text-blue-300">{title}</h3>
+      <p className="text-sm text-gray-500 dark:text-slate-300 mt-1">{description}</p>
     </div>
   </button>
 );
@@ -110,7 +110,7 @@ const TwinAI = () => {
   return (
     <div className="flex flex-col h-screen max-h-screen dark:from-slate-800 dark:to-slate-900 text-gray-800 dark:text-white rounded-lg shadow-lg">
       {/* Header */}
-      <div className="bg-gradient-to-r from-pink-600 to-purple-600 p-4 text-white flex items-center">
+      <div className="bg-gradient-to-r from-blue-600 to-blue-600 p-4 text-white flex items-center">
         <div className="h-10 w-10 rounded-full bg-white bg-opacity-20 flex items-center justify-center mr-3 shadow-inner">
           <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
@@ -124,7 +124,7 @@ const TwinAI = () => {
         {messages.length === 0 ? (
           <div className="flex flex-col items-center h-full">
             <div className="text-center mt-8 mb-6">
-              <h2 className="text-3xl bg-gradient-to-r from-pink-500 to-purple-600 text-transparent bg-clip-text font-semibold">Welcome to TwinAI</h2>
+              <h2 className="text-3xl bg-gradient-to-r from-blue-500 to-blue-600 text-transparent bg-clip-text font-semibold">Welcome to TwinAI</h2>
               <p className="mt-2 text-white dark:text-slate-300">Your personal AI assistant. How can I help you today?</p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-3xl px-4">
@@ -146,8 +146,8 @@ const TwinAI = () => {
                 key={msg.id}
                 className={`p-3 rounded-xl max-w-xl ${
                   msg.sender === 'user'
-                    ? 'bg-gradient-to-tr from-blue-100 to-pink-100 dark:from-pink-600 dark:to-pink-500 ml-auto text-right'
-                    : 'bg-gradient-to-tr from-purple-100 to-blue-100 dark:from-pink-500 dark:to-purple-600 mr-auto text-left'
+                    ? 'bg-gradient-to-tr from-blue-100 to-blue-200 dark:from-blue-600 dark:to-blue-500 ml-auto text-right'
+                    : 'bg-gradient-to-tr from-blue-200 to-blue-100 dark:from-blue-500 dark:to-blue-600 mr-auto text-left'
                 }`}
               >
                 <p className="text-sm">{msg.text}</p>
@@ -171,12 +171,12 @@ const TwinAI = () => {
             onChange={(e) => setInputMessage(e.target.value)}
             onKeyDown={handleKeyPress}
             placeholder="Type your message..."
-            className="flex-1 py-3 px-2 border border-gray-600 bg-transparent text-white transition dark:border-slate-600 dark:bg-slate-800  dark:text-white placeholder-gray-500 dark:placeholder-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500"
+            className="flex-1 py-3 px-2 border border-gray-600 bg-transparent text-gray-500 transition dark:border-slate-600 dark:bg-slate-800  dark:text-white placeholder-gray-500 dark:placeholder-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
           <button
             onClick={handleSendMessage}
             disabled={mutation.isLoading}
-            className="bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600 text-white px-4 py-2 rounded-lg shadow disabled:opacity-50 transition"
+            className="bg-gradient-to-r from-blue-500 to-blue-500 hover:from-blue-600 hover:to-indigo-600 text-white px-4 py-2 rounded-lg shadow disabled:opacity-50 transition"
           >
             Send
           </button>

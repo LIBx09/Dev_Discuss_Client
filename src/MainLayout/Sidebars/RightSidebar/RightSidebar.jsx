@@ -44,25 +44,42 @@ const RightSidebar = () => {
   ];
 
   return (
-    <section className="hidden lg:block w-full px-4 py-10">
+    <section 
+      className="hidden lg:block w-full px-4 py-10"
+      style={{ background: 'var(--background)' }}
+    >
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-2xl bg-gradient-to-r from-pink-500 to-purple-600 text-transparent bg-clip-text font-bold text-center  mb-8">
+        <h2 
+          className="text-2xl font-bold text-center mb-8"
+          style={{
+            background: 'linear-gradient(to right, var(--button-bg), var(--button-hover-bg))',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent'
+          }}
+        >
           Explore Technologies
         </h2>
-        <div className="grid grid-cols-2 gap-6">
+        <div className="grid gap-6 grid-cols-1">
           {techLinks.map((tech, index) => (
             <a
               key={index}
               href={tech.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-4 rounded-xl shadow-md border-l-4 border-pink-400 hover:scale-[1.02] transition-transform duration-300 flex items-center gap-3"
+              className="p-4 rounded-xl hover:scale-[1.02] transition-transform duration-300 flex items-center gap-3"
+              style={{
+                background: 'var(--background)',
+                boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+                borderLeft: '4px solid var(--button-bg)'
+              }}
             >
               <img
                 src={tech.logo}
                 alt={tech.name}
-        å        className="w-6 h-6 rounded-full border border-cyan-400"
+                className="w-6 h-6 rounded-full"
+                style={{ border: '1px solid var(--button-bg)' }}
               />
+              <span style={{ color: 'var(--text-color)' }}>{tech.name}</span>
             </a>
           ))}
         </div>

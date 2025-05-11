@@ -39,14 +39,14 @@ const ShortQuestions = () => {
       {/* Header */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-6">
         <div className="flex items-center gap-3">
-          <div className="bg-pink-500 p-3 rounded-full">
-            <Zap className="text-purple-600 w-6 h-6" />
+          <div className="bg-blue-500 p-3 rounded-full">
+            <Zap className="text-blue-600 w-6 h-6" />
           </div>
           <div>
-            <h1 className="text-3xl font-bold flex items-center gap-2 bg-gradient-to-r from-pink-500 to-purple-600 text-transparent bg-clip-text">
-              Dev Challenges <Code className="w-5 h-5 text-purple-600" />
+            <h1 className="text-3xl font-bold flex items-center gap-2 bg-gradient-to-r from-blue-500 to-blue-600 text-transparent bg-clip-text">
+              Dev Challenges <Code className="w-5 h-5 text-blue-600" />
             </h1>
-            <p className="text-purple-600 text-sm">Challenge your skills. Unlock badges.</p>
+            <p className="text-blue-600 text-sm">Challenge your skills. Unlock badges.</p>
           </div>
         </div>
 
@@ -72,7 +72,7 @@ const ShortQuestions = () => {
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-pink-400 mb-6">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-blue-400 mb-6">
         <StatsCard icon={<BookOpen className="text-green-600" />} label="Total" value={totalQuestions} />
         <StatsCard icon={<Unlock className="text-blue-600" />} label="Available" value={unlockedQuestions.length} />
         <StatsCard icon={<Lock className="text-red-600" />} label="Locked" value={lockedQuestions.length} />
@@ -116,7 +116,7 @@ const ShortQuestions = () => {
 
 // Reusable stats card component
 const StatsCard = ({ icon, label, value }) => (
-  <div className="bg-transparent p-4 rounded-xl shadow-sm border border-purple-400 flex items-center gap-4">
+  <div className="bg-transparent p-4 rounded-xl shadow-sm border border-blue-400 flex items-center gap-4">
     <div className="p-2 rounded-full">{icon}</div>
     <div>
       <p className="text-sm text-gray-600">{label}</p>

@@ -29,10 +29,10 @@ const Users = () => {
       >
         {/* Header */}
         <div className="text-center mb-10">
-          <h2 className="text-4xl font-extrabold bg-gradient-to-r from-pink-400 to-purple-500 text-transparent bg-clip-text">
+          <h2 className="text-4xl font-extrabold bg-gradient-to-r from-blue-400 to-blue-500 text-transparent bg-clip-text">
             Active Users
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-pink-500 to-purple-500 mx-auto mt-2 mb-4 rounded-full"></div>
+          <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-blue-500 mx-auto mt-2 mb-4 rounded-full"></div>
           <p className="text-lg text-gray-300">
             Meet our amazing community members.
           </p>
@@ -52,13 +52,13 @@ const Users = () => {
                 key={user._id}
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.3 }}
-                className="p-6 rounded-2xl shadow-lg hover:shadow-purple-500/50 text-center border-t-4 border-pink-500"
+                className="p-6 rounded-2xl shadow-lg hover:shadow-blue-500/50 text-center border-t-4 border-blue-500"
               >
                 <div className="relative w-20 h-20 mx-auto mb-4">
                   <img
                     src={user.photo}
                     alt={user.userName}
-                    className="w-full h-full rounded-full border-2 border-purple-500 shadow-lg object-cover hover:scale-110 transition-transform duration-300"
+                    className="w-full h-full rounded-full border-2 border-blue-500 shadow-lg object-cover hover:scale-110 transition-transform duration-300"
                   />
                   <span className="absolute bottom-0 right-0 w-4 h-4 bg-green-400 border-2 border-[#1f1f2e] rounded-full"></span>
                 </div>
@@ -66,7 +66,7 @@ const Users = () => {
                   {user.userName}
                 </h3>
                 <p className="text-sm text-gray-400 mb-2">{user.userEmail}</p>
-                <div className="inline-block bg-gradient-to-r from-pink-500 to-purple-600 text-white px-6 py-3 hover:scale-105 transition-transform font-semibold rounded-full text-sm font-medium shadow-md">
+                <div className="inline-block bg-gradient-to-r from-blue-500 to-blue-600 text-white px-6 py-3 hover:scale-105 transition-transform font-semibold rounded-full text-sm  shadow-md">
                   Points: {user.points}
                 </div>
               </motion.div>

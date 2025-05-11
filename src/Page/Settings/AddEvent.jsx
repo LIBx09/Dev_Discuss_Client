@@ -1,4 +1,3 @@
-// src/pages/AddEvent.jsx
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -45,7 +44,7 @@ const AddEvent = () => {
 
   return (
     <div className="max-w-xl mx-auto p-6 bg-transparent shadow rounded mt-10">
-      <h2 className="text-2xl text-pink-400 font-bold mb-4">Add New Event</h2>
+      <h2 className="text-2xl text-blue-400 font-bold mb-4">Add New Event</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         {[
           { name: "title", label: "Title" },
@@ -58,20 +57,20 @@ const AddEvent = () => {
           { name: "image", label: "Image URL" }
         ].map(({ name, label, type = "text" }) => (
           <div key={name}>
-            <label className="block font-medium text-purple-400">{label}</label>
+            <label className="block font-medium text-blue-400"> {label} </label>
             <input
               type={type}
               name={name}
               value={formData[name]}
               onChange={handleChange}
-              className="w-full px-4 py-3 rounded-xl border border-gray-600 bg-transparent text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-pink-500 transition"
+              className="w-full px-4 py-3 rounded-xl border border-gray-600 bg-transparent text-gray-200 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
               required
             />
           </div>
         ))}
         <button
           type="submit"
-          className="bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600 text-white px-4 py-2 rounded-lg shadow disabled:opacity-50 transition"
+          className="bg-gradient-to-r from-blue-400 to-blue-600 hover:from-blue-500 hover:to-blue-700 text-white px-4 py-2 rounded-lg shadow disabled:opacity-50 transition"
         >
           Submit
         </button>

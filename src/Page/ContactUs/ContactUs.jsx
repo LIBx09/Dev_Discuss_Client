@@ -38,23 +38,27 @@ const Contact = () => {
     <section
       id="contact"
       className="w-full min-h-screen px-4 py-16"
+      style={{
+        background: 'var(--background)',
+        color: 'var(--text-color)'
+      }}
     >
       <div className="max-w-6xl mx-auto flex flex-col gap-16">
         {/* Header */}
         <div className="text-center">
-          <h1 className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
+          <h1 className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600">
             Get In Touch
           </h1>
-          <p className="text-gray-300 mt-4 max-w-xl mx-auto">
-            I'm always open to discussions, collaborations, or just a friendly chat. Let’s build something amazing together.
+          <p className="mt-4 max-w-xl mx-auto" style={{color: 'var(--text-color)'}}>
+            I'm always open to discussions, collaborations, or just a friendly chat. Let's build something amazing together.
           </p>
-          <div className="mt-4 w-24 h-1 mx-auto bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 rounded-full" />
+          <div className="mt-4 w-24 h-1 mx-auto bg-gradient-to-r from-blue-500 via-blue-500 to-indigo-500 rounded-full" />
         </div>
 
         <div className="flex flex-col lg:flex-row gap-10">
           {/* Contact Info */}
           <div className="flex-1 space-y-6">
-            <h2 className="text-2xl font-bold bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 text-transparent bg-clip-text">
+            <h2 className="text-2xl font-bold bg-gradient-to-r from-blue-500 via-blue-500 to-indigo-500 text-transparent bg-clip-text">
               Contact Details
             </h2>
 
@@ -79,64 +83,95 @@ const Contact = () => {
               <div
                 key={i}
                 className="flex items-center gap-4 p-4 rounded-xl shadow-md hover:scale-105 transition-transform duration-300"
+                style={{
+                  background: 'color-mix(in srgb, var(--background) 90%, var(--button-bg))'
+                }}
               >
-                <div className="p-3 bg-gradient-to-tr from-indigo-600 to-purple-600 text-white rounded-full shadow-inner">
+                <div 
+                  className="p-3 text-white rounded-full shadow-inner"
+                  style={{
+                    background: 'var(--button-bg)'
+                  }}
+                >
                   {icon}
                 </div>
-                <span className="text-lg text-gray-300">{label}</span>
+                <span className="text-lg" style={{color: 'var(--text-color)'}}>{label}</span>
               </div>
             ))}
           </div>
 
           {/* Contact Form */}
-          <forma
+          <form
             onSubmit={onSubmit}
-            className="flex-1 rounded-xl  shadow-lg space-y-6"
+            className="flex-1 rounded-xl shadow-lg space-y-6 p-6"
+            style={{
+              background: 'color-mix(in srgb, var(--background) 90%, var(--button-bg))'
+            }}
           >
-            <h2 className="text-2xl font-bold bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 text-transparent bg-clip-text">
+            <h2 className="text-2xl font-bold bg-gradient-to-r from-blue-500 via-blue-500 to-indigo-500 text-transparent bg-clip-text">
               Send a Message
             </h2>
 
             <div className="space-y-2">
-              <label className="text-sm text-gray-300">Your Name</label>
+              <label className="text-sm" style={{color: 'var(--text-color)'}}>Your Name</label>
               <input
                 name="name"
                 type="text"
                 placeholder="Enter your name"
                 required
-                className="w-full px-4 py-3 rounded-xl bg-transparent text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-pink-500 transition"
+                className="w-full px-4 py-3 rounded-xl border focus:outline-none focus:ring-2 transition"
+                style={{
+                  background: 'var(--background)',
+                  borderColor: 'var(--button-bg)',
+                  color: 'var(--text-color)'
+                }}
               />
             </div>
 
             <div className="space-y-2">
-              <label className="text-sm text-gray-300">Your Email</label>
+              <label className="text-sm" style={{color: 'var(--text-color)'}}>Your Email</label>
               <input
                 name="email"
                 type="email"
                 placeholder="Enter your email"
                 required
-                className="w-full px-4 py-3 rounded-xl border border-gray-600 bg-transparent text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-pink-500 transition"
+                className="w-full px-4 py-3 rounded-xl border focus:outline-none focus:ring-2 transition"
+                style={{
+                  background: 'var(--background)',
+                  borderColor: 'var(--button-bg)',
+                  color: 'var(--text-color)'
+                }}
               />
             </div>
 
             <div className="space-y-2">
-              {/* <label className="text-sm text-gray-300">Message</label> */}
               <textarea
                 name="message"
                 rows="5"
                 placeholder="Write your message..."
                 required
-                className="w-full px-4 py-3 rounded-xl border border-gray-600 bg-transparent text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-pink-500 transition"
+                className="w-full px-4 py-3 rounded-xl border focus:outline-none focus:ring-2 transition"
+                style={{
+                  background: 'var(--background)',
+                  borderColor: 'var(--button-bg)',
+                  color: 'var(--text-color)'
+                }}
               />
             </div>
 
             <button
               type="submit"
-              className="w-full py-3 bg-gradient-to-r from-purple-600 to-pink-500 rounded-lg text-lg font-semibold text-white hover:scale-105 transition-transform duration-300 shadow-xl"
+              className="w-full py-3 rounded-lg text-lg font-semibold text-white hover:scale-105 transition-transform duration-300 shadow-xl"
+              style={{
+                background: 'var(--button-bg)',
+                '&:hover': {
+                  background: 'var(--button-hover-bg)'
+                }
+              }}
             >
               Send Message
             </button>
-          </forma>
+          </form>
         </div>
       </div>
     </section>

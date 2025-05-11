@@ -28,14 +28,13 @@ const Navbar = () => {
   const { user, loading, logout } = useContext(AuthContext);
   const [isOpen, setIsOpen] = useState(false);
   const [search, setSearch] = useState("");
-  const [isAdmin]=useCheckAdmin()
+  const [isAdmin] = useCheckAdmin();
   const [filteredResults, setFilteredResults] = useState([]);
   const dispatch = useDispatch();
   const { questions } = useSelector((state) => state.questions);
   const navigate = useNavigate();
-  const location = useLocation(); // detect route changes
+  const location = useLocation();
 
-  // Auto-close mobile menu when route changes
   useEffect(() => {
     setIsOpen(false);
   }, [location.pathname]);
@@ -58,7 +57,7 @@ const Navbar = () => {
   if (loading) {
     return (
       <div className="flex justify-center items-center h-screen">
-        <span className="loading loading-spinner text-pink-500"></span>
+        <span className="loading loading-spinner" style={{ color: 'var(--button-bg)' }}></span>
       </div>
     );
   }
@@ -83,13 +82,31 @@ const Navbar = () => {
   };
 
   return (
-    <div className="relative text-pink-400">
-      <div className="navbar bg-transparent border-b-gray-300 px-4 dark:bg-slate-900 dark:text-white">
+    <div className="relative" style={{ color: 'var(--button-bg)' }}>
+      <div 
+        className="navbar bg-transparent border-b-gray-300 px-4"
+        style={{ background: 'var(--background)' }}
+      >
         <div className="navbar-start">
-          <button onClick={() => setIsOpen(!isOpen)} className="btn btn-ghost border-none lg:hidden py-3 bg-gradient-to-r from-purple-600 to-pink-500 rounded-lg text-lg font-semibold text-white hover:scale-105 transition-transform duration-300 shadow-xl">
+          <button 
+            onClick={() => setIsOpen(!isOpen)} 
+            className="btn btn-ghost border-none lg:hidden py-3 rounded-lg text-lg font-semibold hover:scale-105 transition-transform duration-300 shadow-xl"
+            style={{
+              background: 'linear-gradient(to right, var(--button-bg), var(--button-hover-bg))',
+              color: 'var(--button-text)'
+            }}
+          >
             {isOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
           </button>
-          <Link to="/" className="hidden sm:flex btn btn-ghost border-none text-md md:text-xl bg-gradient-to-r from-pink-500 to-purple-600 text-transparent bg-clip-text">
+          <Link 
+            to="/" 
+            className="hidden sm:flex btn btn-ghost border-none text-md md:text-xl"
+            style={{
+              background: 'linear-gradient(to right, var(--button-bg), var(--button-hover-bg))',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent'
+            }}
+          >
             <FaCode />
             Dev_Discuss
           </Link>
@@ -102,16 +119,31 @@ const Navbar = () => {
             placeholder="Search questions..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full bg-transparent max-w-xs px-4 py-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-400 dark:bg-gray-800 dark:text-white"
+            className="w-full max-w-xs px-4 py-2 pr-10 border rounded-lg focus:outline-none focus:ring-2"
+            style={{
+              background: 'var(--background)',
+              color: 'var(--text-color)',
+              borderColor: 'var(--button-bg)',
+              '&:focus': {
+                ringColor: 'var(--button-bg)'
+              }
+            }}
           />
           {search.trim() !== "" && (
-            <div className="absolute top-full left-0 bg-transparent/20 dark:bg-gray-800 w-full border mt-1 rounded shadow-lg z-50">
+            <div 
+              className="absolute top-full left-0 w-full border mt-1 rounded shadow-lg z-50"
+              style={{
+                background: 'var(--background)',
+                borderColor: 'var(--button-bg)'
+              }}
+            >
               {filteredResults.length > 0 ? (
                 filteredResults.map((q) => (
                   <Link
                     to={`/questions/${q._id}`}
                     key={q._id}
-                    className="block px-4 py-2 hover:bg-transparent/80 dark:hover:bg-gray-700"
+                    className="block px-4 py-2 hover:opacity-80"
+                    style={{ color: 'var(--text-color)' }}
                     onClick={() => {
                       setSearch("");
                       setIsOpen(false);
@@ -121,48 +153,68 @@ const Navbar = () => {
                   </Link>
                 ))
               ) : (
-                <p className="px-4 py-2 text-gray-500">No matching questions found.</p>
+                <p className="px-4 py-2" style={{ color: 'var(--text-color)' }}>No matching questions found.</p>
               )}
             </div>
           )}
         </div>
 
         <div className="navbar-end flex items-center gap-3">
-          <Link to="/questions">
+          <Link to="/questions" >
             <IoIosHelpCircleOutline className="text-2xl" />
           </Link>
           <DarkLightToggle />
-          <Link to="/saves">
+          <Link to="/saves" >
             <FaRegBookmark className="text-xl" />
           </Link>
 
           <div className="dropdown dropdown-end">
-            <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+            <div tabIndex={0} role="button" className="">
               {user?.photoURL ? (
                 <img
                   src={user.photoURL}
                   alt="User Avatar"
-                  className="w-12 h-12 rounded-full object-cover"
+                  className="w-8 h-8 rounded-full object-cover"
                 />
               ) : (
-                <FaRegUserCircle className="w-12 h-12 text-pink-600" />
+                <FaRegUserCircle className="w-8 h-8"  />
               )}
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content bg-transparent/50 rounded-box z-50 mt-3 w-52 p-2 -right-4 shadow-xl dark:bg-gray-800 items-center space-y-3"
+              className="menu menu-sm dropdown-content rounded-box z-50 mt-3 w-52 p-2 -right-4 shadow-xl items-center space-y-3"
+              style={{ background: 'var(--background)' }}
             >
-              {user && <li><Link to="/myQuestion">My questions</Link></li>}
-              {user && <li><Link to="/myProfile">Dashboard</Link></li>}
-              {user && <li><Link to="/leaderboard">Leaderboard</Link></li>}
-              {isAdmin && <li><Link to="/settings">settings</Link></li>}
+              {user && <li><Link to="/myQuestion" style={{ color: 'var(--text-color)' }}>My questions</Link></li>}
+              {user && <li><Link to="/myProfile" style={{ color: 'var(--text-color)' }}>Dashboard</Link></li>}
+              {user && <li><Link to="/leaderboard" style={{ color: 'var(--text-color)' }}>Leaderboard</Link></li>}
+              {isAdmin && <li><Link to="/settings" style={{ color: 'var(--text-color)' }}>settings</Link></li>}
               {user ? (
                 <li>
-                  <button onClick={handleLogout} className="py-1 bg-gradient-to-r from-purple-600 to-pink-500 rounded-lg text-base font-semibold text-white hover:scale-105 transition-transform duration-300 shadow-xl">Logout</button>
+                  <button 
+                    onClick={handleLogout} 
+                    className="py-1 rounded-lg text-base font-semibold hover:scale-105 transition-transform duration-300 shadow-xl"
+                    style={{
+                      background: 'linear-gradient(to right, var(--button-bg), var(--button-hover-bg))',
+                      color: 'var(--button-text)'
+                    }}
+                  >
+                    Logout
+                  </button>
                 </li>
               ) : (
                 <li>
-                  <Link to="/login"><button className="w-full px-2 py-1 bg-gradient-to-r from-purple-600 to-pink-500 rounded-lg text-base font-semibold text-white hover:scale-105 transition-transform duration-300 shadow-xl">Login</button></Link>
+                  <Link to="/login">
+                    <button 
+                      className="w-full px-2 py-1 rounded-lg text-base font-semibold hover:scale-105 transition-transform duration-300 shadow-xl"
+                      style={{
+                        background: 'linear-gradient(to right, var(--button-bg), var(--button-hover-bg))',
+                        color: 'var(--button-text)'
+                      }}
+                    >
+                      Login
+                    </button>
+                  </Link>
                 </li>
               )}
             </ul>
@@ -172,17 +224,31 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="lg:hidden bg-transparent/80 absolute  top-16 left-0 w-full shadow-md z-10 dark:bg-gray-800 transition-all duration-300">
+        <div 
+          className="lg:hidden absolute top-16 left-0 w-full shadow-md z-10"
+          style={{ background: 'var(--background)' }}
+        >
           <ul className="menu p-4 space-y-2">
-            <li><Link to="/"><AiFillHome /> Home</Link></li>
-            <li><Link to="/tags"><IoMdPricetags /> Tags</Link></li>
-            <li><Link to="/blogs"><TbLogs /> Blogs</Link></li>
-            <li><Link to="/add-blogs"><MdEventNote></MdEventNote>Add Blogs</Link></li>
-            <li><Link to="/events"><MdEventNote /> Events</Link></li>
-            <li><Link to="/users"><FaUsers /> Users</Link></li>
-            <li><Link to="/twinAI"><FaBrain /> TwinAI</Link></li>
-            <li><Link to="/aboutUs"><RiFolderUnknowFill /> About Us</Link></li>
-            <li><Link to="/contactUs"><IoIosContact /> Contact Us</Link></li>
+            {[
+              { to: "/", icon: <AiFillHome />, text: "Home" },
+              { to: "/tags", icon: <IoMdPricetags />, text: "Tags" },
+              { to: "/blogs", icon: <TbLogs />, text: "Blogs" },
+              { to: "/add-blogs", icon: <MdEventNote />, text: "Add Blogs" },
+              { to: "/events", icon: <MdEventNote />, text: "Events" },
+              { to: "/users", icon: <FaUsers />, text: "Users" },
+              { to: "/twinAI", icon: <FaBrain />, text: "TwinAI" },
+              { to: "/aboutUs", icon: <RiFolderUnknowFill />, text: "About Us" },
+              { to: "/contactUs", icon: <IoIosContact />, text: "Contact Us" }
+            ].map((item, index) => (
+              <li key={index}>
+                <Link 
+                  to={item.to} 
+                  style={{ color: 'var(--text-color)' }}
+                >
+                  {item.icon} {item.text}
+                </Link>
+              </li>
+            ))}
           </ul>
         </div>
       )}

@@ -15,20 +15,22 @@ const BarCharts = () => {
             return data;
         }
     });
-    
-    const chartData = pointsBreakdown?.pointsBreakdown 
-    ? Object.entries(pointsBreakdown.pointsBreakdown)
-        .filter(([key, value]) => key.toLowerCase() !== 'login' && value > 0)
-        .map(([key, value]) => ({
-            name: key.charAt(0).toUpperCase() + key.slice(1),
-            value: value
-        })) 
-    : [];
 
+    const chartData = pointsBreakdown?.pointsBreakdown
+        ? Object.entries(pointsBreakdown.pointsBreakdown)
+            .filter(([key, value]) => key.toLowerCase() !== 'login' && value > 0)
+            .map(([key, value]) => ({
+                name: key.charAt(0).toUpperCase() + key.slice(1),
+                value: value
+            }))
+        : [];
 
-    // console.log("chartData", chartData);
-
-    const colors = ['#2659ff', '#ff26ac', '#51ff26', ];
+    // Theme-aware colors for bars
+    const colors = [
+        'var(--button-bg)', // Blue from theme (#3b82f6)
+        '#10b981', // Green as secondary color
+        '#f59e0b', // Amber as tertiary color
+    ];
 
     // Custom triangle bar component
     const TriangleBar = (props) => {
@@ -37,7 +39,7 @@ const BarCharts = () => {
         return <path d={path} fill={fill} />;
     };
 
-    if (isLoading) return <p>Loading...</p>;
+    if (isLoading) return <p className="text-center text-[var(--text-color)]">Loading...</p>;
 
     return (
         <div className="lg:w-full md:h-[320px] h-[280px] flex justify-center mt-8">
@@ -47,11 +49,32 @@ const BarCharts = () => {
                         data={chartData}
                         margin={{ top: 20, right: 30, left: 20, bottom: 40 }}
                     >
-                        <CartesianGrid strokeDasharray="3 3" stroke="#ddd" />
-                        <XAxis dataKey="name"  textAnchor="end" />
-                        <YAxis />
-                        <Tooltip />
-                        <Bar dataKey="value" fill="#8884d8" label={{ position: 'top' }} shape={<TriangleBar />}>
+                        <CartesianGrid
+                            strokeDasharray="3 3"
+                            stroke="var(--text-color)"
+                            opacity={0.2} // Subtle grid
+                        />
+                        <XAxis
+                            dataKey="name"
+                            textAnchor="end"
+                            stroke="var(--text-color)"
+                            tick={{ fill: 'var(--text-color)' }}
+                        />
+                        <YAxis stroke="var(--text-color)" tick={{ fill: 'var(--text-color)' }} />
+                        <Tooltip
+                            contentStyle={{
+                                backgroundColor: 'var(--background)',
+                                color: 'var(--text-color)',
+                                border: '1px solid var(--text-color)',
+                                borderRadius: '4px',
+                            }}
+                        />
+                        <Bar
+                            dataKey="value"
+                            fill="var(--button-bg)" // Default to blue
+                            label={{ position: 'top', fill: 'var(--text-color)' }}
+                            shape={<TriangleBar />}
+                        >
                             {chartData.map((entry, index) => (
                                 <Cell key={`cell-${index}`} fill={colors[index % colors.length]} />
                             ))}
@@ -59,10 +82,10 @@ const BarCharts = () => {
                     </BarChart>
                 </ResponsiveContainer>
             ) : (
-                <p className="text-center text-gray-500 text-lg font-semibold my-auto">
-                😕 No activity data available yet. <br />
-                Start engaging to see your stats here!
-            </p>
+                <p className="text-center text-[var(--text-color)] text-lg font-semibold my-auto">
+                    😕 No activity data available yet. <br />
+                    Start engaging to see your stats here!
+                </p>
             )}
         </div>
     );
